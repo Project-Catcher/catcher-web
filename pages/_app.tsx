@@ -1,8 +1,13 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { NavItem } from "@shared/components/layout";
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <NavItem>
+      <Component {...pageProps} />
+    </NavItem>
+  );
 }
 
-export default MyApp
+export default MyApp;
