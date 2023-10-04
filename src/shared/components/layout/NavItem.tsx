@@ -30,7 +30,7 @@ const NavItem = ({ children }: NavItemProps) => {
     return (
       <div
         key={tag}
-        className="sm:table md:table inline-block font-bold px-4 sm:px-0 md:px-0 sm:py-4 md:py-4 leading-8 cursor-pointer hover:text-black"
+        className="inline-block font-bold px-4 leading-8 cursor-pointer hover:text-black navItem-sm-md"
       >
         <Link href={tag.toLowerCase()}>{tag}</Link>
       </div>
@@ -41,19 +41,19 @@ const NavItem = ({ children }: NavItemProps) => {
     <>
       <header
         id="header"
-        className="fixed z-100 top-0 left-0 right-0 bg-transparent text-gray-300 sm:bg-white md:bg-white"
+        className="fixed z-100 top-0 left-0 right-0 bg-transparent text-gray-300 background-white-sm-md"
         ref={navRef}
       >
         <div className="border-box w-full max-w-[80%] h-20 px-8 py-6 mx-auto my-0">
-          <div className="inline-block text-2xl font-bold leading-8 cursor-pointer sm:text-black md:text-black">
+          <div className="inline-block text-2xl font-bold leading-8 cursor-pointer text-black-sm-md">
             <Link href="/">Jinwook's Portfolio</Link>
           </div>
-          <div className="inline-block float-right sm:hidden md:hidden">
+          <div className="inline-block float-right hidden-sm-md">
             {["Skills", "Archiving", "Projects"].map((tag) => {
               return renderNavItems(tag);
             })}
           </div>
-          <div className="float-right hidden sm:inline-block md:inline-block">
+          <div className="float-right hidden inline-block-sm-md">
             <Image
               className="cursor-pointer"
               src="/images/hamburger.svg"
@@ -65,7 +65,7 @@ const NavItem = ({ children }: NavItemProps) => {
           </div>
         </div>
         {isOpen && (
-          <div className="box-border z-100 w-full max-h-60 bg-white hidden sm:block md:block">
+          <div className="box-border z-100 w-full max-h-60 bg-white hidden inline-block-sm-md">
             <div className="max-w-[80%] mx-auto pl-8 py-4">
               {["Skills", "Archiving", "Projects"].map((tag) => {
                 return renderNavItems(tag);

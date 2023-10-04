@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import type { NextPage } from "next";
+import { NextPage } from "next";
+import { useMemo } from "react";
 
 const Home: NextPage = () => {
   const about = useMemo(
