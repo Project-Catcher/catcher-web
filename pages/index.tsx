@@ -5,12 +5,10 @@ import Head from "next/head";
 const Home: NextPage = () => {
   return (
     <div>
-      <Head>
-        <title>Portfolio</title>
-        <meta name="description" content="Choi-Jinwook's Portfolio" />
-      </Head>
-
-      <footer></footer>
+      <div className="text-3xl underline text-center">- 최진욱 -</div>
+      <div>FE Developer Portfolio</div>
+      <div>short introduce</div>
+      <div>about me</div>
     </div>
   );
 };
