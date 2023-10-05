@@ -8,6 +8,7 @@ interface NavItemProps {
 
 const NavItem = ({ children }: NavItemProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
   const navRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -19,8 +20,16 @@ const NavItem = ({ children }: NavItemProps) => {
 
     document.addEventListener("click", handleClickOutside);
 
+    const changeNavbarColor = () => {
+      if (window.scrollY >= 95) setScrolled(true);
+      else setScrolled(false);
+    };
+
+    window.addEventListener("scroll", changeNavbarColor);
+
     return () => {
       document.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("scroll", changeNavbarColor);
     };
   }, []);
 
@@ -40,8 +49,9 @@ const NavItem = ({ children }: NavItemProps) => {
   return (
     <>
       <header
-        id="header"
-        className="fixed z-100 top-0 left-0 right-0 bg-transparent text-gray-300 background-white-sm-md"
+        className={`fixed z-100 top-0 left-0 right-0 bg-transparent ${
+          scrolled ? "text-black" : "text-gray-300"
+        } background-white-sm-md`}
         ref={navRef}
       >
         <div className="border-box w-full max-w-[80%] h-20 px-8 py-6 mx-auto my-0">
