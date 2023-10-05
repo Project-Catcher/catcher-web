@@ -1,3 +1,4 @@
+import { Title } from "@shared/components";
 import { NextPage } from "next";
 import { useMemo } from "react";
 
@@ -20,9 +21,9 @@ const Home: NextPage = () => {
         <div className="w-full max-w-[80%] mx-auto my-0 py-28">
           <div className="text-center">
             <div className="break-keep text-white">
-              <div className="title">최진욱</div>
+              <Title type="title" value="최진욱" />
               <br />
-              <div className="subTitle">FE Developer</div>
+              <Title type="subTitle" value="FE Developer" />
               <hr className="w-12 mx-auto my-6 border-gray-400 border-t-2" />
             </div>
             <div className="text-2xl text-gray-300">
@@ -37,7 +38,7 @@ const Home: NextPage = () => {
       </div>
       <div className="w-full max-w-[80%] mx-auto my-0 px-12 py-20">
         <div className="subTitleUnderline">
-          <div className="subTitle">ABOUT ME</div>
+          <Title type="subTitle" value="ABOUT ME" />
         </div>
         <div className="flex flex-row flex-wrap justify-between">
           {about.map(({ label, value }) => (

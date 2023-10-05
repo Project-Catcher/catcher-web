@@ -40,6 +40,18 @@
   @apply w-fit border-gray-400 border-b-2 mx-auto mb-10;
 }
 
+.skillsContainer {
+  @apply max-h-[80rem] flex flex-col flex-wrap content-around items-center sm:flex-nowrap sm:max-h-[180rem] md:flex-nowrap md:max-h-[180rem];
+}
+
+.skillsBox {
+  @apply w-[20rem] h-fit box-border bg-white rounded-xl px-6 py-6 shadow-xl sm:w-[15rem] md:w-[17rem];
+}
+
+.skillsTitle {
+  @apply text-3xl text-[#f4623a] font-bold text-left;
+}
+
 body {
   width: 100%;
   height: 100%;
