@@ -8,7 +8,7 @@ const Img = ({ src, ...props }: ImgProps) => {
   return (
     <picture>
       <source srcSet={src} type="image/webp" />
-      <img src={src} alt={src} {...props} />
+      <img className="mx-auto" src={src} alt={src} {...props} />
     </picture>
   );
 };
