@@ -20,9 +20,9 @@ const Home: NextPage = () => {
         <div className="w-full max-w-[80%] mx-auto my-0 py-28">
           <div className="text-center">
             <div className="break-keep text-white">
-              <div className="text-6xl font-BlackHanSans">최진욱</div>
+              <div className="title">최진욱</div>
               <br />
-              <div className="text-5xl font-BlackHanSans">FE Developer</div>
+              <div className="subTitle">FE Developer</div>
               <hr className="w-12 mx-auto my-6 border-gray-400 border-t-2" />
             </div>
             <div className="text-2xl text-gray-300">
@@ -36,8 +36,8 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className="w-full max-w-[80%] mx-auto my-0 px-12 py-20">
-        <div className="w-fit border-gray-400 border-b-2 mx-auto mb-10">
-          <div className="text-5xl font-BlackHanSans">ABOUT ME</div>
+        <div className="subTitleUnderline">
+          <div className="subTitle">ABOUT ME</div>
         </div>
         <div className="flex flex-row flex-wrap justify-between">
           {about.map(({ label, value }) => (
