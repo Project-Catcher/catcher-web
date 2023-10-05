@@ -45,7 +45,7 @@
 }
 
 .skillsBox {
-  @apply w-[20rem] h-fit box-border bg-white rounded-xl px-6 py-6 shadow-xl sm:w-[15rem] md:w-[17rem];
+  @apply w-[20rem] h-fit box-border bg-white rounded-xl px-6 py-6 shadow-xl sm:w-[15rem] md:w-[17rem] hover:duration-500 hover:translate-y-2;
 }
 
 .skillsTitle {
