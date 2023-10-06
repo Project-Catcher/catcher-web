@@ -40,7 +40,7 @@
   @apply w-fit border-gray-400 border-b-2 mx-auto mb-10;
 }
 
-.skillsContainer {
+.whiteboxContainer {
   @apply max-h-[80rem] flex flex-col flex-wrap content-around items-center sm:flex-nowrap sm:max-h-[180rem] md:flex-nowrap md:max-h-[180rem];
 }
 

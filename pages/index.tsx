@@ -1,4 +1,4 @@
-import { Title } from "@shared/components";
+import { Container, ContentContainer, Title } from "@shared/components";
 import { NextPage } from "next";
 import { useMemo } from "react";
 
@@ -17,8 +17,8 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="w-full h-full bg-fe bg-cover bg-no-repeat -z-1">
-        <div className="w-full max-w-[80%] mx-auto my-0 py-28">
+      <Container backgroundOption="bg-fe bg-cover bg-no-repeat -z-1">
+        <ContentContainer>
           <div className="text-center">
             <div className="break-keep text-white">
               <Title type="title" value="최진욱" />
@@ -34,9 +34,9 @@ const Home: NextPage = () => {
               <p>사용자의 경험을 0순위로 생각하며 개발합니다.</p>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="w-full max-w-[80%] mx-auto my-0 px-12 py-20">
+        </ContentContainer>
+      </Container>
+      <ContentContainer layout="px-12 py-20">
         <div className="subTitleUnderline">
           <Title type="subTitle" value="ABOUT ME" />
         </div>
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
             </div>
           ))}
         </div>
-      </div>
+      </ContentContainer>
     </>
   );
 };

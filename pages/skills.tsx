@@ -1,4 +1,10 @@
-import { Img, Title } from "@shared/components";
+import {
+  Container,
+  ContentContainer,
+  Img,
+  Title,
+  WhiteBox,
+} from "@shared/components";
 import { useMemo } from "react";
 
 const Skills = () => {
@@ -13,23 +19,23 @@ const Skills = () => {
   );
 
   return (
-    <div className="w-full h-auto bg-yellow-400 mt-20">
-      <div className="max-w-[80%] h-fit mx-auto px-10 py-28">
+    <Container backgroundOption="bg-yellow-400 mt-20">
+      <ContentContainer>
         <div className="subTitleUnderline">
           <Title type="subTitle" value="Skills" />
         </div>
-        <div className="skillsContainer">
+        <div className="whiteboxContainer">
           {skills.map(({ title, src }) => (
-            <div key={title} className="skillsBox my-4">
+            <WhiteBox key={title}>
               <div className="border-b-2 mb-6">
                 <div className="skillsTitle">{title}</div>
               </div>
               <Img src={src} style={{ maxHeight: "70rem" }} />
-            </div>
+            </WhiteBox>
           ))}
         </div>
-      </div>
-    </div>
+      </ContentContainer>
+    </Container>
   );
 };
 
