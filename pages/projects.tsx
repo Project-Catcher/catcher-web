@@ -15,7 +15,7 @@ const Projects = () => {
 
   const [slide, setSlide] = useState<number>(1);
   const [style, setStyle] = useState({
-    transform: `translate-x-[0%]`,
+    transform: `translate-x-[-100%]`,
     transition: "transition-all ease-in-out",
   });
 
