@@ -15,7 +15,7 @@ const Projects = () => {
 
   const [slide, setSlide] = useState<number>(1);
   const [style, setStyle] = useState({
-    transform: `translate-x-[-100%]`,
+    transform: `translate-x-[0%]`,
     transition: "transition-all ease-in-out",
   });
 
@@ -25,13 +25,13 @@ const Projects = () => {
     if (slide <= 1) {
       setSlide(3);
       setStyle({
-        transform: `translate-x-[-300%]`,
+        transform: `translate-x-[-200%]`,
         transition: "transition-all ease-in-out",
       });
     } else {
       setSlide((prev) => prev - 1);
       setStyle({
-        transform: `translate-x-[-${slide - 1}00%]`,
+        transform: `translate-x-[-${slide - 2}00%]`,
         transition: "transition-all ease-in-out",
       });
     }
@@ -41,13 +41,13 @@ const Projects = () => {
     if (slide >= 3) {
       setSlide(1);
       setStyle({
-        transform: `translate-x-[-100%]`,
+        transform: `translate-x-[0%]`,
         transition: "transition-all ease-in-out",
       });
     } else {
       setSlide((prev) => prev + 1);
       setStyle({
-        transform: `translate-x-[-${slide + 1}00%]`,
+        transform: `translate-x-[-${slide}00%]`,
         transition: "transition-all ease-in-out",
       });
     }
