@@ -19,6 +19,8 @@ const Projects = () => {
     transition: "transition-all ease-in-out",
   });
 
+  console.log(slide, style.transform);
+
   const previousSlide = () => {
     if (slide <= 1) {
       setSlide(3);
