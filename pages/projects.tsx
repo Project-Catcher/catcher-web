@@ -5,7 +5,7 @@ import {
   Title,
   WhiteBox,
 } from "@shared/components";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const Projects = () => {
   const imageSrc = useMemo(
@@ -14,44 +14,31 @@ const Projects = () => {
   );
 
   const [slide, setSlide] = useState<number>(1);
-  const [style, setStyle] = useState({
-    transform: `translate-x-[0%]`,
-    transition: "transition-all ease-in-out",
-  });
 
-  console.log(slide, style.transform);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  console.log(slide);
 
   const previousSlide = () => {
     if (slide <= 1) {
       setSlide(3);
-      setStyle({
-        transform: `translate-x-[-200%]`,
-        transition: "transition-all ease-in-out",
-      });
     } else {
       setSlide((prev) => prev - 1);
-      setStyle({
-        transform: `translate-x-[-${slide - 2}00%]`,
-        transition: "transition-all ease-in-out",
-      });
     }
   };
 
   const nextSlide = () => {
     if (slide >= 3) {
       setSlide(1);
-      setStyle({
-        transform: `translate-x-[0%]`,
-        transition: "transition-all ease-in-out",
-      });
     } else {
       setSlide((prev) => prev + 1);
-      setStyle({
-        transform: `translate-x-[-${slide}00%]`,
-        transition: "transition-all ease-in-out",
-      });
     }
   };
+
+  useEffect(() => {
+    if (imageRef.current !== null)
+      imageRef.current.style.transform = `translateX(-${slide - 1}00%)`;
+  }, [slide]);
 
   return (
     <Container backgroundOption="bg-amber-900 mt-20">
@@ -63,7 +50,8 @@ const Projects = () => {
           <WhiteBox extraClass="!w-full flex">
             <div className="overflow-hidden w-1/3 my-4 sm:w-1/2 md:w-1/2">
               <div
-                className={`flex flex-row flex-nowrap ${style.transform} ${style.transition}`}
+                ref={imageRef}
+                className={`flex flex-row flex-nowrap transition-all ease-in-out`}
               >
                 {imageSrc.map((src) => (
                   <Img key={src} src={src} minWidth="min-w-full" />
