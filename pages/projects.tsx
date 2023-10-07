@@ -25,13 +25,13 @@ const Projects = () => {
     if (slide <= 1) {
       setSlide(3);
       setStyle({
-        transform: `translate-x-[-200%]`,
+        transform: `translate-x-[-300%]`,
         transition: "transition-all ease-in-out",
       });
     } else {
       setSlide((prev) => prev - 1);
       setStyle({
-        transform: `translate-x-[-${slide - 2}00%]`,
+        transform: `translate-x-[-${slide - 1}00%]`,
         transition: "transition-all ease-in-out",
       });
     }
@@ -41,13 +41,13 @@ const Projects = () => {
     if (slide >= 3) {
       setSlide(1);
       setStyle({
-        transform: `translate-x-[0%]`,
+        transform: `translate-x-[-100%]`,
         transition: "transition-all ease-in-out",
       });
     } else {
       setSlide((prev) => prev + 1);
       setStyle({
-        transform: `translate-x-[-${slide}00%]`,
+        transform: `translate-x-[-${slide + 1}00%]`,
         transition: "transition-all ease-in-out",
       });
     }
