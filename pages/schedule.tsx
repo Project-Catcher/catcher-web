@@ -4,47 +4,21 @@ import {
   Title,
   WhiteBox,
 } from "@shared/components";
+import { TodoList } from "@shared/types";
 import {
-  ChangeEvent,
   DragEvent,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-
-interface TodoList {
-  background: string;
-  value: string;
-}
+import { TimeModal } from "schedule/components";
 
 const Schedule = () => {
-  const [todoArray, setTodoArray] = useState<TodoList[]>([
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-    { background: "bg-white", value: "" },
-  ]);
+  const [todoArray, setTodoArray] = useState<TodoList[]>(
+    Array(24).fill({ background: "bg-white", value: "" }),
+  );
   const [selectedTodoItem, setSelectedTodoItem] = useState<TodoList | null>(
     null,
   );
@@ -54,6 +28,26 @@ const Schedule = () => {
     end: number;
   }>({ start: 0, end: 0 });
 
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  const handleModal = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, []);
+
+  const handleTodoArray = useCallback((updatedTodoArray: TodoList[]) => {
+    setTodoArray(updatedTodoArray);
+  }, []);
+
+  const handleSelectedTime = useCallback(
+    (field: "start" | "end", newValue: number) => {
+      setSelectedTime((prev) => ({
+        ...prev,
+        [field]: newValue,
+      }));
+    },
+    [],
+  );
+
   const todoList: TodoList[] = useMemo(
     () => [
       { background: "bg-yellow-400", value: "공부" },
@@ -62,47 +56,6 @@ const Schedule = () => {
     ],
     [],
   );
-
-  const modalRef = useRef<HTMLDivElement | null>(null);
-
-  const timeSelection = Array.from({ length: 24 }, (_, index) => index);
-
-  const handleModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-
-  const handleStartToEndTime = (
-    e: ChangeEvent<HTMLSelectElement>,
-    field: "start" | "end",
-  ) => {
-    const newValue = parseInt(e.target.value, 10);
-
-    const updatedSelectedTime = { ...selectedTime };
-
-    if (field === "start") {
-      updatedSelectedTime.start = newValue;
-    } else if (field === "end") {
-      updatedSelectedTime.end = newValue;
-    }
-
-    setSelectedTime(updatedSelectedTime);
-  };
-
-  const confirmStartToEndTime = () => {
-    if (selectedTime.start <= selectedTime.end && selectedTodoItem !== null) {
-      const updatedTodoArray = [...todoArray];
-
-      for (let i = selectedTime.start; i < selectedTime.end; i++) {
-        updatedTodoArray[i] = {
-          background: selectedTodoItem.background,
-          value: selectedTodoItem.value,
-        };
-      }
-
-      setTodoArray(updatedTodoArray);
-      handleModal();
-    }
-  };
 
   const onDragStart = (index: number) => {
     setSelectedTodoItem(todoList[index]);
@@ -114,10 +67,8 @@ const Schedule = () => {
     const tableRect = e.currentTarget.getBoundingClientRect();
     const mouseY = e.clientY - tableRect.top;
     const _index = Math.floor(mouseY / 48);
-    setSelectedTime((prev) => ({
-      ...prev,
-      start: _index,
-    }));
+
+    setSelectedTime((prev) => ({ ...prev, start: _index }));
     handleModal();
   };
 
@@ -136,41 +87,15 @@ const Schedule = () => {
   return (
     <>
       {isModalOpen && (
-        <div className="w-full h-full fixed flex left-0 top-0 bg-[rgba(0,0,0,0.4)] justify-center items-center z-100">
-          <div
-            ref={modalRef}
-            className="w-[500px] h-[500px] flex flex-row gap-4 bg-white rounded-md justify-center items-center"
-          >
-            <div>
-              <div>start</div>
-              <select
-                onChange={(e) => handleStartToEndTime(e, "start")}
-                value={selectedTime.start}
-              >
-                {timeSelection.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <div>end</div>
-              <select
-                onChange={(e) => handleStartToEndTime(e, "end")}
-                value={selectedTime.end}
-              >
-                {timeSelection.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button onClick={handleModal}>취소</button>
-            <button onClick={confirmStartToEndTime}>확인</button>
-          </div>
-        </div>
+        <TimeModal
+          modalRef={modalRef}
+          selectedTime={selectedTime}
+          selectedTodoItem={selectedTodoItem}
+          todoArray={todoArray}
+          handleModal={handleModal}
+          handleTodoArray={handleTodoArray}
+          handleSelectedTime={handleSelectedTime}
+        />
       )}
       <Container backgroundOption="bg-purple-300 mt-20">
         <ContentContainer>
