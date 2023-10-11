@@ -68,7 +68,7 @@ const Schedule = () => {
     const mouseY = e.clientY - tableRect.top;
     const _index = Math.floor(mouseY / 48);
 
-    setSelectedTime((prev) => ({ ...prev, start: _index }));
+    setSelectedTime({ start: _index, end: _index + 1 });
     handleModal();
   };
 
