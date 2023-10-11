@@ -17,22 +17,12 @@ const Projects = () => {
 
   const imageRef = useRef<HTMLDivElement>(null);
 
-  console.log(slide);
-
   const previousSlide = () => {
-    if (slide <= 1) {
-      setSlide(3);
-    } else {
-      setSlide((prev) => prev - 1);
-    }
+    slide <= 1 ? setSlide(3) : setSlide((prev) => prev - 1);
   };
 
   const nextSlide = () => {
-    if (slide >= 3) {
-      setSlide(1);
-    } else {
-      setSlide((prev) => prev + 1);
-    }
+    slide >= 3 ? setSlide(1) : setSlide((prev) => prev + 1);
   };
 
   useEffect(() => {
