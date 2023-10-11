@@ -59,7 +59,7 @@ const NavItem = ({ children }: NavItemProps) => {
             <Link href="/">Jinwook's Portfolio</Link>
           </div>
           <div className="inline-block float-right hidden-sm-md">
-            {["Skills", "Archiving", "Projects"].map((tag) => {
+            {["Skills", "Archiving", "Projects", "Schedule"].map((tag) => {
               return renderNavItems(tag);
             })}
           </div>
@@ -77,7 +77,7 @@ const NavItem = ({ children }: NavItemProps) => {
         {isOpen && (
           <div className="box-border z-100 w-full max-h-60 bg-white hidden inline-block-sm-md">
             <div className="max-w-[80%] mx-auto pl-8 py-4">
-              {["Skills", "Archiving", "Projects"].map((tag) => {
+              {["Skills", "Archiving", "Projects", "Schedule"].map((tag) => {
                 return renderNavItems(tag);
               })}
             </div>
