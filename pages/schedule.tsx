@@ -1,3 +1,4 @@
+import { TimeModal } from "@schedule/components";
 import {
   Container,
   ContentContainer,
@@ -13,7 +14,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { TimeModal } from "schedule/components";
 
 const Schedule = () => {
   const [todoArray, setTodoArray] = useState<TodoList[]>(

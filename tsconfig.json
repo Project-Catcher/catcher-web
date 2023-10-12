@@ -16,6 +16,7 @@
     "incremental": true,
     "baseUrl": "./src",
     "paths": {
+      "@schedule/*": ["schedule/*"],
       "@pages/*": ["../pages/*"],
       "@shared/*": ["shared/*"]
     }
