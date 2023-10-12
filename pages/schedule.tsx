@@ -66,7 +66,7 @@ const Schedule = () => {
 
     const tableRect = e.currentTarget.getBoundingClientRect();
     const mouseY = e.clientY - tableRect.top;
-    const _index = Math.floor(mouseY / 48);
+    const _index = Math.floor(mouseY / 40);
 
     setSelectedTime({ start: _index, end: _index + 1 });
     handleModal();
@@ -104,8 +104,10 @@ const Schedule = () => {
           </div>
           <div className="whiteboxContainer">
             <WhiteBox extraClass="hover:translate-y-0">
-              <div className="text-center text-2xl font-bold">Time Table</div>
-              <table className="w-4/5" onDrop={onDrop}>
+              <div className="text-center text-2xl font-bold mb-8">
+                Time Table
+              </div>
+              <table className="w-full mb-4" onDrop={onDrop}>
                 <tbody>
                   <tr>
                     <th>
@@ -113,14 +115,14 @@ const Schedule = () => {
                         ({ background, value }: TodoList, index) => (
                           <div
                             key={index}
-                            className="my-2"
+                            className="flex w-full h-[2.5rem] justify-center items-center gap-4"
                             onDragOver={(e) => e.preventDefault()}
                           >
-                            <div className="inline-block px-4">
+                            <div className="inline-block w-[100px] px-4">
                               {`${index} ~ ${index + 1}`}
                             </div>
                             <div
-                              className={`inline-block w-[100px] min-h-[2rem] border border-black border-solid ${background}`}
+                              className={`inline-block w-[150px] h-[2.5rem] border border-black border-solid ${background}`}
                             >
                               {value}
                             </div>

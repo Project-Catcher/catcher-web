@@ -23,7 +23,7 @@ const TimeModal = ({
   handleTodoArray,
   handleSelectedTime,
 }: TimeModalProps) => {
-  const timeSelection = Array.from({ length: 24 }, (_, index) => index);
+  const timeSelection = Array.from({ length: 25 }, (_, index) => index);
 
   const handleStartToEndTime = (
     e: ChangeEvent<HTMLSelectElement>,
@@ -35,7 +35,7 @@ const TimeModal = ({
   };
 
   const confirmStartToEndTime = () => {
-    if (selectedTime.start <= selectedTime.end && selectedTodoItem !== null) {
+    if (selectedTime.start < selectedTime.end && selectedTodoItem !== null) {
       const updatedTodoArray = todoArray.map((todo, index) => ({
         ...todo,
         ...(index >= selectedTime.start && index < selectedTime.end
