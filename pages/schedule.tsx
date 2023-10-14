@@ -12,7 +12,7 @@ import { useCallback, useState } from "react";
 const Schedule = () => {
   const [answers, setAnswers] = useState<AnswerType>({});
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { todoArray, setTodoArray } = useTodo();
+  const { todoArray, handleTodoArray } = useTodo();
 
   const handleAnswer = (answer: AnswerType) => {
     setAnswers((prev) => ({ ...prev, ...answer }));
@@ -30,18 +30,14 @@ const Schedule = () => {
     setIsModalOpen((prev) => !prev);
   }, []);
 
-  const handleTodoArray = useCallback((updatedTodoArray: TodoList[]) => {
-    setTodoArray(updatedTodoArray);
-  }, []);
-
   return (
     <>
       {isModalOpen && (
         <TimeModal
           answers={answers}
           todoArray={todoArray}
-          handleModal={handleModal}
           handleTodoArray={handleTodoArray}
+          handleModal={handleModal}
           handleTime={handleTime}
         />
       )}

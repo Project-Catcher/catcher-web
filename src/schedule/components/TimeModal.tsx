@@ -5,21 +5,21 @@ import { useTimeSelect } from "@shared/hooks";
 interface TimeModalProps {
   answers: AnswerType;
   todoArray: TodoList[];
-  handleModal: () => void;
   handleTodoArray: (updatedTodoArray: TodoList[]) => void;
+  handleModal: () => void;
   handleTime: (time: AnswerType) => void;
 }
 
 const TimeModal = ({
   answers,
   todoArray,
-  handleModal,
   handleTodoArray,
+  handleModal,
   handleTime,
 }: TimeModalProps) => {
   const { timeSelection } = useTimeSelect();
 
-  const confirmStart2EndTime = () => {
+  const confirmTime = () => {
     if ((answers.start as number) < (answers.end as number)) {
       const updatedTodoArray = todoArray.map((todo, index) => ({
         ...todo,
@@ -54,7 +54,7 @@ const TimeModal = ({
         />
       ))}
       <button onClick={handleModal}>취소</button>
-      <button onClick={confirmStart2EndTime}>확인</button>
+      <button onClick={confirmTime}>확인</button>
     </Modal>
   );
 };

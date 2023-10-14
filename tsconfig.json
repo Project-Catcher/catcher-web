@@ -17,6 +17,7 @@
     "baseUrl": "./src",
     "paths": {
       "@schedule/*": ["schedule/*"],
+      "@project/*": ["project/*"],
       "@pages/*": ["../pages/*"],
       "@shared/*": ["shared/*"]
     }

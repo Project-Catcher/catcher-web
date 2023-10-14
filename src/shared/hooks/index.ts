@@ -1,3 +1,4 @@
+import { TodoList } from "@shared/types";
 import { useState } from "react";
 
 export const useTimeSelect = () => {
@@ -11,5 +12,9 @@ export const useTodo = () => {
     Array(24).fill({ background: "bg-white", value: "" }),
   );
 
-  return { todoArray, setTodoArray };
+  const handleTodoArray = (updatedTodoArray: TodoList[]) => {
+    setTodoArray(updatedTodoArray);
+  };
+
+  return { todoArray, handleTodoArray };
 };
