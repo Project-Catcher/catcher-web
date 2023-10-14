@@ -1,0 +1,38 @@
+name: CI nextjs
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  ecr_url: ${{ secrets.ECR_REPO_FRONT }}
+  role_arn: ${{ secrets.OIDC_ROLE }}
+  aws_region: ${{ secrets.AWS_REGION }}
+
+
+jobs:
+  build:
+    name: To push ECR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ env.aws_region }}
+          role-session-name: GitHubActions
+          role-to-assume: ${{ env.role_arn }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Publish Image to ECR(CATCHER-WEB)
+        run: |
+          docker build -t ${{ env.ecr_url }}:catcher-web .
+          docker push ${{ env.ecr_url }}:catcher-web
