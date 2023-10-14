@@ -1,34 +1,30 @@
-import { TimeModal } from "@schedule/components";
+import { TimeModal, TimeTable, TodoListContainer } from "@schedule/components";
 import {
   Container,
   ContentContainer,
   Title,
   WhiteBox,
 } from "@shared/components";
-import { TodoList } from "@shared/types";
-import {
-  DragEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useTodo } from "@shared/hooks";
+import { AnswerType, TodoList } from "@shared/types";
+import { useCallback, useState } from "react";
 
 const Schedule = () => {
-  const [todoArray, setTodoArray] = useState<TodoList[]>(
-    Array(24).fill({ background: "bg-white", value: "" }),
-  );
-  const [selectedTodoItem, setSelectedTodoItem] = useState<TodoList | null>(
-    null,
-  );
+  const [answers, setAnswers] = useState<AnswerType>({});
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedTime, setSelectedTime] = useState<{
-    start: number;
-    end: number;
-  }>({ start: 0, end: 0 });
+  const { todoArray, setTodoArray } = useTodo();
 
-  const modalRef = useRef<HTMLDivElement | null>(null);
+  const handleAnswer = (answer: AnswerType) => {
+    setAnswers((prev) => ({ ...prev, ...answer }));
+  };
+
+  const handleTodo = useCallback((todo: AnswerType) => {
+    handleAnswer({ ...todo });
+  }, []);
+
+  const handleTime = useCallback((time: AnswerType) => {
+    handleAnswer({ ...time });
+  }, []);
 
   const handleModal = useCallback(() => {
     setIsModalOpen((prev) => !prev);
@@ -38,63 +34,15 @@ const Schedule = () => {
     setTodoArray(updatedTodoArray);
   }, []);
 
-  const handleSelectedTime = useCallback(
-    (field: "start" | "end", newValue: number) => {
-      setSelectedTime((prev) => ({
-        ...prev,
-        [field]: newValue,
-      }));
-    },
-    [],
-  );
-
-  const todoList: TodoList[] = useMemo(
-    () => [
-      { background: "bg-yellow-400", value: "공부" },
-      { background: "bg-green-400", value: "학교" },
-      { background: "bg-gray-400", value: "잠" },
-    ],
-    [],
-  );
-
-  const onDragStart = (index: number) => {
-    setSelectedTodoItem(todoList[index]);
-  };
-
-  const onDrop = (e: DragEvent<HTMLTableElement>) => {
-    e.preventDefault();
-
-    const tableRect = e.currentTarget.getBoundingClientRect();
-    const mouseY = e.clientY - tableRect.top;
-    const _index = Math.floor(mouseY / 40);
-
-    setSelectedTime({ start: _index, end: _index + 1 });
-    handleModal();
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        setIsModalOpen(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
-
   return (
     <>
       {isModalOpen && (
         <TimeModal
-          modalRef={modalRef}
-          selectedTime={selectedTime}
-          selectedTodoItem={selectedTodoItem}
+          answers={answers}
           todoArray={todoArray}
           handleModal={handleModal}
           handleTodoArray={handleTodoArray}
-          handleSelectedTime={handleSelectedTime}
+          handleTime={handleTime}
         />
       )}
       <Container backgroundOption="bg-purple-300 mt-20">
@@ -107,50 +55,22 @@ const Schedule = () => {
               <div className="text-center text-2xl font-bold mb-8">
                 Time Table
               </div>
-              <table className="w-full mb-4" onDrop={onDrop}>
-                <tbody>
-                  <tr>
-                    <th>
-                      {todoArray.map(
-                        ({ background, value }: TodoList, index) => (
-                          <div
-                            key={index}
-                            className="flex w-full h-[2.5rem] justify-center items-center gap-4"
-                            onDragOver={(e) => e.preventDefault()}
-                          >
-                            <div className="inline-block w-[100px] px-4">
-                              {`${index} ~ ${index + 1}`}
-                            </div>
-                            <div
-                              className={`inline-block w-[150px] h-[2.5rem] border border-black border-solid ${background}`}
-                            >
-                              {value}
-                            </div>
-                          </div>
-                        ),
-                      )}
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
+              <TimeTable
+                todoArray={todoArray}
+                handleModal={handleModal}
+                handleTime={handleTime}
+              />
             </WhiteBox>
             <WhiteBox extraClass="hover:translate-y-0">
-              <div className="text-center text-2xl font-bold">Todo</div>
-              <div className="flex flex-row gap-2">
-                {todoList.map(
-                  ({ background, value }: TodoList, index: number) => (
-                    <div
-                      key={value}
-                      className={`inline-block w-[50px] h-[50px] text-center ${background}`}
-                      onDragStart={() => onDragStart(index)}
-                      onDragOver={(e) => e.preventDefault()}
-                      draggable
-                    >
-                      {value}
-                    </div>
-                  ),
-                )}
-              </div>
+              <div className="text-center text-2xl font-bold mb-4">Todo</div>
+              <TodoListContainer
+                onDragStart={(_todoList, index) =>
+                  handleTodo({
+                    background: _todoList[index].background,
+                    value: _todoList[index].value,
+                  })
+                }
+              />
             </WhiteBox>
           </div>
         </ContentContainer>

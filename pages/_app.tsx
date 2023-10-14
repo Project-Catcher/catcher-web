@@ -1,4 +1,4 @@
-import { NavItem } from "@shared/components/layout";
+import { Navbar } from "@shared/components/layout";
 import "@shared/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -9,9 +9,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Portfolio</title>
       </Head>
-      <NavItem>
+      <Navbar>
         <Component {...pageProps} />
-      </NavItem>
+      </Navbar>
     </>
   );
 }

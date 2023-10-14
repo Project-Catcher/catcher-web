@@ -18,11 +18,14 @@ const Archiving = () => {
           <WhiteBox extraClass="!w-[25rem]">
             <Img src="/images/github.png" />
             <div className="mt-6 mb-6">
-              <Link
-                className="underline text-sky-400"
-                href="https://github.com/Choi-Jinwook"
-              >
-                Visit Github
+              <Link legacyBehavior href="https://github.com/Choi-Jinwook">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-sky-400"
+                >
+                  Visit Github(Open in a new tab)
+                </a>
               </Link>
             </div>
             <div className="space-y-2">

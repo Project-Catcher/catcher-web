@@ -1,52 +1,38 @@
-import { TodoList } from "@shared/types";
-import { ChangeEvent, MutableRefObject } from "react";
+import { AnswerType, TodoList } from "@shared/types";
+import { Modal, Select } from "@shared/components";
+import { useTimeSelect } from "@shared/hooks";
 
 interface TimeModalProps {
-  modalRef: MutableRefObject<HTMLDivElement | null>;
-  selectedTime: {
-    start: number;
-    end: number;
-  };
-  selectedTodoItem: TodoList | null;
+  answers: AnswerType;
   todoArray: TodoList[];
   handleModal: () => void;
   handleTodoArray: (updatedTodoArray: TodoList[]) => void;
-  handleSelectedTime: (field: "start" | "end", newValue: number) => void;
+  handleTime: (time: AnswerType) => void;
 }
 
 const TimeModal = ({
-  modalRef,
-  selectedTime,
-  selectedTodoItem,
+  answers,
   todoArray,
   handleModal,
   handleTodoArray,
-  handleSelectedTime,
+  handleTime,
 }: TimeModalProps) => {
-  const timeSelection = Array.from({ length: 25 }, (_, index) => index);
+  const { timeSelection } = useTimeSelect();
 
-  const handleStartToEndTime = (
-    e: ChangeEvent<HTMLSelectElement>,
-    field: "start" | "end",
-  ) => {
-    const newValue = parseInt(e.target.value, 10);
-
-    handleSelectedTime(field, newValue);
-  };
-
-  const confirmStartToEndTime = () => {
-    if (selectedTime.start < selectedTime.end && selectedTodoItem !== null) {
+  const confirmStart2EndTime = () => {
+    if ((answers.start as number) < (answers.end as number)) {
       const updatedTodoArray = todoArray.map((todo, index) => ({
         ...todo,
-        ...(index >= selectedTime.start && index < selectedTime.end
+        ...(index >= (answers.start as number) &&
+        index < (answers.end as number)
           ? {
-              background: selectedTodoItem.background,
-              value: selectedTodoItem.value,
+              background: answers.background,
+              value: answers.value,
             }
           : {}),
       }));
 
-      handleTodoArray(updatedTodoArray);
+      handleTodoArray(updatedTodoArray as TodoList[]);
       handleModal();
     } else {
       alert("시작 시간은 종료 시간과 같거나 종료 시간보다 뒤일 수 없습니다.");
@@ -54,41 +40,22 @@ const TimeModal = ({
   };
 
   return (
-    <div className="w-full h-full fixed flex left-0 top-0 bg-[rgba(0,0,0,0.4)] justify-center items-center z-100">
-      <div
-        ref={modalRef}
-        className="w-[500px] h-[500px] flex flex-row gap-4 bg-white rounded-md justify-center items-center"
-      >
-        <div>
-          <div>start</div>
-          <select
-            onChange={(e) => handleStartToEndTime(e, "start")}
-            value={selectedTime.start}
-          >
-            {timeSelection.map((time) => (
-              <option key={time} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <div>end</div>
-          <select
-            onChange={(e) => handleStartToEndTime(e, "end")}
-            value={selectedTime.end}
-          >
-            {timeSelection.map((time) => (
-              <option key={time} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button onClick={handleModal}>취소</button>
-        <button onClick={confirmStartToEndTime}>확인</button>
-      </div>
-    </div>
+    <Modal handleModal={handleModal}>
+      {[
+        { label: "start", value: answers.start },
+        { label: "end", value: answers.end },
+      ].map(({ label, value }) => (
+        <Select
+          key={label}
+          label={label}
+          value={value as number}
+          data={timeSelection}
+          onChange={(value) => handleTime({ [label]: value as number })}
+        />
+      ))}
+      <button onClick={handleModal}>취소</button>
+      <button onClick={confirmStart2EndTime}>확인</button>
+    </Modal>
   );
 };
 
