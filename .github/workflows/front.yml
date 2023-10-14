@@ -2,7 +2,7 @@ name: CI nextjs
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "add-dockerfile" ]
 
 env:
   ecr_url: ${{ secrets.ECR_REPO_FRONT }}
