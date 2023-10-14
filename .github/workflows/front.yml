@@ -5,7 +5,7 @@ on:
     branches: [ "feat/add-dockerfile" ]
 
 env:
-  ecr_url: ${{ secrets.ECR_REPO_FRONT }}
+  ecr_url: ${{ secrets.ECR_REPO_DEV_FRONT }}
   role_arn: ${{ secrets.OIDC_ROLE }}
   aws_region: ${{ secrets.AWS_REGION }}
 
