@@ -24,6 +24,9 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Docker build
+        run: docker build -t catcher-web .
+        
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -37,6 +40,5 @@ jobs:
 
       - name: Publish Image to ECR(CATCHER-WEB)
         run: |
-          docker build -t catcher-web .
           docker tag catcher-web:latest ${{ env.ecr_url }}:catcher-web
           docker push ${{ env.ecr_url }}:catcher-web
