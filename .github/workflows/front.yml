@@ -37,5 +37,6 @@ jobs:
 
       - name: Publish Image to ECR(CATCHER-WEB)
         run: |
-          docker build -t ${{ env.ecr_url }}:catcher-web .
+          docker build -t catcher-web .
+          docker tag catcher-web:latest ${{ env.ecr_url }}:catcher-web
           docker push ${{ env.ecr_url }}:catcher-web
