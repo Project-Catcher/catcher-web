@@ -1,4 +1,4 @@
-import { TodoList } from "@shared/types";
+import { AnswerType, TodoList } from "@shared/types";
 import { useState } from "react";
 
 interface TodoListProps {
@@ -11,6 +11,28 @@ const TodoListContainer = ({ onDragStart }: TodoListProps) => {
     { background: "bg-green-400", value: "학교" },
     { background: "bg-gray-400", value: "잠" },
   ]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [answers, setAnswers] = useState<AnswerType>({});
+
+  const handleAnswer = (answer: AnswerType) => {
+    setAnswers((prev) => ({ ...prev, ...answer }));
+  };
+
+  const addTodo = (item: AnswerType) => {
+    if (item.background && item.value) {
+      setTodoList(
+        (prev) =>
+          [
+            ...prev,
+            { background: item.background, value: item.value },
+          ] as TodoList[],
+      );
+      setIsOpen(false);
+      setAnswers({});
+    } else {
+      alert("모든 값을 입력해 주세요.");
+    }
+  };
 
   return (
     <>
@@ -22,14 +44,39 @@ const TodoListContainer = ({ onDragStart }: TodoListProps) => {
             onDragStart={() => onDragStart(todoList, index)}
             onDragOver={(e) => e.preventDefault()}
             draggable
+            style={{ backgroundColor: background }} // 어떻게하징
           >
             {value}
           </div>
         ))}
       </div>
-      <div>
-        <button className="float-right">할 일 추가</button>
+      <div className="text-right">
+        <button onClick={() => setIsOpen(true)}>할 일 추가</button>
       </div>
+      {isOpen && (
+        <div>
+          <input
+            className="w-full h-[2.5rem] border border-2 border-gray-300 rounded-md pl-2 my-4"
+            type="text"
+            placeholder="할 일"
+            onChange={({ target: { value } }) => handleAnswer({ value: value })}
+          />
+          <input
+            className="w-full h-[2.5rem] border border-2 border-gray-300 rounded-md pl-2 mb-4"
+            type="text"
+            placeholder="배경색"
+            onChange={({ target: { value } }) =>
+              handleAnswer({ background: value })
+            }
+          />
+          <div className="text-right">
+            <button className="mr-4" onClick={() => setIsOpen(false)}>
+              취소
+            </button>
+            <button onClick={() => addTodo(answers)}>완료</button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

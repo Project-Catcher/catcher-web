@@ -1,12 +1,12 @@
 import { AnswerType, TodoList } from "@shared/types";
 import { Modal, Select } from "@shared/components";
-import { useTimeSelect } from "@shared/hooks";
+import { useTimeSelect, useUpdatedArray } from "@shared/hooks";
 
 interface TimeModalProps {
   answers: AnswerType;
   todoArray: TodoList[];
   handleTodoArray: (updatedTodoArray: TodoList[]) => void;
-  handleModal: () => void;
+  handleModal: (value: boolean) => void;
   handleTime: (time: AnswerType) => void;
 }
 
@@ -18,22 +18,12 @@ const TimeModal = ({
   handleTime,
 }: TimeModalProps) => {
   const { timeSelection } = useTimeSelect();
+  const { handleMidData } = useUpdatedArray(answers, todoArray);
 
   const confirmTime = () => {
     if ((answers.start as number) < (answers.end as number)) {
-      const updatedTodoArray = todoArray.map((todo, index) => ({
-        ...todo,
-        ...(index >= (answers.start as number) &&
-        index < (answers.end as number)
-          ? {
-              background: answers.background,
-              value: answers.value,
-            }
-          : {}),
-      }));
-
-      handleTodoArray(updatedTodoArray as TodoList[]);
-      handleModal();
+      handleTodoArray(handleMidData);
+      handleModal(false);
     } else {
       alert("시작 시간은 종료 시간과 같거나 종료 시간보다 뒤일 수 없습니다.");
     }
@@ -53,7 +43,7 @@ const TimeModal = ({
           onChange={(value) => handleTime({ [label]: value as number })}
         />
       ))}
-      <button onClick={handleModal}>취소</button>
+      <button onClick={() => handleModal(false)}>취소</button>
       <button onClick={confirmTime}>확인</button>
     </Modal>
   );

@@ -2,7 +2,7 @@ import { ProjectImage } from "@project/components";
 import {
   Container,
   ContentContainer,
-  Title,
+  ContentTitle,
   WhiteBox,
 } from "@shared/components";
 import { useMemo } from "react";
@@ -16,9 +16,7 @@ const Projects = () => {
   return (
     <Container backgroundOption="bg-amber-900 mt-20">
       <ContentContainer>
-        <div className="subTitleUnderline">
-          <Title type="subTitle" value="Projects" extraClass="text-white" />
-        </div>
+        <ContentTitle value="Projects" extraClass="text-white" />
         <div className="whiteboxContainer">
           <WhiteBox extraClass="!w-full flex">
             <div className="overflow-hidden w-1/3 my-4 sm:w-1/2 md:w-1/2">

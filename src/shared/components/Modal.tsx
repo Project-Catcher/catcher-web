@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface ModalProps {
   children: ReactNode;
-  handleModal: () => void;
+  handleModal: (value: boolean) => void;
 }
 
 const Modal = ({ children, handleModal }: ModalProps) => {
@@ -12,7 +12,7 @@ const Modal = ({ children, handleModal }: ModalProps) => {
       className="w-full h-full fixed flex left-0 top-0 bg-[rgba(0,0,0,0.4)] justify-center items-center z-100"
       onClick={({ target }) => {
         const id = (target as HTMLElement).id;
-        if (id === "dimmed") handleModal();
+        if (id === "dimmed") handleModal(false);
       }}
     >
       <div className="w-[500px] h-[500px] flex flex-row gap-4 bg-white rounded-md justify-center items-center">

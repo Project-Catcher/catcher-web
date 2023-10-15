@@ -1,11 +1,17 @@
 interface TitleProps {
-  type: "title" | "subTitle";
+  type?: "title" | "subTitle";
   value: string;
   extraClass?: string;
 }
 
-const Title = ({ type, value, extraClass }: TitleProps) => {
+export const Title = ({ type, value, extraClass }: TitleProps) => {
   return <div className={`${type} ${extraClass}`}>{value}</div>;
 };
 
-export default Title;
+export const ContentTitle = ({ value, extraClass }: TitleProps) => {
+  return (
+    <div className="subTitleUnderline">
+      <div className={`subTitle ${extraClass}`}>{value}</div>
+    </div>
+  );
+};

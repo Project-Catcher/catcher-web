@@ -1,8 +1,8 @@
 import {
   Container,
   ContentContainer,
+  ContentTitle,
   Img,
-  Title,
   WhiteBox,
 } from "@shared/components";
 import Link from "next/link";
@@ -11,9 +11,7 @@ const Archiving = () => {
   return (
     <Container backgroundOption="bg-zinc-600 mt-20">
       <ContentContainer>
-        <div className="subTitleUnderline">
-          <Title type="subTitle" value="Archiving" extraClass="text-white" />
-        </div>
+        <ContentTitle value="Archiving" extraClass="text-white" />
         <div className="whiteboxContainer">
           <WhiteBox extraClass="!w-[25rem]">
             <Img src="/images/github.png" />

@@ -1,4 +1,9 @@
-import { Container, ContentContainer, Title } from "@shared/components";
+import {
+  Container,
+  ContentContainer,
+  ContentTitle,
+  Title,
+} from "@shared/components";
 import { NextPage } from "next";
 import { useMemo } from "react";
 
@@ -37,9 +42,7 @@ const Home: NextPage = () => {
         </ContentContainer>
       </Container>
       <ContentContainer layout="px-12 py-20">
-        <div className="subTitleUnderline">
-          <Title type="subTitle" value="ABOUT ME" />
-        </div>
+        <ContentTitle value="ABOUT ME" />
         <div className="flex flex-row flex-wrap justify-between">
           {about.map(({ label, value }) => (
             <div key={label} className="w-1/3 mb-6 sm:w-full md:w-1/2">

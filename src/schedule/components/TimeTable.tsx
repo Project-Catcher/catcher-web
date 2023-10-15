@@ -3,7 +3,7 @@ import { DragEvent } from "react";
 
 interface TimeTableProps {
   todoArray: TodoList[];
-  handleModal: () => void;
+  handleModal: (value: boolean) => void;
   handleTime: (time: AnswerType) => void;
 }
 
@@ -15,9 +15,8 @@ const TimeTable = ({ todoArray, handleModal, handleTime }: TimeTableProps) => {
     const mouseY = e.clientY - tableRect.top;
     const _index = Math.floor(mouseY / 40);
 
-    handleTime({ start: _index });
-    handleTime({ end: _index + 1 });
-    handleModal();
+    handleTime({ start: _index, end: _index + 1 });
+    handleModal(true);
   };
 
   return (
@@ -36,6 +35,7 @@ const TimeTable = ({ todoArray, handleModal, handleTime }: TimeTableProps) => {
                 </div>
                 <div
                   className={`inline-block w-[150px] h-[2.5rem] border border-black border-solid leading-10 ${background}`}
+                  style={{ backgroundColor: background }}
                 >
                   {value}
                 </div>

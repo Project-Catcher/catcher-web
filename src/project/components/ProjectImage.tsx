@@ -1,20 +1,13 @@
 import { Img } from "@shared/components";
-import { useEffect, useRef, useState } from "react";
+import { useSlide } from "@shared/hooks";
+import { useEffect, useRef } from "react";
 
 interface ProjectImageProps {
   imageSrc: string[];
 }
 
 const ProjectImage = ({ imageSrc }: ProjectImageProps) => {
-  const [slide, setSlide] = useState<number>(1);
-
-  const previousSlide = () => {
-    slide <= 1 ? setSlide(3) : setSlide((prev) => prev - 1);
-  };
-
-  const nextSlide = () => {
-    slide >= 3 ? setSlide(1) : setSlide((prev) => prev + 1);
-  };
+  const { slide, handlePrev, handleNext } = useSlide(imageSrc);
 
   const imageRef = useRef<HTMLDivElement>(null);
 
@@ -34,9 +27,9 @@ const ProjectImage = ({ imageSrc }: ProjectImageProps) => {
         ))}
       </div>
       <div className="text-center">
-        <button onClick={previousSlide}>이전</button>
+        <button onClick={handlePrev}>이전</button>
         <div className="inline-block mx-4 my-4">{slide} / 3</div>
-        <button onClick={nextSlide}>다음</button>
+        <button onClick={handleNext}>다음</button>
       </div>
     </>
   );

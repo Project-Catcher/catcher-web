@@ -2,17 +2,18 @@ import { TimeModal, TimeTable, TodoListContainer } from "@schedule/components";
 import {
   Container,
   ContentContainer,
-  Title,
+  ContentTitle,
   WhiteBox,
+  WhiteBoxContainer,
 } from "@shared/components";
-import { useTodo } from "@shared/hooks";
-import { AnswerType, TodoList } from "@shared/types";
+import { useModal, useTodo } from "@shared/hooks";
+import { AnswerType } from "@shared/types";
 import { useCallback, useState } from "react";
 
 const Schedule = () => {
   const [answers, setAnswers] = useState<AnswerType>({});
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { todoArray, handleTodoArray } = useTodo();
+  const { isOpen, handleModal } = useModal();
 
   const handleAnswer = (answer: AnswerType) => {
     setAnswers((prev) => ({ ...prev, ...answer }));
@@ -26,27 +27,12 @@ const Schedule = () => {
     handleAnswer({ ...time });
   }, []);
 
-  const handleModal = useCallback(() => {
-    setIsModalOpen((prev) => !prev);
-  }, []);
-
   return (
     <>
-      {isModalOpen && (
-        <TimeModal
-          answers={answers}
-          todoArray={todoArray}
-          handleTodoArray={handleTodoArray}
-          handleModal={handleModal}
-          handleTime={handleTime}
-        />
-      )}
       <Container backgroundOption="bg-purple-300 mt-20">
         <ContentContainer>
-          <div className="subTitleUnderline">
-            <Title type="subTitle" value="Schedule(Daily)" />
-          </div>
-          <div className="whiteboxContainer">
+          <ContentTitle value="Schedule(Daily)" />
+          <WhiteBoxContainer>
             <WhiteBox extraClass="hover:translate-y-0">
               <div className="text-center text-2xl font-bold mb-8">
                 Time Table
@@ -57,6 +43,15 @@ const Schedule = () => {
                 handleTime={handleTime}
               />
             </WhiteBox>
+            {isOpen && (
+              <TimeModal
+                answers={answers}
+                todoArray={todoArray}
+                handleTodoArray={handleTodoArray}
+                handleModal={handleModal}
+                handleTime={handleTime}
+              />
+            )}
             <WhiteBox extraClass="hover:translate-y-0">
               <div className="text-center text-2xl font-bold mb-4">Todo</div>
               <TodoListContainer
@@ -68,7 +63,7 @@ const Schedule = () => {
                 }
               />
             </WhiteBox>
-          </div>
+          </WhiteBoxContainer>
         </ContentContainer>
       </Container>
     </>
