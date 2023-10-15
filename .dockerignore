@@ -1,0 +1,11 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+.storybook
+
+# docker 빌드시 pnp 관련 에러가 발생하여 추가
+.yarnrc.yml
