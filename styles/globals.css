@@ -29,12 +29,39 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
     color: white;
     background: black;
+  }
+} */
+
+@layer components {
+  .button-full {
+    @apply w-full h-[54px];
+  }
+  .button-larger {
+    @apply w-[165.36px] h-[55.99px];
+  }
+  .button-large {
+    @apply w-[145px] h-[49px];
+  }
+  .button-medium {
+    @apply w-[130px] h-[41px];
+  }
+  .button-semi-rounded {
+    @apply rounded-[10px];
+  }
+  .button-rounded {
+    @apply rounded-[34.5px];
+  }
+  .button-shadow {
+    @apply shadow-[0_4px_19px_0_rgba(119,147,65,0.3)];
+  }
+  .input-login {
+    @apply border border-solid border-[#ADADAD] pl-[53px] focus:border-[#4285F4];
   }
 }
