@@ -18,7 +18,7 @@ permissions:
 jobs:
   build:
     name: To push ECR
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
