@@ -43,7 +43,7 @@ a {
   .button-full {
     @apply w-full h-[54px];
   }
-  .button-larger {
+  .button-xlarge {
     @apply w-[165.36px] h-[55.99px];
   }
   .button-large {
