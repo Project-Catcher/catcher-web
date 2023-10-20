@@ -1,11 +1,9 @@
 name: CI nextjs
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  pull_request:
+  push:
     branches: [ "main" ]
-
+  
 env:
   ecr_url: ${{ secrets.ECR_REPO_DEV_FRONT }}
   role_arn: ${{ secrets.OIDC_ROLE }}
