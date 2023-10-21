@@ -1,10 +1,23 @@
 import useModal from "../../../shared/hook/useModal";
 
 const AlertTest = () => {
-  const { openAlert } = useModal();
+  const { openAlert, openConfirm } = useModal();
   const handleAlert = () => {
     openAlert({ text: "test", isHeaderCloseBtn: true });
   };
+  const handleConfirm = () => {
+    openConfirm({
+      text: "test confirm!",
+      isHeaderCloseBtn: true,
+      okCallback: () => {
+        console.log("ok");
+      },
+      noCallback: () => {
+        console.log("no");
+      },
+    });
+  };
+
   return (
     <div>
       Enter
@@ -21,7 +34,7 @@ const AlertTest = () => {
         className="
         bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
         disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled
+        onClick={handleConfirm}
       >
         Confirm!
       </button>
