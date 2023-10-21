@@ -41,11 +41,12 @@ export const ModalWrapper = ({
   };
 
   return (
-    <div
-      className="absolute top-0 right-0 w-full h-full bg-black opacity-50 flex justify-center items-center"
-      onClick={handleClickOutside}
-    >
-      <div onClick={handleClickInside}>{children}</div>
+    <div className="fixed top-0 right-0 w-full h-full flex justify-center items-center">
+      <div
+        className="absolute z-10 top-0 right-0 w-full h-full bg-black opacity-50 "
+        onClick={handleClickOutside}
+      ></div>
+      {children}
     </div>
   );
 };

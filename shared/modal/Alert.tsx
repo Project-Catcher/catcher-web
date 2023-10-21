@@ -13,10 +13,17 @@ const Alert = () => {
   if (isOpen) {
     return (
       <ModalWrapper isHeaderCloseBtn={isHeaderCloseBtn} type="alert">
-        <div className="bg-blue-500 opacity-50 w-[300px] h-[200px]">
-          {title && <h1>{title}</h1>}
-          {text && <p>{text}</p>}
-          <button onClick={handleOk}>{okText ?? "확인"}</button>
+        <div className="relative z-50 w-fit">
+          <div className="bg-white w-[300px] h-[200px] rounded-lg shadow-lg flex flex-col items-center justify-center">
+            {title && <h1 className="text-lg font-bold mb-2">{title}</h1>}
+            {text && <p className="text-gray-700 mb-4">{text}</p>}
+            <button
+              onClick={handleOk}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              {okText ?? "확인"}
+            </button>
+          </div>
         </div>
       </ModalWrapper>
     );
