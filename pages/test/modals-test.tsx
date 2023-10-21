@@ -1,4 +1,4 @@
-import useModal from "../../../shared/hook/useModal";
+import useModal from "../../src/shared/hook/useModal";
 
 const AlertTest = () => {
   const { openAlert, openConfirm } = useModal();
