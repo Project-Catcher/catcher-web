@@ -1,5 +1,4 @@
 import FindIdForm from "./FindIdForm";
-import { Checked } from "./FindMyId";
 
 interface AuthenticationBoxProps {
   type: "phone" | "email";

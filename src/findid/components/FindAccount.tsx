@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { WhiteBox } from "../../shared/components";
 import FindMyId from "./FindMyId";
-import ResetPassword from "./ResetPassword";
 import ModeButton from "./ModeButton";
+import ResetPassword from "./ResetPassword";
 
 const FindAccount = () => {
   const [mode, setMode] = useState<string>("id");

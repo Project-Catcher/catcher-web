@@ -1,7 +1,12 @@
 export { default as FindAccount } from "./FindAccount";
 export { default as FindMyId } from "./FindMyId";
 export { default as FindIdForm } from "./FindIdForm";
-export { default as ResetPassword } from "./ResetPassword";
+export { default as EnterNewPassword } from "./EnterNewPassword";
 export { default as AuthenticationBox } from "./AuthenticationBox";
 export { default as PasswordInput } from "./PasswordInput";
 export { default as ModeButton } from "./ModeButton";
+export { default as ResetPasswordForm } from "./ResetPasswordForm";
+export { default as ResetPassword } from "./ResetPassword";
+export { default as CheckId } from "./CheckId";
+export { default as DoneResetPassword } from "./DoneResetPassword";
+export { default as Instructions } from "./Instructions";

@@ -14,6 +14,7 @@ module.exports = {
         kakao: "url(/images/samples/kakao.svg)",
         naver: "url(/images/samples/naver.svg)",
         question: "url(/images/samples/question.svg)",
+        check: "url(/images/samples/check.svg)",
       },
     },
   },

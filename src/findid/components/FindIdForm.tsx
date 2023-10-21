@@ -1,9 +1,15 @@
+import { useState } from "react";
+import Instructions from "./Instructions";
+
 interface FindIdFormProps {
   description: string;
   type: "phone" | "email";
 }
 
 const FindIdForm = ({ description, type }: FindIdFormProps) => {
+  const [isHover, setIsHover] = useState<boolean>(false);
+  const currentType = type === "phone" ? true : false;
+
   return (
     <>
       <div className="mt-[6px]">
@@ -31,11 +37,16 @@ const FindIdForm = ({ description, type }: FindIdFormProps) => {
         </div>
         <div className="inline-block w-[260px]">
           <label className="text-xs font-medium" htmlFor="phone">
-            {type === "phone" ? "휴대전화" : "이메일 주소"}
+            {currentType ? "휴대전화" : "이메일 주소"}
           </label>
           <div className="flex items-center relative float-right text-[10px] text-[#8D8D8D]">
             인증번호가 오지 않나요
-            <button className="inline-block w-[22px] h-[22px] bg-question bg-no-repeat" />
+            <button
+              className="inline-block w-[22px] h-[22px] bg-question bg-no-repeat"
+              onMouseOver={() => setIsHover(true)}
+              onMouseOut={() => setIsHover(false)}
+            />
+            {isHover && <Instructions type={type} />}
           </div>
           <div>
             <input
@@ -43,9 +54,7 @@ const FindIdForm = ({ description, type }: FindIdFormProps) => {
               className="w-full text-sm border border-[#BDBDBD] px-[14px] py-[8px]"
               type="tel"
               placeholder={`${
-                type === "phone"
-                  ? "휴대전화번호 (숫자만 입력)"
-                  : "이메일 주소 입력"
+                currentType ? "휴대전화번호 (숫자만 입력)" : "이메일 주소 입력"
               }`}
             />
           </div>
