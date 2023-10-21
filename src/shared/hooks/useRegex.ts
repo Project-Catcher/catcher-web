@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { AnswerType } from "../../login/components/LoginForm";
+import { AnswerType } from "../types";
 
 export const useRegex = () => {
   const [isValidate, setIsValidate] = useState({ id: false, password: false });

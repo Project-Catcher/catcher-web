@@ -1,5 +1,7 @@
+import { AuthType } from "../../shared/types";
+
 interface InstructionsProps {
-  type: "phone" | "email";
+  type: AuthType;
 }
 
 const Instructions = ({ type }: InstructionsProps) => {

@@ -5,8 +5,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { AnswerType } from "../../login/components/LoginForm";
 import { useRegex } from "../../shared/hooks/useRegex";
+import { AnswerType, LoginType } from "../../shared/types";
 
 interface ChildrenProps {
   handleId: (id: AnswerType) => void;
@@ -14,9 +14,9 @@ interface ChildrenProps {
   handleCheckPassword: (password: AnswerType) => void;
 }
 
-interface ResetPasswordFormProps {
+interface PasswordResetFormProps {
   children(props: ChildrenProps): ReactNode;
-  type: "id" | "password";
+  type: LoginType;
   title: string;
   subTitle: string[];
   isDisc?: boolean;
@@ -25,7 +25,7 @@ interface ResetPasswordFormProps {
   setCurrentProgress: Dispatch<SetStateAction<number>>;
 }
 
-const ResetPasswordForm = ({
+const PasswordResetForm = ({
   children,
   type,
   title,
@@ -34,7 +34,7 @@ const ResetPasswordForm = ({
   buttonColor,
   buttonColorDisabled,
   setCurrentProgress,
-}: ResetPasswordFormProps) => {
+}: PasswordResetFormProps) => {
   const [answer, setAnswer] = useState<AnswerType>({});
   const { isValidate, checkIdValidation, checkPasswordValidation } = useRegex();
 
@@ -87,4 +87,4 @@ const ResetPasswordForm = ({
   );
 };
 
-export default ResetPasswordForm;
+export default PasswordResetForm;

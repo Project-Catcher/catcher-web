@@ -1,9 +1,9 @@
 import EnterNewPassword from "./EnterNewPassword";
-import CheckId from "./CheckId";
+import IdCheck from "./IdCheck";
 import { useState } from "react";
-import DoneResetPassword from "./DoneResetPassword";
+import PasswordResetDone from "./PasswordResetDone";
 
-const ResetPassword = () => {
+const PasswordResetProgress = () => {
   const [currentProgress, setCurrentProgress] = useState<number>(1);
 
   return (
@@ -12,11 +12,11 @@ const ResetPassword = () => {
         <EnterNewPassword setCurrentProgress={setCurrentProgress} />
       )}
       {currentProgress === 2 && (
-        <CheckId setCurrentProgress={setCurrentProgress} />
+        <IdCheck setCurrentProgress={setCurrentProgress} />
       )}
-      {currentProgress === 3 && <DoneResetPassword />}
+      {currentProgress === 3 && <PasswordResetDone />}
     </>
   );
 };
 
-export default ResetPassword;
+export default PasswordResetProgress;

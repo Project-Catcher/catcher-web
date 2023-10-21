@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { WhiteBox } from "../../shared/components";
 import FindMyId from "./FindMyId";
 import ModeButton from "./ModeButton";
-import ResetPassword from "./ResetPassword";
+import PasswordResetProgress from "./PasswordResetProgress";
+import { LoginType } from "../../shared/types";
 
-const FindAccount = () => {
-  const [mode, setMode] = useState<string>("id");
+const AccountFind = () => {
+  const [mode, setMode] = useState<LoginType>("id");
 
-  const handleMode = (value: string) => {
+  const handleMode = useCallback((value: LoginType) => {
     setMode(value);
-  };
+  }, []);
 
   return (
     <WhiteBox
@@ -34,9 +35,9 @@ const FindAccount = () => {
         />
       </div>
       {mode === "id" && <FindMyId />}
-      {mode === "password" && <ResetPassword />}
+      {mode === "password" && <PasswordResetProgress />}
     </WhiteBox>
   );
 };
 
-export default FindAccount;
+export default AccountFind;

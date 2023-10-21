@@ -1,10 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { WhiteBox } from "../../shared/components";
-
-export interface AnswerType {
-  [key: string]: string | number | boolean;
-}
+import { AnswerType } from "../../shared/types";
 
 const LoginForm = () => {
   const [isError, setIsError] = useState<boolean>(false);

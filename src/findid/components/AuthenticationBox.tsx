@@ -1,9 +1,10 @@
-import FindIdForm from "./FindIdForm";
+import { AuthType } from "../../shared/types";
+import IdFindForm from "./IdFindForm";
 
 interface AuthenticationBoxProps {
-  type: "phone" | "email";
+  type: AuthType;
   isChecked: boolean;
-  handleChecked: (key: string) => void;
+  handleChecked: (key: AuthType) => void;
 }
 
 const AuthenticationBox = ({
@@ -11,7 +12,7 @@ const AuthenticationBox = ({
   isChecked,
   handleChecked,
 }: AuthenticationBoxProps) => {
-  const currentType = type === "phone" ? true : false;
+  const isPhone = type === "phone";
 
   return (
     <div
@@ -28,19 +29,18 @@ const AuthenticationBox = ({
         type="radio"
         checked={isChecked}
         onClick={({ target }) => {
-          if (target instanceof HTMLInputElement) handleChecked(target.id);
+          if (target instanceof HTMLInputElement)
+            handleChecked(target.id as AuthType);
         }}
       />
       <label htmlFor={type} className="w-4/5">
-        {`${
-          currentType ? "휴대전화로 인증하여 찾기" : "이메일로 인증하여 찾기"
-        }`}
+        {`${isPhone ? "휴대전화로 인증하여 찾기" : "이메일로 인증하여 찾기"}`}
       </label>
       {isChecked && (
-        <FindIdForm
+        <IdFindForm
           type={type}
           description={`${
-            currentType
+            isPhone
               ? "회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다."
               : "본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다."
           }`}

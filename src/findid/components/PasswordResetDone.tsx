@@ -1,4 +1,4 @@
-const DoneResetPassword = () => {
+const PasswordResetDone = () => {
   return (
     <div className="text-center mx-[64.5px]">
       <div className="relative w-[177px] h-[177px] bg-check bg-no-repeat left-1/2 -translate-x-1/2 mt-[30px]"></div>
@@ -12,4 +12,4 @@ const DoneResetPassword = () => {
   );
 };
 
-export default DoneResetPassword;
+export default PasswordResetDone;

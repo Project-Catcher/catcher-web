@@ -1,11 +1,11 @@
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import ResetPasswordForm from "./ResetPasswordForm";
+import { Dispatch, SetStateAction, useMemo } from "react";
+import PasswordResetForm from "./PasswordResetForm";
 
-interface CheckIdProps {
+interface IdCheckProps {
   setCurrentProgress: Dispatch<SetStateAction<number>>;
 }
 
-const CheckId = ({ setCurrentProgress }: CheckIdProps) => {
+const IdCheck = ({ setCurrentProgress }: IdCheckProps) => {
   const description = useMemo(
     () => [
       "아이디를 입력해 주세요.",
@@ -15,7 +15,7 @@ const CheckId = ({ setCurrentProgress }: CheckIdProps) => {
   );
 
   return (
-    <ResetPasswordForm
+    <PasswordResetForm
       title="아이디 확인"
       type="id"
       subTitle={description}
@@ -33,8 +33,8 @@ const CheckId = ({ setCurrentProgress }: CheckIdProps) => {
           />
         </div>
       )}
-    </ResetPasswordForm>
+    </PasswordResetForm>
   );
 };
 
-export default CheckId;
+export default IdCheck;

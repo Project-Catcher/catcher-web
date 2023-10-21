@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import PasswordInput from "./PasswordInput";
-import ResetPasswordForm from "./ResetPasswordForm";
+import PasswordResetForm from "./PasswordResetForm";
 
 interface EnterNewPasswordProps {
   setCurrentProgress: Dispatch<SetStateAction<number>>;
@@ -17,7 +17,7 @@ const EnterNewPassword = ({ setCurrentProgress }: EnterNewPasswordProps) => {
   );
 
   return (
-    <ResetPasswordForm
+    <PasswordResetForm
       isDisc
       type="password"
       title="유의사항"
@@ -40,7 +40,7 @@ const EnterNewPassword = ({ setCurrentProgress }: EnterNewPasswordProps) => {
           />
         </div>
       )}
-    </ResetPasswordForm>
+    </PasswordResetForm>
   );
 };
 

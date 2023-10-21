@@ -1,8 +1,10 @@
+import { LoginType } from "../../shared/types";
+
 interface ModeButtonProps {
-  type: "id" | "password";
+  type: LoginType;
   value: string;
   mode: string;
-  handleMode: (value: string) => void;
+  handleMode: (value: LoginType) => void;
 }
 
 const ModeButton = ({ type, mode, value, handleMode }: ModeButtonProps) => {
@@ -13,7 +15,8 @@ const ModeButton = ({ type, mode, value, handleMode }: ModeButtonProps) => {
         mode === type ? "border-[#F968A5]" : "border-[#E2E2E2]"
       }`}
       onClick={({ target }) => {
-        if (target instanceof HTMLButtonElement) handleMode(target.id);
+        if (target instanceof HTMLButtonElement)
+          handleMode(target.id as LoginType);
       }}
     >
       {value}

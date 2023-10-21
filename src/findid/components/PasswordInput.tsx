@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { AnswerType } from "../../login/components/LoginForm";
 import { useState } from "react";
+import { AnswerType, CheckPasswordType } from "../../shared/types";
 
 interface PasswordInputProps {
-  type: "newPassword" | "checkNewPassword";
+  type: CheckPasswordType;
   label: string;
   handlePassword: (password: AnswerType) => void;
 }

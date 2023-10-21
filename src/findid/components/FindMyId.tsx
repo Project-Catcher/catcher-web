@@ -1,10 +1,6 @@
 import { useState } from "react";
 import AuthenticationBox from "./AuthenticationBox";
-
-export interface Checked {
-  phone: boolean;
-  email: boolean;
-}
+import { AuthType, Checked } from "../../shared/types";
 
 const FindMyId = () => {
   const [isChecked, setIsChecked] = useState<Checked>({
@@ -12,7 +8,7 @@ const FindMyId = () => {
     email: false,
   });
 
-  const handleChecked = (key: string) => {
+  const handleChecked = (key: AuthType) => {
     setIsChecked({ phone: key === "phone", email: key === "email" });
   };
 

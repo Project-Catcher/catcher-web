@@ -1,7 +1,7 @@
-import { FindAccount } from "../src/findid/components";
+import { AccountFind } from "../src/findid/components";
 
 const FindId = () => {
-  return <FindAccount />;
+  return <AccountFind />;
 };
 
 export default FindId;
