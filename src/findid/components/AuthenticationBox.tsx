@@ -1,4 +1,4 @@
-import { AuthType } from "../../shared/types";
+import { AuthType } from "@shared/types";
 import IdFindForm from "./IdFindForm";
 
 interface AuthenticationBoxProps {

@@ -1,3 +1,5 @@
+import { useRegex } from "@shared/hooks/useRegex";
+import { AnswerType, LoginType } from "@shared/types";
 import {
   Dispatch,
   ReactNode,
@@ -5,8 +7,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useRegex } from "../../shared/hooks/useRegex";
-import { AnswerType, LoginType } from "../../shared/types";
 
 interface ChildrenProps {
   handleId: (id: AnswerType) => void;

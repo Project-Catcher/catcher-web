@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
-import { WhiteBox } from "../../shared/components";
-import { AnswerType } from "../../shared/types";
+import { WhiteBox } from "@shared/components";
+import { AnswerType } from "@shared/types";
 
 const LoginForm = () => {
   const [isError, setIsError] = useState<boolean>(false);

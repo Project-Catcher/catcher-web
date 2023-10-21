@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AuthenticationBox from "./AuthenticationBox";
-import { AuthType, Checked } from "../../shared/types";
+import { AuthType, Checked } from "@shared/types";
 
 const FindMyId = () => {
   const [isChecked, setIsChecked] = useState<Checked>({

@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
-import { WhiteBox } from "../../shared/components";
-import FindMyId from "./FindMyId";
+import { LoginType } from "@shared/types";
+import { WhiteBox } from "@shared/components";
 import ModeButton from "./ModeButton";
+import FindMyId from "./FindMyId";
 import PasswordResetProgress from "./PasswordResetProgress";
-import { LoginType } from "../../shared/types";
 
 const AccountFind = () => {
   const [mode, setMode] = useState<LoginType>("id");

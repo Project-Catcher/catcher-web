@@ -1,7 +1,7 @@
 import EnterNewPassword from "./EnterNewPassword";
 import IdCheck from "./IdCheck";
-import { useState } from "react";
 import PasswordResetDone from "./PasswordResetDone";
+import { useState } from "react";
 
 const PasswordResetProgress = () => {
   const [currentProgress, setCurrentProgress] = useState<number>(1);

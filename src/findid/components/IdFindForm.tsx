@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Instructions from "./Instructions";
-import { AuthType } from "../../shared/types";
+import { AuthType } from "@shared/types";
 
 interface IdFindFormProps {
   description: string;

@@ -1,4 +1,4 @@
-import { LoginType } from "../../shared/types";
+import { LoginType } from "@shared/types";
 
 interface ModeButtonProps {
   type: LoginType;

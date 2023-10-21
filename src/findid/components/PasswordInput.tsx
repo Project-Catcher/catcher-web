@@ -1,6 +1,6 @@
+import { AnswerType, CheckPasswordType } from "@shared/types";
 import Image from "next/image";
 import { useState } from "react";
-import { AnswerType, CheckPasswordType } from "../../shared/types";
 
 interface PasswordInputProps {
   type: CheckPasswordType;
