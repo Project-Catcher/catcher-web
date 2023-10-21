@@ -38,6 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@storybook/testing-library", "npm:0.2.2"],\
             ["@testing-library/jest-dom", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:6.1.3"],\
             ["@testing-library/react", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:14.0.0"],\
+            ["@types/lodash", "npm:4.14.200"],\
             ["@types/node", "npm:20.8.2"],\
             ["@types/react", "npm:18.2.24"],\
             ["@types/react-dom", "npm:18.2.9"],\
@@ -49,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-storybook", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.6.14"],\
             ["jest", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:29.7.0"],\
             ["jest-environment-jsdom", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:29.7.0"],\
+            ["lodash", "npm:4.17.21"],\
             ["msw", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:1.3.2"],\
             ["next", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:12.3.2"],\
             ["postcss", "npm:8.4.31"],\
@@ -7045,6 +7047,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/lodash", "npm:4.14.199"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:4.14.200", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.200-8559f51fce-6471f8bb5d.zip/node_modules/@types/lodash/",\
+          "packageDependencies": [\
+            ["@types/lodash", "npm:4.14.200"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@types/mdx", [\
@@ -9246,6 +9255,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@storybook/testing-library", "npm:0.2.2"],\
             ["@testing-library/jest-dom", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:6.1.3"],\
             ["@testing-library/react", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:14.0.0"],\
+            ["@types/lodash", "npm:4.14.200"],\
             ["@types/node", "npm:20.8.2"],\
             ["@types/react", "npm:18.2.24"],\
             ["@types/react-dom", "npm:18.2.9"],\
@@ -9257,6 +9267,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-storybook", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.6.14"],\
             ["jest", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:29.7.0"],\
             ["jest-environment-jsdom", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:29.7.0"],\
+            ["lodash", "npm:4.17.21"],\
             ["msw", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:1.3.2"],\
             ["next", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:12.3.2"],\
             ["postcss", "npm:8.4.31"],\
