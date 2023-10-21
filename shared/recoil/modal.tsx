@@ -4,14 +4,15 @@ import { atom, selector, useRecoilState } from "recoil";
 export interface AlertProps {
   isOpen: boolean;
   isHeaderCloseBtn?: boolean;
-  header?: string;
-  body?: string;
+  title?: string;
+  text?: string;
+  okText?: string;
+  okCallback?: VoidFunction;
 }
 export const alertState = atom<AlertProps>({
   key: `alertState/${uniqueId()}`,
   default: {
     isOpen: false,
-    isHeaderCloseBtn: true,
   },
 });
 

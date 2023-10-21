@@ -1,9 +1,9 @@
-import useModal from "../../../shared/hook/modal";
+import useModal from "../../../shared/hook/useModal";
 
 const AlertTest = () => {
-  const { Alert } = useModal();
+  const { openAlert } = useModal();
   const handleAlert = () => {
-    Alert({ body: "test" });
+    openAlert({ text: "test", isHeaderCloseBtn: true });
   };
   return (
     <div>
