@@ -1,7 +1,7 @@
 interface ModeButtonProps {
   type: "id" | "password";
-  mode: string;
   value: string;
+  mode: string;
   handleMode: (value: string) => void;
 }
 

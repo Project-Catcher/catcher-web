@@ -23,7 +23,7 @@ const ResetPassword = () => {
     checkValidation(answer);
   }, [answer, checkValidation]);
 
-  const description = useMemo(
+  const precautions = useMemo(
     () => [
       "8~15자 길이로 만들어주세요.",
       "영문 대/소문자, 숫자, 특수문자 2가지 이상을 조합해 주세요.",
@@ -36,19 +36,24 @@ const ResetPassword = () => {
     <div className="mx-[64.5px] mt-[52px]">
       <div className="text-xl">유의사항</div>
       <ul className="list-disc list-inside text-[#8D8D8D] ml-2 my-2">
-        {description.map((_description) => (
-          <li key={_description}>{_description}</li>
+        {precautions.map((_precautions) => (
+          <li key={_precautions}>{_precautions}</li>
         ))}
       </ul>
       <div className="h-[210px] border border-[#F864A1] rounded-[10px] mb-[28px] px-[30px] py-[25px]">
-        <PasswordInput type="newPassword" handlePassword={handlePassword} />
+        <PasswordInput
+          type="newPassword"
+          label="새 비밀번호"
+          handlePassword={handlePassword}
+        />
         <PasswordInput
           type="checkNewPassword"
+          label="새 비밀번호 확인"
           handlePassword={handleCheckPassword}
         />
       </div>
       <button
-        className={`button-full rounded-[10px] text-white text-lg font-semibold ${
+        className={`button-full button-semi-rounded text-white text-lg font-semibold ${
           isValidate
             ? "bg-[#F864A1] cursor:pointer"
             : "bg-[#FFA4A475] cursor-not-allowed"

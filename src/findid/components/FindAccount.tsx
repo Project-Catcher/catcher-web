@@ -4,7 +4,7 @@ import FindMyId from "./FindMyId";
 import ResetPassword from "./ResetPassword";
 import ModeButton from "./ModeButton";
 
-const FindForm = () => {
+const FindAccount = () => {
   const [mode, setMode] = useState<string>("id");
 
   const handleMode = (value: string) => {
@@ -22,14 +22,14 @@ const FindForm = () => {
       <div className="w-full text-center">
         <ModeButton
           type="id"
-          mode={mode}
           value="아이디 찾기"
+          mode={mode}
           handleMode={handleMode}
         />
         <ModeButton
           type="password"
-          mode={mode}
           value="비밀번호 재설정"
+          mode={mode}
           handleMode={handleMode}
         />
       </div>
@@ -39,4 +39,4 @@ const FindForm = () => {
   );
 };
 
-export default FindForm;
+export default FindAccount;
