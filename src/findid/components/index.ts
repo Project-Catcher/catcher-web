@@ -10,4 +10,5 @@ export { default as PasswordInput } from "./PasswordInput";
 export { default as PasswordResetDone } from "./PasswordResetDone";
 export { default as PasswordResetForm } from "./PasswordResetForm";
 export { default as PasswordResetProgress } from "./PasswordResetProgress";
+export { default as SelectAuthMethod } from "./SelectAuthMethod";
 export { default as ValidateButton } from "./ValidateButton";

@@ -1,12 +1,11 @@
-import { HTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
-interface InputWithLabelProps extends HTMLAttributes<HTMLInputElement> {
+interface InputWithLabelProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   id: string;
   inputType: string;
   labelStyle?: string;
   inputStyle?: string;
-  readonly?: boolean;
 }
 
 const InputWithLabel = ({
@@ -15,7 +14,6 @@ const InputWithLabel = ({
   inputType,
   labelStyle,
   inputStyle,
-  readonly,
   ...props
 }: InputWithLabelProps) => {
   return (
@@ -29,7 +27,6 @@ const InputWithLabel = ({
         id={id}
         className={`border border-[#BDBDBD] ${inputStyle}`}
         type={inputType}
-        readOnly={readonly}
         {...props}
       />
     </>

@@ -41,12 +41,8 @@ const AuthenticationForm = ({
     handleAnswer({ ...name });
   };
 
-  const handlePhone = (phone: AnswerType) => {
-    handleAnswer({ ...phone });
-  };
-
-  const handleEmail = (email: AnswerType) => {
-    handleAnswer({ ...email });
+  const handleAnswerInput = (answerInput: AnswerType) => {
+    handleAnswer({ ...answerInput });
   };
 
   const handleCaptcha = (captcha: AnswerType) => {
@@ -58,9 +54,8 @@ const AuthenticationForm = ({
   };
 
   useEffect(() => {
-    isPhone
-      ? checkPhoneValidation(answer.phone as string)
-      : checkEmailValidation(answer.email as string);
+    if (type === "phone") checkPhoneValidation(answer.phone as string);
+    else if (type === "email") checkEmailValidation(answer.email as string);
     checkNameValidation(answer.name as string);
   }, [
     answer.email,
@@ -69,9 +64,8 @@ const AuthenticationForm = ({
     checkEmailValidation,
     checkNameValidation,
     checkPhoneValidation,
-    isPhone,
+    type,
   ]);
-  console.log(isValidate);
 
   return (
     <>
@@ -87,7 +81,7 @@ const AuthenticationForm = ({
       <div className="w-full pl-[8px]">
         <div className="inline-block w-2/5 mr-[10px]">
           <InputWithLabel
-            readonly={isDoneAuth}
+            readOnly={isDoneAuth}
             label="이름"
             id="name"
             inputType="text"
@@ -109,19 +103,17 @@ const AuthenticationForm = ({
             {isHover && <Instructions type={type} />}
           </div>
           <InputWithLabel
-            readonly={isDoneAuth}
+            readOnly={isDoneAuth}
             label={isPhone ? "휴대전화" : "이메일 주소"}
-            id="phone"
+            id={isPhone ? "phoneInput" : "emailInput"}
             inputType={isPhone ? "tel" : "email"}
-            inputStyle="w-full text-sm px-[14px] py-[8px]"
             placeholder={`${
               isPhone ? "휴대전화번호 (숫자만 입력)" : "이메일 주소 입력"
             }`}
-            onChange={({ currentTarget: { value } }) => {
-              isPhone
-                ? handlePhone({ phone: value })
-                : handleEmail({ email: value });
-            }}
+            inputStyle="w-full text-sm px-[14px] py-[8px]"
+            onChange={({ currentTarget: { value } }) =>
+              handleAnswerInput({ [type]: value })
+            }
           />
         </div>
         {children({ isDoneAuth, isValidate, handleCaptcha, handleDoneAuth })}

@@ -1,7 +1,12 @@
 import { AuthType } from "@shared/types";
 import AuthenticationForm from "./AuthenticationForm";
 import ValidateButton from "./ValidateButton";
-import { AuthTimer, InputWithLabel } from "@shared/components";
+import {
+  AuthTimer,
+  CaptchaWithButton,
+  InputWithLabel,
+} from "@shared/components";
+import SelectAuthMethod from "./SelectAuthMethod";
 
 interface AuthenticationBoxProps {
   type: AuthType;
@@ -22,22 +27,11 @@ const AuthenticationBox = ({
         isChecked ? "h-fit border-[#F864A1]" : "h-[64px] border-[#EBEBEB]"
       } px-[28.35px] py-[20px] mx-auto mb-[11.74px]`}
     >
-      <input
-        readOnly
-        id={type}
-        className={`w-[20px] h-[20px] mr-[6px] ${
-          isChecked ? "opacity-100" : "opacity-30"
-        }`}
-        type="radio"
-        checked={isChecked}
-        onClick={({ target }) => {
-          if (target instanceof HTMLInputElement)
-            handleChecked(target.id as AuthType);
-        }}
+      <SelectAuthMethod
+        type={type}
+        isChecked={isChecked}
+        handleChecked={handleChecked}
       />
-      <label htmlFor={type} className="w-4/5">
-        {`${isPhone ? "휴대전화로 인증하여 찾기" : "이메일로 인증하여 찾기"}`}
-      </label>
       {isChecked && (
         <AuthenticationForm
           type={type}
@@ -51,39 +45,25 @@ const AuthenticationBox = ({
             return (
               <>
                 {!isDoneAuth ? (
-                  <>
-                    <div className="text-xs font-medium mt-[15px] mb-[5px]">
-                      개인정보 보호를 위해 아래 자동입력 방지 문자를
-                      입력해주세요.
-                    </div>
-                    <div onChange={() => handleCaptcha}>CAPTCHA HERE</div>
-                    <ValidateButton
-                      type={type}
-                      value="인증번호 받기"
-                      isValidate={
-                        (isValidate[type] && isValidate.name) as boolean
-                      }
-                      buttonColor="bg-[#F864A1]"
-                      buttonColorDisabled="bg-[#FAC3DA]"
-                      extraClass="mt-[21px]"
-                      onClick={() => {
-                        if (isPhone) {
-                          handleDoneAuth();
-                        } else alert("api here");
-                      }}
-                    />
-                  </>
+                  <CaptchaWithButton
+                    type={type}
+                    isValidate={isValidate}
+                    handleCaptcha={handleCaptcha}
+                    handleDoneAuth={handleDoneAuth}
+                  />
                 ) : (
                   <div className="text-xs font-medium mt-[15px] mb-[5px]">
                     <InputWithLabel
                       // readonly 추가
+                      maxLength={6}
+                      pattern="\d*"
                       label="인증번호"
                       id="phoneAuth"
-                      inputType="tel"
+                      inputType="text"
                       inputStyle="w-[281px] text-xs leading-[24px] px-[14px] py-[5px]"
                       placeholder="인증번호 입력"
                     />
-                    <button className="inline-block w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]">
+                    <button className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]">
                       재발송
                     </button>
                     <AuthTimer />
@@ -92,6 +72,7 @@ const AuthenticationBox = ({
                     </div>
                     {/* <div className="h-[16px] invisible mt-[5px] mb-[12px]"></div> */}
                     <ValidateButton
+                      // 인증 전 isValidate 상태 추가
                       type="beforePhoneAuth"
                       value="아이디 찾기"
                       isValidate={isValidate[type] as boolean}
