@@ -1,12 +1,14 @@
 import { AuthType } from "@shared/types";
 
 interface SelectAuthMethodProps {
+  label: string;
   type: AuthType;
   isChecked: boolean;
   handleChecked: (key: AuthType) => void;
 }
 
 const SelectAuthMethod = ({
+  label,
   type,
   isChecked,
   handleChecked,
@@ -29,7 +31,7 @@ const SelectAuthMethod = ({
         }}
       />
       <label htmlFor={type} className="w-4/5">
-        {`${isPhone ? "휴대전화로 인증하여 찾기" : "이메일로 인증하여 찾기"}`}
+        {label}
       </label>
     </>
   );

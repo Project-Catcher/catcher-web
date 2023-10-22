@@ -5,10 +5,10 @@ import { useRegex } from "@shared/hooks/useRegex";
 import { InputWithLabel } from "@shared/components";
 
 interface ChildrenProps {
-  isDoneAuth: boolean;
+  isDoneCaptcha: boolean;
   isValidate: AnswerType;
   handleCaptcha: (captcha: AnswerType) => void;
-  handleDoneAuth: () => void;
+  handleDoneCaptcha: () => void;
 }
 
 interface AuthenticationFormProps {
@@ -22,7 +22,7 @@ const AuthenticationForm = ({
   description,
   type,
 }: AuthenticationFormProps) => {
-  const [isDoneAuth, setIsDoneAuth] = useState<boolean>(false); // 캡차까지 완료
+  const [isDoneCaptcha, setIsDoneAuth] = useState<boolean>(false); // 캡차까지 완료
   const [isHover, setIsHover] = useState<boolean>(false);
   const [answer, setAnswer] = useState<AnswerType>({});
   const {
@@ -49,7 +49,7 @@ const AuthenticationForm = ({
     handleAnswer({ ...captcha });
   };
 
-  const handleDoneAuth = () => {
+  const handleDoneCaptcha = () => {
     setIsDoneAuth(true);
   };
 
@@ -81,7 +81,7 @@ const AuthenticationForm = ({
       <div className="w-full pl-[8px]">
         <div className="inline-block w-2/5 mr-[10px]">
           <InputWithLabel
-            readOnly={isDoneAuth}
+            readOnly={isDoneCaptcha}
             label="이름"
             id="name"
             inputType="text"
@@ -103,7 +103,7 @@ const AuthenticationForm = ({
             {isHover && <Instructions type={type} />}
           </div>
           <InputWithLabel
-            readOnly={isDoneAuth}
+            readOnly={isDoneCaptcha}
             label={isPhone ? "휴대전화" : "이메일 주소"}
             id={isPhone ? "phoneInput" : "emailInput"}
             inputType={isPhone ? "tel" : "email"}
@@ -116,7 +116,12 @@ const AuthenticationForm = ({
             }
           />
         </div>
-        {children({ isDoneAuth, isValidate, handleCaptcha, handleDoneAuth })}
+        {children({
+          isDoneCaptcha,
+          isValidate,
+          handleCaptcha,
+          handleDoneCaptcha,
+        })}
       </div>
     </>
   );

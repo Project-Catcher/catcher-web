@@ -28,6 +28,9 @@ const AuthenticationBox = ({
       } px-[28.35px] py-[20px] mx-auto mb-[11.74px]`}
     >
       <SelectAuthMethod
+        label={`${
+          isPhone ? "휴대전화로 인증하여 찾기" : "이메일로 인증하여 찾기"
+        }`}
         type={type}
         isChecked={isChecked}
         handleChecked={handleChecked}
@@ -41,20 +44,25 @@ const AuthenticationBox = ({
               : "본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다."
           }`}
         >
-          {({ isDoneAuth, isValidate, handleCaptcha, handleDoneAuth }) => {
+          {({
+            isDoneCaptcha,
+            isValidate,
+            handleCaptcha,
+            handleDoneCaptcha,
+          }) => {
             return (
               <>
-                {!isDoneAuth ? (
+                {!isDoneCaptcha ? (
                   <CaptchaWithButton
                     type={type}
                     isValidate={isValidate}
                     handleCaptcha={handleCaptcha}
-                    handleDoneAuth={handleDoneAuth}
+                    handleDoneCaptcha={handleDoneCaptcha}
                   />
                 ) : (
                   <div className="text-xs font-medium mt-[15px] mb-[5px]">
                     <InputWithLabel
-                      // readonly 추가
+                      // readonly 추가, 아임포트 api 추가 후 정리 필요할듯
                       maxLength={6}
                       pattern="\d*"
                       label="인증번호"
@@ -81,7 +89,7 @@ const AuthenticationBox = ({
                       extraClass="mt-[21px]"
                       onClick={() => {
                         if (isPhone) {
-                          handleDoneAuth();
+                          handleDoneCaptcha();
                         } else alert("api here");
                       }}
                     />

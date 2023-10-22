@@ -5,14 +5,14 @@ interface CaptchaWithButtonProps {
   type: AuthType;
   isValidate: AnswerType;
   handleCaptcha: (captcha: AnswerType) => void;
-  handleDoneAuth: () => void;
+  handleDoneCaptcha: () => void;
 }
 
 const CaptchaWithButton = ({
   type,
   isValidate,
   handleCaptcha,
-  handleDoneAuth,
+  handleDoneCaptcha,
 }: CaptchaWithButtonProps) => {
   return (
     <>
@@ -29,7 +29,7 @@ const CaptchaWithButton = ({
         extraClass="mt-[21px]"
         onClick={() => {
           if (type === "phone") {
-            handleDoneAuth();
+            handleDoneCaptcha();
           } else alert("api here"); // email api
         }}
       />
