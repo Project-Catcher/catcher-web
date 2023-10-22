@@ -81,6 +81,7 @@ const AuthenticationForm = ({
             label="이름"
             id="name"
             inputType="text"
+            inputStyle="w-full text-sm px-[14px] py-[8px]"
             placeholder="이름을 입력해 주세요."
             onChange={({ currentTarget: { value } }) =>
               handleName({ name: value })
@@ -101,6 +102,7 @@ const AuthenticationForm = ({
             label={isPhone ? "휴대전화" : "이메일 주소"}
             id="phone"
             inputType={isPhone ? "tel" : "email"}
+            inputStyle="w-full text-sm px-[14px] py-[8px]"
             placeholder={`${
               isPhone ? "휴대전화번호 (숫자만 입력)" : "이메일 주소 입력"
             }`}

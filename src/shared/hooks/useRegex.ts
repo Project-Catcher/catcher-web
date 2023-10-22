@@ -5,7 +5,7 @@ export const useRegex = () => {
   const [isValidate, setIsValidate] = useState<AnswerType>({});
 
   const checkPhoneValidation = useCallback((phone: string) => {
-    const regexNum = /^[0-9]{10}$/;
+    const regexNum = /^[0-9]{11}$/;
 
     regexNum.test(phone)
       ? setIsValidate((prev) => ({ ...prev, phone: true }))

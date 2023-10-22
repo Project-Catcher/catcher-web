@@ -25,7 +25,7 @@ const InputWithLabel = ({
       </div>
       <input
         id={id}
-        className={`w-full text-sm border border-[#BDBDBD] px-[14px] py-[8px] ${inputStyle}`}
+        className={`border border-[#BDBDBD] ${inputStyle}`}
         type={inputType}
         {...props}
       />

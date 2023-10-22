@@ -79,7 +79,7 @@ const AuthenticationBox = ({
                       label="인증번호"
                       id="phoneAuth"
                       inputType="tel"
-                      inputStyle="w-[281px] text-xs leading-[24px] py-[5px]"
+                      inputStyle="w-[281px] text-xs leading-[24px] px-[14px] py-[5px]"
                       placeholder="인증번호 입력"
                     />
                     <button className="inline-block w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]">
