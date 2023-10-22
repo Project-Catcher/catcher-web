@@ -11,7 +11,7 @@ const IdCheck = ({ setCurrentProgress }: IdCheckProps) => {
       "아이디를 입력해 주세요.",
       "아이디 확인 후 비밀번호를 재설정 할 수 있습니다.",
     ],
-    []
+    [],
   );
 
   return (
@@ -19,8 +19,9 @@ const IdCheck = ({ setCurrentProgress }: IdCheckProps) => {
       title="아이디 확인"
       type="id"
       subTitle={description}
+      value="다음"
       buttonColor="bg-[#FACD49]"
-      buttonColorDisabled="bg-[#f7e4ad]"
+      buttonColorDisabled="bg-[#F7E4AD]"
       setCurrentProgress={setCurrentProgress}
     >
       {({ handleId }) => (

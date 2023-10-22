@@ -13,7 +13,7 @@ const EnterNewPassword = ({ setCurrentProgress }: EnterNewPasswordProps) => {
       "영문 대/소문자, 숫자, 특수문자 2가지 이상을 조합해 주세요.",
       "3자 이상 연속/동일한 문자, 숫자는 사용할 수 없습니다.",
     ],
-    []
+    [],
   );
 
   return (
@@ -22,6 +22,7 @@ const EnterNewPassword = ({ setCurrentProgress }: EnterNewPasswordProps) => {
       type="password"
       title="유의사항"
       subTitle={precautions}
+      value="변경하기"
       buttonColor="bg-[#F864A1]"
       buttonColorDisabled="bg-[#FFA4A475]"
       setCurrentProgress={setCurrentProgress}

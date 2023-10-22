@@ -1,18 +1,22 @@
+import { useRouter } from "next/router";
 import EnterNewPassword from "./EnterNewPassword";
 import IdCheck from "./IdCheck";
 import PasswordResetDone from "./PasswordResetDone";
 import { useState } from "react";
 
 const PasswordResetProgress = () => {
-  const [currentProgress, setCurrentProgress] = useState<number>(1);
+  const { query } = useRouter();
+  const [currentProgress, setCurrentProgress] = useState<number>(
+    Number(query.progress) || 1,
+  );
 
   return (
     <>
       {currentProgress === 1 && (
-        <EnterNewPassword setCurrentProgress={setCurrentProgress} />
+        <IdCheck setCurrentProgress={setCurrentProgress} />
       )}
       {currentProgress === 2 && (
-        <IdCheck setCurrentProgress={setCurrentProgress} />
+        <EnterNewPassword setCurrentProgress={setCurrentProgress} />
       )}
       {currentProgress === 3 && <PasswordResetDone />}
     </>

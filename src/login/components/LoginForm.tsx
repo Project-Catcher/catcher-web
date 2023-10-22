@@ -1,12 +1,24 @@
 import Image from "next/image";
 import { useState } from "react";
 import { WhiteBox } from "@shared/components";
-import { AnswerType } from "@shared/types";
+import { AnswerType, LoginType } from "@shared/types";
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [preview, setPreview] = useState<boolean>(false);
   const [answer, setAnswer] = useState<AnswerType>({});
+  const { push } = useRouter();
+
+  const handleRouting = (type: LoginType) => {
+    push(
+      {
+        pathname: "/findid",
+        query: { type: type },
+      },
+      "/findid",
+    );
+  };
 
   const handleAnswer = (answer: AnswerType) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
@@ -85,10 +97,16 @@ const LoginForm = () => {
           </div>
         </div>
         <div className="leading-[13px]">
-          <div className="inline-block text-[13px] border-r border-[#BCBBBB] pr-2 cursor-pointer">
+          <div
+            className="inline-block text-[13px] border-r border-[#BCBBBB] pr-2 cursor-pointer"
+            onClick={() => handleRouting("id")}
+          >
             아이디 찾기
           </div>
-          <div className="inline-block text-[13px] pl-2 cursor-pointer">
+          <div
+            className="inline-block text-[13px] pl-2 cursor-pointer"
+            onClick={() => handleRouting("password")}
+          >
             비밀번호 재설정
           </div>
         </div>

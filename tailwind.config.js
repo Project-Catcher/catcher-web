@@ -16,6 +16,9 @@ module.exports = {
         question: "url(/images/samples/question.svg)",
         check: "url(/images/samples/check.svg)",
       },
+      width: {
+        "3/5-10": "calc(60% - 10px)",
+      },
     },
   },
   plugins: [],

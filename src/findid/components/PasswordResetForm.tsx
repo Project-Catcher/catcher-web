@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import ValidateButton from "./ValidateButton";
 
 interface ChildrenProps {
   handleId: (id: AnswerType) => void;
@@ -19,6 +20,7 @@ interface PasswordResetFormProps {
   type: LoginType;
   title: string;
   subTitle: string[];
+  value: string;
   isDisc?: boolean;
   buttonColor: string;
   buttonColorDisabled?: string;
@@ -30,6 +32,7 @@ const PasswordResetForm = ({
   type,
   title,
   subTitle,
+  value,
   isDisc,
   buttonColor,
   buttonColorDisabled,
@@ -59,10 +62,6 @@ const PasswordResetForm = ({
     else if (type === "password") checkPasswordValidation(answer);
   }, [answer, checkIdValidation, checkPasswordValidation, type]);
 
-  const currentButtonColor = !isValidate[type]
-    ? `${buttonColorDisabled} cursor-not-allowed`
-    : `${buttonColor} cursor:pointer`;
-
   return (
     <div className="mx-[64.5px] mt-[52px]">
       <div className="text-xl">{title}</div>
@@ -76,13 +75,14 @@ const PasswordResetForm = ({
         ))}
       </ul>
       {children({ handleId, handlePassword, handleCheckPassword })}
-      <button
-        className={`button-full button-semi-rounded text-white text-lg font-semibold ${currentButtonColor}`}
-        disabled={!isValidate[type]}
+      <ValidateButton
+        type={type}
+        value={value}
+        isValidate={isValidate}
+        buttonColor={buttonColor}
+        buttonColorDisabled={buttonColorDisabled}
         onClick={() => setCurrentProgress((prev) => prev + 1)}
-      >
-        변경하기
-      </button>
+      />
     </div>
   );
 };

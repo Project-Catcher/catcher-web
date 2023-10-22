@@ -2,7 +2,23 @@ import { useCallback, useState } from "react";
 import { AnswerType } from "../types";
 
 export const useRegex = () => {
-  const [isValidate, setIsValidate] = useState({ id: false, password: false });
+  const [isValidate, setIsValidate] = useState<AnswerType>({});
+
+  const checkPhoneValidation = useCallback((phone: string) => {
+    const regexNum = /^[0-9]{10}$/;
+
+    regexNum.test(phone)
+      ? setIsValidate((prev) => ({ ...prev, phone: true }))
+      : setIsValidate((prev) => ({ ...prev, phone: false }));
+  }, []);
+
+  const checkEmailValidation = useCallback((email: string) => {
+    const regexEmail = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+
+    regexEmail.test(email)
+      ? setIsValidate((prev) => ({ ...prev, email: true }))
+      : setIsValidate((prev) => ({ ...prev, email: false }));
+  }, []);
 
   const checkIdValidation = useCallback((answer: AnswerType) => {
     const { id } = answer;
@@ -38,5 +54,11 @@ export const useRegex = () => {
     } else setIsValidate((prev) => ({ ...prev, password: false }));
   }, []);
 
-  return { isValidate, checkIdValidation, checkPasswordValidation };
+  return {
+    isValidate,
+    checkPhoneValidation,
+    checkEmailValidation,
+    checkIdValidation,
+    checkPasswordValidation,
+  };
 };
