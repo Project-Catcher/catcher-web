@@ -4,6 +4,14 @@ import { AnswerType } from "../types";
 export const useRegex = () => {
   const [isValidate, setIsValidate] = useState<AnswerType>({});
 
+  const checkNameValidation = useCallback((name: string) => {
+    const regexName = /^[가-힣]{2,4}$/;
+
+    regexName.test(name)
+      ? setIsValidate((prev) => ({ ...prev, name: true }))
+      : setIsValidate((prev) => ({ ...prev, name: false }));
+  }, []);
+
   const checkPhoneValidation = useCallback((phone: string) => {
     const regexNum = /^[0-9]{11}$/;
 
@@ -56,6 +64,7 @@ export const useRegex = () => {
 
   return {
     isValidate,
+    checkNameValidation,
     checkPhoneValidation,
     checkEmailValidation,
     checkIdValidation,

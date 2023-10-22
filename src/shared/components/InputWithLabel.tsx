@@ -6,6 +6,7 @@ interface InputWithLabelProps extends HTMLAttributes<HTMLInputElement> {
   inputType: string;
   labelStyle?: string;
   inputStyle?: string;
+  readonly?: boolean;
 }
 
 const InputWithLabel = ({
@@ -14,6 +15,7 @@ const InputWithLabel = ({
   inputType,
   labelStyle,
   inputStyle,
+  readonly,
   ...props
 }: InputWithLabelProps) => {
   return (
@@ -27,6 +29,7 @@ const InputWithLabel = ({
         id={id}
         className={`border border-[#BDBDBD] ${inputStyle}`}
         type={inputType}
+        readOnly={readonly}
         {...props}
       />
     </>

@@ -48,8 +48,6 @@ const AuthenticationBox = ({
           }`}
         >
           {({ isDoneAuth, isValidate, handleCaptcha, handleDoneAuth }) => {
-            console.log(isValidate);
-
             return (
               <>
                 {!isDoneAuth ? (
@@ -62,7 +60,9 @@ const AuthenticationBox = ({
                     <ValidateButton
                       type={type}
                       value="인증번호 받기"
-                      isValidate={isValidate}
+                      isValidate={
+                        (isValidate[type] && isValidate.name) as boolean
+                      }
                       buttonColor="bg-[#F864A1]"
                       buttonColorDisabled="bg-[#FAC3DA]"
                       extraClass="mt-[21px]"
@@ -76,6 +76,7 @@ const AuthenticationBox = ({
                 ) : (
                   <div className="text-xs font-medium mt-[15px] mb-[5px]">
                     <InputWithLabel
+                      // readonly 추가
                       label="인증번호"
                       id="phoneAuth"
                       inputType="tel"
@@ -93,7 +94,7 @@ const AuthenticationBox = ({
                     <ValidateButton
                       type="beforePhoneAuth"
                       value="아이디 찾기"
-                      isValidate={isValidate}
+                      isValidate={isValidate[type] as boolean}
                       buttonColor="bg-[#A564F8]"
                       buttonColorDisabled="bg-[#D0B3F5]"
                       extraClass="mt-[21px]"

@@ -25,7 +25,12 @@ const AuthenticationForm = ({
   const [isDoneAuth, setIsDoneAuth] = useState<boolean>(false); // 캡차까지 완료
   const [isHover, setIsHover] = useState<boolean>(false);
   const [answer, setAnswer] = useState<AnswerType>({});
-  const { isValidate, checkPhoneValidation, checkEmailValidation } = useRegex();
+  const {
+    isValidate,
+    checkNameValidation,
+    checkPhoneValidation,
+    checkEmailValidation,
+  } = useRegex();
   const isPhone = type === "phone";
 
   const handleAnswer = (answer: AnswerType) => {
@@ -56,13 +61,17 @@ const AuthenticationForm = ({
     isPhone
       ? checkPhoneValidation(answer.phone as string)
       : checkEmailValidation(answer.email as string);
+    checkNameValidation(answer.name as string);
   }, [
     answer.email,
+    answer.name,
     answer.phone,
     checkEmailValidation,
+    checkNameValidation,
     checkPhoneValidation,
     isPhone,
   ]);
+  console.log(isValidate);
 
   return (
     <>
@@ -78,6 +87,7 @@ const AuthenticationForm = ({
       <div className="w-full pl-[8px]">
         <div className="inline-block w-2/5 mr-[10px]">
           <InputWithLabel
+            readonly={isDoneAuth}
             label="이름"
             id="name"
             inputType="text"
@@ -99,6 +109,7 @@ const AuthenticationForm = ({
             {isHover && <Instructions type={type} />}
           </div>
           <InputWithLabel
+            readonly={isDoneAuth}
             label={isPhone ? "휴대전화" : "이메일 주소"}
             id="phone"
             inputType={isPhone ? "tel" : "email"}

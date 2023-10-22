@@ -78,7 +78,7 @@ const PasswordResetForm = ({
       <ValidateButton
         type={type}
         value={value}
-        isValidate={isValidate}
+        isValidate={isValidate[type] as boolean}
         buttonColor={buttonColor}
         buttonColorDisabled={buttonColorDisabled}
         onClick={() => setCurrentProgress((prev) => prev + 1)}
