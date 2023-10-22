@@ -8,6 +8,7 @@ env:
   ecr_url: ${{ secrets.ECR_REPO_DEV_FRONT }}
   role_arn: ${{ secrets.OIDC_ROLE }}
   aws_region: ${{ secrets.AWS_REGION }}
+  webhook_url: ${{ secrets.WEBHOOK }}
 
 permissions:
   id-token: write   # This is required for requesting the JWT
@@ -42,3 +43,9 @@ jobs:
         run: |
           docker tag catcher-web:latest ${{ env.ecr_url }}:catcher-web
           docker push ${{ env.ecr_url }}:catcher-web
+
+      - name: notification to swit
+        uses: roharon/action-swit@v1
+        with:
+          webhooks_url: ${{ env.webhook_url }}
+          MESSAGE: "🏷 ${{ job.status }} 프론트 ECR 도커파일 업로드 : Catcher-web - by ${{ github.actor }}"
