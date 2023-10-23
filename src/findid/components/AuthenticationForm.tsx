@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import Instructions from "./Instructions";
 import { AnswerType, AuthType } from "@shared/types";
 import { useRegex } from "@shared/hooks/useRegex";
@@ -23,7 +23,6 @@ const AuthenticationForm = ({
   type,
 }: AuthenticationFormProps) => {
   const [isDoneCaptcha, setIsDoneAuth] = useState<boolean>(false); // 캡차까지 완료
-  const [isHover, setIsHover] = useState<boolean>(false);
   const [answer, setAnswer] = useState<AnswerType>({});
   const {
     isValidate,
@@ -37,21 +36,21 @@ const AuthenticationForm = ({
     setAnswer((prev) => ({ ...prev, ...answer }));
   };
 
-  const handleName = (name: AnswerType) => {
+  const handleName = useCallback((name: AnswerType) => {
     handleAnswer({ ...name });
-  };
+  }, []);
 
-  const handleAnswerInput = (answerInput: AnswerType) => {
+  const handleAnswerInput = useCallback((answerInput: AnswerType) => {
     handleAnswer({ ...answerInput });
-  };
+  }, []);
 
-  const handleCaptcha = (captcha: AnswerType) => {
+  const handleCaptcha = useCallback((captcha: AnswerType) => {
     handleAnswer({ ...captcha });
-  };
+  }, []);
 
-  const handleDoneCaptcha = () => {
+  const handleDoneCaptcha = useCallback(() => {
     setIsDoneAuth(true);
-  };
+  }, []);
 
   useEffect(() => {
     if (type === "phone") checkPhoneValidation(answer.phone as string);
@@ -93,15 +92,7 @@ const AuthenticationForm = ({
           />
         </div>
         <div className="inline-block w-3/5-10">
-          <div className="flex items-center relative float-right text-[10px] text-[#8D8D8D]">
-            인증번호가 오지 않나요
-            <button
-              className="inline-block w-[22px] h-[22px] bg-question bg-no-repeat"
-              onMouseOver={() => setIsHover(true)}
-              onMouseOut={() => setIsHover(false)}
-            />
-            {isHover && <Instructions type={type} />}
-          </div>
+          <Instructions type={type} />
           <InputWithLabel
             readOnly={isDoneCaptcha}
             label={isPhone ? "휴대전화" : "이메일 주소"}
