@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { LoginType } from "@shared/types";
 import { WhiteBox } from "@shared/components";
 import ModeButton from "./ModeButton";
