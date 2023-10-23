@@ -85,7 +85,7 @@ const AuthenticationBox = ({
                       value="아이디 찾기"
                       isValidate={isValidate[type] as boolean}
                       buttonColor="bg-[#A564F8]"
-                      buttonColorDisabled="bg-[#D0B3F5]"
+                      buttonColorDisabled="bg-[#A564F875]"
                       extraClass="mt-[21px]"
                       onClick={() => {
                         if (isPhone) {

@@ -22,7 +22,7 @@ const IdCheck = ({ setCurrentProgress }: IdCheckProps) => {
       subTitle={description}
       value="다음"
       buttonColor="bg-[#FACD49]"
-      buttonColorDisabled="bg-[#F7E4AD]"
+      buttonColorDisabled="bg-[#FACD4975]"
       setCurrentProgress={setCurrentProgress}
     >
       {({ handleId }) => (
