@@ -17,8 +17,8 @@ const Instructions = ({ type }: InstructionsProps) => {
     <>
       <div className="flex items-center relative float-right text-[10px] text-[#8D8D8D]">
         인증번호가 오지 않나요
-        <button
-          className="inline-block w-[22px] h-[22px] bg-question bg-no-repeat"
+        <div
+          className="inline-block w-[22px] h-[22px] bg-question bg-no-repeat cursor-pointer"
           onMouseOver={() => setIsHover(true)}
           onMouseOut={() => setIsHover(false)}
         />
