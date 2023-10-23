@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { IdInput, PasswordInput, WhiteBox } from "@shared/components";
 import { AnswerType, LoginType } from "@shared/types";
 import { useRouter } from "next/router";
@@ -23,17 +23,17 @@ const LoginForm = () => {
     setAnswer((prev) => ({ ...prev, ...answer }));
   };
 
-  const handleId = (id: AnswerType) => {
+  const handleId = useCallback((id: AnswerType) => {
     handleAnswer({ ...id });
-  };
+  }, []);
 
-  const handlePassword = (password: AnswerType) => {
+  const handlePassword = useCallback((password: AnswerType) => {
     handleAnswer({ ...password });
-  };
+  }, []);
 
-  const handleLoginPersistence = (isChecked: AnswerType) => {
+  const handleLoginPersistence = useCallback((isChecked: AnswerType) => {
     handleAnswer({ ...isChecked });
-  };
+  }, []);
 
   return (
     <WhiteBox

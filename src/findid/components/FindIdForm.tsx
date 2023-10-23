@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import AuthenticationBox from "./AuthenticationBox";
 import { AuthType, Checked } from "@shared/types";
 
@@ -8,9 +8,9 @@ const FindIdForm = () => {
     email: false,
   });
 
-  const handleChecked = (key: AuthType) => {
+  const handleChecked = useCallback((key: AuthType) => {
     setIsChecked({ phone: key === "phone", email: key === "email" });
-  };
+  }, []);
 
   return (
     <>

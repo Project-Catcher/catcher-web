@@ -13,8 +13,6 @@ const SelectAuthMethod = ({
   isChecked,
   handleChecked,
 }: SelectAuthMethodProps) => {
-  const isPhone = type === "phone";
-
   return (
     <>
       <input

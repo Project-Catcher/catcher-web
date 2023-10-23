@@ -2,7 +2,6 @@ export { default as AccountFind } from "./AccountFind";
 export { default as AuthenticationBox } from "./AuthenticationBox";
 export { default as AuthenticationForm } from "./AuthenticationForm";
 export { default as EnterNewPassword } from "./EnterNewPassword";
-export { default as FindMyId } from "./FindMyId";
 export { default as IdCheck } from "./IdCheck";
 export { default as Instructions } from "./Instructions";
 export { default as ModeButton } from "./ModeButton";

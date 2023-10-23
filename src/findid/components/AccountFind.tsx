@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { LoginType } from "@shared/types";
 import { WhiteBox } from "@shared/components";
 import ModeButton from "./ModeButton";
-import FindMyId from "./FindMyId";
+import FindIdForm from "./FindIdForm";
 import PasswordResetProgress from "./PasswordResetProgress";
 import { useRouter } from "next/router";
 
@@ -42,7 +42,7 @@ const AccountFind = () => {
           handleMode={handleMode}
         />
       </div>
-      {mode === "id" && <FindMyId />}
+      {mode === "id" && <FindIdForm />}
       {mode === "password" && <PasswordResetProgress />}
     </WhiteBox>
   );

@@ -4,6 +4,7 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -45,17 +46,17 @@ const PasswordResetForm = ({
     setAnswer((prev) => ({ ...prev, ...answer }));
   };
 
-  const handleId = (id: AnswerType) => {
+  const handleId = useCallback((id: AnswerType) => {
     handleAnswer({ ...id });
-  };
+  }, []);
 
-  const handlePassword = (password: AnswerType) => {
+  const handlePassword = useCallback((password: AnswerType) => {
     handleAnswer({ ...password });
-  };
+  }, []);
 
-  const handleCheckPassword = (password: AnswerType) => {
+  const handleCheckPassword = useCallback((password: AnswerType) => {
     handleAnswer({ ...password });
-  };
+  }, []);
 
   useEffect(() => {
     if (type === "id") checkIdValidation(answer);
