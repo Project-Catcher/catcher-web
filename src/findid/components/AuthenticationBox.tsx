@@ -49,6 +49,7 @@ const AuthenticationBox = ({
             isValidate,
             handleCaptcha,
             handleDoneCaptcha,
+            checkAuthNumValidation,
           }) => {
             return (
               <>
@@ -61,20 +62,25 @@ const AuthenticationBox = ({
                   />
                 ) : (
                   <div className="text-xs font-medium mt-[15px] mb-[5px]">
-                    <InputWithLabel
-                      // readonly 추가, 아임포트 api 추가 후 정리 필요할듯
-                      maxLength={6}
-                      pattern="\d*"
-                      label="인증번호"
-                      id="phoneAuth"
-                      inputType="text"
-                      inputStyle="w-[281px] text-xs leading-[24px] px-[14px] py-[5px]"
-                      placeholder="인증번호 입력"
-                    />
-                    <button className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]">
-                      재발송
-                    </button>
-                    <AuthTimer />
+                    <div className="flex items-end">
+                      <InputWithLabel
+                        // readonly 추가, 아임포트 api 추가 후 정리 필요할듯
+                        maxLength={6}
+                        pattern="\d*"
+                        label="인증번호"
+                        id="phoneAuth"
+                        inputType="text"
+                        inputStyle="w-[281px] h-[36px] text-xs leading-[24px] px-[14px] py-[6px]"
+                        placeholder="인증번호 입력"
+                        onChange={({ target: { value } }) =>
+                          checkAuthNumValidation(value)
+                        }
+                      />
+                      <button className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]">
+                        재발송
+                      </button>
+                      <AuthTimer />
+                    </div>
                     <div className="text-[#00D179] mt-[5px] mb-[12px]">
                       인증 성공!
                     </div>
@@ -83,7 +89,7 @@ const AuthenticationBox = ({
                       // 인증 전 isValidate 상태 추가
                       type="beforePhoneAuth"
                       value="아이디 찾기"
-                      isValidate={isValidate[type] as boolean}
+                      isValidate={isValidate.authNum as boolean}
                       buttonColor="bg-[#A564F8]"
                       buttonColorDisabled="bg-[#A564F875]"
                       extraClass="mt-[21px]"

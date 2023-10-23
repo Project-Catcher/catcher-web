@@ -4,6 +4,14 @@ import { AnswerType } from "../types";
 export const useRegex = () => {
   const [isValidate, setIsValidate] = useState<AnswerType>({});
 
+  const checkAuthNumValidation = useCallback((authNum: string) => {
+    const regexAuthNum = /^[0-9]{6}$/;
+
+    regexAuthNum.test(authNum)
+      ? setIsValidate((prev) => ({ ...prev, authNum: true }))
+      : setIsValidate((prev) => ({ ...prev, authNum: false }));
+  }, []);
+
   const checkNameValidation = useCallback((name: string) => {
     const regexName = /^[가-힣]{2,4}$/;
 
@@ -64,6 +72,7 @@ export const useRegex = () => {
 
   return {
     isValidate,
+    checkAuthNumValidation,
     checkNameValidation,
     checkPhoneValidation,
     checkEmailValidation,

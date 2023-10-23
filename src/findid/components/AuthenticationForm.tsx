@@ -9,6 +9,7 @@ interface ChildrenProps {
   isValidate: AnswerType;
   handleCaptcha: (captcha: AnswerType) => void;
   handleDoneCaptcha: () => void;
+  checkAuthNumValidation: (authNum: string) => void;
 }
 
 interface AuthenticationFormProps {
@@ -26,6 +27,7 @@ const AuthenticationForm = ({
   const [answer, setAnswer] = useState<AnswerType>({});
   const {
     isValidate,
+    checkAuthNumValidation,
     checkNameValidation,
     checkPhoneValidation,
     checkEmailValidation,
@@ -84,7 +86,7 @@ const AuthenticationForm = ({
             label="이름"
             id="name"
             inputType="text"
-            inputStyle="w-full text-sm px-[14px] py-[8px]"
+            inputStyle="w-full h-full text-sm px-[14px] py-[8px]"
             placeholder="이름을 입력해 주세요."
             onChange={({ currentTarget: { value } }) =>
               handleName({ name: value })
@@ -101,7 +103,7 @@ const AuthenticationForm = ({
             placeholder={`${
               isPhone ? "휴대전화번호 (숫자만 입력)" : "이메일 주소 입력"
             }`}
-            inputStyle="w-full text-sm px-[14px] py-[8px]"
+            inputStyle="w-full h-full text-sm px-[14px] py-[8px]"
             onChange={({ currentTarget: { value } }) =>
               handleAnswerInput({ [type]: value })
             }
@@ -112,6 +114,7 @@ const AuthenticationForm = ({
           isValidate,
           handleCaptcha,
           handleDoneCaptcha,
+          checkAuthNumValidation,
         })}
       </div>
     </>
