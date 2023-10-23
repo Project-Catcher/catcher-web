@@ -20,7 +20,7 @@ const IdInput = ({ handleId }: IdInputProps) => {
         }`}
       ></label>
       <input
-        className="w-full pl-[25px] outline-0"
+        className="w-full h-full pl-[25px] outline-0"
         type="text"
         placeholder="아이디"
         onChange={({ target: { value } }) => handleId({ id: value })}

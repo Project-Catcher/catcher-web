@@ -56,7 +56,7 @@ const PasswordInput = ({
           비밀번호
         </label>
         <input
-          className={`w-full outline-0 ${extraInputStyle}`}
+          className={`w-full h-full outline-0 ${extraInputStyle}`}
           type={`${preview ? "text" : "password"}`}
           placeholder={placeholder}
           onChange={({ target: { value } }) =>
