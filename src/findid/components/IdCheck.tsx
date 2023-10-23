@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useMemo } from "react";
 import PasswordResetForm from "./PasswordResetForm";
+import { IdInput } from "@shared/components";
 
 interface IdCheckProps {
   setCurrentProgress: Dispatch<SetStateAction<number>>;
@@ -26,12 +27,7 @@ const IdCheck = ({ setCurrentProgress }: IdCheckProps) => {
     >
       {({ handleId }) => (
         <div className="mt-[28px] mb-[24px]">
-          <input
-            className="w-full h-[57px] rounded-[9px] input-login bg-idLabel bg-no-repeat bg-[position:21px_center]"
-            type="text"
-            placeholder="아이디"
-            onChange={({ target: { value } }) => handleId({ id: value })}
-          />
+          <IdInput handleId={handleId} />
         </div>
       )}
     </PasswordResetForm>

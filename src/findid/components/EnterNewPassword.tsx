@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useMemo } from "react";
-import PasswordInput from "./PasswordInput";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import PasswordResetForm from "./PasswordResetForm";
+import { PasswordInput } from "@shared/components";
 
 interface EnterNewPasswordProps {
   setCurrentProgress: Dispatch<SetStateAction<number>>;
@@ -29,16 +29,28 @@ const EnterNewPassword = ({ setCurrentProgress }: EnterNewPasswordProps) => {
     >
       {({ handlePassword, handleCheckPassword }) => (
         <div className="h-[210px] border border-[#F864A1] rounded-[10px] mb-[28px] px-[30px] py-[25px]">
-          <PasswordInput
-            type="newPassword"
-            label="새 비밀번호"
-            handlePassword={handlePassword}
-          />
-          <PasswordInput
-            type="checkNewPassword"
-            label="새 비밀번호 확인"
-            handlePassword={handleCheckPassword}
-          />
+          <div className="mb-[15px]">
+            <PasswordInput
+              label="새 비밀번호"
+              placeholder="새 비밀번호"
+              type="newPassword"
+              shape="normal"
+              extraDivStyle="h-[42px] pl-[12px] pr-[12px] py-[11px]"
+              extraInputStyle="pl-[10px] text-[14px] leading-[20px]"
+              handlePassword={handlePassword}
+            />
+          </div>
+          <div>
+            <PasswordInput
+              label="새 비밀번호 확인"
+              placeholder="새 비밀번호 확인"
+              type="checkNewPassword"
+              shape="normal"
+              extraDivStyle="h-[42px] pl-[12px] pr-[12px] py-[11px]"
+              extraInputStyle="pl-[10px] text-[14px] leading-[20px]"
+              handlePassword={handleCheckPassword}
+            />
+          </div>
         </div>
       )}
     </PasswordResetForm>

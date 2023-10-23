@@ -2,7 +2,7 @@ export type AuthType = "phone" | "email";
 
 export type LoginType = "id" | "password";
 
-export type CheckPasswordType = "newPassword" | "checkNewPassword";
+export type PasswordType = "password" | "newPassword" | "checkNewPassword";
 
 export interface Checked {
   phone: boolean;

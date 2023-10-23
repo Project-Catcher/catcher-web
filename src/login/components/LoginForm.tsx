@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { useState } from "react";
-import { WhiteBox } from "@shared/components";
+import { IdInput, PasswordInput, WhiteBox } from "@shared/components";
 import { AnswerType, LoginType } from "@shared/types";
 import { useRouter } from "next/router";
 
 const LoginForm = () => {
   const [isError, setIsError] = useState<boolean>(false);
-  const [preview, setPreview] = useState<boolean>(false);
   const [answer, setAnswer] = useState<AnswerType>({});
   const { push } = useRouter();
 
@@ -44,7 +43,7 @@ const LoginForm = () => {
       paddingY="py-[42px]"
       shadow="shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]"
     >
-      <div className="mb-[41px]">
+      <div className="mb-[29px]">
         <div className="float-right text-right text-[#8D8D8D]">
           아직 캐쳐 회원이 <br /> 아니라면?
           <div className="text-[#F864A1] cursor-pointer">Sign Up</div>
@@ -52,31 +51,16 @@ const LoginForm = () => {
         <p className="text-xl">Welcome to Catcher</p>
         <p className="text-[55px] font-medium">Log In</p>
       </div>
-      <input
-        className="w-full h-[57px] rounded-[9px] input-login mb-[12px] bg-idLabel bg-no-repeat bg-[position:21px_center]"
-        type="text"
-        placeholder="아이디"
-        onChange={({ target: { value } }) => handleId({ id: value })}
-      />
-      <input
-        className="w-full h-[57px] rounded-[9px] input-login mb-[15px] bg-pwLabel bg-no-repeat bg-[position:21px_center]"
-        type={`${preview ? "text" : "password"}`}
+      <IdInput handleId={handleId} />
+      <PasswordInput
         placeholder="비밀번호"
-        onChange={({ target: { value } }) =>
-          handlePassword({ password: value })
-        }
+        type="password"
+        shape="semi-round"
+        extraDivStyle="h-[57px] pl-[25px] pr-[19px] mb-[12px]"
+        extraInputStyle="pl-[25px]"
+        handlePassword={handlePassword}
       />
-      <button className="absolute -translate-x-[35px] translate-y-[20px]">
-        <Image
-          src="/images/samples/eye.svg"
-          alt="eye"
-          width={22}
-          height={19}
-          onMouseDown={() => setPreview(true)}
-          onMouseUp={() => setPreview(false)}
-        />
-      </button>
-      <div className="flex w-full h-[22px] items-center justify-between mb-[16px]">
+      <div className="flex w-full h-[22px] items-center justify-between mt-[3px] mb-[37px]">
         <div className="flex items-center">
           <label
             className={`inline-block w-[18px] h-[18px] rounded-[50%] bg-stayLoggedIn bg-no-repeat cursor-pointer ${
@@ -119,7 +103,7 @@ const LoginForm = () => {
       ) : (
         <div className="h-[16px] invisible"></div>
       )}
-      <div className="text-center mt-[21px]">
+      <div className="text-center">
         <button className="button-full button-semi-rounded button-shadow bg-[#F864A1] text-lg text-white font-semibold mb-[14px]">
           로그인
         </button>

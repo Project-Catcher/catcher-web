@@ -40,6 +40,7 @@ const PasswordResetForm = ({
 }: PasswordResetFormProps) => {
   const [answer, setAnswer] = useState<AnswerType>({});
   const { isValidate, checkIdValidation, checkPasswordValidation } = useRegex();
+  console.log(answer);
 
   const handleAnswer = (answer: AnswerType) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
