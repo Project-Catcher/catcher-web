@@ -21,7 +21,7 @@ const AuthTimer = () => {
   }, [timeLeft]);
 
   return (
-    <div className="inline-block text-base text-[#00D179] leading-[22px]">
+    <div className="inline-block mb-[7px] text-base text-[#00D179] leading-[22px]">
       {minutes}분 {second}초
     </div>
   );
