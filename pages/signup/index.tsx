@@ -1,8 +1,8 @@
+// 회원가입 - 서비스 약관 동의 페이지
+
 import React from "react";
 
-import Background from "../../src/signup/Background";
-import Greeting from "../../src/signup/Greeting";
-import Agreement from "../../src/signup/Agreement";
+import { Agreement, Background, Greeting } from "signup";
 
 const index = () => {
   return (
