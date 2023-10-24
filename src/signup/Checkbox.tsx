@@ -7,11 +7,18 @@ interface CheckboxProps {
   essential?: boolean;
   checked: boolean;
   onChange: () => void;
+  labelStyle?: string;
 }
 
-const Checkbox = ({ label, essential, checked, onChange }: CheckboxProps) => {
+const Checkbox = ({
+  label,
+  essential,
+  checked,
+  onChange,
+  labelStyle = "text-sm",
+}: CheckboxProps) => {
   return (
-    <div className="inline mb-4">
+    <div className="mb-4 w-[200px]">
       <label className="inline-flex items-center">
         <input
           type="checkbox"
@@ -19,9 +26,11 @@ const Checkbox = ({ label, essential, checked, onChange }: CheckboxProps) => {
           checked={checked}
           onChange={onChange}
         />
-        <span className="ml-2 text-justify text-zinc-800 text-sm font-medium font-['Roboto Flex'] leading-[21px]">
-          {label} {essential ? "(필수)" : "(선택)"}
-        </span>
+        <div
+          className={`ml-2 text-justify text-zinc-800 font-medium font-['Roboto Flex'] leading-[21px] ${labelStyle}`}
+        >
+          {label} {essential && (essential ? "(필수)" : "(선택)")}
+        </div>
       </label>
     </div>
   );

@@ -88,10 +88,10 @@ const Agreement = () => {
           서비스 약관 동의
         </div>
 
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 mt-4">
           {termsOfService.map((service, i) => (
             <div key={`service-${i}`}>
-              <div className="text-cyan-950 text-base font-bold font-['Roboto Flex'] leading-normal inline-block">
+              <div className="text-cyan-950 text-base font-bold font-['Roboto Flex'] leading-normal inline-block mb-1">
                 {service.title}
               </div>
               <ScrollContent content={service.content} />
@@ -99,14 +99,15 @@ const Agreement = () => {
           ))}
         </div>
 
-        <div className="mt-4">
+        <div className="mt-8 ml-2">
           <Checkbox
             label="전체약관 동의"
             checked={allAgreements}
             onChange={handleAllAgreementsChange}
+            labelStyle="text-base"
           />
 
-          <div className="flex flex-wrap mt-6 gap-x-8">
+          <div className="flex flex-wrap mt-6 gap-x-20">
             {checkTerms.map((checkbox: CheckboxProps, i: number) => (
               <Checkbox
                 key={`checkbox-${i}`}
