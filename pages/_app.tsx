@@ -1,8 +1,17 @@
 import type { AppProps } from "next/app";
-import "../styles/globals.css";
+import { RecoilRoot } from "recoil";
+import Alert from "../src/shared/modal/Alert";
+import "../../styles/globals.css";
+import Confirm from "../src/shared/modal/Confirm";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <RecoilRoot>
+      <Component {...pageProps} />
+      <Alert />
+      <Confirm />
+    </RecoilRoot>
+  );
 }
 
 export default MyApp;
