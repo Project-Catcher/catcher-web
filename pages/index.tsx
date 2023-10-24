@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../../styles/Home.module.css";
+import styles from "@shared/styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
         <div className="pb-5">
-          <p className="title text-xl">its title!</p>
+          <p className="text-xl title">its title!</p>
         </div>
         <p className={styles.description}>
           Get started by editing{" "}
