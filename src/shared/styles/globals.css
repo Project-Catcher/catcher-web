@@ -38,3 +38,8 @@ a {
     background: black;
   }
 } */
+
+/* 약관 동의 우측 스크롤 바 */
+.overflow-content {
+  @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#F5A200] scrollbar-track-[#E2E2E2];
+}

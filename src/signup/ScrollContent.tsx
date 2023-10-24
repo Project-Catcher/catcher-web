@@ -7,10 +7,9 @@ interface ScrollContentProps {
 }
 
 const ScrollContent = ({ content }: ScrollContentProps) => {
-  // TODO: 내부 스크롤 시 우측 스크롤 색 변경
   return (
     <div className="w-[773px] h-[163px] bg-white rounded-[15px] border border-zinc-300 flex justify-center items-center">
-      <div className="w-[729px] h-[133.02px] text-neutral-500 text-lg font-medium font-['Roboto Flex'] leading-[27px] overflow-y-auto px-3">
+      <div className="w-[729px] h-[133.02px] text-neutral-500 text-lg font-medium font-['Roboto Flex'] leading-[27px] px-3 overflow-content">
         {content}
       </div>
     </div>
