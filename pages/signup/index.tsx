@@ -1,11 +1,12 @@
 import React from "react";
 
+import Background from "../../src/signup/Background";
 import Greeting from "../../src/signup/Greeting";
 import Agreement from "../../src/signup/Agreement";
 
 const index = () => {
   return (
-    <div className="w-full h-screen bg-gradient-to-b from-pink-400 via-red-100 to-white">
+    <Background>
       <div className="flex justify-center gap-4 pt-[100px]">
         <Greeting
           title="만나서 반갑습니다"
@@ -13,7 +14,7 @@ const index = () => {
         />
         <Agreement />
       </div>
-    </div>
+    </Background>
   );
 };
 
