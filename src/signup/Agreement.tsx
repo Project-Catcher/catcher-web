@@ -6,13 +6,8 @@ import ScrollContent from "./ScrollContent";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 
-interface Agreements {
-  ageAgreement: boolean;
-  catcherAgreement: boolean;
-  marketingAgreement: boolean;
-  privacyAgreement: boolean;
-  locationAgreement: boolean;
-}
+import { checkTerms, termsOfService } from "./const";
+import { Agreements } from "./type";
 
 interface CheckboxProps {
   label: string;
@@ -22,12 +17,12 @@ interface CheckboxProps {
 
 const Agreement = () => {
   const [allAgreements, setAllAgreements] = useState(false);
-  const [agreements, setAgreements] = useState<Agreements>({
-    ageAgreement: false,
-    catcherAgreement: false,
-    marketingAgreement: false,
-    privacyAgreement: false,
-    locationAgreement: false,
+  const [agreements, setAgreements] = useState({
+    ageAgreement: { essential: true, checked: false },
+    catcherAgreement: { essential: true, checked: false },
+    marketingAgreement: { essential: false, checked: false },
+    privacyAgreement: { essential: true, checked: false },
+    locationAgreement: { essential: true, checked: false },
   });
 
   // 전체 약관 동의
@@ -35,29 +30,50 @@ const Agreement = () => {
     const checked = !allAgreements;
     setAllAgreements(checked);
     setAgreements({
-      ageAgreement: checked,
-      catcherAgreement: checked,
-      marketingAgreement: checked,
-      privacyAgreement: checked,
-      locationAgreement: checked,
+      ageAgreement: { ...agreements.ageAgreement, checked },
+      catcherAgreement: { ...agreements.catcherAgreement, checked },
+      marketingAgreement: { ...agreements.marketingAgreement, checked },
+      privacyAgreement: { ...agreements.privacyAgreement, checked },
+      locationAgreement: { ...agreements.locationAgreement, checked },
     });
   };
 
   // 개별 약관 동의
-  const handleAgreementChange = (agreementName: keyof Agreements) => {
-    setAgreements((prevAgreements) => ({
-      ...prevAgreements,
-      [agreementName]: !prevAgreements[agreementName],
-    }));
+  const handleAgreementChange = (agreementName: keyof typeof agreements) => {
+    setAgreements((prevAgreements) => {
+      // 개별 약관을 변경
+      const updatedAgreements = {
+        ...prevAgreements,
+        [agreementName]: {
+          ...prevAgreements[agreementName],
+          checked: !prevAgreements[agreementName].checked,
+        },
+      };
+
+      const allChecked = areAllAgreementsChecked(updatedAgreements);
+
+      // 모든 항목이 체크되어 있으면 allAgreements를 체크
+      if (allChecked) {
+        setAllAgreements(true);
+      } else {
+        setAllAgreements(false);
+      }
+
+      return updatedAgreements;
+    });
+  };
+
+  // 모든 항목이 체크되어 있는지 확인하는 함수
+  const areAllAgreementsChecked = (agreements: Agreements) => {
+    return Object.values(agreements).every((agreement) => agreement.checked);
   };
 
   const handleFormSubmit = () => {
     // TODO: 공통 컴포넌트의 모달로 변경
     if (
-      agreements["ageAgreement"] &&
-      agreements["catcherAgreement"] &&
-      agreements["privacyAgreement"] &&
-      agreements["locationAgreement"]
+      Object.values(agreements).every(({ essential, checked }) =>
+        essential ? checked : true
+      )
     ) {
       alert("다음으로 넘어갑니다!");
     } else {
@@ -96,7 +112,7 @@ const Agreement = () => {
                 key={`checkbox-${i}`}
                 label={checkbox.label}
                 essential={checkbox.essential}
-                checked={agreements[checkbox.value]}
+                checked={agreements[checkbox.value].checked}
                 onChange={() => handleAgreementChange(checkbox.value)}
               />
             ))}
@@ -113,70 +129,3 @@ const Agreement = () => {
 };
 
 export default Agreement;
-
-const termsOfService = [
-  {
-    title: "서비스 약관",
-    content: `Last Revised: December 16, 2013
-      <br />
-      Welcome to www.lorem-ipsum.info. This site is provided as a service to
-      our visitors and may be used for informational purposes only. Because
-      the Terms and Conditions contain legal obligations, please read them
-      carefully.
-      <br />
-      1. YOUR AGREEMENT YOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR
-      AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENT`,
-  },
-  {
-    title: "개인정보 취급방침",
-    content: `Last Revised: December 16, 2013
-      <br />
-      Welcome to www.lorem-ipsum.info. This site is provided as a service to
-      our visitors and may be used for informational purposes only. Because
-      the Terms and Conditions contain legal obligations, please read them
-      carefully.
-      <br />
-      1. YOUR AGREEMENT YOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR
-      AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENT`,
-  },
-  {
-    title: "위치 정보 이용 동의",
-    content: `Last Revised: December 16, 2013
-      <br />
-      Welcome to www.lorem-ipsum.info. This site is provided as a service to
-      our visitors and may be used for informational purposes only. Because
-      the Terms and Conditions contain legal obligations, please read them
-      carefully.
-      <br />
-      1. YOUR AGREEMENT YOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR
-      AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENTYOUR AGREEMENT`,
-  },
-];
-
-const checkTerms = [
-  {
-    label: "만 14세 이상입니다.",
-    essential: true,
-    value: "ageAgreement" as keyof Agreements,
-  },
-  {
-    label: "캐처 이용약관 동의",
-    essential: true,
-    value: "catcherAgreement" as keyof Agreements,
-  },
-  {
-    label: "마케팅 수신 동의",
-    essential: false,
-    value: "marketingAgreement" as keyof Agreements,
-  },
-  {
-    label: "개인정보 취급 방침 동의",
-    essential: true,
-    value: "privacyAgreement" as keyof Agreements,
-  },
-  {
-    label: "위치 정보 이용 동의",
-    essential: true,
-    value: "locationAgreement" as keyof Agreements,
-  },
-];
