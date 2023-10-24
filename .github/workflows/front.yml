@@ -19,12 +19,20 @@ jobs:
   build:
     name: To push ECR
     runs-on: self-hosted
+    env:
+      COMMIT_ID: Null
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
+
+      - name: Get Commit ID
+        id: vars
+        run: |
+          COMMIT_ID=$(git rev-parse HEAD)
+          echo $COMMIT_ID
 
       - name: Docker build
         run: docker build -t catcher-web .
@@ -44,3 +52,11 @@ jobs:
         run: |
           docker tag catcher-web:latest ${{ env.ecr_url }}:catcher-web
           docker push ${{ env.ecr_url }}:catcher-web
+
+      - name: Deploy to Frontend Instance from ECR Image
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ secrets.AWS_DEPLOY_APP_NAME }} \
+            --deployment-group-name ${{ secrets.AWS_DEPLOY_GROUP }}  \
+            --deployment-config-name ${{ secrets.AWS_DEPLOY_CONFIG }} \
+            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
