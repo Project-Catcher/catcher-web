@@ -13,4 +13,5 @@ docker create -i --name front -p $PORT:$PORT $ECR_URL
 docker start front
 
 # 기존 이미지 삭제
-docker image rm $(docker images | egrep -v "SIZE|$TAG" | awk -F ' ' '{print $3}')
+DELETE_TAG=$(docker images | egrep -v "SIZE|$TAG" | awk -F ' ' '{print $2}')
+docker image rm $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$FRONT_ECR_NAME:$DELETE_TAG
