@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Instructions from "./Instructions";
 import { AuthType } from "@shared/types";
-import { useRegex } from "@shared/hooks/useRegex";
 import {
   AuthTimer,
   CaptchaWithButton,
@@ -9,6 +8,12 @@ import {
 } from "@shared/components";
 import ValidateButton from "./ValidateButton";
 import AuthErrorMessage from "./AuthErrorMessage";
+import {
+  checkAuthNumValidation,
+  checkEmailValidation,
+  checkNameValidation,
+  checkPhoneValidation,
+} from "@shared/utils";
 
 interface AuthenticationFormProps {
   description: string;
@@ -18,6 +23,7 @@ interface AuthenticationFormProps {
 interface AuthFormAnswer {
   name: string;
   authOptionValue: string;
+  authNum: string;
 }
 
 export interface Captcha {
@@ -30,19 +36,30 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
   const [answer, setAnswer] = useState<AuthFormAnswer>({
     name: "",
     authOptionValue: "",
+    authNum: "",
   });
   const [captcha, setCaptcha] = useState<Captcha>({
     captchaValue: "",
     doneCaptcha: false,
   });
-  const {
-    isValidate,
-    checkAuthNumValidation,
-    checkNameValidation,
-    checkPhoneValidation,
-    checkEmailValidation,
-  } = useRegex();
   const isPhone = type === "phone";
+
+  const isAuthOptionValidate = useMemo(
+    () =>
+      isPhone
+        ? checkPhoneValidation(answer.authOptionValue)
+        : checkEmailValidation(answer.authOptionValue),
+    [answer.authOptionValue, isPhone],
+  );
+  const isNameValidate = useMemo(
+    () => checkNameValidation(answer.name),
+    [answer.name],
+  );
+  const isAuthNumValidate = useMemo(
+    () => checkAuthNumValidation(answer.authNum),
+    [answer.authNum],
+  );
+
   console.log(answer);
 
   const handleAnswer = (answer: Partial<AuthFormAnswer>) => {
@@ -55,6 +72,10 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
 
   const handleAuthOptionValue = useCallback((authOptionValue: string) => {
     handleAnswer({ authOptionValue });
+  }, []);
+
+  const handleAuthNum = useCallback((authNum: string) => {
+    handleAnswer({ authNum });
   }, []);
 
   const handleCaptcha = (answer: Partial<Captcha>) => {
@@ -72,19 +93,6 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
     );
     // request api function here
   }, []);
-
-  useEffect(() => {
-    if (type === "phone") checkPhoneValidation(answer.authOptionValue);
-    else if (type === "email") checkEmailValidation(answer.authOptionValue);
-    checkNameValidation(answer.name);
-  }, [
-    answer.authOptionValue,
-    answer.name,
-    checkEmailValidation,
-    checkNameValidation,
-    checkPhoneValidation,
-    type,
-  ]);
 
   return (
     <>
@@ -129,7 +137,10 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
           <CaptchaWithButton
             type={type}
             // 캡차 완료 validate 추가
-            isValidate={isValidate[type] && isValidate.name}
+            isValidate={
+              isNameValidate &&
+              (isPhone ? isAuthOptionValidate : isAuthOptionValidate)
+            }
             handleDoneCaptcha={handleDoneCaptcha}
             handleCaptchaValue={handleCaptchaValue}
           />
@@ -144,9 +155,7 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
                 inputType="text"
                 inputStyle="w-[281px] h-[36px] text-xs leading-[24px] px-[14px] py-[6px]"
                 placeholder="인증번호 입력"
-                onChange={({ target: { value } }) =>
-                  checkAuthNumValidation(value)
-                }
+                onChange={({ target: { value } }) => handleAuthNum(value)}
               />
               <button
                 className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]"
@@ -160,7 +169,7 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
               </button>
               <AuthTimer />
             </div>
-            {isValidate.authNum ? (
+            {isAuthNumValidate ? (
               <div className="h-[16px] invisible mt-[5px] mb-[12px]"></div>
             ) : (
               <AuthErrorMessage />
@@ -168,7 +177,7 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
             <ValidateButton
               type="beforePhoneAuth"
               value="아이디 찾기"
-              isValidate={isValidate.authNum}
+              isValidate={isAuthNumValidate}
               buttonColor="bg-[#A564F8]"
               buttonColorDisabled="bg-[#A564F875]"
               extraClass="mt-[21px]"

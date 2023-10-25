@@ -1,15 +1,14 @@
-import { useRegex } from "@shared/hooks/useRegex";
 import { PasswordResetFormContent } from "@shared/types";
 import {
   Dispatch,
   ReactNode,
   SetStateAction,
   useCallback,
-  useEffect,
   useState,
 } from "react";
 import ValidateButton from "./ValidateButton";
 import PasswordResetBox from "./PasswordResetBox";
+import { checkIdValidation, checkPasswordValidation } from "@shared/utils";
 
 interface NewPasswordAnswerType {
   id: string;
@@ -45,7 +44,11 @@ const PasswordResetForm = ({
   });
   console.log(answer);
 
-  const { isValidate, checkIdValidation, checkPasswordValidation } = useRegex();
+  const isIdValidate = checkIdValidation(answer.id);
+  const isPasswordValidate = checkPasswordValidation(
+    answer.newPassword,
+    answer.checkNewPassword,
+  );
 
   const handleAnswer = (answer: Partial<NewPasswordAnswerType>) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
@@ -63,12 +66,6 @@ const PasswordResetForm = ({
     handleAnswer({ checkNewPassword });
   }, []);
 
-  useEffect(() => {
-    if (type === "id") checkIdValidation(answer.id);
-    else if (type === "password")
-      checkPasswordValidation(answer.newPassword, answer.checkNewPassword);
-  }, [answer, checkIdValidation, checkPasswordValidation, type]);
-
   return (
     <div className="mx-[64.5px] mt-[52px]">
       <PasswordResetBox title={title} subTitle={subTitle} isDisc={isDisc} />
@@ -76,7 +73,7 @@ const PasswordResetForm = ({
       <ValidateButton
         type={type}
         value={value}
-        isValidate={isValidate[type]}
+        isValidate={type === "id" ? isIdValidate : isPasswordValidate.password}
         buttonColor={buttonColor}
         buttonColorDisabled={buttonColorDisabled}
         onClick={() => setCurrentProgress((prev) => prev + 1)}
