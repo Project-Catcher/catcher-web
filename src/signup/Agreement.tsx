@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 
+import useModal from "@shared/hook/useModal";
 import ScrollContent from "./ScrollContent";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
@@ -16,6 +17,11 @@ interface CheckboxProps {
 }
 
 const Agreement = () => {
+  const { openAlert } = useModal();
+  const handleAlert = () => {
+    openAlert({ text: "필수 항목에 동의해주세요", isHeaderCloseBtn: true });
+  };
+
   const [allAgreements, setAllAgreements] = useState(false);
   const [agreements, setAgreements] = useState({
     ageAgreement: { essential: true, checked: false },
@@ -69,7 +75,7 @@ const Agreement = () => {
   };
 
   const handleFormSubmit = () => {
-    // TODO: 공통 컴포넌트의 모달로 변경
+    // TODO: 회원가입 폼으로 라우팅
     if (
       Object.values(agreements).every(({ essential, checked }) =>
         essential ? checked : true
@@ -77,7 +83,7 @@ const Agreement = () => {
     ) {
       alert("다음으로 넘어갑니다!");
     } else {
-      alert("필수 항목에 동의해주세요!");
+      handleAlert();
     }
   };
 

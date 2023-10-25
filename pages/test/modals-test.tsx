@@ -23,25 +23,19 @@ const AlertTest = () => {
       Enter
       <button
         // 테스트용 버튼 스타일 클래스
-        className="
-        bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
-        disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
         onClick={handleAlert}
       >
         Alert!
       </button>
       <button
-        className="
-        bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
-        disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
         onClick={handleConfirm}
       >
         Confirm!
       </button>
       <button
-        className="
-        bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
-        disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
         disabled
       >
         Modal!
