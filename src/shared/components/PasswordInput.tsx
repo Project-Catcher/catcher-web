@@ -1,4 +1,4 @@
-import { AnswerType, PasswordType } from "@shared/types";
+import { PasswordType } from "@shared/types";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ interface PasswordInputProps {
   shape: "semi-round" | "normal";
   extraDivStyle: string;
   extraInputStyle: string;
-  handlePassword: (password: AnswerType) => void;
+  handlePassword: (password: string) => void;
 }
 
 const PasswordInput = ({
@@ -21,7 +21,7 @@ const PasswordInput = ({
   extraInputStyle,
   handlePassword,
 }: PasswordInputProps) => {
-  const [preview, setPreview] = useState<boolean>(false);
+  const [preview, setPreview] = useState(false);
   const [isFocus, setIsFocus] = useState({
     password: false,
     newPassword: false,
@@ -59,9 +59,7 @@ const PasswordInput = ({
           className={`w-full h-full outline-0 ${extraInputStyle}`}
           type={`${preview ? "text" : "password"}`}
           placeholder={placeholder}
-          onChange={({ target: { value } }) =>
-            handlePassword({ [type]: value })
-          }
+          onChange={({ target: { value } }) => handlePassword(value)}
           onFocus={() => handleFocusBlur(type)}
           onBlur={() => handleFocusBlur(null)}
         />

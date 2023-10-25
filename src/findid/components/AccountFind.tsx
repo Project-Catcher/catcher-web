@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { LoginType } from "@shared/types";
+import { LoginValue } from "@shared/types";
 import { WhiteBox } from "@shared/components";
 import ModeButton from "./ModeButton";
 import FindIdForm from "./FindIdForm";
@@ -8,12 +8,12 @@ import { useRouter } from "next/router";
 
 const AccountFind = () => {
   const { query, push } = useRouter();
-  const [mode, setMode] = useState<LoginType>(
-    (query.type as LoginType) || "id",
+  const [mode, setMode] = useState<LoginValue>(
+    (query.type as LoginValue) ?? "id",
   );
 
   const handleMode = useCallback(
-    (value: LoginType) => {
+    (value: LoginValue) => {
       if (query.progress) push("/findid", undefined, { shallow: true });
       setMode(value);
     },
@@ -21,13 +21,7 @@ const AccountFind = () => {
   );
 
   return (
-    <WhiteBox
-      boxWidth="w-[705px]"
-      boxHeight="h-[710px]"
-      paddingX="px-[69.5px]"
-      paddingY="py-[33px]"
-      shadow="shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]"
-    >
+    <WhiteBox boxStyle="w-[705px] h-[710px] px-[69.5px] py-[33px] shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]">
       <div className="w-full text-center">
         <ModeButton
           type="id"

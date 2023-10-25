@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const AuthTimer = () => {
   const MINUTES_IN_MS = 3 * 60 * 1000;
   const INTERVAL = 1000;
-  const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
+  const [timeLeft, setTimeLeft] = useState(MINUTES_IN_MS);
   const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(2);
   const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, "0");
 

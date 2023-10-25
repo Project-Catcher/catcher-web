@@ -1,30 +1,39 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Instructions from "./Instructions";
-import { AnswerType, AuthType } from "@shared/types";
+import { AuthType } from "@shared/types";
 import { useRegex } from "@shared/hooks/useRegex";
-import { InputWithLabel } from "@shared/components";
-
-interface ChildrenProps {
-  isDoneCaptcha: boolean;
-  isValidate: AnswerType;
-  handleCaptcha: (captcha: AnswerType) => void;
-  handleDoneCaptcha: () => void;
-  checkAuthNumValidation: (authNum: string) => void;
-}
+import {
+  AuthTimer,
+  CaptchaWithButton,
+  InputWithLabel,
+} from "@shared/components";
+import ValidateButton from "./ValidateButton";
 
 interface AuthenticationFormProps {
-  children(props: ChildrenProps): ReactNode;
   description: string;
   type: AuthType;
 }
 
-const AuthenticationForm = ({
-  children,
-  description,
-  type,
-}: AuthenticationFormProps) => {
-  const [isDoneCaptcha, setIsDoneAuth] = useState<boolean>(false); // 캡차까지 완료
-  const [answer, setAnswer] = useState<AnswerType>({});
+interface AuthFormAnswer {
+  name: string;
+  authOptionValue: string;
+}
+
+export interface Captcha {
+  captchaValue: string;
+  doneCaptcha: boolean;
+}
+
+const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
+  const [isDoneAuth, setIsDoneAuth] = useState(false); // 캡차까지 완료
+  const [answer, setAnswer] = useState<AuthFormAnswer>({
+    name: "",
+    authOptionValue: "",
+  });
+  const [captcha, setCaptcha] = useState<Captcha>({
+    captchaValue: "",
+    doneCaptcha: false,
+  });
   const {
     isValidate,
     checkAuthNumValidation,
@@ -33,35 +42,39 @@ const AuthenticationForm = ({
     checkEmailValidation,
   } = useRegex();
   const isPhone = type === "phone";
+  console.log(answer);
 
-  const handleAnswer = (answer: AnswerType) => {
+  const handleAnswer = (answer: Partial<AuthFormAnswer>) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
   };
 
-  const handleName = useCallback((name: AnswerType) => {
-    handleAnswer({ ...name });
+  const handleName = useCallback((name: string) => {
+    handleAnswer({ name });
   }, []);
 
-  const handleAnswerInput = useCallback((answerInput: AnswerType) => {
-    handleAnswer({ ...answerInput });
+  const handleAuthOptionValue = useCallback((authOptionValue: string) => {
+    handleAnswer({ authOptionValue });
   }, []);
 
-  const handleCaptcha = useCallback((captcha: AnswerType) => {
-    handleAnswer({ ...captcha });
+  const handleCaptcha = (answer: Partial<Captcha>) => {
+    setCaptcha((prev) => ({ ...prev, ...answer }));
+  };
+
+  const handleCaptchaValue = useCallback((captchaValue: string) => {
+    handleCaptcha({ captchaValue });
   }, []);
 
   const handleDoneCaptcha = useCallback(() => {
-    setIsDoneAuth(true);
+    handleCaptcha({ doneCaptcha: true });
   }, []);
 
   useEffect(() => {
-    if (type === "phone") checkPhoneValidation(answer.phone as string);
-    else if (type === "email") checkEmailValidation(answer.email as string);
-    checkNameValidation(answer.name as string);
+    if (type === "phone") checkPhoneValidation(answer.authOptionValue);
+    else if (type === "email") checkEmailValidation(answer.authOptionValue);
+    checkNameValidation(answer.name);
   }, [
-    answer.email,
+    answer.authOptionValue,
     answer.name,
-    answer.phone,
     checkEmailValidation,
     checkNameValidation,
     checkPhoneValidation,
@@ -82,21 +95,19 @@ const AuthenticationForm = ({
       <div className="w-full pl-[8px]">
         <div className="inline-block w-2/5 mr-[10px]">
           <InputWithLabel
-            readOnly={isDoneCaptcha}
+            readOnly={captcha.doneCaptcha}
             label="이름"
             id="name"
             inputType="text"
             inputStyle="w-full h-full text-sm px-[14px] py-[8px]"
             placeholder="이름을 입력해 주세요."
-            onChange={({ currentTarget: { value } }) =>
-              handleName({ name: value })
-            }
+            onChange={({ currentTarget: { value } }) => handleName(value)}
           />
         </div>
         <div className="inline-block w-3/5-10">
           <Instructions type={type} />
           <InputWithLabel
-            readOnly={isDoneCaptcha}
+            readOnly={captcha.doneCaptcha}
             label={isPhone ? "휴대전화" : "이메일 주소"}
             id={isPhone ? "phoneInput" : "emailInput"}
             inputType={isPhone ? "tel" : "email"}
@@ -105,17 +116,56 @@ const AuthenticationForm = ({
             }`}
             inputStyle="w-full h-full text-sm px-[14px] py-[8px]"
             onChange={({ currentTarget: { value } }) =>
-              handleAnswerInput({ [type]: value })
+              handleAuthOptionValue(value)
             }
           />
         </div>
-        {children({
-          isDoneCaptcha,
-          isValidate,
-          handleCaptcha,
-          handleDoneCaptcha,
-          checkAuthNumValidation,
-        })}
+        {!captcha.doneCaptcha ? (
+          <CaptchaWithButton
+            type={type}
+            isValidate={isValidate[type] && isValidate.name}
+            handleDoneCaptcha={handleDoneCaptcha}
+            handleCaptchaValue={handleCaptchaValue}
+          />
+        ) : (
+          <div className="text-xs font-medium mt-[15px] mb-[5px]">
+            <div className="flex items-end">
+              <InputWithLabel
+                // readonly 추가, 아임포트 api 추가 후 정리 필요할듯
+                maxLength={6}
+                pattern="\d*"
+                label="인증번호"
+                id="phoneAuth"
+                inputType="text"
+                inputStyle="w-[281px] h-[36px] text-xs leading-[24px] px-[14px] py-[6px]"
+                placeholder="인증번호 입력"
+                onChange={({ target: { value } }) =>
+                  checkAuthNumValidation(value)
+                }
+              />
+              <button className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]">
+                재발송
+              </button>
+              <AuthTimer />
+            </div>
+            <div className="text-[#00D179] mt-[5px] mb-[12px]">인증 성공!</div>
+            {/* <div className="h-[16px] invisible mt-[5px] mb-[12px]"></div> */}
+            <ValidateButton
+              // 인증 전 isValidate 상태 추가
+              type="beforePhoneAuth"
+              value="아이디 찾기"
+              isValidate={isValidate.authNum}
+              buttonColor="bg-[#A564F8]"
+              buttonColorDisabled="bg-[#A564F875]"
+              extraClass="mt-[21px]"
+              onClick={() => {
+                if (isPhone) {
+                  handleDoneCaptcha();
+                } else alert("api here");
+              }}
+            />
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,23 +1,20 @@
-import { LoginType } from "@shared/types";
+import { LoginValue } from "@shared/types";
 
 interface ModeButtonProps {
-  type: LoginType;
+  type: LoginValue;
   value: string;
   mode: string;
-  handleMode: (value: LoginType) => void;
+  handleMode: (value: LoginValue) => void;
 }
 
 const ModeButton = ({ type, mode, value, handleMode }: ModeButtonProps) => {
   return (
     <button
       id={type}
-      className={`w-1/2 font-[22px] leading-[33px] border-b-4 border-[#E2E2E2] py-[15px] mb-[21px] ${
+      className={`${
         mode === type ? "border-[#F968A5]" : "border-[#E2E2E2]"
-      }`}
-      onClick={({ target }) => {
-        if (target instanceof HTMLButtonElement)
-          handleMode(target.id as LoginType);
-      }}
+      } w-1/2 font-[22px] leading-[33px] border-b-4 border-[#E2E2E2] py-[15px] mb-[21px]`}
+      onClick={({ currentTarget: { id } }) => handleMode(id as LoginValue)}
     >
       {value}
     </button>

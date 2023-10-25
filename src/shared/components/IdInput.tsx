@@ -1,8 +1,7 @@
-import { AnswerType } from "@shared/types";
 import { useState } from "react";
 
 interface IdInputProps {
-  handleId: (id: AnswerType) => void;
+  handleId: (id: string) => void;
 }
 
 const IdInput = ({ handleId }: IdInputProps) => {
@@ -23,7 +22,7 @@ const IdInput = ({ handleId }: IdInputProps) => {
         className="w-full h-full pl-[25px] outline-0"
         type="text"
         placeholder="아이디"
-        onChange={({ target: { value } }) => handleId({ id: value })}
+        onChange={({ target: { value } }) => handleId(value)}
         onFocus={() => handleFocusBlur(true)}
         onBlur={() => handleFocusBlur(false)}
       />

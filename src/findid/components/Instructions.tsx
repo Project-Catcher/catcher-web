@@ -6,7 +6,7 @@ interface InstructionsProps {
 }
 
 const Instructions = ({ type }: InstructionsProps) => {
-  const [isHover, setIsHover] = useState<boolean>(false);
+  const [isHover, setIsHover] = useState(false);
 
   const instruction =
     type === "phone"

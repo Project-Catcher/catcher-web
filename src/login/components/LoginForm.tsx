@@ -1,48 +1,45 @@
-import Image from "next/image";
 import { useCallback, useState } from "react";
 import { IdInput, PasswordInput, WhiteBox } from "@shared/components";
-import { AnswerType, LoginType } from "@shared/types";
+import { LoginFormType, LoginValue } from "@shared/types";
 import { useRouter } from "next/router";
 
 const LoginForm = () => {
-  const [isError, setIsError] = useState<boolean>(false);
-  const [answer, setAnswer] = useState<AnswerType>({});
+  const [isError, setIsError] = useState(false);
+  const [answer, setAnswer] = useState<LoginFormType>({
+    id: "",
+    password: "",
+    isChecked: false,
+  });
   const { push } = useRouter();
 
-  const handleRouting = (type: LoginType) => {
+  const handleRouting = (type: LoginValue) => {
     push(
       {
         pathname: "/findid",
-        query: { type: type },
+        query: { type },
       },
       "/findid",
     );
   };
 
-  const handleAnswer = (answer: AnswerType) => {
+  const handleAnswer = (answer: Partial<LoginFormType>) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
   };
 
-  const handleId = useCallback((id: AnswerType) => {
-    handleAnswer({ ...id });
+  const handleId = useCallback((id: string) => {
+    handleAnswer({ id });
   }, []);
 
-  const handlePassword = useCallback((password: AnswerType) => {
-    handleAnswer({ ...password });
+  const handlePassword = useCallback((password: string) => {
+    handleAnswer({ password });
   }, []);
 
-  const handleLoginPersistence = useCallback((isChecked: AnswerType) => {
-    handleAnswer({ ...isChecked });
+  const handleLoginPersistence = useCallback((isChecked: boolean) => {
+    handleAnswer({ isChecked });
   }, []);
 
   return (
-    <WhiteBox
-      boxWidth="w-[539px]"
-      boxHeight="h-[692px]"
-      paddingX="px-[44px]"
-      paddingY="py-[42px]"
-      shadow="shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]"
-    >
+    <WhiteBox boxStyle="w-[539px] h-[692px] px-[44px] py-[42px] shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]">
       <div className="mb-[29px]">
         <div className="float-right text-right text-[#8D8D8D]">
           아직 캐쳐 회원이 <br /> 아니라면?
@@ -63,17 +60,16 @@ const LoginForm = () => {
       <div className="flex w-full h-[22px] items-center justify-between mt-[3px] mb-[37px]">
         <div className="flex items-center">
           <label
-            className={`inline-block w-[18px] h-[18px] rounded-[50%] bg-stayLoggedIn bg-no-repeat cursor-pointer ${
-              answer.isChecked ? "bg-blue-400" : ""
-            }`}
+            className={`${
+              answer.isChecked ? "bg-blue-400 " : ""
+            }inline-block w-[18px] h-[18px] rounded-[50%] bg-stayLoggedIn bg-no-repeat cursor-pointer`}
           >
             <input
               className="hidden"
               type="checkbox"
-              onClick={({ target }) => {
-                if (target instanceof HTMLInputElement)
-                  handleLoginPersistence({ isChecked: target.checked });
-              }}
+              onClick={({ currentTarget: { checked } }) =>
+                handleLoginPersistence(checked)
+              }
             />
           </label>
           <div className="inline-block text-[15px] font-light ml-[6px]">

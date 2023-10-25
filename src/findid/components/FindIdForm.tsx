@@ -1,9 +1,14 @@
 import { useCallback, useState } from "react";
 import AuthenticationBox from "./AuthenticationBox";
-import { AuthType, Checked } from "@shared/types";
+import { AuthType } from "@shared/types";
+
+interface FindOption {
+  phone: boolean;
+  email: boolean;
+}
 
 const FindIdForm = () => {
-  const [isChecked, setIsChecked] = useState<Checked>({
+  const [isChecked, setIsChecked] = useState<FindOption>({
     phone: false,
     email: false,
   });
