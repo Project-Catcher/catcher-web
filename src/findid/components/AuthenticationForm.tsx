@@ -8,6 +8,7 @@ import {
   InputWithLabel,
 } from "@shared/components";
 import ValidateButton from "./ValidateButton";
+import AuthErrorMessage from "./AuthErrorMessage";
 
 interface AuthenticationFormProps {
   description: string;
@@ -66,6 +67,10 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
 
   const handleDoneCaptcha = useCallback(() => {
     handleCaptcha({ doneCaptcha: true });
+    alert(
+      "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
+    );
+    // request api function here
   }, []);
 
   useEffect(() => {
@@ -123,6 +128,7 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
         {!captcha.doneCaptcha ? (
           <CaptchaWithButton
             type={type}
+            // 캡차 완료 validate 추가
             isValidate={isValidate[type] && isValidate.name}
             handleDoneCaptcha={handleDoneCaptcha}
             handleCaptchaValue={handleCaptchaValue}
@@ -131,7 +137,6 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
           <div className="text-xs font-medium mt-[15px] mb-[5px]">
             <div className="flex items-end">
               <InputWithLabel
-                // readonly 추가, 아임포트 api 추가 후 정리 필요할듯
                 maxLength={6}
                 pattern="\d*"
                 label="인증번호"
@@ -143,15 +148,24 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
                   checkAuthNumValidation(value)
                 }
               />
-              <button className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]">
+              <button
+                className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]"
+                onClick={() =>
+                  alert(
+                    "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
+                  )
+                }
+              >
                 재발송
               </button>
               <AuthTimer />
             </div>
-            <div className="text-[#00D179] mt-[5px] mb-[12px]">인증 성공!</div>
-            {/* <div className="h-[16px] invisible mt-[5px] mb-[12px]"></div> */}
+            {isValidate.authNum ? (
+              <div className="h-[16px] invisible mt-[5px] mb-[12px]"></div>
+            ) : (
+              <AuthErrorMessage />
+            )}
             <ValidateButton
-              // 인증 전 isValidate 상태 추가
               type="beforePhoneAuth"
               value="아이디 찾기"
               isValidate={isValidate.authNum}
