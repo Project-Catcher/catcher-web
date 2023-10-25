@@ -42,6 +42,23 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Remove Old Image from ECR(CATCHER-WEB)
+        run: |
+          # ECR Front 레포의 기존 이미지 조회
+          aws ecr describe-images \
+          --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+          --region ${{ secrets.AWS_REGION }} \
+          --output yaml | grep imageDigest | awk -F ' ' '{print $2}' > ./delete_list.txt
+
+          # ECR Front 레포의 기존 이미지 모두 삭제
+          for front_image in `cat ./delete_list.txt`
+          do
+          aws ecr batch-delete-image \
+              --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+              --image-ids imageDigest=$front_image \
+              --output yaml > /dev/null
+          done
+
       - name: Publish Image to ECR(CATCHER-WEB)
         run: |
           docker tag catcher-web:latest ${{ env.ecr_url }}:${{ github.sha }}
