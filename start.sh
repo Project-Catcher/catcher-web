@@ -20,7 +20,8 @@ docker create -i --name front -p $FRONT_PORT:$FRONT_PORT $FRONT_ECR_URL
 docker start front
 
 echo '기존 이미지 삭제'
-check_img=$(docker images | egrep -v "SIZE|$TAG" | awk '{print $2}')
+check_img=$(docker images | egrep -v "SIZE|$FRONT_TAG" | awk '{print $2}')
 if [ $(echo $check_img | awk '{print length($0)}') != 0 ]; then
+echo "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$FRONT_ECR_NAME:$DELETE_TAG"
 docker image rm "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$FRONT_ECR_NAME:$DELETE_TAG"
 fi
