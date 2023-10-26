@@ -36,10 +36,6 @@ export const ModalWrapper = ({
     }
   };
 
-  const handleClickInside = (e: MouseEvent) => {
-    e.stopPropagation();
-  };
-
   return (
     <div className="fixed top-0 right-0 w-full h-full flex justify-center items-center">
       <div
