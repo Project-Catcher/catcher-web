@@ -20,5 +20,5 @@ docker create -i --name front -p $FRONT_PORT:$FRONT_PORT $FRONT_ECR_URL
 docker start front
 
 echo '기존 이미지 삭제'
-DELETE_ID=$(docker images | grep -v SIZE | awk -F ' ' '{print $3}')
+DELETE_ID=$(docker images | egrep -v "SIZE|$FRONT_PORT" | awk -F ' ' '{print $3}')
 docker image rm $DELETE_ID
