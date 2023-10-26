@@ -1,7 +1,7 @@
+import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { IdInput, PasswordInput, WhiteBox } from "@shared/components";
 import { LoginFormType, LoginValue } from "@shared/types";
-import { useRouter } from "next/router";
 
 const LoginForm = () => {
   const [isError, setIsError] = useState(false);

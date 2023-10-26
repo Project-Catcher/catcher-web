@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import { PasswordResetFormContent } from "@shared/types";
 import EnterNewPassword from "./EnterNewPassword";
 import IdCheck from "./IdCheck";
 import PasswordResetDone from "./PasswordResetDone";
-import { useCallback, useEffect, useState } from "react";
 import PasswordResetForm from "./PasswordResetForm";
-import { PasswordResetFormContent } from "@shared/types";
 
 const PasswordResetProgress = () => {
   const { query } = useRouter();

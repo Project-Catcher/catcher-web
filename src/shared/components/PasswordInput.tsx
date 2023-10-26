@@ -1,6 +1,6 @@
-import { PasswordType } from "@shared/types";
 import Image from "next/image";
 import { useState } from "react";
+import { PasswordType } from "@shared/types";
 
 interface PasswordInputProps {
   label?: string;

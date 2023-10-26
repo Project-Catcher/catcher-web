@@ -1,5 +1,5 @@
-import { AuthType } from "@shared/types";
 import { useState } from "react";
+import { AuthType } from "@shared/types";
 
 interface InstructionsProps {
   type: AuthType;

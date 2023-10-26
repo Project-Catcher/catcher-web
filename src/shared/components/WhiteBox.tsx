@@ -7,7 +7,7 @@ interface WhiteBoxProps extends HTMLAttributes<HTMLDivElement> {
 
 const WhiteBox = ({ children, boxStyle, ...props }: WhiteBoxProps) => {
   return (
-    <section className="flex w-screen h-screen items-center justify-center">
+    <section className="flex items-center justify-center w-screen h-screen">
       <div className={`${boxStyle}`} {...props}>
         {children}
       </div>

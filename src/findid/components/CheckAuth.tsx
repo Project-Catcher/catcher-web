@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { AuthTimer, InputWithLabel } from "@shared/components";
+import { AuthType } from "@shared/types";
+import { checkAuthNumValidation } from "@shared/utils";
 import AuthErrorMessage from "./AuthErrorMessage";
 import ValidateButton from "./ValidateButton";
-import { AuthType } from "@shared/types";
-import { useState } from "react";
-import { checkAuthNumValidation } from "@shared/utils";
 
 interface CheckAuthProps {
   type: AuthType;

@@ -1,9 +1,9 @@
-import { PasswordResetFormContent } from "@shared/types";
 import { ReactNode, useCallback, useState } from "react";
-import ValidateButton from "./ValidateButton";
-import PasswordResetBox from "./PasswordResetBox";
+import { PasswordResetFormContent } from "@shared/types";
 import { checkIdValidation, checkPasswordValidation } from "@shared/utils";
 import FindAuthForm from "./FindAuthForm";
+import PasswordResetBox from "./PasswordResetBox";
+import ValidateButton from "./ValidateButton";
 
 interface NewPasswordAnswerType {
   id: string;

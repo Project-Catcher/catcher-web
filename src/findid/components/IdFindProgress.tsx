@@ -1,5 +1,5 @@
-import { LoginValue } from "@shared/types";
 import { useCallback, useState } from "react";
+import { LoginValue } from "@shared/types";
 import FindAuthForm from "./FindAuthForm";
 import IdFindDone from "./IdFindDone";
 

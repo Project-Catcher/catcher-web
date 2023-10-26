@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import AuthenticationBox from "./AuthenticationBox";
 import { AuthType, LoginValue } from "@shared/types";
+import AuthenticationBox from "./AuthenticationBox";
 
 interface FindOption {
   phone: boolean;
