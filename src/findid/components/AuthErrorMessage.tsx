@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
+import { clearTimeout, setTimeout } from "timers";
 
 const AuthErrorMessage = () => {
   const [isExpired, setIsExpired] = useState(false);
 
   useEffect(() => {
     setIsExpired(false);
-    const timer = () =>
-      setTimeout(() => {
-        setIsExpired(true);
-      }, 180000);
+    const timer = setTimeout(() => {
+      setIsExpired(true);
+    }, 180000);
 
-    timer();
-
-    return () => clearTimeout(timer());
+    return () => clearTimeout(timer);
   }, []);
 
   return (

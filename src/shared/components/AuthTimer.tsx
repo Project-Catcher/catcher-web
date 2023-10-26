@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { clearInterval, setInterval } from "timers";
 
 const AuthTimer = () => {
   const MINUTES_IN_MS = 3 * 60 * 1000;
