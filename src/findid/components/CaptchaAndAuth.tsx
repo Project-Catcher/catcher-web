@@ -20,6 +20,7 @@ interface CaptchaAndAuthProps {
   captcha: Captcha;
   handleCaptcha: (answer: Partial<Captcha>) => void;
   handleAuthNum: (authNum: string) => void;
+  handleCurrentProgress?: () => void;
 }
 
 const CaptchaAndAuth = ({
@@ -28,6 +29,7 @@ const CaptchaAndAuth = ({
   captcha,
   handleCaptcha,
   handleAuthNum,
+  handleCurrentProgress,
 }: CaptchaAndAuthProps) => {
   const isPhone = type === "phone";
 
@@ -56,9 +58,6 @@ const CaptchaAndAuth = ({
 
   const handleDoneCaptcha = useCallback(() => {
     handleCaptcha({ doneCaptcha: true });
-    alert(
-      "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
-    );
     // request api function here
   }, [handleCaptcha]);
 
@@ -69,7 +68,6 @@ const CaptchaAndAuth = ({
           type={type}
           // 캡차 완료 validate 추가
           isValidate={
-            captcha.doneCaptcha &&
             isNameValidate &&
             (isPhone ? isAuthOptionValidate : isAuthOptionValidate)
           }
@@ -119,6 +117,7 @@ const CaptchaAndAuth = ({
               if (isPhone) {
                 handleDoneCaptcha();
               } else alert("api here");
+              if (handleCurrentProgress) handleCurrentProgress();
             }}
           />
         </div>

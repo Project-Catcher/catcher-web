@@ -6,12 +6,14 @@ interface AuthenticationBoxProps {
   type: AuthType;
   isChecked: boolean;
   handleChecked: (key: AuthType) => void;
+  handleCurrentProgress?: () => void;
 }
 
 const AuthenticationBox = ({
   type,
   isChecked,
   handleChecked,
+  handleCurrentProgress,
 }: AuthenticationBoxProps) => {
   const messages = {
     phone: {
@@ -42,6 +44,7 @@ const AuthenticationBox = ({
         <AuthenticationForm
           type={type}
           description={messages[type].authFormDescription}
+          handleCurrentProgress={handleCurrentProgress}
         />
       )}
     </div>

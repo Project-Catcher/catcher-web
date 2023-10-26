@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import EnterNewPassword from "./EnterNewPassword";
 import IdCheck from "./IdCheck";
 import PasswordResetDone from "./PasswordResetDone";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PasswordResetForm from "./PasswordResetForm";
 import { PasswordResetFormContent } from "@shared/types";
 
@@ -10,6 +10,10 @@ const PasswordResetProgress = () => {
   const { query } = useRouter();
   const [currentProgress, setCurrentProgress] = useState(1);
   const progressFromQuery = query.progress;
+
+  const handleCurrentProgress = useCallback(() => {
+    setCurrentProgress((prev) => prev + 1);
+  }, []);
 
   useEffect(() => {
     if (
@@ -51,7 +55,7 @@ const PasswordResetProgress = () => {
 
   return (
     <>
-      {currentProgress !== 3 ? (
+      {currentProgress !== 4 ? (
         <PasswordResetForm
           title={formContent.title}
           subTitle={formContent.subTitle}
@@ -60,12 +64,13 @@ const PasswordResetProgress = () => {
           buttonColor={formContent.buttonColor}
           buttonColorDisabled={formContent.buttonColorDisabled}
           isDisc={formContent.isDisc}
-          setCurrentProgress={setCurrentProgress}
+          currentProgress={currentProgress}
+          handleCurrentProgress={handleCurrentProgress}
         >
           {({ handleId, handleNewPassword, handleCheckNewPassword }) => (
             <>
               {currentProgress === 1 && <IdCheck handleId={handleId} />}
-              {currentProgress === 2 && (
+              {currentProgress === 3 && (
                 <EnterNewPassword
                   handleNewPassword={handleNewPassword}
                   handleCheckNewPassword={handleCheckNewPassword}

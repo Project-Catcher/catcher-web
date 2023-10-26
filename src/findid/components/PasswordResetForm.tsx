@@ -1,14 +1,9 @@
 import { PasswordResetFormContent } from "@shared/types";
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useCallback,
-  useState,
-} from "react";
+import { ReactNode, useCallback, useState } from "react";
 import ValidateButton from "./ValidateButton";
 import PasswordResetBox from "./PasswordResetBox";
 import { checkIdValidation, checkPasswordValidation } from "@shared/utils";
+import FindAuthForm from "./FindAuthForm";
 
 interface NewPasswordAnswerType {
   id: string;
@@ -23,7 +18,8 @@ interface ChildrenProps {
 
 interface PasswordResetFormProps extends PasswordResetFormContent {
   children(props: ChildrenProps): ReactNode;
-  setCurrentProgress: Dispatch<SetStateAction<number>>;
+  currentProgress: number;
+  handleCurrentProgress: () => void;
 }
 
 const PasswordResetForm = ({
@@ -35,7 +31,8 @@ const PasswordResetForm = ({
   buttonColor,
   buttonColorDisabled,
   isDisc,
-  setCurrentProgress,
+  currentProgress,
+  handleCurrentProgress,
 }: PasswordResetFormProps) => {
   const [answer, setAnswer] = useState<NewPasswordAnswerType>({
     id: "",
@@ -66,18 +63,30 @@ const PasswordResetForm = ({
   }, []);
 
   return (
-    <div className="mx-[64.5px] mt-[52px]">
-      <PasswordResetBox title={title} subTitle={subTitle} isDisc={isDisc} />
-      {children({ handleId, handleNewPassword, handleCheckNewPassword })}
-      <ValidateButton
-        type={type}
-        value={value}
-        isValidate={type === "id" ? isIdValidate : isPasswordValidate.password}
-        buttonColor={buttonColor}
-        buttonColorDisabled={buttonColorDisabled}
-        onClick={() => setCurrentProgress((prev) => prev + 1)}
-      />
-    </div>
+    <>
+      {currentProgress !== 2 && (
+        <div className="mx-[64.5px] mt-[52px]">
+          <PasswordResetBox title={title} subTitle={subTitle} isDisc={isDisc} />
+          {children({ handleId, handleNewPassword, handleCheckNewPassword })}
+          <ValidateButton
+            type={type}
+            value={value}
+            isValidate={
+              type === "id" ? isIdValidate : isPasswordValidate.password
+            }
+            buttonColor={buttonColor}
+            buttonColorDisabled={buttonColorDisabled}
+            onClick={() => handleCurrentProgress()}
+          />
+        </div>
+      )}
+      {currentProgress === 2 && (
+        <FindAuthForm
+          mode="password"
+          handleCurrentProgress={handleCurrentProgress}
+        />
+      )}
+    </>
   );
 };
 

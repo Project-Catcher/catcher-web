@@ -7,9 +7,14 @@ import CaptchaAndAuth from "./CaptchaAndAuth";
 interface AuthenticationFormProps {
   description: string;
   type: AuthType;
+  handleCurrentProgress?: () => void;
 }
 
-const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
+const AuthenticationForm = ({
+  description,
+  type,
+  handleCurrentProgress,
+}: AuthenticationFormProps) => {
   const [answer, setAnswer] = useState<AuthFormAnswer>({
     name: "",
     authOptionValue: "",
@@ -86,6 +91,7 @@ const AuthenticationForm = ({ description, type }: AuthenticationFormProps) => {
           captcha={captcha}
           handleCaptcha={handleCaptcha}
           handleAuthNum={handleAuthNum}
+          handleCurrentProgress={handleCurrentProgress}
         />
       </div>
     </>
