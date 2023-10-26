@@ -14,7 +14,7 @@ const AccountFind = () => {
 
   const handleMode = useCallback(
     (value: LoginValue) => {
-      if (query.progress) push("/findid", undefined, { shallow: true });
+      if (query.progress) push("/findidpw", undefined, { shallow: true });
       setMode(value);
     },
     [push, query.progress],

@@ -15,10 +15,10 @@ const LoginForm = () => {
   const handleRouting = (type: LoginValue) => {
     push(
       {
-        pathname: "/findid",
+        pathname: "/findidpw",
         query: { type },
       },
-      "/findid",
+      "/findidpw",
     );
   };
 
