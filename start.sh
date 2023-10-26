@@ -26,5 +26,5 @@ echo $CHECK_IMG
 
 if [ $(echo $CHECK_IMG | awk '{print length($0)}') != 0 ]; then
 echo "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$FRONT_ECR_NAME:$CHECK_IMG"
-docker image rm "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$FRONT_ECR_NAME:$DELETE_TAG"
+docker image rm "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$FRONT_ECR_NAME:$CHECK_IMG"
 fi
