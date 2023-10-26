@@ -8,7 +8,11 @@ aws ecr get-login-password --region $REGION | docker login --username AWS --pass
 docker pull $FRONT_ECR_URL
 
 # 기존 컨테이너 삭제 후 신규 컨테이너 생성
+check_front=$(docker ps -a | grep front)
+if [ $(echo $check_front | awk '{print length($0)}') != 0 ]; then
 docker rm -f front
+fi
+
 docker create -i --name front -p $FRONT_PORT:$FRONT_PORT $FRONT_ECR_URL
 docker start front
 
