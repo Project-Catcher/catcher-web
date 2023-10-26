@@ -16,7 +16,8 @@ if [ $(echo $check_front | awk '{print length($0)}') != 0 ]; then
 docker rm -f front
 fi
 
-docker create -i --name front -p $FRONT_PORT:$FRONT_PORT $FRONT_ECR_URL
+# docker create -i --name front -p $FRONT_PORT:$FRONT_PORT $FRONT_ECR_URL
+docker create -i --name front -p 80:$FRONT_PORT $FRONT_ECR_URL # temp
 docker start front
 
 echo '기존 이미지 삭제'
