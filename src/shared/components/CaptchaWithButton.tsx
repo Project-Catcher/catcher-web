@@ -29,7 +29,7 @@ const CaptchaWithButton = ({
         extraClass="mt-[21px]"
         onClick={() => {
           if (type === "phone") {
-            handleDoneCaptcha();
+            handleDoneCaptcha(); // add import api
           } else alert("api here"); // email api
         }}
       />

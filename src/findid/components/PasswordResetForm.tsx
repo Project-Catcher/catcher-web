@@ -42,7 +42,6 @@ const PasswordResetForm = ({
     newPassword: "",
     checkNewPassword: "",
   });
-  console.log(answer);
 
   const isIdValidate = checkIdValidation(answer.id);
   const isPasswordValidate = checkPasswordValidation(

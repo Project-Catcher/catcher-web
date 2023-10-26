@@ -2,6 +2,7 @@ export { default as AccountFind } from "./AccountFind";
 export { default as AuthenticationBox } from "./AuthenticationBox";
 export { default as AuthenticationForm } from "./AuthenticationForm";
 export { default as AuthErrorMessage } from "./AuthErrorMessage";
+export { default as CaptchaAndAuth } from "./CaptchaAndAuth";
 export { default as EnterNewPassword } from "./EnterNewPassword";
 export { default as IdCheck } from "./IdCheck";
 export { default as Instructions } from "./Instructions";

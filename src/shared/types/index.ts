@@ -19,3 +19,14 @@ export interface PasswordResetFormContent {
   buttonColorDisabled: string;
   isDisc: boolean;
 }
+
+export interface AuthFormAnswer {
+  name: string;
+  authOptionValue: string;
+  authNum: string;
+}
+
+export interface Captcha {
+  captchaValue: string;
+  doneCaptcha: boolean;
+}
