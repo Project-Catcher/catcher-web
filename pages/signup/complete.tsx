@@ -9,8 +9,8 @@ const complete = () => {
     <Background>
       <div className="flex justify-center gap-4 pt-[100px]">
         <Greeting
-          title="만나서 반갑습니다"
-          content="캐쳐와 함께라면 하루를 알차게 채우는 건 어렵지 않아요"
+          title="환영합니다!"
+          content="지금부터 캐쳐와 함께 인생을 하나하나 채워 가볼까요?"
         />
         <div className="pt-[150px]">
           <Complete />
