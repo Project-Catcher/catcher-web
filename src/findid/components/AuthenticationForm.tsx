@@ -1,13 +1,18 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Instructions from "./Instructions";
-import { AuthFormAnswer, AuthType, Captcha } from "@shared/types";
+import { AuthFormAnswer, AuthType } from "@shared/types";
 import { InputWithLabel } from "@shared/components";
 import CaptchaAndAuth from "./CaptchaAndAuth";
+import {
+  checkEmailValidation,
+  checkNameValidation,
+  checkPhoneValidation,
+} from "@shared/utils";
 
 interface AuthenticationFormProps {
   description: string;
   type: AuthType;
-  handleCurrentProgress?: () => void;
+  handleCurrentProgress: () => void;
 }
 
 const AuthenticationForm = ({
@@ -15,16 +20,16 @@ const AuthenticationForm = ({
   type,
   handleCurrentProgress,
 }: AuthenticationFormProps) => {
+  const [isDoneInput, setIsDoneInput] = useState(false);
+
+  const handleDoneInput = useCallback(() => {
+    setIsDoneInput(true);
+  }, []);
+
   const [answer, setAnswer] = useState<AuthFormAnswer>({
     name: "",
     authOptionValue: "",
-    authNum: "",
   });
-  const [captcha, setCaptcha] = useState<Captcha>({
-    captchaValue: "",
-    doneCaptcha: false,
-  });
-  const isPhone = type === "phone";
 
   const handleAnswer = (answer: Partial<AuthFormAnswer>) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
@@ -38,20 +43,26 @@ const AuthenticationForm = ({
     handleAnswer({ authOptionValue });
   }, []);
 
-  const handleCaptcha = useCallback((answer: Partial<Captcha>) => {
-    setCaptcha((prev) => ({ ...prev, ...answer }));
-  }, []);
+  const isPhone = type === "phone";
 
-  const handleAuthNum = useCallback((authNum: string) => {
-    handleAnswer({ authNum });
-  }, []);
+  const isNameValidate = useMemo(
+    () => checkNameValidation(answer.name),
+    [answer.name],
+  );
+  const isAuthOptionValidate = useMemo(
+    () =>
+      isPhone
+        ? checkPhoneValidation(answer.authOptionValue)
+        : checkEmailValidation(answer.authOptionValue),
+    [answer.authOptionValue, isPhone],
+  );
 
   return (
     <>
       <div className="mt-[6px]">
         <div
           className={`${
-            type === "phone" ? "w-[345px]" : "w-full"
+            isPhone ? "w-[345px]" : "w-full"
           } text-[12px] text-[#8D8D8D] pl-[26px]`}
         >
           {description}
@@ -60,7 +71,7 @@ const AuthenticationForm = ({
       <div className="w-full pl-[8px]">
         <div className="inline-block w-2/5 mr-[10px]">
           <InputWithLabel
-            readOnly={captcha.doneCaptcha}
+            readOnly={isDoneInput}
             label="이름"
             id="name"
             inputType="text"
@@ -72,7 +83,7 @@ const AuthenticationForm = ({
         <div className="inline-block w-3/5-10">
           <Instructions type={type} />
           <InputWithLabel
-            readOnly={captcha.doneCaptcha}
+            readOnly={isDoneInput}
             label={isPhone ? "휴대전화" : "이메일 주소"}
             id={isPhone ? "phoneInput" : "emailInput"}
             inputType={isPhone ? "tel" : "email"}
@@ -87,11 +98,10 @@ const AuthenticationForm = ({
         </div>
         <CaptchaAndAuth
           type={type}
-          answer={answer}
-          captcha={captcha}
-          handleCaptcha={handleCaptcha}
-          handleAuthNum={handleAuthNum}
+          isDoneInput={isDoneInput}
+          isValidate={isNameValidate && isAuthOptionValidate}
           handleCurrentProgress={handleCurrentProgress}
+          handleDoneInput={handleDoneInput}
         />
       </div>
     </>

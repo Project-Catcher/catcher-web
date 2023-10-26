@@ -6,7 +6,7 @@ interface AuthenticationBoxProps {
   type: AuthType;
   isChecked: boolean;
   handleChecked: (key: AuthType) => void;
-  handleCurrentProgress?: () => void;
+  handleCurrentProgress: () => void;
 }
 
 const AuthenticationBox = ({

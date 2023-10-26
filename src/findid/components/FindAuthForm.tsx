@@ -9,7 +9,7 @@ interface FindOption {
 
 interface FindAuthFormProps {
   mode: LoginValue;
-  handleCurrentProgress?: () => void;
+  handleCurrentProgress: () => void;
 }
 
 const FindAuthForm = ({ mode, handleCurrentProgress }: FindAuthFormProps) => {
@@ -29,7 +29,7 @@ const FindAuthForm = ({ mode, handleCurrentProgress }: FindAuthFormProps) => {
     },
     password: {
       title: "비밀번호 재설정",
-      subTitle: "인증 방법을 선택해 주세요.",
+      subTitle: "인증 방법을 선택해 주세요",
     },
   };
 

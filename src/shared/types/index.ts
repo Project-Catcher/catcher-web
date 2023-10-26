@@ -23,7 +23,6 @@ export interface PasswordResetFormContent {
 export interface AuthFormAnswer {
   name: string;
   authOptionValue: string;
-  authNum: string;
 }
 
 export interface Captcha {
