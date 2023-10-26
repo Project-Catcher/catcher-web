@@ -12,7 +12,7 @@ echo '기존 컨테이너 삭제 후 신규 컨테이너 생성'
 docker ps -a
 
 check_cont=$(docker ps -a | grep front)
-if [ $(echo $check_front | awk '{print length($0)}') != 0 ]; then
+if [ $(echo $check_cont | awk '{print length($0)}') != 0 ]; then
 docker rm -f front
 fi
 
