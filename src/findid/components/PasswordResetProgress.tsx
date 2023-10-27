@@ -1,9 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { PasswordResetFormContent } from "@shared/types";
-import EnterNewPassword from "./EnterNewPassword";
-import IdCheck from "./IdCheck";
-import PasswordResetDone from "./PasswordResetDone";
 import PasswordResetForm from "./PasswordResetForm";
 
 const PasswordResetProgress = () => {
@@ -54,35 +51,17 @@ const PasswordResetProgress = () => {
         };
 
   return (
-    <>
-      {currentProgress !== 4 ? (
-        <PasswordResetForm
-          title={formContent.title}
-          subTitle={formContent.subTitle}
-          type={formContent.type}
-          value={formContent.value}
-          buttonColor={formContent.buttonColor}
-          buttonColorDisabled={formContent.buttonColorDisabled}
-          isDisc={formContent.isDisc}
-          currentProgress={currentProgress}
-          handleCurrentProgress={handleCurrentProgress}
-        >
-          {({ handleId, handleNewPassword, handleCheckNewPassword }) => (
-            <>
-              {currentProgress === 1 && <IdCheck handleId={handleId} />}
-              {currentProgress === 3 && (
-                <EnterNewPassword
-                  handleNewPassword={handleNewPassword}
-                  handleCheckNewPassword={handleCheckNewPassword}
-                />
-              )}
-            </>
-          )}
-        </PasswordResetForm>
-      ) : (
-        <PasswordResetDone />
-      )}
-    </>
+    <PasswordResetForm
+      title={formContent.title}
+      subTitle={formContent.subTitle}
+      type={formContent.type}
+      value={formContent.value}
+      buttonColor={formContent.buttonColor}
+      buttonColorDisabled={formContent.buttonColorDisabled}
+      isDisc={formContent.isDisc}
+      currentProgress={currentProgress}
+      handleCurrentProgress={handleCurrentProgress}
+    />
   );
 };
 

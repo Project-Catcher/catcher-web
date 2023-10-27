@@ -1,8 +1,11 @@
-import { ReactNode, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { PasswordResetFormContent } from "@shared/types";
 import { checkIdValidation, checkPasswordValidation } from "@shared/utils";
+import EnterNewPassword from "./EnterNewPassword";
 import FindAuthForm from "./FindAuthForm";
+import IdCheck from "./IdCheck";
 import PasswordResetBox from "./PasswordResetBox";
+import PasswordResetDone from "./PasswordResetDone";
 import ValidateButton from "./ValidateButton";
 
 interface NewPasswordAnswerType {
@@ -10,20 +13,12 @@ interface NewPasswordAnswerType {
   newPassword: string;
   checkNewPassword: string;
 }
-interface ChildrenProps {
-  handleId: (id: string) => void;
-  handleNewPassword: (password: string) => void;
-  handleCheckNewPassword: (password: string) => void;
-}
-
 interface PasswordResetFormProps extends PasswordResetFormContent {
-  children(props: ChildrenProps): ReactNode;
   currentProgress: number;
   handleCurrentProgress: () => void;
 }
 
 const PasswordResetForm = ({
-  children,
   title,
   subTitle,
   type,
@@ -64,23 +59,38 @@ const PasswordResetForm = ({
 
   return (
     <>
-      {currentProgress !== 2 && (
-        <div className="mx-[64.5px] mt-[52px]">
-          <PasswordResetBox title={title} subTitle={subTitle} isDisc={isDisc} />
-          {children({ handleId, handleNewPassword, handleCheckNewPassword })}
-          <ValidateButton
-            type={type}
-            value={value}
-            isValidate={
-              type === "id" ? isIdValidate : isPasswordValidate.password
-            }
-            buttonColor={buttonColor}
-            buttonColorDisabled={buttonColorDisabled}
-            onClick={() => handleCurrentProgress()}
-          />
-        </div>
-      )}
-      {currentProgress === 2 && (
+      {currentProgress !== 2 ? (
+        <>
+          {currentProgress !== 4 ? (
+            <div className="mx-[64.5px] mt-[52px]">
+              <PasswordResetBox
+                title={title}
+                subTitle={subTitle}
+                isDisc={isDisc}
+              />
+              {currentProgress === 1 && <IdCheck handleId={handleId} />}
+              {currentProgress === 3 && (
+                <EnterNewPassword
+                  handleNewPassword={handleNewPassword}
+                  handleCheckNewPassword={handleCheckNewPassword}
+                />
+              )}
+              <ValidateButton
+                type={type}
+                value={value}
+                isValidate={
+                  type === "id" ? isIdValidate : isPasswordValidate.password
+                }
+                buttonColor={buttonColor}
+                buttonColorDisabled={buttonColorDisabled}
+                onClick={() => handleCurrentProgress()}
+              />
+            </div>
+          ) : (
+            <PasswordResetDone />
+          )}
+        </>
+      ) : (
         <FindAuthForm
           mode="password"
           handleCurrentProgress={handleCurrentProgress}
