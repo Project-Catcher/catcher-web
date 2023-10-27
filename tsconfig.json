@@ -17,7 +17,9 @@
     "baseUrl": "./src",
     "paths": {
       "@pages/*": ["../pages/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@login/*": ["login/*"],
+      "@findid/*": ["findid/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
