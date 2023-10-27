@@ -81,4 +81,4 @@ export const useAlertState = () => useRecoilState(alertState);
 export const useConfirmState = () => useRecoilState(confirmState);
 export const useModalState = () => useRecoilState(modalState);
 
-export type ModalContentId = string;
+export type ModalContentId = "thumbnailSelector";

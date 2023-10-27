@@ -1,7 +1,7 @@
 import useModal from "../../src/shared/hook/useModal";
 
 const AlertTest = () => {
-  const { openAlert, openConfirm } = useModal();
+  const { openAlert, openConfirm, openModal } = useModal();
   const handleAlert = () => {
     openAlert({ text: "test", isHeaderCloseBtn: true });
   };
@@ -15,6 +15,12 @@ const AlertTest = () => {
       noCallback: () => {
         console.log("no");
       },
+    });
+  };
+  const handleModal = () => {
+    openModal({
+      contentId: "thumbnailSelector",
+      isHeaderCloseBtn: true,
     });
   };
 
@@ -36,7 +42,7 @@ const AlertTest = () => {
       </button>
       <button
         className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled
+        onClick={handleModal}
       >
         Modal!
       </button>
