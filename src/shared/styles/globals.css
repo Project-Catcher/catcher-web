@@ -38,6 +38,7 @@ a {
     background: black;
   }
 } */
+<<<<<<< HEAD
 
 @layer components {
   .button-full {
@@ -65,3 +66,5 @@ a {
     @apply border border-solid border-[#ADADAD] focus:border-[#4285F4];
   }
 }
+=======
+>>>>>>> origin/develop
