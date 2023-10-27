@@ -50,5 +50,33 @@ export const confirmSelector = selector<ConfirmProps>({
   },
 });
 
+export interface ModalProps {
+  isOpen: boolean;
+  isHeaderCloseBtn?: boolean;
+  title?: string;
+  okText?: string;
+  okCallback?: VoidFunction;
+  noText?: string;
+  noCallback?: VoidFunction;
+
+  // TODO: 커스텀 모달 컨텐츠 렌더링 구조 고안 필요
+}
+
+export const modalState = atom<ModalProps>({
+  key: `modalState/${uniqueId()}`,
+  default: {
+    isOpen: false,
+  },
+});
+
+export const modalSelector = selector({
+  key: `modalSelector/${uniqueId()}`,
+  get: ({ get }) => get(modalState),
+  set: ({ set }, value) => {
+    set(modalState, value);
+  },
+});
+
 export const useAlertState = () => useRecoilState(alertState);
 export const useConfirmState = () => useRecoilState(confirmState);
+export const useModalState = () => useRecoilState(modalState);
