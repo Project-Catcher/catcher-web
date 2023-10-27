@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { WhiteBox } from "@shared/components";
 import { LoginValue } from "@shared/types";
 import IdFindProgress from "./IdFindProgress";
@@ -12,13 +12,10 @@ const AccountFind = () => {
     (query.type as LoginValue) ?? "id",
   );
 
-  const handleMode = useCallback(
-    (value: LoginValue) => {
-      if (query.progress) push("/findidpw", undefined, { shallow: true });
-      setMode(value);
-    },
-    [push, query.progress],
-  );
+  const handleMode = (value: LoginValue) => {
+    if (query.progress) push("/findidpw", undefined, { shallow: true });
+    setMode(value);
+  };
 
   return (
     <WhiteBox boxStyle="w-[705px] h-[710px] px-[69.5px] py-[33px] shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]">
