@@ -1,12 +1,11 @@
 // 회원가입 페이지 우측에 들어갈 약관동의 컴포넌트
-
 import React, { useState } from "react";
-
+import { useSetRecoilState } from "recoil";
 import useModal from "@shared/hook/useModal";
-import ScrollContent from "./ScrollContent";
+import { signupPageState } from "@shared/recoil/signup";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
-
+import ScrollContent from "./ScrollContent";
 import { checkTerms, termsOfService } from "./const";
 import { Agreements } from "./type";
 
@@ -21,6 +20,7 @@ const Agreement = () => {
   const handleAlert = () => {
     openAlert({ text: "필수 항목에 동의해주세요", isHeaderCloseBtn: true });
   };
+  const setCurrentPage = useSetRecoilState(signupPageState);
 
   const [allAgreements, setAllAgreements] = useState(false);
   const [agreements, setAgreements] = useState({
@@ -75,13 +75,12 @@ const Agreement = () => {
   };
 
   const handleFormSubmit = () => {
-    // TODO: 회원가입 폼으로 라우팅
     if (
       Object.values(agreements).every(({ essential, checked }) =>
-        essential ? checked : true
+        essential ? checked : true,
       )
     ) {
-      alert("다음으로 넘어갑니다!");
+      setCurrentPage((prev) => prev + 1);
     } else {
       handleAlert();
     }
@@ -128,7 +127,11 @@ const Agreement = () => {
 
         {/* 다음버튼 */}
         <div className="flex justify-center mt-5">
-          <Button label="다음" onClick={handleFormSubmit} />
+          <Button
+            label="다음"
+            onClick={handleFormSubmit}
+            buttonStyle="w-[380px] h-[45.73px] px-[21.73px] py-[10.86px] bg-amber-500 rounded-lg"
+          />
         </div>
       </div>
     </div>
