@@ -5,7 +5,9 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: { question: "url(/images/samples/question.svg)" },
+    },
   },
   plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };
