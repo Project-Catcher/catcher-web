@@ -1,5 +1,4 @@
 // 약관 동의에 사용되는 체크박스 컴포넌트
-
 import React from "react";
 
 interface CheckboxProps {
@@ -29,7 +28,7 @@ const Checkbox = ({
         <div
           className={`ml-2 text-justify text-zinc-800 font-medium font-['Roboto Flex'] leading-[21px] ${labelStyle}`}
         >
-          {label} {essential && (essential ? "(필수)" : "(선택)")}
+          {label} {essential ? "(필수)" : essential === false ? "(선택)" : ""}
         </div>
       </label>
     </div>
