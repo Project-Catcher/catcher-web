@@ -19,7 +19,8 @@
       "@pages/*": ["../pages/*"],
       "@shared/*": ["shared/*"],
       "@login/*": ["login/*"],
-      "@findid/*": ["findid/*"]
+      "@findid/*": ["findid/*"],
+      "@mypage/*": ["mypage/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
