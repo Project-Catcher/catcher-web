@@ -1,6 +1,6 @@
 // 회원가입 페이지 - 아이디, 비밀번호 등 계정 입력 컴포넌트
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { signupPageState } from "@shared/recoil/signup";
 import Button from "./Button";
@@ -8,30 +8,54 @@ import CheckAuth from "./CheckAuth";
 import Input from "./Input";
 import Instructions from "./Instructions";
 
+interface FormData {
+  [id: string]: { essential: boolean; value: string };
+  password: { essential: boolean; value: string };
+  checkPassword: { essential: boolean; value: string };
+  phone: { essential: boolean; value: string };
+}
+
 const AccountInfo = () => {
   const setCurrentPage = useSetRecoilState(signupPageState);
 
+  const [isSubmit, setIsSubmit] = useState(false);
   const [isDoneInput, setIsDoneInput] = useState(false);
-  const [formData, setFormData] = useState({
-    id: "",
-    password: "",
-    checkPassword: "",
-    phone: "",
+  const [formData, setFormData] = useState<FormData>({
+    id: { essential: true, value: "" },
+    password: { essential: true, value: "" },
+    checkPassword: { essential: true, value: "" },
+    phone: { essential: true, value: "" },
   });
+
+  //필수 데이터 입력 확인
+  const isDataComplete = Object.keys(formData).every(
+    (key) => !formData[key].essential || formData[key].value.trim() !== "",
+  );
+
+  // TODO: 휴대폰 인증번호 확인 로직 추가
+  // TODO: 아이디, 비밀번호 validation 추가
+  useEffect(() => {
+    if (isDataComplete) {
+      setIsSubmit(true);
+    } else setIsSubmit(false);
+  }, [formData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log("name:", name + " value:", value);
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: { ...prevFormData[name], value },
+    }));
   };
 
   const handleFormSubmit = () => {
-    // TODO: 회원가입 정보 확인 로직 구현
-    console.log("계정 정보", formData);
-    setCurrentPage((prev) => prev + 1);
+    if (isDataComplete) {
+      console.log("계정 정보", formData);
+      setCurrentPage((prev) => prev + 1);
+    } else {
+      // TODO: 공통 Alert
+      alert("필수 데이터를 모두 입력하세요.");
+    }
   };
 
   return (
@@ -45,7 +69,7 @@ const AccountInfo = () => {
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="w-[460px] mt-4">
+          <div className="w-[451px] mt-4">
             <Input
               label="아이디"
               fieldName="id"
@@ -57,7 +81,7 @@ const AccountInfo = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="w-[460px]">
+          <div className="w-[451px]">
             <Input
               label="비밀번호"
               fieldName="password"
@@ -70,7 +94,7 @@ const AccountInfo = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="w-[460px]">
+          <div className="w-[451px]">
             <Input
               label="비밀번호 확인"
               fieldName="checkPassword"
@@ -99,7 +123,7 @@ const AccountInfo = () => {
             </div>
             <Button
               label="인증하기"
-              readOnly={isDoneInput}
+              disabled={isDoneInput}
               onClick={() => {
                 setIsDoneInput(true);
                 alert(
@@ -115,7 +139,9 @@ const AccountInfo = () => {
           <Button
             label="다음"
             onClick={handleFormSubmit}
-            buttonStyle="w-[451px] h-[54px] bg-amber-300 rounded-[10px] shadow"
+            buttonStyle={`w-[451px] h-[54px]  rounded-[10px] shadow ${
+              isSubmit ? "bg-amber-300" : "bg-zinc-400"
+            }`}
           />
 
           {/* TODO: SNS 회원가입 */}
