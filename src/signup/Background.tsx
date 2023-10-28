@@ -13,9 +13,9 @@ const Background = ({ children }: BackgroundProps) => {
   return (
     <div
       className={`w-full h-screen bg-gradient-to-b ${
-        currentPage === 1
-          ? "from-pink-400 via-red-100 to-white"
-          : "bg-orange-50"
+        currentPage === 2 || currentPage === 3 || currentPage === 4
+          ? "bg-orange-50"
+          : "from-pink-400 via-red-100 to-white"
       }`}
     >
       {children}
