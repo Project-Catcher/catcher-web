@@ -36,7 +36,7 @@ const Complete = () => {
         <Button
           label={"완료"}
           onClick={onClick}
-          className="w-[380px] h-[45.73px] px-[21.73px] py-[10.86px] bg-amber-500 rounded-lg"
+          buttonStyle="w-[380px] h-[45.73px] px-[21.73px] py-[10.86px] bg-amber-500 rounded-lg"
         />
       </div>
     </div>

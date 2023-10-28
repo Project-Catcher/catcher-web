@@ -5,12 +5,17 @@ interface ButtonProps {
   label: string;
   onClick: () => void;
   buttonStyle: string;
-  readOnly?: boolean;
+  disabled?: boolean;
 }
 
-const Button = ({ label, onClick, buttonStyle, readOnly }: ButtonProps) => {
+const Button = ({
+  label,
+  onClick,
+  buttonStyle,
+  disabled = false,
+}: ButtonProps) => {
   return (
-    <button className={`${buttonStyle}`} onClick={onClick}>
+    <button className={`${buttonStyle}`} onClick={onClick} disabled={disabled}>
       <div className="text-white text-base font-semibold font-['Raleway'] leading-normal">
         {label}
       </div>
