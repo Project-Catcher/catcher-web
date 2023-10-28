@@ -9,6 +9,8 @@ interface GreetingProps {
   title?: string;
   content?: string;
   img: StaticImageData;
+  imgWidth: number;
+  imgHeight: number;
   textColor?: string;
 }
 
@@ -16,6 +18,8 @@ const Greeting = ({
   title,
   content,
   img,
+  imgWidth,
+  imgHeight,
   textColor = "text-white",
 }: GreetingProps) => {
   return (
@@ -35,7 +39,7 @@ const Greeting = ({
         </div> */}
       </div>
 
-      <Image src={img} alt="img" width={603} height={603} />
+      <Image src={img} alt="img" width={imgWidth} height={imgHeight} />
     </div>
   );
 };

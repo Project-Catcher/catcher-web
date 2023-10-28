@@ -11,6 +11,8 @@ const Signup_2 = () => {
         title="만나서 반갑습니다"
         content="캐쳐와 함께라면 하루를 알차게 채우는 건 어렵지 않아요"
         img={saly2}
+        imgWidth={512}
+        imgHeight={512}
         textColor="text-amber-500"
       />
       <AdditionalInfo />
