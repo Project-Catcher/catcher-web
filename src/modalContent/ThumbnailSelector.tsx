@@ -50,12 +50,7 @@ const ThumbnailSelector = (props: ThumbnailSelectorProps) => {
   };
 
   const handleSubmit = () => {
-    selectedImageId &&
-      props?.okCallback(
-        images?.find((image) => image.id.toString() === selectedImageId)?.src[
-          IMAGE_ORIENTATION
-        ] ?? "",
-      );
+    selectedImageId && props?.okCallback(selectedImageId);
   };
 
   const handleSearch = async () => {
@@ -140,9 +135,6 @@ const ThumbnailSelector = (props: ThumbnailSelectorProps) => {
             );
           })}
         </div>
-      </div>
-      <div>
-        {selectedImageId && <div>선택된 이미지 아이디: {selectedImageId}</div>}
       </div>
     </div>
   );
