@@ -1,6 +1,7 @@
 import axios from "axios";
+import { isUndefined } from "lodash";
 import Image from "next/image";
-import { FunctionComponent, MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 
 const IMAGE_ORIENTATION = "portrait"; // "landscape", "portrait", "square"
 const IMAGE_DEFAULT_WIDTH = {
@@ -14,16 +15,25 @@ const IMAGE_DEFAULT_HEIGHT = {
   square: 800,
 };
 
-interface ThumbnailSelectorProps {}
+export interface ThumbnailSelectorProps {
+  okCallback: (url: string) => void;
+}
 
-const ThumbnailSelector: FunctionComponent<ThumbnailSelectorProps> = () => {
+const ThumbnailSelector = (props: ThumbnailSelectorProps) => {
   const [searchKeyword, setSearchKeyword] = useState<string>("dog");
   const [images, setImages] = useState<ImageResponse["photos"]>([]);
   const [selectedImageId, setSelectedImageId] = useState<string>();
+  const IMAGE_API_HEADER = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: process.env.NEXT_PUBLIC_IMAGE_API_KEY ?? "",
+    },
+  };
 
   useEffect(() => {
     getCuratedImages();
   }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
@@ -34,17 +44,18 @@ const ThumbnailSelector: FunctionComponent<ThumbnailSelectorProps> = () => {
     }
   };
 
-  const getCuratedImages = async () => {
-    const result = await axios.get<ImageResponse>(
-      `https://api.pexels.com/v1/curated`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: process.env.NEXT_PUBLIC_IMAGE_API_KEY ?? "",
-        },
-      },
-    );
-    setImages(result?.data.photos ?? []);
+  const handleSelectImage = (e: MouseEvent) => {
+    const target = e.target as HTMLImageElement;
+    setSelectedImageId(target.id);
+  };
+
+  const handleSubmit = () => {
+    selectedImageId &&
+      props?.okCallback(
+        images?.find((image) => image.id.toString() === selectedImageId)?.src[
+          IMAGE_ORIENTATION
+        ] ?? "",
+      );
   };
 
   const handleSearch = async () => {
@@ -56,45 +67,79 @@ const ThumbnailSelector: FunctionComponent<ThumbnailSelectorProps> = () => {
           orientation: IMAGE_ORIENTATION,
           locale: "ko-KR",
         },
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: process.env.NEXT_PUBLIC_IMAGE_API_KEY ?? "",
-        },
+        ...IMAGE_API_HEADER,
       },
     );
     setImages(result?.data.photos ?? []);
   };
 
-  const handleSelectImage = (e: MouseEvent) => {
-    const target = e.target as HTMLImageElement;
-    setSelectedImageId(target.id);
+  const getCuratedImages = async () => {
+    const result = await axios.get<ImageResponse>(
+      `https://api.pexels.com/v1/curated`,
+      IMAGE_API_HEADER,
+    );
+    setImages(result?.data.photos ?? []);
   };
 
   return (
-    <div>
-      <h1>image Search</h1>
-      <input type="text" onChange={handleChange} onKeyDown={handleKeyDown} />
-      <button onClick={handleSearch}>검색</button>
-      <div onClick={handleSelectImage}>
-        {images?.map((image) => {
-          const { src } = image;
-          const a = new URLSearchParams(src[IMAGE_ORIENTATION]);
-          return (
-            <span key={image.id}>
-              <Image
-                id={image.id.toString()}
-                src={image.src[IMAGE_ORIENTATION]}
-                alt={image.alt}
+    <div className="p-1">
+      <div className="flex items-center justify-between mb-1">
+        <h1 className="text-2xl font-bold text-gray-800">썸네일 선택</h1>
+        <button
+          onClick={handleSubmit}
+          className="w-20 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+        >
+          완료
+        </button>
+      </div>
+      <div className="flex items-center w-full space-x-2 justify-evenly">
+        <input
+          type="text"
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+      <div
+        onClick={handleSelectImage}
+        className="mt-5 
+      overflow-y-auto h-[400px]"
+      >
+        <div className="grid grid-cols-3 gap-2">
+          {images?.map((image, index) => {
+            const { src } = image;
+            const ImageParams = new URLSearchParams(src[IMAGE_ORIENTATION]);
+            const selectCondition =
+              selectedImageId === image.id.toString() ||
+              (isUndefined(selectedImageId) && index === 0);
+            return (
+              <div
                 key={image.id}
-                height={a.get("h") ?? IMAGE_DEFAULT_HEIGHT[IMAGE_ORIENTATION]}
-                width={a.get("w") ?? IMAGE_DEFAULT_WIDTH[IMAGE_ORIENTATION]}
-                placeholder="empty"
-                layout="responsive"
-                loading="lazy"
-              />
-            </span>
-          );
-        })}
+                className={`w-[110px] inline-block border-black border-2 rounded-xl overflow-hidden shadow-lg ${
+                  selectCondition && "border-blue-500"
+                }`}
+              >
+                <Image
+                  id={image.id.toString()}
+                  src={image.src[IMAGE_ORIENTATION]}
+                  alt={image.alt}
+                  key={image.id}
+                  height={
+                    ImageParams.get("h") ??
+                    IMAGE_DEFAULT_HEIGHT[IMAGE_ORIENTATION]
+                  }
+                  width={
+                    ImageParams.get("w") ??
+                    IMAGE_DEFAULT_WIDTH[IMAGE_ORIENTATION]
+                  }
+                  placeholder="empty"
+                  layout="responsive"
+                  loading="lazy"
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div>
         {selectedImageId && <div>선택된 이미지 아이디: {selectedImageId}</div>}

@@ -55,9 +55,9 @@ export interface ModalProps {
   isHeaderCloseBtn?: boolean;
   title?: string;
   okText?: string;
-  okCallback?: VoidFunction;
+  okCallback?: Function;
   noText?: string;
-  noCallback?: VoidFunction;
+  noCallback?: Function;
 
   contentId?: ModalContentId;
 }

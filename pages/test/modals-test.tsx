@@ -1,7 +1,10 @@
+import { ThumbnailSelectorProps } from "modalContent/ThumbnailSelector";
+import { useEffect, useState } from "react";
 import useModal from "../../src/shared/hook/useModal";
 
 const AlertTest = () => {
   const { openAlert, openConfirm, openModal } = useModal();
+  const [selectedId, setSelectedId] = useState<string>();
   const handleAlert = () => {
     openAlert({ text: "test", isHeaderCloseBtn: true });
   };
@@ -18,9 +21,12 @@ const AlertTest = () => {
     });
   };
   const handleModal = () => {
-    openModal({
+    openModal<ThumbnailSelectorProps>({
       contentId: "thumbnailSelector",
       isHeaderCloseBtn: true,
+      okCallback: (id: string) => {
+        console.log(id);
+      },
     });
   };
 
