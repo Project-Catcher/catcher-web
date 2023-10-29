@@ -1,6 +1,6 @@
 const MenuBar = () => {
   return (
-    <div className="w-[392.5px] h-screen ml-[360.5px] border-l border-[#DCDCDC] px-[40.5px] py-[102px] shadow-[5px_0_10px_0_rgba(0,0,0,0.1)]">
+    <div className="relative w-[392.5px] h-full border-l border-[#DCDCDC] px-[40.5px] py-[102px] ml-[360.5px] shadow-[5px_0_10px_0_rgba(0,0,0,0.1)] z-10">
       <section className="pb-[13px] border-b border-[#DCDCDC]">
         <div className="text-center mb-[40px]">
           <div className="w-[143px] h-[143px] text-center text-white bg-black rounded-[50%] mx-auto mb-[7px]">
