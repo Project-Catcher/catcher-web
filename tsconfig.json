@@ -20,7 +20,9 @@
       "@shared/*": ["shared/*"],
       "@login/*": ["login/*"],
       "@findid/*": ["findid/*"],
-      "@notice/*": ["notice/*"],
+      "@notices/*": ["notices/*"],
+      "@notice/*": ["notices/notice/*"],
+      "@faq/*": ["notices/faq/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

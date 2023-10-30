@@ -20,6 +20,7 @@ module.exports = {
       width: {
         "3/5-10": "calc(60% - 10px)",
         "full-177": "calc(100% - 177px)",
+        "full-30": "calc(100% - 30px)",
       },
     },
   },

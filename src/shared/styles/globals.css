@@ -75,4 +75,8 @@ a {
 .overflow-content {
   @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#F5A200] scrollbar-track-[#E2E2E2];
 }
+
+.overflow-FAQ {
+  @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
+}
 /* >>>>>>> Catcher-origin/develop */
