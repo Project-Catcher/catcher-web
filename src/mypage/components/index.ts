@@ -1,6 +1,7 @@
 export { default as BasicInfo } from "./BasicInfo";
 export { default as BriefInfo } from "./BriefInfo";
 export { default as MenuBar } from "./MenuBar";
+export { default as MyActivities } from "./MyActivities";
 export { default as MyInformation } from "./MyInformation";
 export { default as MypageContent } from "./MypageContent";
 export { default as MypageMainMenu } from "./MypageMainMenu";
