@@ -17,15 +17,25 @@ const MypageSubMenu = () => {
     });
   };
 
+  const handleRoute = (url: string) => {
+    push(url);
+  };
+
   return (
     <>
       <div className="mb-[11px] cursor-pointer" onClick={handleContact}>
         문의하기
       </div>
-      <div className="mb-[11px] cursor-pointer" onClick={() => push("/notice")}>
+      <div
+        className="mb-[11px] cursor-pointer"
+        onClick={() => handleRoute("/notice")}
+      >
         공지사항
       </div>
-      <div className="mb-[11px] cursor-pointer" onClick={() => push("/faq")}>
+      <div
+        className="mb-[11px] cursor-pointer"
+        onClick={() => handleRoute("/notice/faq")}
+      >
         FAQ
       </div>
       <div className="cursor-pointer" onClick={handleWithdrawal}>
