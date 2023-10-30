@@ -65,8 +65,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-query", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.39.3"],\
             ["recoil", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.7.7"],\
             ["storybook", "npm:7.4.6"],\
+            ["tailwind-scrollbar", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.0.5"],\
             ["tailwindcss", "npm:3.3.3"],\
-            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
+            ["worker-timers", "npm:7.0.77"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3024,6 +3026,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.23.1-9b8781107c-0cd0d43e6e.zip/node_modules/@babel/runtime/",\
           "packageDependencies": [\
             ["@babel/runtime", "npm:7.23.1"],\
+            ["regenerator-runtime", "npm:0.14.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:7.23.2", {\
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.23.2-d013d6cf7e-6c4df4839e.zip/node_modules/@babel/runtime/",\
+          "packageDependencies": [\
+            ["@babel/runtime", "npm:7.23.2"],\
             ["regenerator-runtime", "npm:0.14.0"]\
           ],\
           "linkType": "HARD"\
@@ -9583,8 +9593,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-query", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.39.3"],\
             ["recoil", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.7.7"],\
             ["storybook", "npm:7.4.6"],\
+            ["tailwind-scrollbar", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.0.5"],\
             ["tailwindcss", "npm:3.3.3"],\
-            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"]\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
+            ["worker-timers", "npm:7.0.77"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -12152,6 +12164,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/fast-levenshtein-npm-2.0.6-fcd74b8df5-92cfec0a8d.zip/node_modules/fast-levenshtein/",\
           "packageDependencies": [\
             ["fast-levenshtein", "npm:2.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["fast-unique-numbers", [\
+        ["npm:8.0.10", {\
+          "packageLocation": "./.yarn/cache/fast-unique-numbers-npm-8.0.10-cc0a749fb1-6458ab9387.zip/node_modules/fast-unique-numbers/",\
+          "packageDependencies": [\
+            ["fast-unique-numbers", "npm:8.0.10"],\
+            ["@babel/runtime", "npm:7.23.2"],\
+            ["tslib", "npm:2.6.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -19251,6 +19274,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["tailwind-scrollbar", [\
+        ["npm:3.0.5", {\
+          "packageLocation": "./.yarn/cache/tailwind-scrollbar-npm-3.0.5-2b5b5c9c99-5bd7f36c90.zip/node_modules/tailwind-scrollbar/",\
+          "packageDependencies": [\
+            ["tailwind-scrollbar", "npm:3.0.5"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.0.5", {\
+          "packageLocation": "./.yarn/__virtual__/tailwind-scrollbar-virtual-0fdcb87029/0/cache/tailwind-scrollbar-npm-3.0.5-2b5b5c9c99-5bd7f36c90.zip/node_modules/tailwind-scrollbar/",\
+          "packageDependencies": [\
+            ["tailwind-scrollbar", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.0.5"],\
+            ["@types/tailwindcss", null],\
+            ["tailwindcss", "npm:3.3.3"]\
+          ],\
+          "packagePeers": [\
+            "@types/tailwindcss",\
+            "tailwindcss"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["tailwindcss", [\
         ["npm:3.3.3", {\
           "packageLocation": "./.yarn/cache/tailwindcss-npm-3.3.3-1cb35d024e-0195c7a3eb.zip/node_modules/tailwindcss/",\
@@ -20737,6 +20782,43 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/wordwrap-npm-1.0.0-ae57a645e8-2a44b27881.zip/node_modules/wordwrap/",\
           "packageDependencies": [\
             ["wordwrap", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["worker-timers", [\
+        ["npm:7.0.77", {\
+          "packageLocation": "./.yarn/cache/worker-timers-npm-7.0.77-1c5f8edfe2-e058822bc0.zip/node_modules/worker-timers/",\
+          "packageDependencies": [\
+            ["worker-timers", "npm:7.0.77"],\
+            ["@babel/runtime", "npm:7.23.2"],\
+            ["tslib", "npm:2.6.2"],\
+            ["worker-timers-broker", "npm:6.0.97"],\
+            ["worker-timers-worker", "npm:7.0.61"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["worker-timers-broker", [\
+        ["npm:6.0.97", {\
+          "packageLocation": "./.yarn/cache/worker-timers-broker-npm-6.0.97-90f2c6bdb0-42765af573.zip/node_modules/worker-timers-broker/",\
+          "packageDependencies": [\
+            ["worker-timers-broker", "npm:6.0.97"],\
+            ["@babel/runtime", "npm:7.23.2"],\
+            ["fast-unique-numbers", "npm:8.0.10"],\
+            ["tslib", "npm:2.6.2"],\
+            ["worker-timers-worker", "npm:7.0.61"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["worker-timers-worker", [\
+        ["npm:7.0.61", {\
+          "packageLocation": "./.yarn/cache/worker-timers-worker-npm-7.0.61-c529685333-b6cbb052e1.zip/node_modules/worker-timers-worker/",\
+          "packageDependencies": [\
+            ["worker-timers-worker", "npm:7.0.61"],\
+            ["@babel/runtime", "npm:7.23.2"],\
+            ["tslib", "npm:2.6.2"]\
           ],\
           "linkType": "HARD"\
         }]\
