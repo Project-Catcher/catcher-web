@@ -1,3 +1,4 @@
+import { NOTICE_NAVBAR, NOTICE_SUBTITLE } from "../constants";
 import NoticeContent from "./NoticeContent";
 import NoticeCurrentPage from "./NoticeCurrentPage";
 import NoticeNavbar from "./NoticeNavbar";
@@ -8,12 +9,12 @@ import NoticeTitle from "./NoticeTitle";
 const NoticePage = () => {
   return (
     <div className="w-full h-full pt-[102px] px-[376px]">
-      <NoticeCurrentPage />
-      <NoticeTitle />
+      <NoticeCurrentPage title="공지사항" />
+      <NoticeTitle title="공지사항" subTitle={NOTICE_SUBTITLE} />
       <NoticeSearch />
       <NoticeTags />
       <div className="px-[129px]">
-        <NoticeNavbar />
+        <NoticeNavbar items={NOTICE_NAVBAR} />
         <NoticeContent />
       </div>
     </div>

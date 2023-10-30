@@ -1,6 +1,10 @@
 import Image from "next/image";
 
-const NoticeCurrentPage = () => {
+interface NoticeCurrentPageProps {
+  title: string;
+}
+
+const NoticeCurrentPage = ({ title }: NoticeCurrentPageProps) => {
   return (
     <div className="flex items-center h-[24px]">
       <Image
@@ -19,7 +23,7 @@ const NoticeCurrentPage = () => {
         />
       </div>
       <div className="text-[12px] text-[#757575] font-medium tracking-[-0.5px]">
-        공지사항
+        {title}
       </div>
     </div>
   );
