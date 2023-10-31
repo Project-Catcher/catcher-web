@@ -38,9 +38,7 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
             />
           </div>
           <div
-            className={`flex ${
-              isLoggedIn ? "w-[198px]" : "w-[303px]"
-            }  h-[62px] bg-white rounded-[34.50px] shadow p-1 items-center`}
+            className={`flex w-[198px] h-[62px] bg-white rounded-[34.50px] shadow p-1 items-center`}
           >
             <div className="flex items-center gap-3 px-4">
               <div className="w-[94px] text-center text-gray-500 text-xl font-bold font-['Roboto'] capitalize truncate ...">
@@ -72,9 +70,7 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
             </Link>
           ))}
           <div
-            className={`flex ${
-              isLoggedIn ? "w-[198px]" : "w-[303px]"
-            } h-[62px] bg-white rounded-[34.50px] shadow p-1 items-center`}
+            className={`flex w-[303px] h-[62px] bg-white rounded-[34.50px] shadow p-1 items-center`}
           >
             {loginTabs.map((loginTab, i) => (
               <Link key={`loginTab-${i}`} href={loginTab.path}>
