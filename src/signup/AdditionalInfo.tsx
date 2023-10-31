@@ -2,14 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { signupPageState } from "@shared/recoil/signup";
+import { FormItem } from "./AccountInfo";
 import Button from "./Button";
 import Input from "./Input";
 
 interface FormData {
-  [nickname: string]: { essential: boolean; value: string };
-  phonePrefix: { essential: boolean; value: string };
-  phoneSuffix: { essential: boolean; value: string };
-  email: { essential: boolean; value: string };
+  [nickname: string]: FormItem;
+  phonePrefix: FormItem;
+  phoneSuffix: FormItem;
+  email: FormItem;
 }
 
 const AdditionalInfo = () => {
@@ -25,14 +26,12 @@ const AdditionalInfo = () => {
   });
 
   // 필수 데이터 입력 확인
-  const isDataComplete = Object.keys(formData).every((key) => {
-    return !formData[key].essential || formData[key].value !== "";
-  });
+  const isDataComplete = Object.values(formData).every(
+    ({ essential, value }: FormItem) => !essential || value.trim() !== "",
+  );
 
   useEffect(() => {
-    if (isDataComplete) {
-      setIsSubmit(true);
-    } else setIsSubmit(false);
+    setIsSubmit(isDataComplete);
   }, [formData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

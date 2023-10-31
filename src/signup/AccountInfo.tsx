@@ -8,11 +8,16 @@ import CheckAuth from "./CheckAuth";
 import Input from "./Input";
 import Instructions from "./Instructions";
 
+export interface FormItem {
+  essential: boolean;
+  value: string;
+}
+
 interface FormData {
-  [id: string]: { essential: boolean; value: string };
-  password: { essential: boolean; value: string };
-  checkPassword: { essential: boolean; value: string };
-  phone: { essential: boolean; value: string };
+  id: FormItem;
+  password: FormItem;
+  checkPassword: FormItem;
+  phone: FormItem;
 }
 
 const AccountInfo = () => {
@@ -27,17 +32,15 @@ const AccountInfo = () => {
     phone: { essential: true, value: "" },
   });
 
-  //필수 데이터 입력 확인
-  const isDataComplete = Object.keys(formData).every(
-    (key) => !formData[key].essential || formData[key].value.trim() !== "",
+  // 필수 데이터 입력 확인
+  const isDataComplete = Object.values(formData).every(
+    ({ essential, value }: FormItem) => !essential || value.trim() !== "",
   );
 
   // TODO: 휴대폰 인증번호 확인 로직 추가
   // TODO: 아이디, 비밀번호 validation 추가
   useEffect(() => {
-    if (isDataComplete) {
-      setIsSubmit(true);
-    } else setIsSubmit(false);
+    setIsSubmit(isDataComplete);
   }, [formData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

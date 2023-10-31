@@ -2,14 +2,15 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState, KeyboardEvent } from "react";
+import { FormItem } from "./AccountInfo";
 import Tag from "./Tag";
 import TagInput from "./TagInput";
 import TextArea from "./TextArea";
 
 interface FormData {
   [key: string]: { essential: boolean; value: string | string[] };
-  profileImg: { essential: boolean; value: string };
-  introduce: { essential: boolean; value: string };
+  profileImg: FormItem;
+  introduce: FormItem;
   tags: { essential: boolean; value: string[] };
 }
 
@@ -22,7 +23,7 @@ const ProfileInfo = () => {
     introduce: { essential: false, value: "" },
     tags: { essential: false, value: [] },
   });
-  const [tagInputValue, setTagInputValue] = useState<string>("");
+  const [tagInputValue, setTagInputValue] = useState("");
 
   const initialTag = [
     "여럿이 함께",
