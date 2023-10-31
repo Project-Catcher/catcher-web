@@ -38,10 +38,9 @@ const CheckAuth = ({ isDoneInput }: CheckAuthProps) => {
         <Button
           label="재발송"
           onClick={() => {
-            () =>
-              alert(
-                "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
-              ); // TODO: 아임포트 API와 연결하여 휴대폰 인증 로직
+            alert(
+              "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
+            ); // TODO: 아임포트 API와 연결하여 휴대폰 인증 로직
           }}
           buttonStyle="w-[119px] h-[48px] bg-amber-300 ml-1"
         />

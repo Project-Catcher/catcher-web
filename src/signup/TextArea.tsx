@@ -1,4 +1,4 @@
-import React, { TextareaHTMLAttributes, useState } from "react";
+import React, { TextareaHTMLAttributes } from "react";
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -48,9 +48,7 @@ const TextArea = ({
           name={fieldName}
           className={`${textAreaStyle}`}
           placeholder={placeholder}
-          onChange={(e) => {
-            onChange(e);
-          }}
+          onChange={onChange}
           {...props}
         />
       </div>
