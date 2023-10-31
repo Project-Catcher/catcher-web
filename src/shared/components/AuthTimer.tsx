@@ -1,28 +1,25 @@
-import { useEffect, useState } from "react";
-import { clearInterval, setInterval } from "timers";
+import { useEffect } from "react";
+import { useTimer } from "@shared/hook";
 
-const AuthTimer = () => {
-  const MINUTES_IN_MS = 3 * 60 * 1000;
-  const INTERVAL = 1000;
-  const [timeLeft, setTimeLeft] = useState(MINUTES_IN_MS);
-  const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(2);
-  const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, "0");
+interface AuthTimerProps {
+  timerStyle: string;
+  minutes: string;
+  second: string;
+  resetTimer: () => void;
+}
 
+const AuthTimer = ({
+  timerStyle,
+  minutes,
+  second,
+  resetTimer,
+}: AuthTimerProps) => {
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - INTERVAL);
-    }, INTERVAL);
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      alert("다시하세요");
-    }
-
-    return () => clearInterval(timer);
-  }, [timeLeft]);
+    resetTimer();
+  }, [resetTimer]);
 
   return (
-    <div className="inline-block mb-[7px] text-base text-[#00D179] leading-[22px]">
+    <div className={`${timerStyle} inline-block text-[#00D179]`}>
       {minutes}분 {second}초
     </div>
   );

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { AuthTimer, InputWithLabel } from "@shared/components";
+import { InputWithLabel } from "@shared/components";
 import { AuthType } from "@shared/types";
 import { checkAuthNumValidation } from "@shared/utils";
-import AuthErrorMessage from "./AuthErrorMessage";
+import TimerWithButton from "./TimerWithButton";
 import ValidateButton from "./ValidateButton";
 
 interface CheckAuthProps {
@@ -26,7 +26,7 @@ const CheckAuth = ({
 
   return (
     <div className="text-xs font-medium mt-[15px] mb-[5px]">
-      <div className="flex items-end">
+      <div className="flex flex-wrap items-end">
         <InputWithLabel
           maxLength={6}
           pattern="\d*"
@@ -37,25 +37,8 @@ const CheckAuth = ({
           placeholder="인증번호 입력"
           onChange={({ target: { value } }) => handleAuthNum(value)}
         />
-        <button
-          className="w-[95px] h-[36px] text-white bg-[#FACD49] ml-[7px] mr-[14px]"
-          onClick={
-            () =>
-              alert(
-                "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
-              )
-            // re-request api here
-          }
-        >
-          재발송
-        </button>
-        <AuthTimer />
+        <TimerWithButton isAuthNumValidate={isAuthNumValidate} />
       </div>
-      {isAuthNumValidate ? (
-        <div className="h-[16px] invisible mt-[5px] mb-[12px]"></div>
-      ) : (
-        <AuthErrorMessage />
-      )}
       <ValidateButton
         type="beforePhoneAuth"
         value="아이디 찾기"
