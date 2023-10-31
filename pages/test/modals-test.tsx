@@ -3,7 +3,7 @@ import useModal from "../../src/shared/hook/useModal";
 const AlertTest = () => {
   const { openAlert, openConfirm } = useModal();
   const handleAlert = () => {
-    openAlert({ text: "test", isHeaderCloseBtn: true });
+    openAlert({ text: "test\nasdf", isHeaderCloseBtn: true });
   };
   const handleConfirm = () => {
     openConfirm({
