@@ -1,79 +1,18 @@
 import Image from "next/image";
 import React, { useMemo, useState } from "react";
+import { FAQ_CONTENTS } from "../constants";
 
 const FAQContent = () => {
   const CONTENT_COUNT = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpen, setIsOpen] = useState(["q-1"]);
-  const faqContents = [
-    {
-      question: {
-        id: "q-1",
-        title: "캐쳐란?",
-      },
-      answer: {
-        id: "a-1",
-        content: `캐쳐는 여러분들의 소중한 일상을 채워나갈 일정 만들기를 도와주는 시스템입니다.
-            자세한 사항은 영상으로 확인해보세요!
-            유튜브 소개영상 바로가기 https://youtube...`,
-      },
-    },
-    {
-      question: {
-        id: "q-2",
-        title: "회원가입 하는 방법?",
-      },
-      answer: {
-        id: "a-2",
-        content: `캐쳐는 여러분들의 소중한 일상을 채워나갈 일정 만들기를 도와주는 시스템입니다.
-            자세한 사항은 영상으로 확인해보세요!
-            유튜브 소개영상 바로가기 https://youtube...`,
-      },
-    },
-    {
-      question: {
-        id: "q-3",
-        title: "일정만들기는 어떻게 하나요?",
-      },
-      answer: {
-        id: "a-3",
-        content: `캐쳐는 여러분들의 소중한 일상을 채워나갈 일정 만들기를 도와주는 시스템입니다.
-            자세한 사항은 영상으로 확인해보세요!
-            유튜브 소개영상 바로가기 https://youtube...`,
-      },
-    },
-    {
-      question: {
-        id: "q-4",
-        title: "캐쳐 일정 공유 방법?",
-      },
-      answer: {
-        id: "a-4",
-        content: `캐쳐는 여러분들의 소중한 일상을 채워나갈 일정 만들기를 도와주는 시스템입니다.
-            자세한 사항은 영상으로 확인해보세요!
-            유튜브 소개영상 바로가기 https://youtube...`,
-      },
-    },
-    {
-      question: {
-        id: "q-5",
-        title: "회원정보 수정은 어떻게 하나요?",
-      },
-      answer: {
-        id: "a-5",
-        content: `캐쳐는 여러분들의 소중한 일상을 채워나갈 일정 만들기를 도와주는 시스템입니다.
-            자세한 사항은 영상으로 확인해보세요!
-            유튜브 소개영상 바로가기 https://youtube...`,
-      },
-    },
-  ];
 
   const handleToggle = (id: string) => {
     if (isOpen.includes(id)) setIsOpen(isOpen.filter((item) => item !== id));
     else setIsOpen((prev) => [...prev, id]);
   };
 
-  const maxLength = (faqContents.length % CONTENT_COUNT) + 2;
+  const maxLength = (FAQ_CONTENTS.length % CONTENT_COUNT) + 2;
   const pages = useMemo(() => {
     return Array.from({ length: maxLength }, (_, i) => i + 1);
   }, [maxLength]);
@@ -91,7 +30,7 @@ const FAQContent = () => {
   return (
     <>
       <div className="w-full max-h-[320px] overflow-FAQ mb-[12px]">
-        {faqContents.map(({ question, answer }) => (
+        {FAQ_CONTENTS.map(({ question, answer }) => (
           <React.Fragment key={question.id}>
             <div
               className="flex items-center h-fit pl-[28px] py-[19px] hover:bg-[#F5F6F8]"
