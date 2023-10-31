@@ -2,7 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import Notification from "./Notification";
 
 interface TabsProps {
   isLoggedIn: boolean;
@@ -12,6 +13,13 @@ interface TabsProps {
 const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
   const router = useRouter();
 
+  const [onToggleNoti, setOnToggleNoti] = useState(false);
+
+  const onClickNoti = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (e.target !== e.currentTarget) return;
+    setOnToggleNoti((prev) => !prev);
+  };
+
   return (
     <div className="gap-12 flex-center">
       {isLoggedIn ? (
@@ -19,6 +27,7 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
         <>
           {loginedtabs.map((tab, i) => (
             <Link key={`tab-${i}`} href={tab.path}>
+              {/* TODO: hover시, bg 색 변경 */}
               <div
                 className={`text-lg font-medium ${
                   headerColor === "white" ? "text-gray-500" : "text-white"
@@ -28,14 +37,16 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
               </div>
             </Link>
           ))}
-          <div className="flex items-center">
+          <div className="relative flex items-center">
             <Image
               className="cursor-pointer"
               src="/header/notification.svg"
               alt="notification"
               width={25}
               height={28}
+              onClick={onClickNoti}
             />
+            {onToggleNoti && <Notification />}
           </div>
           <div
             className={`flex w-[198px] h-[62px] bg-white rounded-[34.50px] shadow p-1 items-center`}
