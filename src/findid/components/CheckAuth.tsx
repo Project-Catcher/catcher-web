@@ -33,6 +33,7 @@ const CheckAuth = ({
           label="인증번호"
           id="phoneAuth"
           inputType="text"
+          labelStyle="text-xs font-medium"
           inputStyle="w-[281px] h-[36px] text-xs leading-[24px] px-[14px] py-[6px]"
           placeholder="인증번호 입력"
           onChange={({ target: { value } }) => handleAuthNum(value)}
