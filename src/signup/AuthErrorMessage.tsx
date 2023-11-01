@@ -1,18 +1,10 @@
-import { useEffect, useState } from "react";
-import { clearTimeout, setTimeout } from "timers";
+// 인증번호 에러 메시지
 
-const AuthErrorMessage = () => {
-  const [isExpired, setIsExpired] = useState(false);
+interface AuthErrorMessageProps {
+  isExpired: boolean;
+}
 
-  useEffect(() => {
-    setIsExpired(false);
-    const timer = setTimeout(() => {
-      setIsExpired(true);
-    }, 180000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+const AuthErrorMessage = ({ isExpired }: AuthErrorMessageProps) => {
   return (
     <>
       {isExpired ? (
