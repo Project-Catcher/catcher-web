@@ -5,6 +5,12 @@ import {
   Instructions,
   PasswordInput,
 } from "@shared/components";
+import {
+  checkEmailValidation,
+  checkIdValidation,
+  checkPasswordValidation,
+  checkPhoneValidation,
+} from "@shared/utils";
 import ImageWithNickname from "./ImageWithNickname";
 import UpdateProfileButton from "./UpdateProfileButton";
 
@@ -32,6 +38,15 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
     birth: "",
     gender: "",
   });
+
+  const validator = {
+    isValidPhone: checkPhoneValidation(answer.phone),
+    isValidEmail: checkEmailValidation(answer.email),
+    isValidPassword: checkPasswordValidation(
+      answer.password,
+      answer.checkPassword,
+    ),
+  };
 
   const handleAnswer = (answer: Partial<MyInfoModify>) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
@@ -104,16 +119,17 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             <ValidateButton
               type="phone"
               value="인증하기"
-              isValidate
+              isValidate={validator.isValidPhone}
               buttonColor="bg-[#00D179]"
               buttonColorDisabled="bg-[#BABABA]"
               extraClass="w-[113px] h-[46px] rounded-[0]"
+              // TODO: request auth api here
             />
           </div>
         </div>
 
         <div className="flex w-full justify-between items-end mb-[10px]">
-          <InputWithLabel
+          <InputWithLabel // TODO: auth timer here
             label="휴대폰으로 전송된 인증코드를 입력해주세요."
             id="authNum"
             inputType="tel"
@@ -193,7 +209,11 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
           />
         </div>
 
-        <UpdateProfileButton answer={answer} handleConfirm={handleConfirm} />
+        <UpdateProfileButton
+          validator={validator}
+          answer={answer}
+          handleConfirm={handleConfirm}
+        />
       </div>
     </>
   );
