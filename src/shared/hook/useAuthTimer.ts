@@ -9,8 +9,13 @@ const useAuthTimer = (initialTime: number) => {
   const formattedMin = Math.floor(time / 60);
   const formattedSec = time % 60;
 
+  let getVerificationNumber: number;
+
   const startTimer = () => {
     setIsRunning(true);
+
+    // TODO: 서버에서 인증번호 받아오는 로직 추가
+    getVerificationNumber = 123456;
   };
 
   const stopTimer = () => {
@@ -37,12 +42,9 @@ const useAuthTimer = (initialTime: number) => {
     }
   }, [isRunning, time]);
 
-  // TODO: 서버에서 인증번호 받아오는 로직으로 수정
-  const verificationNumber = 123456;
-
   // 인증 성공 여부 확인
   const checkValidationNumber = (authNumber: string) => {
-    if (verificationNumber.toString() === authNumber) {
+    if (getVerificationNumber.toString() === authNumber) {
       return true;
     }
     return false;
