@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { InputWithLabel } from "@shared/components";
+import { InputWithLabel, Instructions } from "@shared/components";
 import { AuthFormAnswer, AuthType } from "@shared/types";
 import {
   checkEmailValidation,
@@ -7,7 +7,6 @@ import {
   checkPhoneValidation,
 } from "@shared/utils";
 import CaptchaAndAuth from "./CaptchaAndAuth";
-import Instructions from "./Instructions";
 
 interface AuthenticationFormProps {
   description: string;

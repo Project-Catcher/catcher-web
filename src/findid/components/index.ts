@@ -9,7 +9,6 @@ export { default as FindAuthForm } from "./FindAuthForm";
 export { default as IdCheck } from "./IdCheck";
 export { default as IdFindDone } from "./IdFindDone";
 export { default as IdFindProgress } from "./IdFindProgress";
-export { default as Instructions } from "./Instructions";
 export { default as ModeButton } from "./ModeButton";
 export { default as PasswordResetBox } from "./PasswordResetBox";
 export { default as PasswordResetDone } from "./PasswordResetDone";
