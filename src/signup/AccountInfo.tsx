@@ -8,17 +8,9 @@ import CheckAuth from "./CheckAuth";
 import Input from "./Input";
 import Instructions from "./Instructions";
 
-export interface FormItem {
-  essential: boolean;
-  value: string;
-}
-
-interface FormData {
-  id: FormItem;
-  password: FormItem;
-  checkPassword: FormItem;
-  phone: FormItem;
-}
+type FormKey = "id" | "password" | "checkPassword" | "phone";
+type FormValue = { essential: boolean; value: string };
+type FormData = Record<FormKey, FormValue>;
 
 const AccountInfo = () => {
   const setCurrentPage = useSetRecoilState(signupPageState);
@@ -34,7 +26,7 @@ const AccountInfo = () => {
 
   // 필수 데이터 입력 확인
   const isDataComplete = Object.values(formData).every(
-    ({ essential, value }: FormItem) => !essential || value.trim() !== "",
+    ({ essential, value }: FormValue) => !essential || value.trim() !== "",
   );
 
   // TODO: 휴대폰 인증번호 확인 로직 추가
@@ -47,7 +39,7 @@ const AccountInfo = () => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: { ...prevFormData[name], value },
+      [name]: { ...prevFormData[name as FormKey], value },
     }));
   };
 

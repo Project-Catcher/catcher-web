@@ -2,17 +2,13 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState, KeyboardEvent } from "react";
-import { FormItem } from "./AccountInfo";
 import Tag from "./Tag";
 import TagInput from "./TagInput";
 import TextArea from "./TextArea";
 
-interface FormData {
-  [key: string]: { essential: boolean; value: string | string[] };
-  profileImg: FormItem;
-  introduce: FormItem;
-  tags: { essential: boolean; value: string[] };
-}
+type FormKey = "profileImg" | "introduce" | "tags";
+type FormValue = { essential: boolean; value: string | string[] };
+type FormData = Record<FormKey, FormValue>;
 
 const ProfileInfo = () => {
   const router = useRouter();
@@ -40,7 +36,7 @@ const ProfileInfo = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: {
-        ...prevFormData[name],
+        ...prevFormData[name as FormKey],
         value: value,
       },
     }));

@@ -2,16 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { signupPageState } from "@shared/recoil/signup";
-import { FormItem } from "./AccountInfo";
 import Button from "./Button";
 import Input from "./Input";
 
-interface FormData {
-  [nickname: string]: FormItem;
-  phonePrefix: FormItem;
-  phoneSuffix: FormItem;
-  email: FormItem;
-}
+type FormKey = "nickname" | "phonePrefix" | "phoneSuffix" | "email";
+type FormValue = { essential: boolean; value: string };
+type FormData = Record<FormKey, FormValue>;
 
 const AdditionalInfo = () => {
   const setCurrentPage = useSetRecoilState(signupPageState);
@@ -27,7 +23,7 @@ const AdditionalInfo = () => {
 
   // 필수 데이터 입력 확인
   const isDataComplete = Object.values(formData).every(
-    ({ essential, value }: FormItem) => !essential || value.trim() !== "",
+    ({ essential, value }: FormValue) => !essential || value.trim() !== "",
   );
 
   useEffect(() => {
@@ -40,7 +36,7 @@ const AdditionalInfo = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: {
-        ...prevFormData[name],
+        ...prevFormData[name as FormKey],
         value: value,
       },
     }));
@@ -52,7 +48,7 @@ const AdditionalInfo = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [id]: {
-        ...prevFormData[id],
+        ...prevFormData[id as FormKey],
         value: value,
       },
     }));
