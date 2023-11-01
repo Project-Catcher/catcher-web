@@ -1,6 +1,8 @@
 // 인증번호 타이머 hook
 import { useState, useEffect } from "react";
 
+let getVerificationNumber: number;
+
 const useAuthTimer = (initialTime: number) => {
   const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
@@ -8,8 +10,6 @@ const useAuthTimer = (initialTime: number) => {
 
   const formattedMin = Math.floor(time / 60);
   const formattedSec = time % 60;
-
-  let getVerificationNumber: number;
 
   const startTimer = () => {
     setIsRunning(true);
@@ -44,7 +44,7 @@ const useAuthTimer = (initialTime: number) => {
 
   // 인증 성공 여부 확인
   const checkValidationNumber = (authNumber: string) => {
-    if (getVerificationNumber.toString() === authNumber) {
+    if (getVerificationNumber?.toString() === authNumber) {
       return true;
     }
     return false;
