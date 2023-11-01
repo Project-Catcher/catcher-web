@@ -1,6 +1,10 @@
 import { ValidateButton } from "@findid/components";
 import { useState } from "react";
-import { InputWithLabel, Instructions } from "@shared/components";
+import {
+  InputWithLabel,
+  Instructions,
+  PasswordInput,
+} from "@shared/components";
 import ImageWithNickname from "./ImageWithNickname";
 import UpdateProfileButton from "./UpdateProfileButton";
 
@@ -78,7 +82,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             label="닉네임"
             id="id"
             inputType="text"
-            labelStyle="text-base text-[#333333] mb-[8px]"
+            labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
             placeholder="띄어쓰기 없이 영문과 숫자 6~15"
             onChange={({ target: { value } }) => handleNickName(value)}
@@ -91,7 +95,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             label="휴대폰 번호 변경"
             id="changePhone"
             inputType="tel"
-            labelStyle="text-base text-[#333333] mb-[8px]"
+            labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-[287px] h-[46px] px-[15px]"
             placeholder="휴대전화번호 (숫자만 입력)"
             onChange={({ target: { value } }) => handlePhone(value)}
@@ -134,7 +138,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             label="이메일"
             id="email"
             inputType="text"
-            labelStyle="text-base text-[#333333] mb-[8px]"
+            labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
             placeholder="이메일을 입력해 주세요."
             onChange={({ target: { value } }) => handleEmail(value)}
@@ -142,26 +146,26 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
         </div>
 
         <div className="mb-[15px]">
-          <InputWithLabel
+          <PasswordInput
+            type="password"
             label="비밀번호 변경"
-            id="changePassword"
-            inputType="password"
-            labelStyle="text-base text-[#333333] mb-[8px]"
-            inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
+            shape="semi-round"
+            extraDivStyle="h-[57px] px-[12px]"
+            extraInputStyle="h-[57px] pl-[14px]"
             placeholder="8~15자의 영문 대소문자, 숫자 또는 특수문자 조합"
-            onChange={({ target: { value } }) => handlePassword(value)}
+            handlePassword={handlePassword}
           />
         </div>
 
         <div className="mb-[15px]">
-          <InputWithLabel
+          <PasswordInput
+            type="checkNewPassword"
             label="비밀번호 확인"
-            id="checkPassword"
-            inputType="password"
-            labelStyle="text-base text-[#333333] mb-[8px]"
-            inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
+            shape="semi-round"
+            extraDivStyle="h-[57px] px-[12px]"
+            extraInputStyle="h-[57px] pl-[14px]"
             placeholder="비밀번호를 한번 더 입력해주세요"
-            onChange={({ target: { value } }) => handleCheckPassword(value)}
+            handlePassword={handleCheckPassword}
           />
         </div>
 
@@ -170,7 +174,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             label="생년월일"
             id="birth"
             inputType="text"
-            labelStyle="text-base text-[#333333] mb-[8px]"
+            labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
             placeholder="생년월일을 입력해주세요 (YYYYMMDD)"
             onChange={({ target: { value } }) => handleBirth(value)}
@@ -182,7 +186,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             label="성별"
             id="gender"
             inputType="text"
-            labelStyle="text-base text-[#333333] mb-[8px]"
+            labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
             placeholder="성별을 입력해주세요"
             onChange={({ target: { value } }) => handleGender(value)}
