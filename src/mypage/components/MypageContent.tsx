@@ -3,7 +3,7 @@ import MyInformation from "./MyInformation";
 
 const MypageContent = () => {
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <MenuBar />
       <MyInformation />
     </div>

@@ -20,6 +20,12 @@ module.exports = {
       width: {
         "3/5-10": "calc(60% - 10px)",
       },
+      height: {
+        "full-204": "calc(100% - 204px)",
+      },
+      maxHeight: {
+        "full-204": "calc(100% - 204px)",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
