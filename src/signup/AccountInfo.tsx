@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { signupPageState } from "@shared/recoil/signup";
+import { checkPhoneValidation } from "@shared/utils";
 import Button from "./Button";
 import CheckAuth from "./CheckAuth";
 import Input from "./Input";
@@ -41,6 +42,17 @@ const AccountInfo = () => {
       ...prevFormData,
       [name]: { ...prevFormData[name as FormKey], value },
     }));
+  };
+
+  const handleAuthClick = () => {
+    if (checkPhoneValidation(formData.phone.value)) {
+      setIsDoneInput(true);
+      alert(
+        "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
+      ); // TODO: 아임포트 API와 연결하여 휴대폰 인증 로직
+    } else {
+      alert("휴대폰 번호를 정확히 입력해주세요!");
+    }
   };
 
   const handleFormSubmit = () => {
@@ -119,12 +131,7 @@ const AccountInfo = () => {
             <Button
               label="인증하기"
               disabled={isDoneInput}
-              onClick={() => {
-                setIsDoneInput(true);
-                alert(
-                  "인증번호 발송 요청이 완료되었습니다.\n인증번호가 오지 않는 경우, 입력한 이름/휴대폰번호를 확인 후 다시 요청해주세요.",
-                ); // TODO: 아임포트 API와 연결하여 휴대폰 인증 로직
-              }}
+              onClick={handleAuthClick}
               buttonStyle={`w-[119px] h-[48px] ml-1  ${
                 isDoneInput ? "bg-zinc-400" : "bg-emerald-500"
               }`}
