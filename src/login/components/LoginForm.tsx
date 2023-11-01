@@ -50,6 +50,7 @@ const LoginForm = () => {
       </div>
       <IdInput handleId={handleId} />
       <PasswordInput
+        isPasswordIcon
         placeholder="비밀번호"
         type="password"
         shape="semi-round"
