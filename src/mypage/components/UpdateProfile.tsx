@@ -1,6 +1,6 @@
 import { ValidateButton } from "@findid/components";
 import { useState } from "react";
-import { InputWithLabel } from "@shared/components";
+import { InputWithLabel, Instructions } from "@shared/components";
 import ImageWithNickname from "./ImageWithNickname";
 import UpdateProfileButton from "./UpdateProfileButton";
 
@@ -85,43 +85,48 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
           />
         </div>
 
-        <div className="flex justify-between mb-[8px] gap-[5px]">
+        <Instructions type="phone" />
+        <div className="flex justify-between items-end mb-[8px] gap-[4px]">
           <InputWithLabel
             label="휴대폰 번호 변경"
             id="changePhone"
             inputType="tel"
             labelStyle="text-base text-[#333333] mb-[8px]"
-            inputStyle="w-[280px] h-[46px] px-[15px]"
+            inputStyle="w-[287px] h-[46px] px-[15px]"
             placeholder="휴대전화번호 (숫자만 입력)"
             onChange={({ target: { value } }) => handlePhone(value)}
           />
-          <ValidateButton
-            type="phone"
-            value="인증하기"
-            isValidate
-            buttonColor="bg-[#00D179]"
-            buttonColorDisabled="bg-[#BABABA]"
-            extraClass="w-[113px] h-[46px] rounded-[0] self-end"
-          />
+          <div>
+            <ValidateButton
+              type="phone"
+              value="인증하기"
+              isValidate
+              buttonColor="bg-[#00D179]"
+              buttonColorDisabled="bg-[#BABABA]"
+              extraClass="w-[113px] h-[46px] rounded-[0]"
+            />
+          </div>
         </div>
 
-        <div className="flex justify-between mb-[10px] gap-[5px]">
+        <div className="flex w-full justify-between items-end mb-[10px]">
           <InputWithLabel
             label="휴대폰으로 전송된 인증코드를 입력해주세요."
             id="authNum"
             inputType="tel"
-            labelStyle="text-base text-[#333333] mb-[8px]"
-            inputStyle="w-[280px] h-[46px] px-[15px]"
+            labelStyle="text-[12px] text-[#333333] mb-[8px]"
+            inputStyle="w-[287px] h-[46px] px-[15px]"
             placeholder="인증번호 6자리 입력"
           />
-          <ValidateButton
-            type="phone"
-            value="재발송"
-            isValidate
-            buttonColor="bg-[#FACD49]"
-            buttonColorDisabled="bg-[#BABABA]"
-            extraClass="w-[113px] h-[46px] rounded-[0] self-end"
-          />
+          <div>
+            <ValidateButton
+              type="phone"
+              value="재발송"
+              isValidate
+              buttonColor="bg-[#FACD49]"
+              buttonColorDisabled="bg-[#BABABA]"
+              extraClass="w-[113px] h-[46px] rounded-[0]"
+            />
+          </div>
         </div>
 
         <div className="mb-[15px]">
