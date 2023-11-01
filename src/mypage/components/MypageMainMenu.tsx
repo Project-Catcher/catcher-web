@@ -19,13 +19,13 @@ const MypageMainMenu = () => {
         내 프로필
       </div>
       <div
-        className="w-fit leading-[26px] pb-[4px] mb-[17px] cursor-pointer"
+        className="w-fit leading-[26px] pb-[4px] mb-[17px] cursor-pointer border-b-2 border-transparent hover:border-[#FFA4A475]"
         onClick={handlePolicy}
       >
         약관 및 정책
       </div>
       <div
-        className="w-fit leading-[26px] pb-[4px] mb-[17px] cursor-pointer"
+        className="w-fit leading-[26px] pb-[4px] mb-[17px] cursor-pointer border-b-2 border-transparent hover:border-[#FFA4A475]"
         onClick={handleLogOut}
       >
         로그아웃
