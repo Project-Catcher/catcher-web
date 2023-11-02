@@ -38,8 +38,11 @@ a {
     background: black;
   }
 } */
+<<<<<<< HEAD
 /* <<<<<<< HEAD
 <<<<<<< HEAD */
+=======
+>>>>>>> Catcher-origin/develop
 
 @layer components {
   .button-full {
@@ -67,9 +70,6 @@ a {
     @apply border border-solid border-[#ADADAD] focus:border-[#4285F4];
   }
 }
-/* =======
->>>>>>> origin/develop
-======= */
 
 /* 약관 동의 우측 스크롤 바 */
 .overflow-content {
@@ -79,4 +79,3 @@ a {
 .overflow-FAQ {
   @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
 }
-/* >>>>>>> Catcher-origin/develop */

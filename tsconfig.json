@@ -23,6 +23,7 @@
       "@notices/*": ["notices/*"],
       "@notice/*": ["notices/notice/*"],
       "@faq/*": ["notices/faq/*"],
+      "@mypage/*": ["mypage/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

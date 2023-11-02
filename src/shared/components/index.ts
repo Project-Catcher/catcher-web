@@ -5,3 +5,4 @@ export { default as InputWithLabel } from "./InputWithLabel";
 export { default as AuthTimer } from "./AuthTimer";
 export { default as CaptchaWithButton } from "./CaptchaWithButton";
 export { default as PasswordInput } from "./PasswordInput";
+export { default as SwitchButton } from "./SwitchButton";
