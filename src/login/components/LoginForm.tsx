@@ -51,7 +51,7 @@ const LoginForm = () => {
 
       <LoginError />
 
-      <LoginOption />
+      <LoginOption answer={answer} />
     </WhiteBox>
   );
 };
