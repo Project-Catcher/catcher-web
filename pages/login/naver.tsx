@@ -5,6 +5,7 @@ const NaverLogin = () => {
   const [userInfo, setUserInfo] = useState<any>({}); // TODO: recoil
   const router = useRouter();
   const NAVER_CODE = router.query.code;
+  const ERROR_MESSAGE = router.query.error_description;
   const [accessTokenFetching, setAccessTokenFetching] = useState(false);
   console.log("NAVER_CODE:", NAVER_CODE);
 
@@ -37,12 +38,26 @@ const NaverLogin = () => {
   };
 
   useEffect(() => {
-    if (NAVER_CODE && !userInfo.accessToken) {
+    if (!ERROR_MESSAGE && NAVER_CODE && !userInfo.accessToken) {
       getAccessToken();
-    }
-  }, []);
+    } else if (ERROR_MESSAGE) {
+      const timeout = setTimeout(() => {
+        router.push("/login");
+      }, 3000);
 
-  return <div>Loading...</div>;
+      return () => clearTimeout(timeout);
+    }
+  }, [ERROR_MESSAGE]);
+
+  return (
+    <>
+      {ERROR_MESSAGE ? (
+        <div>로그인 취소하셨어요. 3초 뒤 자동으로 돌아가요</div>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </>
+  );
 };
 
 export default NaverLogin;
