@@ -20,9 +20,8 @@
       "@shared/*": ["shared/*"],
       "@login/*": ["login/*"],
       "@findid/*": ["findid/*"],
-      "@notices/*": ["notices/*"],
-      "@notice/*": ["notices/notice/*"],
-      "@faq/*": ["notices/faq/*"],
+      "@notice/*": ["notice/*"],
+      "@faq/*": ["faq/*"],
       "@mypage/*": ["mypage/*"]
     }
   },
