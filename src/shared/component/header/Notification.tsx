@@ -1,7 +1,5 @@
-// 알림 버튼 클릭시 나오는 컴포넌트
-// TODO: DB에서 polling? 후 수정하기
-import Image from "next/image";
-import React from "react";
+// 알림(시간 + 내용)이 들어간 카드 컴포넌트
+import NotificationItem from "./NotificationItem";
 
 const Notification = () => {
   return (
@@ -17,24 +15,17 @@ const Notification = () => {
           알림
         </div>
         <div className="flex flex-col bg-neutral-100">
-          <div className="flex-center">
-            <div className="p-2 mr-2 font-medium text-zinc-800">0분전</div>
-            <div className="p-2 flex-center">
-              <div className="w-[330px] rounded bg-white p-2 pr-5 relative text-zinc-800 leading-tight">
-                <span>
-                  @000님 외 11명이1233 회원님의 일정에 좋아요를 눌렀습니다.
-                </span>
-                <div className="absolute top-0 cursor-pointer right-1">
-                  <Image
-                    src="/header/icon_close.svg"
-                    alt="close"
-                    width={24}
-                    height={24}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          {notis.map((noti, i) => (
+            <NotificationItem
+              key={`noti-${i}`}
+              time={noti.time}
+              content={noti.content}
+              // TODO: notification 삭제 로직 추가
+              onRemove={() => {
+                console.log(`noti-${i}`);
+              }}
+            />
+          ))}
         </div>
       </div>
     </>
@@ -42,3 +33,19 @@ const Notification = () => {
 };
 
 export default Notification;
+
+// TODO: DB에서 polling? 후 수정하기
+const notis = [
+  {
+    time: "0분전",
+    content: "@000님 외 11명이1233 회원님의 일정에 좋아요를 눌렀습니다.",
+  },
+  {
+    time: "10분전",
+    content: "@000님 외 11명이1233 회원님의 일정에 좋아요를 눌렀습니다.",
+  },
+  {
+    time: "4시간전",
+    content: "@000님 외 11명이1233 회원님의 일정에 좋아요를 눌렀습니다.",
+  },
+];
