@@ -3,16 +3,19 @@ import React, { useMemo, useState } from "react";
 import { FAQ_CONTENTS } from "../constants";
 
 const FAQContent = () => {
-  const CONTENT_COUNT = 5;
+  const CONTENT_COUNT = 5; // 임시
   const [currentPage, setCurrentPage] = useState(1);
-  const [isOpen, setIsOpen] = useState(["q-1"]);
+  const [openState, setOpenState] = useState(Array(CONTENT_COUNT).fill(false));
 
-  const handleToggle = (id: string) => {
-    if (isOpen.includes(id)) setIsOpen(isOpen.filter((item) => item !== id));
-    else setIsOpen((prev) => [...prev, id]);
+  const handleToggle = (index: number) => {
+    setOpenState((prev) => {
+      const newState = [...prev];
+      newState[index] = !newState[index];
+      return newState;
+    });
   };
 
-  const maxLength = (FAQ_CONTENTS.length % CONTENT_COUNT) + 2;
+  const maxLength = (FAQ_CONTENTS.length % CONTENT_COUNT) + 2; // 임시
   const pages = useMemo(() => {
     return Array.from({ length: maxLength }, (_, i) => i + 1);
   }, [maxLength]);
@@ -30,11 +33,11 @@ const FAQContent = () => {
   return (
     <>
       <div className="w-full max-h-[320px] overflow-FAQ mb-[12px]">
-        {FAQ_CONTENTS.map(({ question, answer }) => (
+        {FAQ_CONTENTS.map(({ question, answer }, index) => (
           <React.Fragment key={question.id}>
             <div
               className="flex items-center h-fit pl-[28px] py-[19px] hover:bg-[#F5F6F8]"
-              onClick={() => handleToggle(question.id)}
+              onClick={() => handleToggle(index)}
             >
               <Image
                 src="/images/samples/noticeQuestion.svg"
@@ -46,16 +49,14 @@ const FAQContent = () => {
                 {question.title}
               </div>
               <Image
-                className={`${
-                  isOpen.includes(question.id) ? "-rotate-90" : "rotate-90"
-                }`}
+                className={`${openState[index] ? "-rotate-90" : "rotate-90"}`}
                 src="/images/samples/inequalRight.svg"
                 alt="inequal"
                 width={26}
                 height={26}
               />
             </div>
-            {isOpen.includes(question.id) && (
+            {openState[index] && (
               <div className="h-fit bg-[#FFF6FB] pl-[28px] py-[19px]">
                 <div className="inline-block min-h-full align-top">
                   <Image
