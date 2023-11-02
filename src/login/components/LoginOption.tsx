@@ -27,9 +27,7 @@ const LoginOption = ({ answer }: LoginOptionProps) => {
   const onNaverLogin = () => {
     const restApiKey = process.env.NEXT_PUBLIC_REST_API_KEY_NAVER;
     const redirectURI = process.env.NEXT_PUBLIC_REDIRECT_URI_NAVER;
-    const naverURL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${restApiKey}&state=${Math.random()
-      .toString(36)
-      .substring(3, 14)}&redirect_uri=${redirectURI}`;
+    const naverURL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${restApiKey}&state=test&redirect_uri=${redirectURI}`;
     const handleLogin = () => {
       push(`${naverURL}`);
     };
