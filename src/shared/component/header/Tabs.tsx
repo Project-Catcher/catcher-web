@@ -10,14 +10,16 @@ interface TabsProps {
   isLoggedIn: boolean;
   headerColor: string;
 }
+type ToggleType = "notification" | "myInfo";
 
 const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
   const router = useRouter();
 
-  const [onToggle, setOnToggle] = useState("");
+  // const [onToggle, setOnToggle] = useState("");
+  const [onToggle, setOnToggle] = useState<ToggleType>();
 
-  const onClickToggle = (target: string) => {
-    setOnToggle((prev) => (prev === target ? "" : target));
+  const onClickToggle = (target: ToggleType) => {
+    setOnToggle((prev) => (prev === target ? undefined : target));
   };
 
   return (
@@ -40,7 +42,11 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
           <div className="relative flex items-center">
             <Image
               className="cursor-pointer"
-              src="/header/notification.svg"
+              src={
+                headerColor === "white"
+                  ? "/header/notification_black.svg"
+                  : "/header/notification.svg"
+              }
               alt="notification"
               width={25}
               height={28}
@@ -51,17 +57,19 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
           <div
             className={`flex w-[198px] h-[62px] bg-white rounded-[34.50px] shadow p-1 items-center`}
           >
-            <div className="flex items-center gap-3 px-4">
+            <div
+              className="flex items-center gap-3 px-4 cursor-pointer"
+              onClick={() => onClickToggle("myInfo")}
+            >
               <div className="w-[94px] text-center text-gray-500 text-xl font-bold font-['Roboto'] capitalize truncate ...">
                 Nickname
               </div>
-              <div className="relative cursor-pointer flex-center">
+              <div className="relative flex-center">
                 <Image
                   src="/header/photo_sample.svg"
                   alt="profile img"
                   width={54}
                   height={54}
-                  onClick={() => onClickToggle("myInfo")}
                 />
                 {onToggle === "myInfo" && <MyInfo />}
               </div>
