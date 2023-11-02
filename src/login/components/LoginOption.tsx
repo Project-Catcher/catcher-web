@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { LoginFormType } from "@shared/types";
 import LoginButton from "./LoginButton";
 
@@ -6,6 +7,7 @@ interface LoginOptionProps {
 }
 
 const LoginOption = ({ answer }: LoginOptionProps) => {
+  const { push } = useRouter();
   const onLogin = () => {
     if (answer.id === "" || answer.password === "") alert("빈칸이 있어요");
     // TODO: API CALL
@@ -16,7 +18,7 @@ const LoginOption = ({ answer }: LoginOptionProps) => {
     const redirectURI = process.env.NEXT_PUBLIC_REDIRECT_URI_KAKAO;
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${restApiKey}&redirect_uri=${redirectURI}&response_type=code`;
     const handleLogin = () => {
-      window.location.href = kakaoURL;
+      push(`${kakaoURL}`);
     };
 
     handleLogin();
@@ -29,7 +31,7 @@ const LoginOption = ({ answer }: LoginOptionProps) => {
       .toString(36)
       .substring(3, 14)}&redirect_uri=${redirectURI}`;
     const handleLogin = () => {
-      window.location.href = naverURL;
+      push(`${naverURL}`);
     };
 
     handleLogin();
