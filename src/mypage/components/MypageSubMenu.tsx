@@ -2,6 +2,12 @@ import { CONTACT_MESSAGE, WITHDRAWAL_MESSAGE } from "@mypage/constants";
 import { useRouter } from "next/router";
 import { useModal } from "@shared/hook";
 
+interface SubMenu {
+  value: string;
+  isEnd?: boolean;
+  onClick: () => void | ((url: string) => void);
+}
+
 const MypageSubMenu = () => {
   const { push } = useRouter();
   const { openAlert, openConfirm } = useModal();
@@ -14,6 +20,7 @@ const MypageSubMenu = () => {
     openConfirm({
       text: WITHDRAWAL_MESSAGE,
       okText: "탈퇴하기",
+      isHeaderCloseBtn: true,
     });
   };
 
@@ -21,26 +28,37 @@ const MypageSubMenu = () => {
     push(url);
   };
 
+  const MENU_SUB: SubMenu[] = [
+    {
+      value: "문의하기",
+      onClick: () => handleContact(),
+    },
+    {
+      value: "공지사항",
+      onClick: () => handleRoute("/notice"),
+    },
+    {
+      value: "FAQ",
+      onClick: () => handleRoute("/faq"),
+    },
+    {
+      value: "회원탈퇴",
+      isEnd: true,
+      onClick: () => handleWithdrawal(),
+    },
+  ];
+
   return (
     <>
-      <div className="mb-[11px] cursor-pointer" onClick={handleContact}>
-        문의하기
-      </div>
-      <div
-        className="mb-[11px] cursor-pointer"
-        onClick={() => handleRoute("/notice")}
-      >
-        공지사항
-      </div>
-      <div
-        className="mb-[11px] cursor-pointer"
-        onClick={() => handleRoute("/faq")}
-      >
-        FAQ
-      </div>
-      <div className="cursor-pointer" onClick={handleWithdrawal}>
-        회원탈퇴
-      </div>
+      {MENU_SUB.map(({ value, isEnd, onClick }) => (
+        <div
+          key={value}
+          className={`${isEnd ? "" : "mb-[11px] "}cursor-pointer`}
+          onClick={onClick}
+        >
+          {value}
+        </div>
+      ))}
     </>
   );
 };

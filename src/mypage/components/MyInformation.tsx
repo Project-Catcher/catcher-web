@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useModal } from "@shared/hook";
 import BasicInfo from "./BasicInfo";
 import MyActivities from "./MyActivities";
 import PersonalInfoUsage from "./PersonalInfoUsage";

@@ -95,18 +95,21 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
 
         <Instructions type="phone" />
         <div className="flex justify-between items-end mb-[8px] gap-[4px]">
-          <InputWithLabel
-            readOnly={isDonePhoneInput}
-            label="휴대폰 번호 변경"
-            id="changePhone"
-            inputType="tel"
-            labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
-            inputStyle={`${
-              isDonePhoneInput ? "bg-[#F5F5F5] " : ""
-            }w-[287px] h-[46px] px-[15px]`}
-            placeholder="휴대전화번호 (숫자만 입력)"
-            onChange={({ target: { value } }) => handlePhone(value)}
-          />
+          {/* TODO: input 공용 컴포넌트로 바꾸기 */}
+          <div className="min-w-[278px]">
+            <InputWithLabel
+              readOnly={isDonePhoneInput}
+              label="휴대폰 번호 변경"
+              id="changePhone"
+              inputType="tel"
+              labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
+              inputStyle={`${
+                isDonePhoneInput ? "bg-[#F5F5F5] " : ""
+              }w-full grow h-[46px] px-[15px]`}
+              placeholder="휴대전화번호 (숫자만 입력)"
+              onChange={({ target: { value } }) => handlePhone(value)}
+            />
+          </div>
           <div>
             <ValidateButton
               type="phone"
@@ -123,15 +126,17 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
           </div>
         </div>
 
-        <div className="flex w-full justify-between items-end mb-[5px]">
-          <InputWithLabel // TODO: auth timer here
-            label="휴대폰으로 전송된 인증코드를 입력해주세요."
-            id="authNum"
-            inputType="tel"
-            labelStyle="text-[12px] text-[#333333] mb-[8px]"
-            inputStyle="w-[287px] h-[46px] px-[15px]"
-            placeholder="인증번호 6자리 입력"
-          />
+        <div className="flex justify-between items-end mb-[5px] gap-[4px]">
+          <div className="grow">
+            <InputWithLabel // TODO: auth timer here
+              label="휴대폰으로 전송된 인증코드를 입력해주세요."
+              id="authNum"
+              inputType="tel"
+              labelStyle="text-[12px] text-[#333333] mb-[8px]"
+              inputStyle="w-full grow h-[46px] px-[15px]"
+              placeholder="인증번호 6자리 입력"
+            />
+          </div>
           <div>
             <ValidateButton
               type="phone"
