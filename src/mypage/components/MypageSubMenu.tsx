@@ -34,7 +34,7 @@ const MypageSubMenu = () => {
       </div>
       <div
         className="mb-[11px] cursor-pointer"
-        onClick={() => handleRoute("/notice/faq")}
+        onClick={() => handleRoute("/faq")}
       >
         FAQ
       </div>
