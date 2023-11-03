@@ -62,7 +62,7 @@ const Input = ({
         />
 
         {/* type이 password인 경우에만 preview 기능 */}
-        {type === "password" ? (
+        {type === "password" && (
           <Image
             className="cursor-pointer"
             src="/images/samples/eye.svg"
@@ -72,7 +72,7 @@ const Input = ({
             onMouseDown={() => setPreview(true)}
             onMouseUp={() => setPreview(false)}
           />
-        ) : null}
+        )}
       </div>
     </>
   );
