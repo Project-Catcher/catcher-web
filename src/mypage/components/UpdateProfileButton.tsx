@@ -4,9 +4,6 @@ interface UpdateProfileButtonProps {
   validator: {
     isValidPhone: boolean;
     isValidEmail: boolean;
-    isValidPassword: {
-      password: boolean;
-    };
   };
   answer: MyInfoModify;
   handleConfirm: (id: string, answer?: MyInfoModify) => void;
@@ -17,10 +14,7 @@ const UpdateProfileButton = ({
   answer,
   handleConfirm,
 }: UpdateProfileButtonProps) => {
-  const isValid =
-    validator.isValidEmail &&
-    validator.isValidPassword &&
-    validator.isValidPhone;
+  const isValid = validator.isValidEmail && validator.isValidPhone;
 
   return (
     <div className="text-center">

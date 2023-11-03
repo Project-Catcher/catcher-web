@@ -1,16 +1,8 @@
-import { ValidateButton } from "@findid/components";
+import { AuthErrorMessage, ValidateButton } from "@findid/components";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import {
-  InputWithLabel,
-  Instructions,
-  PasswordInput,
-} from "@shared/components";
-import {
-  checkEmailValidation,
-  checkIdValidation,
-  checkPasswordValidation,
-  checkPhoneValidation,
-} from "@shared/utils";
+import { InputWithLabel, Instructions } from "@shared/components";
+import { checkEmailValidation, checkPhoneValidation } from "@shared/utils";
 import ImageWithNickname from "./ImageWithNickname";
 import UpdateProfileButton from "./UpdateProfileButton";
 
@@ -18,8 +10,6 @@ export interface MyInfoModify {
   nickname: string;
   phone: string;
   email: string;
-  password: string;
-  checkPassword: string;
   birth: string;
   gender: string;
 }
@@ -29,12 +19,13 @@ interface UpdateProfileProps {
 }
 
 const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
+  const { push } = useRouter();
+  const [isDonePhoneInput, setIsDonePhoneInput] = useState(false);
+  const [isAuthError, setIsAuthError] = useState(false);
   const [answer, setAnswer] = useState<MyInfoModify>({
     nickname: "",
     phone: "",
     email: "",
-    password: "",
-    checkPassword: "",
     birth: "",
     gender: "",
   });
@@ -42,10 +33,6 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
   const validator = {
     isValidPhone: checkPhoneValidation(answer.phone),
     isValidEmail: checkEmailValidation(answer.email),
-    isValidPassword: checkPasswordValidation(
-      answer.password,
-      answer.checkPassword,
-    ),
   };
 
   const handleAnswer = (answer: Partial<MyInfoModify>) => {
@@ -64,20 +51,22 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
     handleAnswer({ email: email });
   };
 
-  const handlePassword = (password: string) => {
-    handleAnswer({ password: password });
-  };
-
-  const handleCheckPassword = (checkPassword: string) => {
-    handleAnswer({ checkPassword: checkPassword });
-  };
-
   const handleBirth = (birth: string) => {
     handleAnswer({ birth: birth });
   };
 
   const handleGender = (gender: string) => {
     handleAnswer({ gender: gender });
+  };
+
+  const handlePasswordChange = () => {
+    push({
+      pathname: "/findidpw",
+      query: {
+        type: "password",
+        progress: 2,
+      },
+    });
   };
 
   return (
@@ -93,7 +82,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
         <ImageWithNickname />
 
         <div className="mb-[15px]">
-          <InputWithLabel
+          <InputWithLabel // TODO: add current nickname value
             label="닉네임"
             id="id"
             inputType="text"
@@ -107,11 +96,14 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
         <Instructions type="phone" />
         <div className="flex justify-between items-end mb-[8px] gap-[4px]">
           <InputWithLabel
+            readOnly={isDonePhoneInput}
             label="휴대폰 번호 변경"
             id="changePhone"
             inputType="tel"
             labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
-            inputStyle="w-[287px] h-[46px] px-[15px]"
+            inputStyle={`${
+              isDonePhoneInput ? "bg-[#F5F5F5] " : ""
+            }w-[287px] h-[46px] px-[15px]`}
             placeholder="휴대전화번호 (숫자만 입력)"
             onChange={({ target: { value } }) => handlePhone(value)}
           />
@@ -123,12 +115,15 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
               buttonColor="bg-[#00D179]"
               buttonColorDisabled="bg-[#BABABA]"
               extraClass="w-[113px] h-[46px] rounded-[0]"
-              // TODO: request auth api here
+              onClick={() => {
+                setIsDonePhoneInput(true);
+                // TODO: request auth api, timer here
+              }}
             />
           </div>
         </div>
 
-        <div className="flex w-full justify-between items-end mb-[10px]">
+        <div className="flex w-full justify-between items-end mb-[5px]">
           <InputWithLabel // TODO: auth timer here
             label="휴대폰으로 전송된 인증코드를 입력해주세요."
             id="authNum"
@@ -149,40 +144,43 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
           </div>
         </div>
 
+        {isAuthError ? (
+          <AuthErrorMessage /> // TODO: add text size, move shared/components
+        ) : (
+          <div className="h-[12px] invisible mb-[3px]"></div>
+        )}
+
         <div className="mb-[15px]">
-          <InputWithLabel
+          <InputWithLabel // TODO: 이메일 있을 시 - 이메일 마스킹 readonly
+            readOnly
             label="이메일"
             id="email"
             inputType="text"
             labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
-            inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
+            inputStyle="w-full h-[57px] rounded-[9px] px-[26px] bg-[#F5F5F5]"
             placeholder="이메일을 입력해 주세요."
             onChange={({ target: { value } }) => handleEmail(value)}
           />
         </div>
 
-        <div className="mb-[15px]">
-          <PasswordInput
-            type="password"
-            label="비밀번호 변경"
-            shape="semi-round"
-            extraDivStyle="h-[57px] px-[12px]"
-            extraInputStyle="h-[57px] pl-[14px]"
-            placeholder="8~15자의 영문 대소문자, 숫자 또는 특수문자 조합"
-            handlePassword={handlePassword}
-          />
-        </div>
-
-        <div className="mb-[15px]">
-          <PasswordInput
-            type="checkNewPassword"
-            label="비밀번호 확인"
-            shape="semi-round"
-            extraDivStyle="h-[57px] px-[12px]"
-            extraInputStyle="h-[57px] pl-[14px]"
-            placeholder="비밀번호를 한번 더 입력해주세요"
-            handlePassword={handleCheckPassword}
-          />
+        <div className="flex items-end mb-[15px]">
+          <div className="grow">
+            <InputWithLabel
+              readOnly
+              label="비밀번호"
+              id="password"
+              inputType="password"
+              value="zzzzzz" // TODO: current pw length
+              labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
+              inputStyle="w-full h-[57px] rounded-[9px_0_0_9px] px-[26px] bg-[#F5F5F5]"
+            />
+          </div>
+          <button
+            className="w-[114px] h-[57px] text-white font-medium rounded-[0_9px_9px_0] bg-[#BABABA]"
+            onClick={handlePasswordChange}
+          >
+            변경하기
+          </button>
         </div>
 
         <div className="mb-[15px]">
