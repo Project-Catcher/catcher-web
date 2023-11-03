@@ -16,6 +16,8 @@ module.exports = {
         question: "url(/images/samples/question.svg)",
         check: "url(/images/samples/check.svg)",
         mypageMenu: "url(/images/samples/mypageMenu.svg)",
+        changeProfileImageButton:
+          "url(/images/samples/changeProfileImageButton.svg)",
       },
       width: {
         "3/5-10": "calc(60% - 10px)",
