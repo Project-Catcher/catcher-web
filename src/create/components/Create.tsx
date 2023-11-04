@@ -3,6 +3,7 @@ import { defaultCardList } from "@create/const";
 import React, { useEffect, useState } from "react";
 import InputCalender from "./InputCalender";
 import ScheduleCard from "./ScheduleCard";
+import ScheduleTab from "./ScheduleTab";
 import Tab from "./Tab";
 
 export type TabType = "전체" | "진행 중인 일정" | "완료된 일정" | "임시 저장";
@@ -51,6 +52,7 @@ const Create = () => {
     }));
     handleCalendarClick("start");
   };
+
   const handleEndDateChange = (newDate: Date) => {
     setDate((prevDate) => ({
       ...prevDate,
@@ -135,10 +137,15 @@ const Create = () => {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-32">
         {/* 탭 */}
-        <div className="flex flex-col w-3/5">
-          <Tab currentTab={tab} onClickTab={onClickTab} />
+        <Tab />
+      </div>
+
+      <div className="flex justify-center">
+        {/* 일정 탭 */}
+        <div className="flex flex-col w-3/5 pt-10">
+          <ScheduleTab currentTab={tab} onClickTab={onClickTab} />
         </div>
       </div>
 
