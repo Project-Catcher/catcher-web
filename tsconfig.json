@@ -20,7 +20,7 @@
       "@shared/*": ["shared/*"],
       "@login/*": ["login/*"],
       "@findid/*": ["findid/*"],
-      "@create/*": ["create/*"]
+      "@create/*": ["create/*"],
       "@mypage/*": ["mypage/*"]
     }
   },
