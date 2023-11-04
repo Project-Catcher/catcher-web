@@ -20,7 +20,7 @@ jobs:
       - uses: anc95/ChatGPT-CodeReview@main
         env:
           MODEL: gpt-3.5-turbo
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GIT_TOKEN }}
           OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
           LANGUAGE: Korean
 
@@ -28,8 +28,8 @@ jobs:
         if: ${{ always() }}
         run: |
           if [[ ${{ job.status }} == "success" ]]; then
-            MESSAGE="✅ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : Catcher-service - by ${{ github.actor }}"
+            MESSAGE="✅ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : catcher-web - by ${{ github.actor }}"
           else
-            MESSAGE="❌ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : Catcher-service - by ${{ github.actor }}"
+            MESSAGE="❌ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : catcher-web - by ${{ github.actor }}"
           fi
           curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ env.WEBHOOK_URL }}
