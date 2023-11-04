@@ -2,7 +2,7 @@ name: Check Errors
 
 on:
   pull_request:
-    branches: [ "fix/tsc-before-merge" ]
+    branches: [ "develop", "main" ]
 
 jobs:
   build:
