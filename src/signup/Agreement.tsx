@@ -1,12 +1,9 @@
 // 회원가입 페이지 우측에 들어갈 약관동의 컴포넌트
-
 import React, { useState } from "react";
-
 import useModal from "@shared/hook/useModal";
-import ScrollContent from "./ScrollContent";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
-
+import ScrollContent from "./ScrollContent";
 import { checkTerms, termsOfService } from "./const";
 import { Agreements } from "./type";
 
@@ -78,7 +75,7 @@ const Agreement = () => {
     // TODO: 회원가입 폼으로 라우팅
     if (
       Object.values(agreements).every(({ essential, checked }) =>
-        essential ? checked : true
+        essential ? checked : true,
       )
     ) {
       alert("다음으로 넘어갑니다!");
