@@ -73,8 +73,8 @@ jobs:
         if: ${{ always() }}
         run: |
           if [[ ${{ job.status }} == "success" ]]; then
-            MESSAGE="✅ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : catcher-web - by ${{ github.actor }}"
+            MESSAGE="✅ ${{ job.status }} 프론트 배포 성공 : catcher-web - by ${{ github.actor }}"
           else
-            MESSAGE="❌ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : catcher-web - by ${{ github.actor }}"
+            MESSAGE="❌ ${{ job.status }} 프론트 배포 실패 : catcher-web - by ${{ github.actor }}"
           fi
           curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ env.WEBHOOK_URL }}
