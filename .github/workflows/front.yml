@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   build:
+    needs: err_check
     name: To push ECR
     runs-on: self-hosted
 

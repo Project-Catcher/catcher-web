@@ -5,7 +5,7 @@ on:
     branches: [ "develop", "main" ]
 
 jobs:
-  build:
+  err_check:
     name: Check Errors
     runs-on: self-hosted
 
