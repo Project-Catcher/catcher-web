@@ -1,8 +1,6 @@
 name: CI nextjs
 
 on:
-  # push:
-  #   branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
