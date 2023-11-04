@@ -10,7 +10,8 @@ interface ScheduleCardProps {
   writer: string;
   status: boolean;
   content?: string;
-  duration: string;
+  durationStart: string;
+  durationEnd: string;
   onClickDelete: (i: number) => void;
 }
 
@@ -22,7 +23,8 @@ const ScheduleCard = ({
   writer,
   status,
   content,
-  duration,
+  durationStart,
+  durationEnd,
   onClickDelete,
 }: ScheduleCardProps) => {
   const [isDelete, setIsDelete] = useState(false);
@@ -109,7 +111,7 @@ const ScheduleCard = ({
           {content}
         </div>
         <div className="mt-1 mb-5 text-sm font-medium text-pink-400">
-          {duration}
+          {durationStart}~{durationEnd}
         </div>
       </div>
       {/* TODO: 일정 만들기로 라우팅 */}
