@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import styles from "@shared/styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +16,9 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
+        <div className="pb-5">
+          <p className="text-xl title">its title!</p>
+        </div>
         <p className={styles.description}>
           Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
@@ -32,7 +34,6 @@ const Home: NextPage = () => {
             <h2>Learn &rarr;</h2>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
-
           <a
             href="https://github.com/vercel/next.js/tree/canary/examples"
             className={styles.card}

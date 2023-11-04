@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+} */
+
+@layer components {
+  .button-full {
+    @apply w-full h-[54px];
+  }
+  .button-xlarge {
+    @apply w-[165.36px] h-[55.99px];
+  }
+  .button-large {
+    @apply w-[145px] h-[49px];
+  }
+  .button-medium {
+    @apply w-[130px] h-[41px];
+  }
+  .button-semi-rounded {
+    @apply rounded-[10px];
+  }
+  .button-rounded {
+    @apply rounded-[34.5px];
+  }
+  .button-shadow {
+    @apply shadow-[0_4px_19px_0_rgba(119,147,65,0.3)];
+  }
+  .input-login {
+    @apply border border-solid border-[#ADADAD] focus:border-[#4285F4];
+  }
+}
+
+/* 약관 동의 우측 스크롤 바 */
+.overflow-content {
+  @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#F5A200] scrollbar-track-[#E2E2E2];
+}
