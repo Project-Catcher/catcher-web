@@ -1,13 +1,14 @@
-name: CI nextjs
+name: CI/CD nextjs
 
 on:
   push:
     branches: [ "develop", "main" ]
 
 env:
-  ecr_url: ${{ secrets.ECR_REPO_DEV_FRONT }}
-  role_arn: ${{ secrets.OIDC_ROLE }}
-  aws_region: ${{ secrets.AWS_REGION }}
+  ECR_URL: ${{ secrets.ECR_REPO_DEV_FRONT }}
+  ROLE_ARN: ${{ secrets.OIDC_ROLE }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  WEBHOOK_URL: ${{ secrets.WEBHOOK }}
 
 permissions:
   id-token: write
@@ -15,6 +16,7 @@ permissions:
 
 jobs:
   build:
+    needs: err_check
     name: To push ECR
     runs-on: self-hosted
 
@@ -30,9 +32,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-region: ${{ env.aws_region }}
+          aws-region: ${{ env.AWS_REGION }}
           role-session-name: GitHubActions
-          role-to-assume: ${{ env.role_arn }}
+          role-to-assume: ${{ env.ROLE_ARN }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -57,8 +59,8 @@ jobs:
 
       - name: Publish Image to ECR(CATCHER-WEB)
         run: |
-          docker tag catcher-web:latest ${{ env.ecr_url }}:${{ github.sha }}
-          docker push ${{ env.ecr_url }}:${{ github.sha }}
+          docker tag catcher-web:latest ${{ env.ECR_URL }}:${{ github.sha }}
+          docker push ${{ env.ECR_URL }}:${{ github.sha }}
 
       - name: Deploy to Frontend Instance from ECR Image
         run: |
@@ -67,3 +69,13 @@ jobs:
             --deployment-group-name ${{ secrets.AWS_DEPLOY_GROUP }}  \
             --deployment-config-name ${{ secrets.AWS_DEPLOY_CONFIG }} \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+
+      - name: Send Notification
+        if: ${{ always() }}
+        run: |
+          if [[ ${{ job.status }} == "success" ]]; then
+            MESSAGE="✅ ${{ job.status }} 프론트 배포 성공 : catcher-web - by ${{ github.actor }}"
+          else
+            MESSAGE="❌ ${{ job.status }} 프론트 배포 실패 : catcher-web - by ${{ github.actor }}"
+          fi
+          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ env.WEBHOOK_URL }}
