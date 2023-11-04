@@ -15,6 +15,17 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.18
+  
+      - name: Setup yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install
+
       - name: Check prettier
         run: yarn prettier
 
