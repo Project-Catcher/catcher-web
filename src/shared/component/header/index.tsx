@@ -7,15 +7,22 @@ import Tabs from "./Tabs";
 
 const Header = () => {
   // TODO: 로그인 상태 확인하는 로직으로 변경
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   // TODO: 헤더 스크롤 시 배경 색 변경 로직 (색상 확인 후 수정)
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [headerColor, setHeaderColor] = useState("white");
 
   // Scroll 위치를 감지
   const updateScroll = () => {
-    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+    if (scrollPosition < 10) {
+      // 투명한 배경색으로 처리
+      setHeaderColor("transparent");
+    } else {
+      // 흰색 배경색으로 처리
+      setHeaderColor("white");
+    }
   };
 
   useEffect(() => {
@@ -24,15 +31,6 @@ const Header = () => {
       window.removeEventListener("scroll", updateScroll);
     };
   }, []);
-
-  // scroll 위치가 100이하라면 투명한 배경색을 지정, 아니면 흰색을 지정
-  useEffect(() => {
-    if (scrollPosition < 10) {
-      setHeaderColor("transparent");
-    } else {
-      setHeaderColor("white");
-    }
-  }, [scrollPosition]);
 
   return (
     <header
