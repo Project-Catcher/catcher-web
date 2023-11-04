@@ -1,0 +1,25 @@
+name: Check Errors
+
+on:
+  pull_request:
+    branches: [ "fix/tsc-before-merge" ]
+
+jobs:
+  build:
+    name: Check Errors
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Check prettier
+        run: yarn prettier
+
+      - name: Check lint
+        run: yarn lint
+
+      - name: Check tsc-project
+        run: yarn tsc-project
