@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "prettier": "prettier --write **/*.{ts,tsx}",
+    "tsc-project": "tsc --noEmit --project \"./tsconfig.json\"",
     "storybook": "sb dev -p 6006",
     "build-storybook": "storybook build"
   },

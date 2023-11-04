@@ -1,5 +1,4 @@
 // 회원가입 페이지에서 사용되는 Background
-
 import React from "react";
 
 interface BackgroundProps {

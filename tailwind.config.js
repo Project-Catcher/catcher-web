@@ -15,6 +15,7 @@ module.exports = {
         naver: "url(/images/samples/naver.svg)",
         question: "url(/images/samples/question.svg)",
         check: "url(/images/samples/check.svg)",
+        mypageMenu: "url(/images/samples/mypageMenu.svg)",
       },
       width: {
         "3/5-10": "calc(60% - 10px)",

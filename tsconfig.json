@@ -21,6 +21,7 @@
       "@login/*": ["login/*"],
       "@findid/*": ["findid/*"],
       "@create/*": ["create/*"]
+      "@mypage/*": ["mypage/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
