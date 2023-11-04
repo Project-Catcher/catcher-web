@@ -1,3 +1,4 @@
+// TODO: 동적으로 데이터 받아와서 보여주기
 import Image from "next/image";
 import React from "react";
 
