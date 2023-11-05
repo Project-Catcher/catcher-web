@@ -7,10 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "prettier": "prettier --write **/*.{ts,tsx}",
+    "tsc-project": "tsc --noEmit --project \"./tsconfig.json\"",
     "storybook": "sb dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "axios": "^1.6.0",
     "lodash": "^4.17.21",
     "next": "12.3.2",
     "react": "18.2.0",
@@ -52,7 +55,8 @@
     "prettier-plugin-tailwindcss": "^0.5.6",
     "storybook": "^7.4.6",
     "tailwindcss": "^3.3.3",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "worker-timers": "^7.0.77"
   },
   "packageManager": "yarn@3.6.4"
 }

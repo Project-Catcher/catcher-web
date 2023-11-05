@@ -1,5 +1,4 @@
 // 약관동의 페이지에 있는 내부 스크롤 컴포넌트
-
 import React from "react";
 
 interface ScrollContentProps {

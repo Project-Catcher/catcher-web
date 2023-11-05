@@ -1,4 +1,4 @@
-// 버튼 컴포넌트
+// 제출, 완료에 사용되는 버튼 컴포넌트
 import React from "react";
 
 interface ButtonProps {

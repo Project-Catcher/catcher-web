@@ -50,5 +50,35 @@ export const confirmSelector = selector<ConfirmProps>({
   },
 });
 
+export interface ModalProps {
+  isOpen: boolean;
+  isHeaderCloseBtn?: boolean;
+  title?: string;
+  okText?: string;
+  okCallback?: Function;
+  noText?: string;
+  noCallback?: Function;
+
+  contentId?: ModalContentId;
+}
+
+export const modalState = atom<ModalProps>({
+  key: `modalState/${uniqueId()}`,
+  default: {
+    isOpen: false,
+  },
+});
+
+export const modalSelector = selector({
+  key: `modalSelector/${uniqueId()}`,
+  get: ({ get }) => get(modalState),
+  set: ({ set }, value) => {
+    set(modalState, value);
+  },
+});
+
 export const useAlertState = () => useRecoilState(alertState);
 export const useConfirmState = () => useRecoilState(confirmState);
+export const useModalState = () => useRecoilState(modalState);
+
+export type ModalContentId = "thumbnailSelector";

@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 import { useRecoilCallback } from "recoil";
-import { alertState } from "../recoil/modal";
+import { alertState, confirmState, modalState } from "../recoil/modal";
 
 export interface ModalWrapperProps {
   children: React.ReactNode;
@@ -17,8 +17,10 @@ export const ModalWrapper = ({
   const closeModal = useRecoilCallback(({ reset }) => () => {
     switch (type) {
       case "confirm":
+        reset(confirmState);
         return;
       case "modal":
+        reset(modalState);
         return;
       case "alert":
         reset(alertState);
@@ -34,10 +36,6 @@ export const ModalWrapper = ({
       handleClose?.();
       closeModal();
     }
-  };
-
-  const handleClickInside = (e: MouseEvent) => {
-    e.stopPropagation();
   };
 
   return (
