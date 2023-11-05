@@ -70,3 +70,18 @@ a {
 .overflow-content {
   @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#F5A200] scrollbar-track-[#E2E2E2];
 }
+
+@keyframes heart-balloon {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-300px) scale(1);
+    opacity: 0;
+  }
+}
+
+.animated-balloon {
+  animation: heart-balloon 4s linear infinite;
+}

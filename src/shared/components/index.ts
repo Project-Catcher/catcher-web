@@ -1,4 +1,5 @@
 export { default as Button } from "./Button";
+export { default as BackgroundHeart } from "./BackgroundHeart";
 export { default as WhiteBox } from "./WhiteBox";
 export { default as IdInput } from "./IdInput";
 export { default as InputWithLabel } from "./InputWithLabel";
