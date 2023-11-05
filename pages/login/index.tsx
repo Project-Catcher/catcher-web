@@ -1,7 +1,14 @@
-import { LoginForm } from "@login/components";
+import { LoginForm, LoginBackground } from "@login/components";
+import { BackgroundHeart } from "@shared/components";
 
 const Login = () => {
-  return <LoginForm />;
+  return (
+    <>
+      <BackgroundHeart />
+      <LoginBackground />
+      <LoginForm />
+    </>
+  );
 };
 
 export default Login;

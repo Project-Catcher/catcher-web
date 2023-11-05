@@ -30,7 +30,7 @@ const LoginForm = () => {
   }, []);
 
   return (
-    <WhiteBox boxStyle="w-[539px] h-[692px] px-[44px] py-[42px] rounded-[40px] shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]">
+    <WhiteBox boxStyle="w-[539px] h-[692px] px-[44px] py-[42px] rounded-[40px] bg-white shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]">
       <LoginTitle />
 
       <IdInput handleId={handleId} />
