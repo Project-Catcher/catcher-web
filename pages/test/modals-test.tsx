@@ -7,7 +7,7 @@ const AlertTest = () => {
   const { openAlert, openConfirm, openModal } = useModal();
   const [selectedId, setSelectedId] = useState<string>();
   const handleAlert = () => {
-    openAlert({ text: "test", isHeaderCloseBtn: true });
+    openAlert({ text: "test\nasdf", isHeaderCloseBtn: true });
   };
   const handleConfirm = () => {
     openConfirm({

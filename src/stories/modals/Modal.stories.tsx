@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MutableSnapshot, RecoilRoot, useRecoilState } from "recoil";
+import { MutableSnapshot, RecoilRoot } from "recoil";
 import useModal from "@shared/hook/useModal";
 import Modal from "@shared/modal/Modal";
 import { ModalProps, modalState } from "@shared/recoil/modal";

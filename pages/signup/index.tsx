@@ -1,7 +1,5 @@
 // 회원가입 - 서비스 약관 동의 페이지
-
 import React from "react";
-
 import { Agreement, Background, Greeting } from "signup";
 
 const index = () => {

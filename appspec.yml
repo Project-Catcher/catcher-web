@@ -1,0 +1,18 @@
+# version = 0.0 부터 시작
+version: 0.0
+
+# 선택한 ec2 가 window server가 아니라면 linux 입력
+os: linux
+
+files:
+# source = 프로젝트 기준, destination = instance 기준 입력
+# source -> destination 안에 복사 됨
+  - source: /
+    destination: /opt/app
+
+hooks:
+  AfterInstall:
+# location = 프로젝트 기준으로 위치 작성
+    - location: /start.sh
+      # root 권한으로 실행
+      runas: root

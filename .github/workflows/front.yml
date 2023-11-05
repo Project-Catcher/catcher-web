@@ -1,24 +1,24 @@
-name: CI nextjs
+name: CI/CD nextjs
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  push:
+    branches: [ "develop", "main" ]
 
 env:
-  ecr_url: ${{ secrets.ECR_REPO_DEV_FRONT }}
-  role_arn: ${{ secrets.OIDC_ROLE }}
-  aws_region: ${{ secrets.AWS_REGION }}
+  ECR_URL: ${{ secrets.ECR_REPO_DEV_FRONT }}
+  ROLE_ARN: ${{ secrets.OIDC_ROLE }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  WEBHOOK_URL: ${{ secrets.WEBHOOK }}
 
 permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
+  id-token: write
+  contents: read
 
 jobs:
   build:
+    needs: err_check
     name: To push ECR
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
@@ -32,15 +32,50 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-region: ${{ env.aws_region }}
+          aws-region: ${{ env.AWS_REGION }}
           role-session-name: GitHubActions
-          role-to-assume: ${{ env.role_arn }}
+          role-to-assume: ${{ env.ROLE_ARN }}
 
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Remove Old Image from ECR(CATCHER-WEB)
+        run: |
+          # ECR Front 레포의 기존 이미지 조회
+          aws ecr describe-images \
+          --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+          --region ${{ secrets.AWS_REGION }} \
+          --output yaml | grep imageDigest | awk -F ' ' '{print $2}' > ./delete_list.txt
+
+          # ECR Front 레포의 기존 이미지 모두 삭제
+          for front_image in `cat ./delete_list.txt`
+          do
+          aws ecr batch-delete-image \
+              --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+              --image-ids imageDigest=$front_image \
+              --output yaml > /dev/null
+          done
+
       - name: Publish Image to ECR(CATCHER-WEB)
         run: |
-          docker tag catcher-web:latest ${{ env.ecr_url }}:catcher-web
-          docker push ${{ env.ecr_url }}:catcher-web
+          docker tag catcher-web:latest ${{ env.ECR_URL }}:${{ github.sha }}
+          docker push ${{ env.ECR_URL }}:${{ github.sha }}
+
+      - name: Deploy to Frontend Instance from ECR Image
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ secrets.AWS_DEPLOY_APP_NAME }} \
+            --deployment-group-name ${{ secrets.AWS_DEPLOY_GROUP }}  \
+            --deployment-config-name ${{ secrets.AWS_DEPLOY_CONFIG }} \
+            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+
+      - name: Send Notification
+        if: ${{ always() }}
+        run: |
+          if [[ ${{ job.status }} == "success" ]]; then
+            MESSAGE="✅ ${{ job.status }} 프론트 배포 성공 : catcher-web - by ${{ github.actor }}"
+          else
+            MESSAGE="❌ ${{ job.status }} 프론트 배포 실패 : catcher-web - by ${{ github.actor }}"
+          fi
+          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ env.WEBHOOK_URL }}
