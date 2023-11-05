@@ -1,20 +1,28 @@
 import ModalContent from "modalContent";
-import { useRecoilCallback, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
+import useModal from "@shared/hook/useModal";
 import { modalState } from "@shared/recoil/modal";
 import { ModalWrapper } from "./ModalWrapper";
 
 const Modal = () => {
-  const { title, isOpen, okCallback, noCallback, isHeaderCloseBtn, contentId } =
-    useRecoilValue(modalState);
+  const { closeModal } = useModal();
+  const modalProps = useRecoilValue(modalState);
+  const {
+    title,
+    isOpen,
+    noCallback: _noCallback,
+    isHeaderCloseBtn,
+    okCallback: _okCallback,
+  } = modalProps;
 
-  const handleOk = useRecoilCallback(({ reset }) => () => {
-    okCallback?.();
-    reset(modalState);
-  });
-  const handleNo = useRecoilCallback(({ reset }) => () => {
-    noCallback?.();
-    reset(modalState);
-  });
+  const okCallback = (props: unknown) => {
+    _okCallback?.(props);
+    closeModal();
+  };
+  const noCallback = (props: unknown) => {
+    _noCallback?.(props);
+    closeModal();
+  };
 
   if (isOpen) {
     return (
@@ -25,7 +33,7 @@ const Modal = () => {
             {isHeaderCloseBtn && (
               <button
                 className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
-                onClick={handleNo}
+                onClick={noCallback}
               >
                 <span className="sr-only">Close</span>
                 <svg
@@ -45,8 +53,8 @@ const Modal = () => {
               </button>
             )}
           </div>
-          <div className="mt-4 max-h-[60vh] overflow-scroll">
-            <ModalContent contentId={contentId} />
+          <div className="mt-4 max-h-[60vh] overflow-y-auto">
+            <ModalContent {...modalProps} {...{ okCallback, noCallback }} />
           </div>
         </div>
       </ModalWrapper>

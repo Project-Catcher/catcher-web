@@ -1,6 +1,5 @@
 export { default as AuthErrorMessage } from "./AuthErrorMessage";
 export { default as AuthTimer } from "./AuthTimer";
-export { default as Button } from "./Button";
 export { default as CaptchaWithButton } from "./CaptchaWithButton";
 export { default as IdInput } from "./IdInput";
 export { default as InputWithLabel } from "./InputWithLabel";

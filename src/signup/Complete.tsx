@@ -1,10 +1,7 @@
 // 회원가입 완료 시, 마지막에 나타나는 컴포넌트
-
-import React from "react";
 import Image from "next/image";
-
+import React from "react";
 import Button from "./Button";
-
 import thumb from "/public/assets/signup/thumb.png";
 
 const Complete = () => {
