@@ -82,6 +82,18 @@ a {
   }
 }
 
-.animated-balloon {
+.animated-balloon-3 {
+  animation: heart-balloon 3s linear infinite;
+}
+.animated-balloon-4 {
   animation: heart-balloon 4s linear infinite;
+}
+.animated-balloon-5 {
+  animation: heart-balloon 5s linear infinite;
+}
+.animated-balloon-6 {
+  animation: heart-balloon 6s linear infinite;
+}
+.animated-balloon-7 {
+  animation: heart-balloon 7s linear infinite;
 }
