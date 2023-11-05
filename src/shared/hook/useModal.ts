@@ -38,7 +38,7 @@ const useModal = () => {
     resetConfirmState();
   };
 
-  const openModal = (modalProps: Omit<ModalProps, "isOpen">) => {
+  const openModal = <T>(modalProps: Omit<ModalProps, "isOpen"> & T) => {
     setModal({
       isOpen: true,
       ...modalProps,
