@@ -1,7 +1,6 @@
 export { default as AccountFind } from "./AccountFind";
 export { default as AuthenticationBox } from "./AuthenticationBox";
 export { default as AuthenticationForm } from "./AuthenticationForm";
-export { default as AuthErrorMessage } from "./AuthErrorMessage";
 export { default as CaptchaAndAuth } from "./CaptchaAndAuth";
 export { default as CheckAuth } from "./CheckAuth";
 export { default as EnterNewPassword } from "./EnterNewPassword";
