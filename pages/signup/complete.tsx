@@ -1,7 +1,5 @@
 // 회원가입 - 회원가입 완료 페이지
-
 import React from "react";
-
 import { Background, Complete, Greeting } from "signup";
 
 const complete = () => {

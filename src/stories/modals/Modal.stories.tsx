@@ -1,7 +1,7 @@
-import Modal from "@shared/modal/Modal";
-import { modalState } from "@shared/recoil/modal";
 import type { Meta, StoryObj } from "@storybook/react";
 import { MutableSnapshot, RecoilRoot, useRecoilState } from "recoil";
+import Modal from "@shared/modal/Modal";
+import { modalState } from "@shared/recoil/modal";
 
 // storybook 내 recoil init 값 제어
 const initializeState = ({ set }: MutableSnapshot) => {

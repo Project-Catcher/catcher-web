@@ -1,8 +1,6 @@
 // 페이지 좌측에 환영인사, 에셋이 들어간 컴포넌트
-
 import Image from "next/image";
 import React from "react";
-
 import saly from "/public/assets/signup/Saly-1.png";
 import calender from "/public/assets/signup/calender.png";
 
