@@ -164,7 +164,7 @@ const ProfileInfo = () => {
             </div>
             <div className="flex flex-wrap min-h-[60px] w-[451px] bg-zinc-100 bg-opacity-50 rounded-[9px] border border-zinc-400">
               <ul id="tags" className="flex flex-wrap items-center p-0">
-                {formData.tags.value.map((tag, i) => (
+                {formData.tags.value.map((tag: string, i: number) => (
                   <Tag
                     key={`tag-${i}`}
                     tag={tag}
