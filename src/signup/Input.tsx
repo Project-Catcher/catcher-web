@@ -47,11 +47,13 @@ const Input = ({
       <div
         className={`${
           shape === "semi-round" ? "rounded-[9px] " : ""
-        }flex w-full items-center justify-evenly border border-solid border-[#ADADAD] focus-within:border-[#4285F4] ${divStyle}`}
+        }flex items-center justify-evenly border border-solid border-[#ADADAD] focus-within:border-[ #4285F4] ${divStyle} box-border`}
       >
         <input
           name={fieldName}
-          className={`${inputStyle}`}
+          className={`${
+            shape === "semi-round" ? "rounded-[9px] " : ""
+          } ${inputStyle} `}
           type={`${preview ? "text" : "password"}`}
           placeholder={placeholder}
           onChange={(e) => {
@@ -63,15 +65,17 @@ const Input = ({
 
         {/* type이 password인 경우에만 preview 기능 */}
         {type === "password" && (
-          <Image
-            className="cursor-pointer"
-            src="/images/samples/eye.svg"
-            alt="eye"
-            width={22}
-            height={19}
-            onMouseDown={() => setPreview(true)}
-            onMouseUp={() => setPreview(false)}
-          />
+          <div className="pr-5">
+            <Image
+              className="cursor-pointer"
+              src="/images/samples/eye.svg"
+              alt="eye"
+              width={22}
+              height={19}
+              onMouseDown={() => setPreview(true)}
+              onMouseUp={() => setPreview(false)}
+            />
+          </div>
         )}
       </div>
     </>
