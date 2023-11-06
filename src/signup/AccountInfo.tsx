@@ -6,7 +6,6 @@ import { TimerWithButton } from "@shared/components";
 import { signupPageState } from "@shared/recoil/signup";
 import { checkAuthNumValidation, checkPhoneValidation } from "@shared/utils";
 import Button from "./Button";
-import CheckAuth from "./CheckAuth";
 import Input from "./Input";
 import Instructions from "./Instructions";
 
