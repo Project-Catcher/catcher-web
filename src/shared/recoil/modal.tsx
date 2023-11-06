@@ -55,11 +55,11 @@ export interface ModalProps {
   isHeaderCloseBtn?: boolean;
   title?: string;
   okText?: string;
-  okCallback?: VoidFunction;
+  okCallback?: Function;
   noText?: string;
-  noCallback?: VoidFunction;
+  noCallback?: Function;
 
-  // TODO: 커스텀 모달 컨텐츠 렌더링 구조 고안 필요
+  contentId?: ModalContentId;
 }
 
 export const modalState = atom<ModalProps>({
@@ -80,3 +80,5 @@ export const modalSelector = selector({
 export const useAlertState = () => useRecoilState(alertState);
 export const useConfirmState = () => useRecoilState(confirmState);
 export const useModalState = () => useRecoilState(modalState);
+
+export type ModalContentId = "thumbnailSelector";
