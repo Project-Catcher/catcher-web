@@ -69,6 +69,11 @@ const Create = () => {
     });
   };
 
+  const onClickSearch = () => {
+    // TODO: 데이터 필터링 로직 추가
+    console.log("찾기");
+  };
+
   // TODO: 삭제 요청 추가
   const onClickDelete = (i: number) => {
     const updatedCardList = [...CardList];
@@ -171,6 +176,12 @@ const Create = () => {
             handleCalendarClick={() => handleCalendarClick("end")}
             handleDateChange={handleEndDateChange}
           />
+          <button
+            className="ml-3 w-[90px] h-10 bg-pink-400 rounded-[5px] text-white text-sm font-bold"
+            onClick={onClickSearch}
+          >
+            찾기
+          </button>
         </div>
 
         <div className="relative flex flex-wrap w-3/5 mt-4 gap-y-12 gap-x-16">
