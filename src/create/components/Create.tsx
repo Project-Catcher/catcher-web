@@ -110,25 +110,16 @@ const Create = () => {
       const cardStartDate = new Date(card.durationStart);
       const cardEndDate = new Date(card.durationEnd);
 
+      if (!card.title.toLowerCase().includes(title.toLowerCase())) return false;
       if (date.start && date.end) {
-        return (
-          cardStartDate >= date.start &&
-          cardEndDate <= date.end &&
-          card.title.toLowerCase().includes(title.toLowerCase())
-        );
+        return cardStartDate >= date.start && cardEndDate <= date.end;
       } else if (date.start) {
-        return (
-          cardStartDate >= date.start &&
-          card.title.toLowerCase().includes(title.toLowerCase())
-        );
+        return cardStartDate >= date.start;
       } else if (date.end) {
-        return (
-          cardEndDate <= date.end &&
-          card.title.toLowerCase().includes(title.toLowerCase())
-        );
+        return cardEndDate <= date.end;
       } else {
         // 아무 날짜도 선택되지 않은 경우
-        return card.title.toLowerCase().includes(title.toLowerCase());
+        return true;
       }
     });
 
