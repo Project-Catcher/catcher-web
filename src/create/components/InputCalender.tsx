@@ -35,10 +35,7 @@ const InputCalender = ({
       </div>
       {visible && (
         <div className="absolute top-[38px] left-0 z-30">
-          <Calendar
-            value={date || undefined}
-            onChange={(newDate: any) => handleDateChange(newDate)}
-          />
+          <Calendar value={date || undefined} onClickDay={handleDateChange} />
         </div>
       )}
     </div>

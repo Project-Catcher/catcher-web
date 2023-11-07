@@ -22,7 +22,7 @@ const ScheduleTab = ({ currentTab, onClickTab }: ScheduleTab) => {
                 ? "border-b-2 border-pink-400 text-zinc-800 font-bold"
                 : "text-zinc-400 font-medium"
             }`}
-            onClick={() => onClickTab(tab.title as TabType)}
+            onClick={() => onClickTab(tab.title)}
           >
             {tab.title}
           </div>
@@ -34,7 +34,7 @@ const ScheduleTab = ({ currentTab, onClickTab }: ScheduleTab) => {
 
 export default ScheduleTab;
 
-const tabItems = [
+const tabItems: Record<"title", TabType>[] = [
   { title: "전체" },
   { title: "진행 중인 일정" },
   { title: "완료된 일정" },
