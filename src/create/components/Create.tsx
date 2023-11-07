@@ -37,6 +37,7 @@ const Create = () => {
     start: false,
     end: false,
   });
+  const [isMySchedule, setIsMySchedule] = useState(false);
 
   const handleCalendarClick = (type: "start" | "end") => {
     setShowCalendar((prev) => ({
@@ -73,6 +74,9 @@ const Create = () => {
     // TODO: 데이터 필터링 로직 추가
     console.log("찾기");
   };
+
+  // TODO: 내가 만든 일정만 필터 로직 추가
+  const onClickMySchedule = () => setIsMySchedule((prev) => !prev);
 
   // TODO: 삭제 요청 추가
   const onClickDelete = (i: number) => {
@@ -184,22 +188,47 @@ const Create = () => {
           </button>
         </div>
 
-        <div className="relative flex flex-wrap w-3/5 mt-4 gap-y-12 gap-x-16">
-          {CardList.map((card, i) => (
-            <ScheduleCard
-              key={`card-${i}`}
-              idx={i}
-              theme={card.theme}
-              img={card.img}
-              title={card.title}
-              writer={card.writer}
-              status={card.status}
-              content={card.content}
-              durationStart={card.durationStart}
-              durationEnd={card.durationEnd}
-              onClickDelete={onClickDelete}
-            />
-          ))}
+        <div className="w-3/5">
+          <div className="flex justify-between mt-6 ">
+            <div className="text-sm">
+              전체 <span className="text-pink-400">{CardList.length}</span>개
+            </div>
+            <div>
+              <label className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 border-4 accent-pink-500"
+                  checked={isMySchedule}
+                  onChange={onClickMySchedule}
+                />
+                <div
+                  className={`ml-2 text-sm ${
+                    isMySchedule ? "text-pink-500" : "text-neutral-400"
+                  }`}
+                >
+                  내가 만든 일정만 보기
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div className="relative flex flex-wrap mt-2.5 gap-y-12 gap-x-20">
+            {CardList.map((card, i) => (
+              <ScheduleCard
+                key={`card-${i}`}
+                idx={i}
+                theme={card.theme}
+                img={card.img}
+                title={card.title}
+                writer={card.writer}
+                status={card.status}
+                content={card.content}
+                durationStart={card.durationStart}
+                durationEnd={card.durationEnd}
+                onClickDelete={onClickDelete}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
