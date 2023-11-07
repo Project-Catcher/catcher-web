@@ -27,9 +27,9 @@ interface CardItemType {
 const Create = () => {
   const [tab, setTab] = useState<TabType>("전체");
   const [CardList, setCardList] = useState<CardItemType[]>(defaultCardList);
-
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
+    // TODO: 초기값을 undefined로 설정하면 warning이 발생
     start: undefined,
     end: undefined,
   });
@@ -71,8 +71,14 @@ const Create = () => {
   };
 
   const onClickSearch = () => {
-    // TODO: 데이터 필터링 로직 추가
-    console.log("찾기");
+    const searchData = {
+      title: title, // title 변수에 저장된 검색어
+      startDate: date.start, // date.start 변수에 저장된 시작 날짜
+      endDate: date.end, // date.end 변수에 저장된 종료 날짜
+    };
+
+    console.log("searchData", searchData);
+    // TODO: API 요청 추가
   };
 
   // TODO: 내가 만든 일정만 필터 로직 추가
@@ -110,30 +116,6 @@ const Create = () => {
       return dataList;
     }
   };
-
-  // date, tab, title 이 바뀔 때마다 필터링 진행
-  useEffect(() => {
-    const filteredList = filteredInTab(tab, defaultCardList);
-
-    const filteredCards = filteredList.filter((card) => {
-      const cardStartDate = new Date(card.durationStart);
-      const cardEndDate = new Date(card.durationEnd);
-
-      if (!card.title.toLowerCase().includes(title.toLowerCase())) return false;
-      if (date.start && date.end) {
-        return cardStartDate >= date.start && cardEndDate <= date.end;
-      } else if (date.start) {
-        return cardStartDate >= date.start;
-      } else if (date.end) {
-        return cardEndDate <= date.end;
-      } else {
-        // 아무 날짜도 선택되지 않은 경우
-        return true;
-      }
-    });
-
-    setCardList(filteredCards);
-  }, [date, tab, title]);
 
   return (
     <>
