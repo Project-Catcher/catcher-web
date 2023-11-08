@@ -17,11 +17,19 @@ module.exports = {
         check: "url(/images/samples/check.svg)",
         searchIcon: "url(/images/samples/searchIcon.svg)",
         mypageMenu: "url(/images/samples/mypageMenu.svg)",
+        changeProfileImageButton:
+          "url(/images/samples/changeProfileImageButton.svg)",
       },
       width: {
         "3/5-10": "calc(60% - 10px)",
         "full-177": "calc(100% - 177px)",
         "full-30": "calc(100% - 30px)",
+      },
+      height: {
+        "full-204": "calc(100% - 204px)",
+      },
+      maxHeight: {
+        "full-204": "calc(100% - 204px)",
       },
     },
   },
