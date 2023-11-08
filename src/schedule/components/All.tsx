@@ -1,12 +1,12 @@
-// 일정 만들기 1
-import { defaultCardList } from "@create/const";
+// 모든 일정
+import { defaultCardList } from "@schedule/const";
 import React, { useEffect, useState } from "react";
 import InputCalender from "./InputCalender";
 import ScheduleCard from "./ScheduleCard";
 import ScheduleTab from "./ScheduleTab";
 import Tab from "./Tab";
 
-export type TabType = "전체" | "진행 예정" | "진행중/완료 일정";
+type TabType = "전체" | "진행 예정" | "진행중/완료 일정";
 interface DateProps {
   start: Date | undefined;
   end: Date | undefined;
@@ -28,8 +28,8 @@ interface CardItemType {
   marked: number;
 }
 
-const Create = () => {
-  const [tab, setTab] = useState<TabType>("전체");
+const All = () => {
+  const [tab, setTab] = useState("전체");
   const [CardList, setCardList] = useState<CardItemType[]>(defaultCardList);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
@@ -66,7 +66,7 @@ const Create = () => {
     handleCalendarClick("end");
   };
 
-  const onClickTab = (tab: TabType) => {
+  const onClickTab = (tab: string) => {
     setTab(tab);
     setShowCalendar({
       start: false,
@@ -127,7 +127,12 @@ const Create = () => {
       <div className="flex justify-center">
         {/* 일정 탭 */}
         <div className="flex flex-col w-3/5 pt-10">
-          <ScheduleTab currentTab={tab} onClickTab={onClickTab} />
+          <ScheduleTab
+            tabTitle="모든 일정"
+            tabItems={allTabItems}
+            currentTab={tab}
+            onClickTab={onClickTab}
+          />
         </div>
       </div>
 
@@ -222,4 +227,10 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default All;
+
+const allTabItems: Record<"title", TabType>[] = [
+  { title: "전체" },
+  { title: "진행 예정" },
+  { title: "진행중/완료 일정" },
+];
