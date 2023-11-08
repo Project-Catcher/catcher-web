@@ -1,8 +1,8 @@
 // 모든 일정
 import { defaultCardList } from "@schedule/const";
 import React, { useEffect, useState } from "react";
+import AllContent, { CardItemType } from "./AllContent";
 import InputCalender from "./InputCalender";
-import ScheduleCard from "./ScheduleCard";
 import ScheduleHeader from "./ScheduleHeader";
 import ScheduleTab from "./ScheduleTab";
 
@@ -12,25 +12,9 @@ interface DateProps {
   end: Date | undefined;
 }
 
-interface CardItemType {
-  theme: string;
-  img?: string;
-  title: string;
-  content?: string;
-  writer: string;
-  status: boolean;
-  location: string;
-  durationStart: string;
-  durationEnd: string;
-  createdAt: string;
-  like: number;
-  comment: number;
-  marked: number;
-}
-
 const All = () => {
   const [tab, setTab] = useState("전체");
-  const [CardList, setCardList] = useState<CardItemType[]>(defaultCardList);
+  const [cardList, setCardList] = useState<CardItemType[]>(defaultCardList);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
     // TODO: 초기값을 undefined로 설정하면 warning이 발생
@@ -41,7 +25,6 @@ const All = () => {
     start: false,
     end: false,
   });
-  const [isMySchedule, setIsMySchedule] = useState(false);
 
   const handleCalendarClick = (type: "start" | "end") => {
     setShowCalendar((prev) => ({
@@ -84,16 +67,6 @@ const All = () => {
 
     console.log("searchData", searchData);
     // TODO: API 요청 추가 ??? 아님 프론트에서 다시 필터 ??? <- 확인해야 함
-  };
-
-  // TODO: 내가 만든 일정만 필터 로직 추가
-  const onClickMySchedule = () => setIsMySchedule((prev) => !prev);
-
-  // TODO: 삭제 요청 추가
-  const onClickDelete = (i: number) => {
-    const updatedCardList = [...CardList];
-    updatedCardList.splice(i, 1);
-    setCardList(updatedCardList);
   };
 
   // tab으로 필터링
@@ -175,53 +148,7 @@ const All = () => {
           </button>
         </div>
 
-        <div className="w-3/5">
-          <div className="flex justify-between mt-6 ">
-            <div className="text-sm">
-              전체 <span className="text-pink-400">{CardList.length}</span>개
-            </div>
-            <div>
-              <label className="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  className="w-5 h-5 border-4 accent-pink-500"
-                  checked={isMySchedule}
-                  onChange={onClickMySchedule}
-                />
-                <div
-                  className={`ml-2 text-sm ${
-                    isMySchedule ? "text-pink-500" : "text-neutral-400"
-                  }`}
-                >
-                  내가 만든 일정만 보기
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div className="relative flex flex-wrap mt-2.5 gap-y-12 gap-x-20">
-            {CardList.map((card, i) => (
-              <ScheduleCard
-                key={`card-${i}`}
-                idx={i}
-                theme={card.theme}
-                img={card.img}
-                title={card.title}
-                content={card.content}
-                writer={card.writer}
-                status={card.status}
-                location={card.location}
-                durationStart={card.durationStart}
-                durationEnd={card.durationEnd}
-                createdAt={card.createdAt}
-                like={card.like}
-                comment={card.comment}
-                marked={card.marked}
-                onClickDelete={onClickDelete}
-              />
-            ))}
-          </div>
-        </div>
+        <AllContent cardList={cardList} setCardList={setCardList} />
       </div>
     </>
   );
