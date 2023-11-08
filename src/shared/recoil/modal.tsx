@@ -55,9 +55,9 @@ export interface ModalProps {
   isHeaderCloseBtn?: boolean;
   title?: string;
   okText?: string;
-  okCallback?: VoidFunction;
+  okCallback?: Function;
   noText?: string;
-  noCallback?: VoidFunction;
+  noCallback?: Function;
 
   contentId?: ModalContentId;
 }
@@ -81,4 +81,4 @@ export const useAlertState = () => useRecoilState(alertState);
 export const useConfirmState = () => useRecoilState(confirmState);
 export const useModalState = () => useRecoilState(modalState);
 
-export type ModalContentId = string;
+export type ModalContentId = "thumbnailSelector";
