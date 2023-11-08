@@ -3,8 +3,8 @@ import { defaultCardList } from "@schedule/const";
 import React, { useEffect, useState } from "react";
 import InputCalender from "./InputCalender";
 import ScheduleCard from "./ScheduleCard";
+import ScheduleHeader from "./ScheduleHeader";
 import ScheduleTab from "./ScheduleTab";
-import Tab from "./Tab";
 
 type TabType = "전체" | "진행 예정" | "진행중/완료 일정";
 interface DateProps {
@@ -121,7 +121,7 @@ const All = () => {
     <>
       <div className="flex justify-center pt-32">
         {/* 탭 */}
-        <Tab />
+        <ScheduleHeader />
       </div>
 
       <div className="flex justify-center">
