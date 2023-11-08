@@ -1,7 +1,11 @@
+import { ThumbnailSelectorProps } from "modalContent/ThumbnailSelector";
+import Image from "next/image";
+import { useState } from "react";
 import useModal from "../../src/shared/hook/useModal";
 
 const AlertTest = () => {
-  const { openAlert, openConfirm } = useModal();
+  const { openAlert, openConfirm, openModal } = useModal();
+  const [selectedId, setSelectedId] = useState<string>();
   const handleAlert = () => {
     openAlert({ text: "test\nasdf", isHeaderCloseBtn: true });
   };
@@ -14,6 +18,15 @@ const AlertTest = () => {
       },
       noCallback: () => {
         console.log("no");
+      },
+    });
+  };
+  const handleModal = () => {
+    openModal<ThumbnailSelectorProps>({
+      contentId: "thumbnailSelector",
+      isHeaderCloseBtn: true,
+      okCallback: (id: string) => {
+        setSelectedId(id);
       },
     });
   };
@@ -34,12 +47,24 @@ const AlertTest = () => {
       >
         Confirm!
       </button>
-      <button
-        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled
-      >
-        Modal!
-      </button>
+      <div>
+        <button
+          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+          onClick={handleModal}
+        >
+          Modal!
+        </button>
+        <p>and selected image : </p>
+        {selectedId && (
+          <Image
+            src={`https://images.pexels.com/photos/${selectedId}/pexels-photo-${selectedId}.jpeg`}
+            width={350}
+            height={350}
+            objectFit="cover"
+            alt="selected image"
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,6 +21,8 @@
       "@login/*": ["login/*"],
       "@findid/*": ["findid/*"],
       "@schedule/*": ["schedule/*"],
+      "@notice/*": ["notice/*"],
+      "@faq/*": ["faq/*"],
       "@mypage/*": ["mypage/*"]
     }
   },
