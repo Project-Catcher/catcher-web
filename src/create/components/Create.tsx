@@ -6,8 +6,7 @@ import ScheduleCard from "./ScheduleCard";
 import ScheduleTab from "./ScheduleTab";
 import Tab from "./Tab";
 
-export type TabType = "전체" | "진행 중인 일정" | "완료된 일정" | "임시 저장";
-
+export type TabType = "전체" | "진행 예정" | "진행중/완료 일정";
 interface DateProps {
   start: Date | undefined;
   end: Date | undefined;
@@ -17,11 +16,16 @@ interface CardItemType {
   theme: string;
   img?: string;
   title: string;
+  content?: string;
   writer: string;
   status: boolean;
-  content?: string;
+  location: string;
   durationStart: string;
   durationEnd: string;
+  createdAt: string;
+  like: number;
+  comment: number;
+  marked: number;
 }
 
 const Create = () => {
@@ -68,17 +72,18 @@ const Create = () => {
       start: false,
       end: false,
     });
+    setDate({ start: undefined, end: undefined });
   };
 
   const onClickSearch = () => {
     const searchData = {
-      title: title, // title 변수에 저장된 검색어
-      startDate: date.start, // date.start 변수에 저장된 시작 날짜
-      endDate: date.end, // date.end 변수에 저장된 종료 날짜
+      title: title,
+      startDate: date.start,
+      endDate: date.end ?? new Date(),
     };
 
     console.log("searchData", searchData);
-    // TODO: API 요청 추가
+    // TODO: API 요청 추가 ??? 아님 프론트에서 다시 필터 ??? <- 확인해야 함
   };
 
   // TODO: 내가 만든 일정만 필터 로직 추가
@@ -95,27 +100,22 @@ const Create = () => {
   const filteredInTab = (tab: string, dataList: CardItemType[]) => {
     const currentDate = new Date();
 
-    if (tab === "임시 저장") {
-      return dataList.filter((item) => !item.status);
-    } else if (tab === "진행 중인 일정") {
+    if (tab === "진행 예정") {
       return dataList.filter((item) => {
-        const cardStartDate = new Date(item.durationStart);
-        const cardEndDate = new Date(item.durationEnd);
-        return (
-          !item.status &&
-          cardStartDate <= currentDate &&
-          cardEndDate >= currentDate
-        );
+        return new Date(item.durationStart) > currentDate;
       });
-    } else if (tab === "완료된 일정") {
+    } else if (tab === "진행중/완료 일정") {
       return dataList.filter((item) => {
-        const cardEndDate = new Date(item.durationEnd);
-        return !item.status && cardEndDate < currentDate;
+        return new Date(item.durationStart) <= currentDate;
       });
     } else {
       return dataList;
     }
   };
+
+  useEffect(() => {
+    setCardList(filteredInTab(tab, defaultCardList));
+  }, [tab]);
 
   return (
     <>
@@ -202,11 +202,16 @@ const Create = () => {
                 theme={card.theme}
                 img={card.img}
                 title={card.title}
+                content={card.content}
                 writer={card.writer}
                 status={card.status}
-                content={card.content}
+                location={card.location}
                 durationStart={card.durationStart}
                 durationEnd={card.durationEnd}
+                createdAt={card.createdAt}
+                like={card.like}
+                comment={card.comment}
+                marked={card.marked}
                 onClickDelete={onClickDelete}
               />
             ))}

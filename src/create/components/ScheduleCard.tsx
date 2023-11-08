@@ -7,11 +7,16 @@ interface ScheduleCardProps {
   theme: string;
   img?: string;
   title: string;
+  content?: string;
   writer: string;
   status: boolean;
-  content?: string;
+  location: string;
   durationStart: string;
   durationEnd: string;
+  createdAt: string;
+  like: number;
+  comment: number;
+  marked: number;
   onClickDelete: (i: number) => void;
 }
 
@@ -20,11 +25,16 @@ const ScheduleCard = ({
   theme,
   img,
   title,
+  content,
   writer,
   status,
-  content,
+  location,
   durationStart,
   durationEnd,
+  createdAt,
+  like,
+  comment,
+  marked,
   onClickDelete,
 }: ScheduleCardProps) => {
   const [isDelete, setIsDelete] = useState(false);
@@ -34,12 +44,12 @@ const ScheduleCard = ({
 
   return (
     <div
-      className={`w-[260px] h-[470px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 ${
+      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 ${
         isDelete ? "" : "cursor-pointer"
       }`}
     >
       {isDelete && (
-        <div className="w-[260px] h-[470px] bg-black bg-opacity-60 absolute z-20">
+        <div className="w-[260px] top-0 bottom-0 bg-black bg-opacity-60 absolute z-20">
           <div className="flex">
             <div
               className="relative left-2 mt-4 w-[67px] h-[25px] bg-white rounded-[3px] cursor-pointer"
@@ -91,27 +101,43 @@ const ScheduleCard = ({
       </div>
 
       {/* Content */}
-      <div className="flex flex-col border-b-[1px] border-zinc-200 px-6 pt-4 bg-white">
+      <div className="flex flex-col border-b-[1px] border-zinc-200 px-6 py-4 bg-white">
         <div className="text-base font-medium">{title}</div>
-        <div className="text-sm text-neutral-400 mt-[10px]">{writer}</div>
-        <div className="flex items-center mt-4">
-          {status ? (
-            <>
-              <div className="w-[7px] h-[7px] bg-red-600 rounded-full" />
-              <div className="ml-2 text-xs text-neutral-400">완료</div>
-            </>
-          ) : (
-            <>
-              <div className="w-[7px] h-[7px] bg-amber-300 rounded-full" />
-              <div className="ml-2 text-xs text-neutral-400">작성 중</div>
-            </>
-          )}
-        </div>
-        <div className="mt-2 text-xs min-h-[36px] font-medium leading-none text-neutral-400">
-          {content}
-        </div>
-        <div className="mt-1 mb-5 text-sm font-medium text-pink-400">
+        <div className="mt-1 text-sm font-medium text-pink-400">
           {durationStart}~{durationEnd}
+        </div>
+        <div className="flex items-start mt-1.5">
+          <Image
+            src="/assets/schedule/location.svg"
+            alt="location"
+            width={17}
+            height={17}
+          />
+          <span className="ml-1 text-sm text-neutral-400">{location}</span>
+        </div>
+        <div className="mt-1 text-xs text-neutral-400">작성일: {createdAt}</div>
+        <div className="flex mt-6">
+          <Image
+            src="/assets/schedule/like.png"
+            alt="like"
+            width={18}
+            height={18}
+          />
+          <span className="ml-1 mr-2 text-sm text-neutral-400">{like}</span>
+          <Image
+            src="/assets/schedule/comment.svg"
+            alt="like"
+            width={16}
+            height={14}
+          />
+          <span className="ml-1 mr-2 text-sm text-neutral-400">{comment}</span>
+          <Image
+            src="/assets/schedule/marked.svg"
+            alt="like"
+            width={10}
+            height={14}
+          />
+          <span className="ml-1 text-sm text-neutral-400">{marked}</span>
         </div>
       </div>
       {/* TODO: 일정 만들기로 라우팅 */}
