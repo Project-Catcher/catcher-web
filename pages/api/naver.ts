@@ -15,7 +15,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
           headers: {
             "Content-Type": "application/json",
           },
-          redirect: "manual",
+          credentials: "include",
         },
       )
         .then((_res) => {
@@ -29,11 +29,11 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
             res,
             maxAge: max_age,
           });
+          res.redirect(302, "/mypage"); // TODO: 로그인 요청한 페이지로
         });
     } catch (error) {
       console.log(error);
     }
-    res.redirect(302, "/mypage"); // TODO: 로그인 요청한 페이지로
   }
 };
 

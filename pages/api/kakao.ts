@@ -18,8 +18,8 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
           credentials: "include",
         },
       )
-        .then((res) => {
-          return res.json();
+        .then((_res) => {
+          return _res.json();
         })
         .then((data) => {
           const max_age = 3600000; // TODO: 시간 설정
