@@ -39,6 +39,11 @@ a {
   }
 } */
 
+/* 수평 및 수직 가운데 정렬 */
+.flex-center {
+ @apply flex items-center justify-center 
+}
+
 @layer components {
   .button-full {
     @apply w-full h-[54px];
@@ -96,4 +101,12 @@ a {
 }
 .animated-balloon-7 {
   animation: heart-balloon 7s linear infinite;
+}
+/* 중앙정렬 */
+.flex-center {
+  @apply flex justify-center items-center
+}
+
+.overflow-FAQ {
+  @apply overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
 }

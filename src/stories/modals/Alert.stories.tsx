@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MutableSnapshot, RecoilRoot, useRecoilState } from "recoil";
 import Alert from "@shared/modal/Alert";
-import { alertState } from "@shared/recoil/modal";
+import { AlertProps, alertState } from "@shared/recoil/modal";
 
 // storybook 내 recoil init 값 제어
 const initializeState = ({ set }: MutableSnapshot) => {
@@ -14,14 +14,8 @@ const initializeState = ({ set }: MutableSnapshot) => {
     okCallback: () => {},
   });
 };
-interface TestProps {
-  title?: string;
-  text?: string;
-  okText?: string;
-  isHeaderCloseBtn?: boolean;
-  okCallback?: () => void;
-}
-const TestButton = (props: TestProps) => {
+
+const TestButton = (props: AlertProps) => {
   const [alert, setAlert] = useRecoilState(alertState);
   const handleOpen = () => {
     setAlert({
@@ -61,7 +55,7 @@ const meta = {
 } satisfies Meta<typeof Alert>;
 
 export default meta;
-const Template = (props: TestProps) => (
+const Template = (props: AlertProps) => (
   <>
     <Alert />
     <TestButton {...props} />
@@ -71,7 +65,7 @@ type Story = StoryObj<typeof Template>;
 
 export const Default = Template.bind({
   args: {
-    title: "Title!",
+    title: "Title2!",
     text: "text!",
     okText: "확인",
     isHeaderCloseBtn: false,

@@ -19,7 +19,7 @@ const InputWithLabel = ({
   return (
     <div>
       <div>
-        <label className={`text-xs font-medium ${labelStyle}`} htmlFor={id}>
+        <label className={`${labelStyle}`} htmlFor={id}>
           {label}
         </label>
       </div>
