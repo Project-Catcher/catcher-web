@@ -9595,6 +9595,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:6.9.0"],\
             ["@typescript-eslint/parser", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:6.9.0"],\
             ["autoprefixer", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:10.4.16"],\
+            ["axios", "npm:1.6.0"],\
+            ["cookies-next", "npm:4.0.0"],\
             ["eslint", "npm:8.52.0"],\
             ["eslint-config-next", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:13.5.4"],\
             ["eslint-config-prettier", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:9.0.0"],\
