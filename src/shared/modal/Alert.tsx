@@ -41,7 +41,7 @@ const Alert = () => {
               />
             </span>
           )}
-          <div className="bg-white min-w-[423px] min-h-[229px] rounded-[20px] shadow-lg flex flex-col items-center p-5 justify-center">
+          <div className="bg-white p-5 min-w-[423px] min-h-[229px] rounded-[20px] shadow-lg flex flex-col items-center justify-center">
             <div className="m-auto">
               {title && <h1 className="mb-2 text-lg font-bold">{title}</h1>}
               {text && (

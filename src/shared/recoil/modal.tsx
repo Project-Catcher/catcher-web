@@ -33,8 +33,10 @@ export interface ConfirmProps {
   text?: string;
   okText?: string;
   okCallback?: VoidFunction;
+  okVariant?: ButtonVariants;
   noText?: string;
   noCallback?: VoidFunction;
+  noVariant?: ButtonVariants;
 }
 
 export const confirmState = atom<ConfirmProps>({
