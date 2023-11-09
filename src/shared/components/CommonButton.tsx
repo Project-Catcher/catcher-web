@@ -1,13 +1,29 @@
 interface CommonButtonProps
   extends Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> {
-  variant: "primary" | "secondary" | "danger";
+  variant:
+    | "accept"
+    | "warn"
+    | "danger"
+    | "pink"
+    | "orange"
+    | "yellow"
+    | "purple"
+    | "gray"
+    | "black";
+
   children: React.ReactNode;
 }
 export type ButtonVariants = keyof typeof BUTTON_VARIANTS;
 const BUTTON_VARIANTS = {
-  primary: "bg-b-primary text-white disabled:bg-b-primary-disabled",
-  secondary: "bg-b-secondary text-white disabled:bg-b-secondary-disabled",
-  danger: "bg-b-danger text-white disabled:bg-b-danger-disabled",
+  accept: "bg-c-accept text-white disabled:bg-c-accept-disabled",
+  warn: "bg-c-warn text-white disabled:bg-c-warn-disabled",
+  danger: "bg-c-danger text-white disabled:bg-c-danger-disabled",
+  pink: "bg-c-pink text-white disabled:bg-c-pink-disabled",
+  orange: "bg-c-orange text-white disabled:bg-c-orange-disabled",
+  yellow: "bg-c-yellow text-white disabled:bg-c-yellow-disabled",
+  purple: "bg-c-purple text-white disabled:bg-c-purple-disabled",
+  gray: "bg-c-gray text-white disabled:bg-c-gray-disabled",
+  black: "bg-c-black text-white",
 };
 
 const CommonButton = (props: CommonButtonProps) => {

@@ -7,12 +7,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "b-primary": "#00D179",
-        "b-primary-disabled": "#00D17975",
-        "b-secondary": "#FACD49",
-        "b-secondary-disabled": "#FACD4975",
-        "b-danger": "#FF2330",
-        "b-danger-disabled": "#FFA4A475",
+        "c-accept": "#00D179",
+        "c-accept-disabled": "#00D17975",
+        "c-warn": "#FACD49",
+        "c-warn-disabled": "#FACD4975",
+        "c-danger": "#FF2330",
+        "c-danger-disabled": "#FFA4A475",
+        "c-pink": "#F864A1",
+        "c-orange": "#F5A200",
+        "c-yellow": "#FACD49",
+        "c-purple": "#A564F8",
+        "c-gray": "#BABABA",
+        "c-black": "#222222",
       },
       backgroundImage: {
         stayLoggedIn: "url(/images/samples/StayLoggedIn.svg)",

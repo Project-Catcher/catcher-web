@@ -51,7 +51,7 @@ const Alert = () => {
               )}
             </div>
 
-            <CommonButton variant={okVariant ?? "primary"} onClick={handleOk}>
+            <CommonButton variant={okVariant ?? "accept"} onClick={handleOk}>
               {okText ?? "확인"}
             </CommonButton>
           </div>

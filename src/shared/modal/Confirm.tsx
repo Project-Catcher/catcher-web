@@ -58,13 +58,10 @@ const Confirm = () => {
               )}
             </div>
             <div className="flex gap-2">
-              <CommonButton
-                variant={noVariant ?? "secondary"}
-                onClick={handleNo}
-              >
+              <CommonButton variant={noVariant ?? "warn"} onClick={handleNo}>
                 {noText ?? "취소"}
               </CommonButton>
-              <CommonButton variant={okVariant ?? "primary"} onClick={handleOk}>
+              <CommonButton variant={okVariant ?? "accept"} onClick={handleOk}>
                 {okText ?? "확인"}
               </CommonButton>
             </div>
