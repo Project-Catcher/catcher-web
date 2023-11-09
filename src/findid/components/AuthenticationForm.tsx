@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { InputWithLabel } from "@shared/components";
+import { InputWithLabel, Instructions } from "@shared/components";
 import { AuthFormAnswer, AuthType } from "@shared/types";
 import {
   checkEmailValidation,
@@ -7,7 +7,6 @@ import {
   checkPhoneValidation,
 } from "@shared/utils";
 import CaptchaAndAuth from "./CaptchaAndAuth";
-import Instructions from "./Instructions";
 
 interface AuthenticationFormProps {
   description: string;
@@ -75,6 +74,7 @@ const AuthenticationForm = ({
             label="이름"
             id="name"
             inputType="text"
+            labelStyle="text-xs font-medium"
             inputStyle="w-full h-full text-sm px-[14px] py-[8px]"
             placeholder="이름을 입력해 주세요."
             onChange={({ currentTarget: { value } }) => handleName(value)}
@@ -90,6 +90,7 @@ const AuthenticationForm = ({
             placeholder={`${
               isPhone ? "휴대전화번호 (숫자만 입력)" : "이메일 주소 입력"
             }`}
+            labelStyle="text-xs font-medium"
             inputStyle="w-full h-full text-sm px-[14px] py-[8px]"
             onChange={({ currentTarget: { value } }) =>
               handleAuthOptionValue(value)

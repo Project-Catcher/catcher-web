@@ -4,7 +4,7 @@ import MypageSubMenu from "./MypageSubMenu";
 
 const MenuBar = () => {
   return (
-    <div className="relative w-[396px] h-full border-l border-[#DCDCDC] px-[42px] py-[102px] ml-[360.5px] shadow-[5px_0_10px_0_rgba(0,0,0,0.1)] z-10">
+    <div className="relative w-[396px] h-full border-l border-[#DCDCDC] px-[42px] py-[102px] ml-[360.5px] shadow-[5px_0_10px_0_rgba(0,0,0,0.1)] z-1">
       <section className="pb-[13px] border-b border-[#DCDCDC]">
         <BriefInfo />
         <MypageMainMenu />
