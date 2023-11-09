@@ -1,15 +1,17 @@
+import { deleteCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { LoginFormType } from "@shared/types";
 import LoginButton from "./LoginButton";
 
 interface LoginOptionProps {
   answer: LoginFormType;
+  handleError: (value: boolean) => void;
 }
 
-const LoginOption = ({ answer }: LoginOptionProps) => {
+const LoginOption = ({ answer, handleError }: LoginOptionProps) => {
   const { push } = useRouter();
   const onLogin = () => {
-    if (answer.id === "" || answer.password === "") alert("빈칸이 있어요");
+    if (answer.id === "" || answer.password === "") handleError(true);
     // TODO: API CALL
   };
 
@@ -35,6 +37,31 @@ const LoginOption = ({ answer }: LoginOptionProps) => {
     handleLogin();
   };
 
+  const onLogout = () => {
+    const access_token = getCookie("access_token_kakao");
+
+    // TODO: axios, 백엔드 api 연결, 네이버 로그아웃 api, 유틸함수로 만들기
+    try {
+      fetch("https://kapi.kakao.com/v1/user/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+        .then((_res) => _res.json())
+        .then((data) => {
+          // TODO: 로그아웃 response에 따라 관리
+          deleteCookie("access_token_kakao", {
+            path: "/",
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+    push("/");
+  };
+
   return (
     <div className="text-center">
       <LoginButton
@@ -53,6 +80,8 @@ const LoginOption = ({ answer }: LoginOptionProps) => {
         buttonStyle="bg-naver bg-no-repeat bg-[position:22.5px_center] bg-[#03C75A] text-white font-medium"
         onClick={onNaverLogin}
       />
+      {/* 테스트용 임시 로그아웃 버튼 */}
+      <LoginButton value="logout" buttonStyle="" onClick={onLogout} />
     </div>
   );
 };
