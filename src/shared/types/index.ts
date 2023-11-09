@@ -7,7 +7,7 @@ export type PasswordType = "password" | "newPassword" | "checkNewPassword";
 export interface LoginFormType {
   id: string;
   password: string;
-  isChecked: boolean;
+  isAutoLoginChecked: boolean;
 }
 
 export interface PasswordResetFormContent {

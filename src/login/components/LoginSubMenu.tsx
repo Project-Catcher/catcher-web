@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import { LoginValue } from "@shared/types";
 
 interface LoginSubMenuProps {
-  isChecked: boolean;
-  handleLoginPersistence: (isChecked: boolean) => void;
+  isAutoLoginChecked: boolean;
+  handleLoginPersistence: (isAutoLoginChecked: boolean) => void;
 }
 
 const LoginSubMenu = ({
-  isChecked,
+  isAutoLoginChecked,
   handleLoginPersistence,
 }: LoginSubMenuProps) => {
   const { push } = useRouter();
@@ -27,7 +27,7 @@ const LoginSubMenu = ({
       <div className="flex items-center">
         <label
           className={`${
-            isChecked ? "bg-blue-400 " : "" // TODO: 체크에 따른 이미지 관리 추가
+            isAutoLoginChecked ? "bg-blue-400 " : "" // TODO: 체크에 따른 이미지 관리 추가
           }inline-block w-[18px] h-[18px] rounded-[50%] bg-stayLoggedIn bg-no-repeat cursor-pointer`}
         >
           <input

@@ -1,8 +1,8 @@
-import { useState } from "react";
+interface LoginErrorProps {
+  isError: boolean;
+}
 
-const LoginError = () => {
-  const [isError, setIsError] = useState(false); // TODO: api 호출 이후 error state 세팅
-
+const LoginError = ({ isError }: LoginErrorProps) => {
   return (
     <div className="mb-[15px]">
       {isError ? (

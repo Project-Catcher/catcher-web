@@ -7,10 +7,11 @@ import LoginSubMenu from "./LoginSubMenu";
 import LoginTitle from "./LoginTitle";
 
 const LoginForm = () => {
+  const [isError, setIsError] = useState(false); // TODO: api call 이후 isError 세팅
   const [answer, setAnswer] = useState<LoginFormType>({
     id: "",
     password: "",
-    isChecked: false,
+    isAutoLoginChecked: false,
   });
 
   const handleAnswer = (answer: Partial<LoginFormType>) => {
@@ -25,9 +26,13 @@ const LoginForm = () => {
     handleAnswer({ password });
   }, []);
 
-  const handleLoginPersistence = useCallback((isChecked: boolean) => {
-    handleAnswer({ isChecked });
+  const handleLoginPersistence = useCallback((isAutoLoginChecked: boolean) => {
+    handleAnswer({ isAutoLoginChecked });
   }, []);
+
+  const handleError = (value: boolean) => {
+    setIsError(value);
+  };
 
   return (
     <WhiteBox boxStyle="w-[539px] h-[692px] px-[44px] py-[42px] rounded-[40px] bg-white shadow-[0_4px_35px_0_rgba(0,0,0,0.08)]">
@@ -45,13 +50,13 @@ const LoginForm = () => {
       />
 
       <LoginSubMenu
-        isChecked={answer.isChecked}
+        isAutoLoginChecked={answer.isAutoLoginChecked}
         handleLoginPersistence={handleLoginPersistence}
       />
 
-      <LoginError />
+      <LoginError isError={isError} />
 
-      <LoginOption answer={answer} />
+      <LoginOption answer={answer} handleError={handleError} />
     </WhiteBox>
   );
 };
