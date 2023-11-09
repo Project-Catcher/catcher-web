@@ -6,6 +6,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        "b-primary": "#00D179",
+        "b-primary-disabled": "#00D17975",
+        "b-secondary": "#FACD49",
+        "b-secondary-disabled": "#FACD4975",
+        "b-danger": "#FF2330",
+        "b-danger-disabled": "#FFA4A475",
+      },
       backgroundImage: {
         stayLoggedIn: "url(/images/samples/StayLoggedIn.svg)",
         idLabel: "url(/images/samples/IdLabel.svg)",
