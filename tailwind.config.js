@@ -7,15 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "c-accept": "#00D179",
-        "c-accept-disabled": "#00D17975",
-        "c-warn": "#FACD49",
-        "c-warn-disabled": "#FACD4975",
-        "c-danger": "#FF2330",
-        "c-danger-disabled": "#FFA4A475",
+        "c-accept": "#00D179", // green. 확인용 색상
+        "c-accept-disabled": "#00D17975", // green-disabled
+        "c-warn": "#FACD49", // yellow. 경고용 색상
+        "c-warn-disabled": "#FACD4975", // yellow-disabled
+        "c-danger": "#FF2330", // red. 에러용 색상
+        "c-danger-disabled": "#FFA4A475", // red-disabled
         "c-pink": "#F864A1",
         "c-orange": "#F5A200",
-        "c-yellow": "#FACD49",
         "c-purple": "#A564F8",
         "c-gray": "#BABABA",
         "c-black": "#222222",

@@ -1,7 +1,6 @@
 import { ThumbnailSelectorProps } from "modalContent/ThumbnailSelector";
 import Image from "next/image";
 import { useState } from "react";
-import { Button } from "signup";
 import CommonButton from "@shared/components/CommonButton";
 import useModal from "../../src/shared/hook/useModal";
 

@@ -27,7 +27,7 @@ const Alert = () => {
       <ModalWrapper isHeaderCloseBtn={isHeaderCloseBtn} type="alert">
         <div className="relative z-50 w-fit">
           <span className="absolute top-[-60px] left-[calc(50%-25px)]">
-            <Image src={Pin} width={100} height={100} alt="pin" />
+            <Image src={Pin} width={100} height={100} alt="pin image" />
           </span>
           {isHeaderCloseBtn && (
             <span className="absolute right-4 top-4">
@@ -37,7 +37,7 @@ const Alert = () => {
                 src={CloseButton}
                 width={24.72}
                 height={24.72}
-                alt="close-button"
+                alt="close button image"
               />
             </span>
           )}

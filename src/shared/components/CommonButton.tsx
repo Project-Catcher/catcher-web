@@ -1,3 +1,5 @@
+import React from "react";
+
 interface CommonButtonProps
   extends Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> {
   variant:
