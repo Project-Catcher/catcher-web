@@ -29,3 +29,5 @@ export interface Captcha {
   captchaValue: string;
   doneCaptcha: boolean;
 }
+
+export type LoginType = "kakao" | "naver" | "catcher";
