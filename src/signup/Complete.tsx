@@ -33,7 +33,11 @@ const Complete = () => {
         The standard chunk of Lorem Ipsum used since the 1500s
       </div>
       <div className="flex justify-center mt-5">
-        <Button label={"완료"} onClick={onClick} />
+        <Button
+          label={"완료"}
+          onClick={onClick}
+          buttonStyle="w-[380px] h-[45.73px] px-[21.73px] py-[10.86px] bg-amber-500 rounded-lg"
+        />
       </div>
     </div>
   );
