@@ -1,6 +1,7 @@
 import axios from "axios";
 import { setCookie } from "cookies-next";
 import { NextApiRequest, NextApiResponse } from "next";
+import { KAKAO_LOGIN_URL } from "@shared/constants";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method, query } = req;
@@ -10,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     // TODO: 백엔드 api 연결
     try {
       const response = await axios.post(
-        `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.NEXT_PUBLIC_REST_API_KEY_KAKAO}&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI_KAKAO}&code=${code}`,
+        `${KAKAO_LOGIN_URL}&code=${code}`,
         null,
         {
           headers: { "Content-Type": "application/json" },

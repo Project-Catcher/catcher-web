@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { KAKAO_CODE_URL, NAVER_CODE_URL } from "@shared/constants";
 import { LoginFormType } from "@shared/types";
 import { logout } from "@shared/utils";
 import LoginButton from "./LoginButton";
@@ -11,30 +12,17 @@ interface LoginOptionProps {
 const LoginOption = ({ answer, handleError }: LoginOptionProps) => {
   const { push } = useRouter();
   const onLogin = () => {
-    if (answer.id === "" || answer.password === "") handleError(true);
+    if (answer.id.trim() === "" || answer.password.trim() === "")
+      handleError(true);
     // TODO: API CALL
   };
 
   const onKakaoLogin = () => {
-    const restApiKey = process.env.NEXT_PUBLIC_REST_API_KEY_KAKAO;
-    const redirectURI = process.env.NEXT_PUBLIC_REDIRECT_URI_KAKAO;
-    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${restApiKey}&redirect_uri=${redirectURI}&response_type=code`;
-    const handleLogin = () => {
-      push(`${kakaoURL}`);
-    };
-
-    handleLogin();
+    push(`${KAKAO_CODE_URL}`);
   };
 
   const onNaverLogin = () => {
-    const restApiKey = process.env.NEXT_PUBLIC_REST_API_KEY_NAVER;
-    const redirectURI = process.env.NEXT_PUBLIC_REDIRECT_URI_NAVER;
-    const naverURL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${restApiKey}&state=test&redirect_uri=${redirectURI}`;
-    const handleLogin = () => {
-      push(`${naverURL}`);
-    };
-
-    handleLogin();
+    push(`${NAVER_CODE_URL}`);
   };
 
   return (
