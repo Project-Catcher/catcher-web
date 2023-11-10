@@ -9,8 +9,8 @@ const ScheduleHeader = () => {
         <div
           key={`tab-${i}`}
           className={`flex items-center justify-center w-48 text-sm rounded-md font-medium text-center text-zinc-500 cursor-pointer ${
-            router.asPath === "/schedule/" + tab.path
-              ? "bg-white text-zinc-800 font-bold"
+            router.asPath === tab.path
+              ? "bg-white text-zinc-800 font-bold border"
               : "text-zinc-400 font-medium hover:bg-gray-200"
           }`}
           onClick={() => router.push(tab.path)}
