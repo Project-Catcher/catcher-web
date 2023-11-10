@@ -1,6 +1,6 @@
-import { deleteCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { LoginFormType } from "@shared/types";
+import { logout } from "@shared/utils";
 import LoginButton from "./LoginButton";
 
 interface LoginOptionProps {
@@ -37,31 +37,6 @@ const LoginOption = ({ answer, handleError }: LoginOptionProps) => {
     handleLogin();
   };
 
-  const onLogout = () => {
-    const access_token = getCookie("access_token_kakao");
-
-    // TODO: axios, 백엔드 api 연결, 네이버 로그아웃 api, 유틸함수로 만들기
-    try {
-      fetch("https://kapi.kakao.com/v1/user/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      })
-        .then((_res) => _res.json())
-        .then((data) => {
-          // TODO: 로그아웃 response에 따라 관리
-          deleteCookie("access_token_kakao", {
-            path: "/",
-          });
-        });
-    } catch (error) {
-      console.log(error);
-    }
-    push("/");
-  };
-
   return (
     <div className="text-center">
       <LoginButton
@@ -81,7 +56,16 @@ const LoginOption = ({ answer, handleError }: LoginOptionProps) => {
         onClick={onNaverLogin}
       />
       {/* 테스트용 임시 로그아웃 버튼 */}
-      <LoginButton value="logout" buttonStyle="" onClick={onLogout} />
+      <LoginButton
+        value="kakaologout"
+        buttonStyle="bg-yellow-400"
+        onClick={() => logout("kakao")}
+      />
+      <LoginButton
+        value="naverlogout"
+        buttonStyle="bg-green-400"
+        onClick={() => logout("naver")}
+      />
     </div>
   );
 };
