@@ -2,6 +2,7 @@ import { ValidateButton } from "@findid/components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {
+  AuthNumberInput,
   InputWithLabel,
   Instructions,
   TimerWithButton,
@@ -20,7 +21,6 @@ export interface MyInfoModify {
   email: string;
   birth: string;
   gender: string;
-  authNum: string;
 }
 
 interface UpdateProfileProps {
@@ -36,13 +36,11 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
     email: "",
     birth: "",
     gender: "",
-    authNum: "",
   });
 
   const validator = {
     isValidPhone: checkPhoneValidation(answer.phone),
     isValidEmail: checkEmailValidation(answer.email),
-    isValidAuthNum: checkAuthNumValidation(answer.authNum),
   };
 
   const handleAnswer = (answer: Partial<MyInfoModify>) => {
@@ -125,23 +123,12 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
         </div>
 
         <div className="mb-[5px] gap-[4px]">
-          <div className="inline-block w-[278px]">
-            <InputWithLabel
-              label="휴대폰으로 전송된 인증코드를 입력해주세요."
-              id="authNum"
-              inputType="tel"
-              labelStyle="text-[12px] text-[#333333] mb-[8px]"
-              inputStyle="w-full h-[46px] px-[15px]"
-              placeholder="인증번호 6자리 입력"
-              onChange={({ target: { value } }) =>
-                handleFormData("authNum", value)
-              }
-            />
-          </div>
-          <TimerWithButton
+          <AuthNumberInput
+            inputContainerStyle="inline-block w-[278px]"
             isDonePhoneInput={isDonePhoneInput}
-            isAuthNumValidate={validator.isValidAuthNum}
             callType="signup"
+            inputStyle="h-[46px] px-[15px]"
+            labelStyle="text-[12px] text-[#333333] mb-[8px]"
             buttonStyle="w-[113px] ml-[4px]"
           />
         </div>
