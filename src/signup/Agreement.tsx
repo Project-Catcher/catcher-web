@@ -1,6 +1,8 @@
 // 회원가입 페이지 우측에 들어갈 약관동의 컴포넌트
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
 import useModal from "@shared/hook/useModal";
+import { signupPageState } from "@shared/recoil/signup";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import ScrollContent from "./ScrollContent";
@@ -18,7 +20,9 @@ const Agreement = () => {
   const handleAlert = () => {
     openAlert({ text: "필수 항목에 동의해주세요", isHeaderCloseBtn: true });
   };
+  const setCurrentPage = useSetRecoilState(signupPageState);
 
+  const [isSubmit, setIsSubmit] = useState(false);
   const [allAgreements, setAllAgreements] = useState(false);
   const [agreements, setAgreements] = useState({
     ageAgreement: { essential: true, checked: false },
@@ -27,6 +31,18 @@ const Agreement = () => {
     privacyAgreement: { essential: true, checked: false },
     locationAgreement: { essential: true, checked: false },
   });
+
+  // 필수 항목이 모두 체크되어 있는지 확인
+  const essentialChecked = Object.values(agreements).every(
+    ({ essential, checked }) => (essential ? checked : true),
+  );
+
+  // 체크가 변경될 때 마다, 제출 가능여부 확인
+  useEffect(() => {
+    if (essentialChecked) {
+      setIsSubmit(true);
+    } else setIsSubmit(false);
+  }, [agreements]);
 
   // 전체 약관 동의
   const handleAllAgreementsChange = () => {
@@ -72,13 +88,8 @@ const Agreement = () => {
   };
 
   const handleFormSubmit = () => {
-    // TODO: 회원가입 폼으로 라우팅
-    if (
-      Object.values(agreements).every(({ essential, checked }) =>
-        essential ? checked : true,
-      )
-    ) {
-      alert("다음으로 넘어갑니다!");
+    if (isSubmit) {
+      setCurrentPage((prev) => prev + 1);
     } else {
       handleAlert();
     }
@@ -125,7 +136,13 @@ const Agreement = () => {
 
         {/* 다음버튼 */}
         <div className="flex justify-center mt-5">
-          <Button label="다음" onClick={handleFormSubmit} />
+          <Button
+            label="다음"
+            onClick={handleFormSubmit}
+            buttonStyle={`w-[380px] h-[45.73px] px-[21.73px] py-[10.86px] ${
+              isSubmit ? "bg-amber-500" : "bg-zinc-400"
+            } rounded-lg`}
+          />
         </div>
       </div>
     </div>

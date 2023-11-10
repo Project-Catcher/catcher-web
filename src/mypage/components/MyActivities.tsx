@@ -1,13 +1,13 @@
 import Image from "next/image";
+import BoxLabel from "./BoxLabel";
+import MyInfoBox from "./MyInfoBox";
 
 const MyActivities = () => {
   return (
-    <div className="w-[694px] mb-[22px]">
-      <div className="text-[18px] text-[#333333] font-semibold mb-[7px]">
-        나의 활동
-      </div>
+    <>
+      <BoxLabel value="나의 활동" />
       <div className="flex">
-        <div className="inline-block flex items-center w-[343px] h-[51px] border border-[#D9D9D9] rounded-[9px] bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.08)] pl-[27px] mr-[8px]">
+        <MyInfoBox boxStyle="flex items-center w-[343px] h-[51px] border-[#D9D9D9] mr-[8px] mb-[22px]">
           <Image
             src="/images/samples/calender.svg"
             alt="calender"
@@ -18,8 +18,8 @@ const MyActivities = () => {
             내 일정
           </div>
           <div className="text-[18px] font-medium pl-[18px]">25</div>
-        </div>
-        <div className="inline-block flex items-center w-[343px] h-[51px] border border-[#D9D9D9] rounded-[9px] bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.08)] pl-[27px]">
+        </MyInfoBox>
+        <MyInfoBox boxStyle="flex items-center w-[343px] h-[51px] border-[#D9D9D9]">
           <Image
             src="/images/samples/heart.svg"
             alt="heart"
@@ -32,9 +32,9 @@ const MyActivities = () => {
           <div className="text-[18px] text-[#F864A1] font-medium pl-[18px]">
             185
           </div>
-        </div>
+        </MyInfoBox>
       </div>
-    </div>
+    </>
   );
 };
 
