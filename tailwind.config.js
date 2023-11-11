@@ -27,6 +27,7 @@ module.exports = {
       },
       height: {
         "full-204": "calc(100% - 204px)",
+        "without-header": "calc(100vh - 78px)",
       },
       maxHeight: {
         "full-204": "calc(100% - 204px)",
