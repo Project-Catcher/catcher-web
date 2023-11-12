@@ -19,6 +19,7 @@ module.exports = {
         mypageMenu: "url(/images/samples/mypageMenu.svg)",
         changeProfileImageButton:
           "url(/images/samples/changeProfileImageButton.svg)",
+        checked: "url(/images/samples/checked.svg)",
       },
       width: {
         "3/5-10": "calc(60% - 10px)",
