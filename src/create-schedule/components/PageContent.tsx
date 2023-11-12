@@ -1,4 +1,4 @@
-import { SUBTITLE, TITLE } from "@makeplan/constants";
+import { SUBTITLE, TITLE } from "@create-schedule/constants";
 import { useRecoilValue } from "recoil";
 import { currentProgress } from "@shared/recoil";
 import Remains from "./Remains";

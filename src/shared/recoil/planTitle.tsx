@@ -1,4 +1,4 @@
-import { SUBTITLE, TITLE } from "@makeplan/constants";
+import { SUBTITLE, TITLE } from "@create-schedule/constants";
 import { atom } from "recoil";
 import { PlanSubTitle, PlanTitle } from "@shared/types";
 
