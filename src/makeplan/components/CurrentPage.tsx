@@ -6,7 +6,7 @@ const CurrentPage = () => {
   const currentPage = useRecoilValue(currentPageName);
 
   return (
-    <div className="flex items-center gap-[6px] h-[24px] mb-[32px]">
+    <div className="flex w-fit items-center gap-[6px] h-[24px] mb-[32px]">
       <Image
         src="/images/samples/noticeHome.svg"
         alt="home"

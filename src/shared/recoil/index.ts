@@ -1,2 +1,2 @@
 export * from "./modal";
-export * from "./currentPage";
+export * from "./makeplan";

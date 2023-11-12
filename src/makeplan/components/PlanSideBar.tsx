@@ -2,14 +2,14 @@ import BasicInfo from "./BasicInfo";
 import FillPlan from "./FillPlan";
 import FinishWriting from "./FinishWriting";
 import SideBarIntro from "./SideBarIntro";
-import StartMakePlan from "./StartMakePlan";
+import TagNTemplate from "./TagNTemplate";
 
 const PlanSideBar = () => {
   return (
-    <div className="w-[241px] h-full border-r-2 border-[#F1F1F1]">
+    <div className="inline-block w-[241px] h-full border-r-2 border-[#F1F1F1]">
       <SideBarIntro />
-      <StartMakePlan />
       <BasicInfo />
+      <TagNTemplate />
       <FillPlan />
       <FinishWriting />
     </div>

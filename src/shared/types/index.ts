@@ -36,3 +36,17 @@ export type CurrentPageType =
   | "태그 및 일정 템플릿"
   | "일정 채우기"
   | "작성 마무리";
+
+export interface PlanTitle {
+  remains: string;
+  nthPlan: (nickname: string, number: number) => string;
+  tag: string;
+  fill: string;
+  finish: string;
+}
+
+export interface PlanSubTitle {
+  fighting: (nickname: string) => string;
+  withyou: string;
+  fillyourplan: (nickname: string) => string;
+}

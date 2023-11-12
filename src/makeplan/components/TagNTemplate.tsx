@@ -3,7 +3,8 @@ import MenuContent from "./MenuContent";
 import MenuContentContainer from "./MenuContentContainer";
 import SideBarMenuBox from "./SideBarMenuBox";
 
-const StartMakePlan = () => {
+const TagNTemplate = () => {
+  const boxTitle = "태그 및 일정 템플릿";
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -13,19 +14,19 @@ const StartMakePlan = () => {
   return (
     <>
       <SideBarMenuBox
-        title="일정 만들기 시작!"
+        title={boxTitle}
         isOpen={isOpen}
         isAccordion
         handleToggle={handleToggle}
       />
       {isOpen && (
         <MenuContentContainer>
-          <MenuContent title="카테고리 태그 입력" />
-          <MenuContent title="템플릿 선택" />
+          <MenuContent title="제목 및 썸네일" boxTitle={boxTitle} />
+          <MenuContent title="템플릿 선택" boxTitle={boxTitle} />
         </MenuContentContainer>
       )}
     </>
   );
 };
 
-export default StartMakePlan;
+export default TagNTemplate;

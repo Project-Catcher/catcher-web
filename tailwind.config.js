@@ -25,10 +25,12 @@ module.exports = {
         "3/5-10": "calc(60% - 10px)",
         "full-177": "calc(100% - 177px)",
         "full-30": "calc(100% - 30px)",
+        planContent: "calc(100% - 250px)",
       },
       height: {
         "full-204": "calc(100% - 204px)",
         "without-header": "calc(100vh - 78px)",
+        planScrollbar: "calc(100vh - 85px)",
       },
       maxHeight: {
         "full-204": "calc(100% - 204px)",

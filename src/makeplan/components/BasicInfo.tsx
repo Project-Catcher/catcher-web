@@ -3,7 +3,10 @@ import MenuContent from "./MenuContent";
 import MenuContentContainer from "./MenuContentContainer";
 import SideBarMenuBox from "./SideBarMenuBox";
 
-const BasicInfo = () => {
+interface BasicInfoProps {}
+
+const BasicInfo = ({}: BasicInfoProps) => {
+  const boxTitle = "기본정보";
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -13,16 +16,16 @@ const BasicInfo = () => {
   return (
     <>
       <SideBarMenuBox
-        title="기본정보"
+        title={boxTitle}
         isOpen={isOpen}
         isAccordion
         handleToggle={handleToggle}
       />
       {isOpen && (
         <MenuContentContainer>
-          <MenuContent title="제목 및 썸네일" />
-          <MenuContent title="일정 날짜 선택" />
-          <MenuContent title="날짜 및 위치 입력" />
+          <MenuContent title="카테고리 태그 입력" boxTitle={boxTitle} />
+          <MenuContent title="시작일 종료일 설정" boxTitle={boxTitle} />
+          <MenuContent title="위치 선택" boxTitle={boxTitle} />
         </MenuContentContainer>
       )}
     </>
