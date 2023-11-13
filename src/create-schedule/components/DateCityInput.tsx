@@ -1,10 +1,9 @@
 import { useRecoilValue } from "recoil";
 import { scheduleAnswers } from "@shared/recoil";
-import CalendarHandler from "./CalendarHandler";
 import DateCityHandler from "./DateCityHandler";
 
 interface DateCityInputProps {
-  callType: "date" | "city";
+  callType: "date_start" | "date_end" | "city";
   answerType?: "startedAt" | "endedAt";
   placeholder: string;
 }
@@ -18,9 +17,9 @@ const DateCityInput = ({
 
   return (
     <div className="relative inline-block">
-      {callType === "date" ? (
+      {callType.includes("date") ? (
         <>
-          <CalendarHandler />
+          <DateCityHandler callType={callType} />
           <input
             readOnly
             className="w-[301px] h-[55px] border border-[#E0E0E0] rounded-[5px] px-[19px]"

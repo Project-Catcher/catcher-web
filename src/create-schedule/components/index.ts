@@ -1,6 +1,5 @@
 export { default as BasicInfo } from "./BasicInfo";
 export { default as BlockShowing } from "./BlockShowing";
-export { default as CalendarHandler } from "./CalendarHandler";
 export { default as Continue } from "./Continue";
 export { default as CurrentPage } from "./CurrentPage";
 export { default as DateCityHandler } from "./DateCityHandler";

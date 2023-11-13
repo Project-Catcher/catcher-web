@@ -1,18 +1,23 @@
 import { useModal } from "@shared/hook";
 
 interface DateCityHandlerProps {
-  callType: "date" | "city";
+  callType: "date_start" | "date_end" | "city";
 }
 
 const DateCityHandler = ({ callType }: DateCityHandlerProps) => {
   const { openModal } = useModal();
+  const type = callType.includes("date") ? "date" : "city";
 
   const handleOpen = () => {
     openModal({
-      title: `${callType === "date" ? "일정 시작일 선택" : "장소 선택"}`,
+      title: `${type === "date" ? "일정 시작일 선택" : "장소 선택"}`,
       isHeaderCloseBtn: true,
       contentId: `${
-        callType === "date" ? "calendarSelector" : "calendarSelector" // TODO: citySelector
+        type === "date"
+          ? callType === "date_start"
+            ? "calendarSelector_start"
+            : "calendarSelector_end"
+          : "thumbnailSelector" // TODO: citySelector
       }`,
     });
   };
@@ -20,13 +25,13 @@ const DateCityHandler = ({ callType }: DateCityHandlerProps) => {
   return (
     <label
       className={`${
-        callType === "date"
-          ? "bg-calendar w-[18px] h-[18px] "
+        type === "date"
+          ? "bg-calender w-[18px] h-[18px] "
           : "bg-city w-[23px] h-[23px] "
       }inline-block absolute overflow-hidden text-[0px] leading-[0px] bg-no-repeat top-1/2 left-[264px] -translate-y-1/2 cursor-pointer`}
       onClick={handleOpen}
     >
-      장소
+      {type === "date" ? "날짜" : "장소"}
     </label>
   );
 };

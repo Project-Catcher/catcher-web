@@ -59,3 +59,5 @@ export interface ScheduleAnswerType {
   city: string;
   tag: string[];
 }
+
+export type CalendarSelectorType = "startedAt" | "endedAt";
