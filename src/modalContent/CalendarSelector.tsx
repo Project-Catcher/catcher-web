@@ -3,11 +3,15 @@ import "react-calendar/dist/Calendar.css";
 import { useSetRecoilState } from "recoil";
 import { scheduleAnswers } from "@shared/recoil";
 
-const CalendarSelector = () => {
+interface CalendarSelectorProps {
+  type: "startedAt" | "endedAt";
+}
+
+const CalendarSelector = ({ type }: CalendarSelectorProps) => {
   const setAnswer = useSetRecoilState(scheduleAnswers);
 
-  const handleStartedAt = (startedAt: string) => {
-    setAnswer((prev) => ({ ...prev, startedAt }));
+  const handleDate = (value: string) => {
+    setAnswer((prev) => ({ ...prev, [type]: value }));
   };
 
   return (
@@ -17,7 +21,7 @@ const CalendarSelector = () => {
         const year = date.getFullYear();
         const month = date.getMonth();
         const day = date.getDate();
-        handleStartedAt(`${year}.${month}.${day}`);
+        handleDate(`${year}.${month}.${day}`);
       }}
     />
   );

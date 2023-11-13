@@ -21,6 +21,7 @@ module.exports = {
           "url(/images/samples/changeProfileImageButton.svg)",
         checked: "url(/images/samples/checked.svg)",
         calender: "url(/images/samples/calender.svg)",
+        city: "url(/images/samples/city.svg)",
       },
       width: {
         "3/5-10": "calc(60% - 10px)",
