@@ -20,7 +20,7 @@ const CalendarSelector = ({ type }: CalendarSelectorProps) => {
         const date = new Date(value as Date);
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
-        const day = date.getDate();
+        const day = String(date.getDate()).padStart(2, "0");
         handleDate(`${year}.${month}.${day}`);
       }}
     />

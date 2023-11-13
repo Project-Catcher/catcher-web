@@ -12,6 +12,9 @@ const ScheduleNextButton = ({ value }: ScheduleNextButtonProps) => {
   const setCurrentProgress = useSetRecoilState(currentProgress);
 
   const handleInputCheck = () => {
+    const startDate = Number(answer.startedAt.split(".").join(""));
+    const endDate = Number(answer.endedAt.split(".").join(""));
+
     if (
       answer.city === "" ||
       answer.endedAt === "" ||
@@ -23,6 +26,14 @@ const ScheduleNextButton = ({ value }: ScheduleNextButtonProps) => {
         title: "입력이 완료되지 않은 부분이 있어요.",
         isHeaderCloseBtn: true,
       });
+
+      return false;
+    } else if (endDate - startDate < 0) {
+      openAlert({
+        title: "종료일은 시작일보다 전일 수 없어요.",
+        isHeaderCloseBtn: true,
+      });
+
       return false;
     }
 
