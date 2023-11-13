@@ -15,20 +15,7 @@ const ScheduleNextButton = ({ value }: ScheduleNextButtonProps) => {
     const startDate = parseInt(answer.startedAt.replace(/\./g, ""));
     const endDate = parseInt(answer.endedAt.replace(/\./g, ""));
 
-    if (
-      answer.city === "" ||
-      answer.endedAt === "" ||
-      answer.imageSrc === "" ||
-      answer.startedAt === "" ||
-      answer.title === ""
-    ) {
-      openAlert({
-        title: "입력이 완료되지 않은 부분이 있어요.",
-        isHeaderCloseBtn: true,
-      });
-
-      return false;
-    } else if (endDate - startDate < 0) {
+    if (endDate - startDate < 0) {
       openAlert({
         title: "종료일은 시작일보다 전일 수 없어요.",
         isHeaderCloseBtn: true,
