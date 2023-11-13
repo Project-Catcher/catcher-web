@@ -1,4 +1,5 @@
 import { ModalContentId } from "@shared/recoil/modal";
+import CalendarSelector from "./CalendarSelector";
 import ThumbnailSelector, { ThumbnailSelectorProps } from "./ThumbnailSelector";
 
 export interface ModalContentProps {
@@ -10,6 +11,8 @@ const ModalContent = <T,>(modalProps: ModalContentProps) => {
   switch (contentId) {
     case "thumbnailSelector":
       return <ThumbnailSelector {...(modalProps as ThumbnailSelectorProps)} />;
+    case "calendarSelector":
+      return <CalendarSelector />;
     default:
       return <></>;
   }
