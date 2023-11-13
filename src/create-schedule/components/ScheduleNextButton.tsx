@@ -12,8 +12,8 @@ const ScheduleNextButton = ({ value }: ScheduleNextButtonProps) => {
   const setCurrentProgress = useSetRecoilState(currentProgress);
 
   const handleInputCheck = () => {
-    const startDate = Number(answer.startedAt.split(".").join(""));
-    const endDate = Number(answer.endedAt.split(".").join(""));
+    const startDate = parseInt(answer.startedAt.replace(/\./g, ""));
+    const endDate = parseInt(answer.endedAt.replace(/\./g, ""));
 
     if (
       answer.city === "" ||
