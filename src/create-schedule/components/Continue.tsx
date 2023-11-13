@@ -1,9 +1,15 @@
 import { useSetRecoilState } from "recoil";
-import { currentProgress } from "@shared/recoil";
+import { currentPageName, currentProgress } from "@shared/recoil";
 import BlockShowing from "./BlockShowing";
 
 const Continue = () => {
+  const setCurrentPage = useSetRecoilState(currentPageName);
   const setCurrentProgress = useSetRecoilState(currentProgress);
+
+  const handleCurrentPageElements = () => {
+    setCurrentPage("기본정보");
+    setCurrentProgress(2);
+  };
 
   return (
     <div className="w-fit px-[100px] py-[15px]">
@@ -12,7 +18,7 @@ const Continue = () => {
       </button>
       <button
         className="w-[207px] h-[44px] text-[14px] text-[#666666] font-medium -tracking-[0.03em] border border-[#E0E0E0] rounded-[5px]"
-        onClick={() => setCurrentProgress(2)}
+        onClick={handleCurrentPageElements}
       >
         새로 만들기
       </button>
