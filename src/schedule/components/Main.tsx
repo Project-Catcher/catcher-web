@@ -1,21 +1,11 @@
+import { defaultCardList } from "@schedule/const";
 import React, { useState } from "react";
+import { CardItemType } from "./AllContent";
+import MyScheduleContent from "./MyScheduleContent";
 import ScheduleHeader from "./ScheduleHeader";
-import ScheduleTab from "./ScheduleTab";
-
-type TabType =
-  | "진행 예정"
-  | "진행 중"
-  | "진행 완료"
-  | "모집 중"
-  | "참여 신청"
-  | "보관";
 
 const Main = () => {
-  const [tab, setTab] = useState("진행 예정");
-
-  const onClickTab = (tab: string) => {
-    setTab(tab);
-  };
+  const [cardList, setCardList] = useState<CardItemType[]>(defaultCardList);
 
   return (
     <div>
@@ -26,26 +16,18 @@ const Main = () => {
 
       <div className="flex justify-center">
         {/* 일정 탭 */}
-        <div className="flex flex-col w-3/5 pt-10">
-          <ScheduleTab
-            tabTitle="내 일정"
-            tabItems={allTabItems}
-            currentTab={tab}
-            onClickTab={onClickTab}
-          />
+        <div className="flex flex-col w-3/5 py-10">
+          <div className="text-zinc-800 text-[32px] font-bold">내 일정</div>
         </div>
+      </div>
+
+      <div className="flex flex-col items-center min-h-[640px] bg-slate-100 border-t">
+        {/* MainContent */}
+
+        <MyScheduleContent cardList={cardList} />
       </div>
     </div>
   );
 };
 
 export default Main;
-
-const allTabItems: Record<"title", TabType>[] = [
-  { title: "진행 예정" },
-  { title: "진행 중" },
-  { title: "진행 완료" },
-  { title: "모집 중" },
-  { title: "참여 신청" },
-  { title: "보관" },
-];

@@ -84,3 +84,7 @@ a {
 .overflow-FAQ {
   @apply overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
 }
+
+.truncate-text {
+  @apply whitespace-nowrap overflow-hidden overflow-ellipsis
+}
