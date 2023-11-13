@@ -50,3 +50,12 @@ export interface PlanSubTitle {
   withyou: string;
   fillyourplan: (nickname: string) => string;
 }
+
+export interface ScheduleAnswerType {
+  title: string;
+  imageSrc: string;
+  startedAt: string;
+  endedAt: string;
+  city: string;
+  tag: string[];
+}

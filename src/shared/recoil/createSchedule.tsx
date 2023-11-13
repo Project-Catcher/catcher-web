@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { CurrentPageType } from "@shared/types";
+import { CurrentPageType, ScheduleAnswerType } from "@shared/types";
 
 export const currentPageName = atom<CurrentPageType>({
   key: "currentPage",
@@ -9,4 +9,16 @@ export const currentPageName = atom<CurrentPageType>({
 export const currentProgress = atom<number>({
   key: "currentProgress",
   default: 1,
+});
+
+export const scheduleAnswers = atom<ScheduleAnswerType>({
+  key: "scheduleAnswers",
+  default: {
+    title: "",
+    imageSrc: "",
+    startedAt: "",
+    endedAt: "",
+    city: "",
+    tag: [],
+  },
 });
