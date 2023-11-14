@@ -1,19 +1,28 @@
+// 일정 작은 카드
 import Image from "next/image";
 import React from "react";
 import { getDaysDifference, stringToDate } from "@shared/utils";
 
+export type cardType = "다가오는 일정" | "모집 중" | "참여 신청";
+
 interface ScheduleSmallCardProps {
+  type: cardType;
   title: string;
   location: string;
   durationStart: string;
   durationEnd: string;
+  participateNum: number;
+  participateCapacity: number;
 }
 
 const ScheduleSmallCard = ({
+  type,
   title,
   location,
   durationStart,
   durationEnd,
+  participateNum,
+  participateCapacity,
 }: ScheduleSmallCardProps) => {
   return (
     <div className="w-[270px] bg-white rounded-[20px] border border-gray-300 px-6 py-5">
@@ -33,12 +42,28 @@ const ScheduleSmallCard = ({
         <div className="mt-2 text-sm font-medium text-neutral-500">
           {stringToDate(durationStart)} ~ {stringToDate(durationEnd)}
         </div>
-        <div className="text-base font-medium text-pink-400">
-          D
-          {getDaysDifference(durationStart) === 0
-            ? "-DAY"
-            : getDaysDifference(durationStart)}
-        </div>
+
+        {type === "다가오는 일정" ? (
+          <div className="text-base font-medium text-pink-400">
+            D
+            {getDaysDifference(durationStart) === 0
+              ? "-DAY"
+              : getDaysDifference(durationStart)}
+          </div>
+        ) : (
+          <div className="flex gap-x-1">
+            <Image
+              src="/assets/schedule/partying_face.svg"
+              alt="emoji"
+              width={21}
+              height={21}
+            />
+            <div>
+              <span className="text-pink-400">{participateNum}</span>
+              <span className="text-gray-400">/{participateCapacity}</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+// 모든 일정 목록
 import React, { Dispatch, SetStateAction, useState } from "react";
 import ScheduleCard from "./ScheduleCard";
 
@@ -20,6 +21,8 @@ export interface CardItemType {
   like: number;
   comment: number;
   marked: number;
+  participateNum: number;
+  participateCapacity: number;
 }
 
 const AllContent = ({ cardList, setCardList }: AllContentProps) => {
