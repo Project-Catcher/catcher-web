@@ -37,6 +37,7 @@ const AllContent = ({ cardList, setCardList }: AllContentProps) => {
     updatedCardList.splice(i, 1);
     setCardList(updatedCardList);
   };
+
   return (
     <div className="w-3/5">
       <div className="flex justify-between mt-6 ">
