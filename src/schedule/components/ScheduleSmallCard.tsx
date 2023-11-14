@@ -3,10 +3,10 @@ import Image from "next/image";
 import React from "react";
 import { getDaysDifference, stringToDate } from "@shared/utils";
 
-export type cardType = "다가오는 일정" | "모집 중" | "참여 신청";
+export type scheduleSmallCardType = "다가오는 일정" | "모집 중" | "참여 신청";
 
 interface ScheduleSmallCardProps {
-  type: cardType;
+  type: scheduleSmallCardType;
   title: string;
   location: string;
   durationStart: string;

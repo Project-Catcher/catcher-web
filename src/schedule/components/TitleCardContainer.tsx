@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { CardItemType } from "./AllContent";
 import EmptyContent from "./EmptyContent";
-import ScheduleSmallCard, { cardType } from "./ScheduleSmallCard";
+import ScheduleSmallCard, { scheduleSmallCardType } from "./ScheduleSmallCard";
 
 interface TitleCardContainerProps {
   title: string;
@@ -90,7 +90,7 @@ const TitleCardContainer = ({ title, cardList }: TitleCardContainerProps) => {
             {filteredList.map((card, i) => (
               <ScheduleSmallCard
                 key={`small card-${i}`}
-                type={title as cardType}
+                type={title as scheduleSmallCardType}
                 title={card.title}
                 location={card.location}
                 durationStart={card.durationStart}
