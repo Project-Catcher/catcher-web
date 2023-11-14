@@ -2,25 +2,29 @@
 import Image from "next/image";
 import { useState } from "react";
 
+export type scheduleCardType = "complete" | "temporary";
+
 interface ScheduleCardProps {
+  type: scheduleCardType;
   idx: number;
   theme: string;
-  img?: string;
+  img: string;
   title: string;
-  content?: string;
+  content: string;
   writer: string;
   status: boolean;
   location: string;
   durationStart: string;
   durationEnd: string;
   createdAt: string;
-  like: number;
-  comment: number;
-  marked: number;
+  like?: number;
+  comment?: number;
+  marked?: number;
   onClickDelete: (i: number) => void;
 }
 
 const ScheduleCard = ({
+  type,
   idx,
   theme,
   img,
@@ -42,7 +46,7 @@ const ScheduleCard = ({
     setIsDelete((prev) => !prev);
   };
 
-  return (
+  return type === "complete" ? (
     <div
       className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 ${
         isDelete ? "" : "cursor-pointer"
@@ -73,7 +77,7 @@ const ScheduleCard = ({
           </div>
         </div>
       )}
-      {/* 사진 및 테마 */}
+
       <div
         className={`w-[260px] h-[225px] bg-stone-300 border-b border-zinc-400 relatvie`}
       >
@@ -81,7 +85,7 @@ const ScheduleCard = ({
           <div className="px-[6px] py-1 font-semibold text-center text-base text-white bg-emerald-400">
             {theme}
           </div>
-          <div className="p-1 cursor-pointer" onClick={handleDelete}>
+          <div className="px-2 py-1 cursor-pointer" onClick={handleDelete}>
             <Image
               src="/assets/schedule/delete_icon.svg"
               alt="delete icon"
@@ -91,7 +95,7 @@ const ScheduleCard = ({
           </div>
         </div>
 
-        {img ? (
+        {img.length !== 0 ? (
           <Image src={img} alt="sample img" width={270} height={235} />
         ) : (
           <div className="flex items-center justify-center h-full text-white">
@@ -100,9 +104,8 @@ const ScheduleCard = ({
         )}
       </div>
 
-      {/* Content */}
       <div className="flex flex-col border-b-[1px] border-zinc-200 px-6 py-4 bg-white">
-        <div className="text-base font-medium">{title}</div>
+        <div className="text-base font-medium truncate-text">{title}</div>
         <div className="mt-1 text-sm font-medium text-pink-400">
           {durationStart}~{durationEnd}
         </div>
@@ -113,7 +116,9 @@ const ScheduleCard = ({
             width={17}
             height={17}
           />
-          <span className="ml-1 text-sm text-neutral-400">{location}</span>
+          <span className="ml-1 text-sm text-neutral-400">
+            {location.length !== 0 ? location : "위치를 입력해주세요."}
+          </span>
         </div>
         <div className="mt-1 text-xs text-neutral-400">작성일: {createdAt}</div>
         <div className="flex mt-6">
@@ -138,6 +143,93 @@ const ScheduleCard = ({
             height={14}
           />
           <span className="ml-1 text-sm text-neutral-400">{marked}</span>
+        </div>
+      </div>
+      {/* TODO: 일정 수정하기로 라우팅 */}
+      <div className="py-4 text-sm font-medium text-center bg-white text-zinc-500">
+        일정 수정 바로가기
+      </div>
+    </div>
+  ) : (
+    // 임시저장 일정
+    <div
+      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 ${
+        isDelete ? "" : "cursor-pointer"
+      }`}
+    >
+      {isDelete && (
+        <div className="w-[260px] top-0 bottom-0 bg-black bg-opacity-60 absolute z-20">
+          <div className="flex">
+            <div
+              className="relative left-2 mt-4 w-[67px] h-[25px] bg-white rounded-[3px] cursor-pointer"
+              onClick={handleDelete}
+            >
+              <div className="p-1 text-[12px] font-semibold text-center text-zinc-800">
+                취소
+              </div>
+            </div>
+            <div
+              className="relative -right-28 mt-4 w-[67px] h-[25px] bg-white rounded-[3px] cursor-pointer"
+              onClick={() => {
+                handleDelete();
+                onClickDelete(idx);
+              }}
+            >
+              <div className="p-1 text-[12px] font-semibold text-center text-zinc-800">
+                삭제하기
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div
+        className={`w-[260px] h-[225px] bg-stone-300 border-b border-zinc-400 relatvie`}
+      >
+        <div className="absolute w-[260px] top-0 flex justify-between z-10">
+          <div className="px-[6px] py-1 font-semibold text-center text-base text-white bg-emerald-400">
+            {theme}
+          </div>
+          <div className="px-2 py-1 cursor-pointer" onClick={handleDelete}>
+            <Image
+              src="/assets/schedule/delete_icon.svg"
+              alt="delete icon"
+              width={20}
+              height={20}
+            />
+          </div>
+        </div>
+
+        {img.length !== 0 ? (
+          <Image src={img} alt="sample img" width={270} height={235} />
+        ) : (
+          <div className="flex items-center justify-center h-full text-white">
+            대표 이미지가 없어요
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col border-b-[1px] border-zinc-200 px-6 py-4 bg-white">
+        <div className="text-base font-medium truncate-text">
+          {title.length !== 0 ? title : "제목을 입력해주세요."}
+        </div>
+        <div className="flex items-start mt-1.5">
+          <Image
+            src="/assets/schedule/location.svg"
+            alt="location"
+            width={17}
+            height={17}
+          />
+          <span className="ml-1 text-sm text-neutral-400">
+            {location.length !== 0 ? location : "위치를 입력해주세요."}
+          </span>
+        </div>
+        <div className="mt-1.5 text-neutral-400 text-xs font-medium w-[210px] h-[50px] truncate-text-wrap">
+          {content.length !== 0 ? content : "내용을 입력해주세요."}
+        </div>
+        <div className="mt-1 text-sm font-medium text-pink-400">
+          {durationStart.length !== 0 ? durationStart : "미정"}~
+          {durationEnd.length !== 0 ? durationEnd : "미정"}
         </div>
       </div>
       {/* TODO: 일정 만들기로 라우팅 */}

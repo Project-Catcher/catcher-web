@@ -9,9 +9,9 @@ interface AllContentProps {
 
 export interface CardItemType {
   theme: string;
-  img?: string;
+  img: string;
   title: string;
-  content?: string;
+  content: string;
   writer: string;
   status: boolean;
   location: string;
@@ -63,9 +63,11 @@ const AllContent = ({ cardList, setCardList }: AllContentProps) => {
         </div>
       </div>
 
+      {/* TODO: 무한 스크롤 추가 */}
       <div className="relative flex flex-wrap mt-2.5 gap-y-12 gap-x-20">
         {cardList.map((card, i) => (
           <ScheduleCard
+            type="complete"
             key={`card-${i}`}
             idx={i}
             theme={card.theme}

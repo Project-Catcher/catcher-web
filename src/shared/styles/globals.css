@@ -88,3 +88,11 @@ a {
 .truncate-text {
   @apply whitespace-nowrap overflow-hidden overflow-ellipsis
 }
+
+.truncate-text-wrap {
+  @apply overflow-hidden overflow-ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
