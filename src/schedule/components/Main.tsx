@@ -1,12 +1,9 @@
-import { defaultCardList } from "@schedule/const";
-import React, { useState } from "react";
-import { CardItemType } from "./AllContent";
+// 내 일정 메인
+import React from "react";
 import MyScheduleContent from "./MyScheduleContent";
 import ScheduleHeader from "./ScheduleHeader";
 
 const Main = () => {
-  const [cardList, setCardList] = useState<CardItemType[]>(defaultCardList);
-
   return (
     <div>
       <div className="flex justify-center pt-32">
@@ -24,7 +21,7 @@ const Main = () => {
       <div className="flex flex-col items-center min-h-[640px] bg-slate-100 border-t">
         {/* MainContent */}
 
-        <MyScheduleContent cardList={cardList} />
+        <MyScheduleContent />
       </div>
     </div>
   );
