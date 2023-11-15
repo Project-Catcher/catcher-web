@@ -4,9 +4,10 @@ import { currentProgress, scheduleAnswers } from "@shared/recoil";
 
 interface ScheduleNextButtonProps {
   value: string;
+  callType: "basicInfo" | "template";
 }
 
-const ScheduleNextButton = ({ value }: ScheduleNextButtonProps) => {
+const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
   const { openAlert } = useModal();
   const answer = useRecoilValue(scheduleAnswers);
   const setCurrentProgress = useSetRecoilState(currentProgress);
@@ -28,18 +29,25 @@ const ScheduleNextButton = ({ value }: ScheduleNextButtonProps) => {
   };
 
   const handleCurrentProgress = () => {
-    if (handleInputCheck()) {
+    if (callType === "basicInfo" && handleInputCheck()) {
+      setCurrentProgress((prev) => prev + 1);
+    } else if (callType === "template") {
       setCurrentProgress((prev) => prev + 1);
     }
   };
 
   return (
-    <button
-      className="w-[423px] h-[48px] text-[14px] text-white font-bold -tracking-[0.03em] bg-[#F864A1] rounded-[5px]"
-      onClick={handleCurrentProgress}
-    >
-      {value}
-    </button>
+    <>
+      <button
+        className="w-[423px] h-[48px] text-[14px] text-white font-bold -tracking-[0.03em] bg-[#F864A1] rounded-[5px] mb-[9px]"
+        onClick={handleCurrentProgress}
+      >
+        {value}
+      </button>
+      <div className="w-fit text-[14px] text-[#F864A1] -tracking-[0.03em] mx-auto">
+        언제든 수정할 수 있습니다
+      </div>
+    </>
   );
 };
 

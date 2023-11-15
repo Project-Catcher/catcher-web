@@ -22,6 +22,8 @@ export const SCHEDULE_TITLE = {
   city: "장소 선택",
   tag: "카테고리 태그(#)",
   tagRecommend: "이런 태그는 어떤가요?",
+  templateRecommend: (nickname: string) =>
+    `${nickname} 님을 위한 추천 일정 템플릿이 있어요!`,
 };
 
 export const SCHEDULE_SUBTITLE = {

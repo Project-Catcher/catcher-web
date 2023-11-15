@@ -4,7 +4,7 @@ export interface Schedule {
   imageSrc: string;
   title: string;
   position: string;
-  createdAt: string;
+  createdAt?: string;
   requiredTime?: string;
 }
 
@@ -28,14 +28,14 @@ const ScheduleCard = ({ content, callType }: ScheduleCardProps) => {
             <div className="text-[12px] text-[#333333] font-semibold -tracking-[0.02em]">
               {_content.title}
             </div>
-            <div
-              className={`${
-                callType === "remain" ? "text-[#959CA1] " : "text-[#F864A1] "
-              }text-[10px] font-medium -tracking-[0.02em]`}
-            >
+            <div className="text-[10px] text-[#959CA1] font-medium -tracking-[0.02em]">
               {_content.position}
             </div>
-            <div className="absolute bottom-[8px] text-[10px] text-[#757575] font-semibold -tracking-[0.02em] float-bottom">
+            <div
+              className={`${
+                callType === "remain" ? "text-[#757575] " : "text-[#F864A1] "
+              }absolute bottom-[8px] text-[10px] font-semibold -tracking-[0.02em] float-bottom`}
+            >
               {`${
                 callType === "remain"
                   ? `${_content.createdAt} 작성`

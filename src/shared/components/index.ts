@@ -5,6 +5,7 @@ export { default as IdInput } from "./IdInput";
 export { default as InputWithLabel } from "./InputWithLabel";
 export { default as Instructions } from "./Instructions";
 export { default as PasswordInput } from "./PasswordInput";
+export { default as ScheduleCard } from "./ScheduleCard";
 export { default as SwitchButton } from "./SwitchButton";
 export { default as Tag } from "./Tag";
 export { default as TimerWithButton } from "./TimerWithButton";
