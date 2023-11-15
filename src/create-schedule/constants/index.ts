@@ -20,6 +20,8 @@ export const SCHEDULE_TITLE = {
   mainImage: "대표 이미지",
   date: "일정 시작일 ~ 종료일",
   city: "장소 선택",
+  tag: "카테고리 태그(#)",
+  tagRecommend: "이런 태그는 어떤가요?",
 };
 
 export const SCHEDULE_SUBTITLE = {

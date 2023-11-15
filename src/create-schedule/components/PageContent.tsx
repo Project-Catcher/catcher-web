@@ -3,6 +3,7 @@ import { useRecoilValue } from "recoil";
 import { currentProgress } from "@shared/recoil";
 import PlanDefaultInfo from "./PlanDefaultInfo";
 import Remains from "./Remains";
+import ScheduleTagTemplate from "./ScheduleTagTemplate";
 import Title from "./Title";
 
 const PageContent = () => {
@@ -26,6 +27,12 @@ const PageContent = () => {
             subTitle={SUBTITLE.withyou}
           />
           <PlanDefaultInfo />
+        </div>
+      )}
+      {current === 3 && (
+        <div className="w-[628px]">
+          <Title title={TITLE.tag} subTitle={SUBTITLE.withyou} />
+          <ScheduleTagTemplate />
         </div>
       )}
     </>

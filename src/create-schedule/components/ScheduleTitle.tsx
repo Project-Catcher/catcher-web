@@ -1,11 +1,13 @@
 interface ScheduleTitleProps {
   title: string;
+  textSize?: string;
   subTitle?: string;
   hasSubTitle?: boolean;
 }
 
 const ScheduleTitle = ({
   title,
+  textSize = "text-[18px]",
   subTitle,
   hasSubTitle,
 }: ScheduleTitleProps) => {
@@ -13,8 +15,8 @@ const ScheduleTitle = ({
     <>
       <div
         className={`${
-          hasSubTitle ? "mb-[9px] " : "mb-[12px] "
-        }text-[18px] text-[#333333] font-medium -tracking-[0.5px]`}
+          hasSubTitle ? "mb-[9px]" : "mb-[12px]"
+        } ${textSize} w-full text-[#333333] font-medium -tracking-[0.5px]`}
       >
         {title}
       </div>
