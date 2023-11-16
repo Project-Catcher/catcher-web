@@ -1,7 +1,11 @@
+import Image from "next/image";
 import { useRecoilCallback, useRecoilValue } from "recoil";
+import CommonButton from "@shared/components/CommonButton";
 import { convertTextLineBreak } from "@shared/utils/format";
 import { confirmState } from "../recoil/modal";
 import { ModalWrapper } from "./ModalWrapper";
+import CloseButton from "/public/images/samples/closeButton.svg";
+import Pin from "/public/images/samples/pin.svg";
 
 const Confirm = () => {
   const {
@@ -11,8 +15,10 @@ const Confirm = () => {
     isHeaderCloseBtn,
     okCallback,
     okText,
+    okVariant,
     noCallback,
     noText,
+    noVariant,
   } = useRecoilValue(confirmState);
   const handleOk = useRecoilCallback(({ reset }) => () => {
     okCallback?.();
@@ -27,24 +33,37 @@ const Confirm = () => {
     return (
       <ModalWrapper isHeaderCloseBtn={isHeaderCloseBtn} type="confirm">
         <div className="relative z-50 w-fit">
-          <div className="bg-white w-[300px] h-[200px] rounded-lg shadow-lg flex flex-col items-center justify-center">
-            {title && <h1 className="mb-2 text-lg font-bold">{title}</h1>}
-            {text && (
-              <p className="mb-4 text-gray-700">{convertTextLineBreak(text)}</p>
-            )}
-            <div className="flex">
-              <button
-                onClick={handleOk}
-                className="px-4 py-2 mr-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-              >
-                {okText ?? "확인"}
-              </button>
-              <button
+          <span className="absolute top-[-60px] left-[calc(50%-25px)]">
+            <Image src={Pin} width={100} height={100} alt="pin" />
+          </span>
+          {isHeaderCloseBtn && (
+            <span className="absolute right-4 top-4">
+              <Image
                 onClick={handleNo}
-                className="px-4 py-2 font-bold text-white rounded bg-slate-500 hover:bg-slate-700"
-              >
+                className="cursor-pointer"
+                src={CloseButton}
+                width={24.72}
+                height={24.72}
+                alt="close-button"
+              />
+            </span>
+          )}
+          <div className="bg-white p-5 min-w-[423px] min-h-[229px] rounded-[20px] shadow-lg flex flex-col items-center justify-center">
+            <div className="m-auto">
+              {title && <h1 className="mb-2 text-lg font-bold">{title}</h1>}
+              {text && (
+                <p className="text-xl text-[#333333] font-bold">
+                  {<>{convertTextLineBreak(text)}</>}
+                </p>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <CommonButton variant={noVariant ?? "warn"} onClick={handleNo}>
                 {noText ?? "취소"}
-              </button>
+              </CommonButton>
+              <CommonButton variant={okVariant ?? "accept"} onClick={handleOk}>
+                {okText ?? "확인"}
+              </CommonButton>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { uniqueId } from "lodash";
 import { atom, selector, useRecoilState } from "recoil";
+import { ButtonVariants } from "@shared/components/CommonButton";
 
 export interface AlertProps {
   isOpen: boolean;
@@ -7,6 +8,7 @@ export interface AlertProps {
   title?: string;
   text?: string;
   okText?: string;
+  okVariant?: ButtonVariants;
   okCallback?: VoidFunction;
 }
 export const alertState = atom<AlertProps>({
@@ -31,8 +33,10 @@ export interface ConfirmProps {
   text?: string;
   okText?: string;
   okCallback?: VoidFunction;
+  okVariant?: ButtonVariants;
   noText?: string;
   noCallback?: VoidFunction;
+  noVariant?: ButtonVariants;
 }
 
 export const confirmState = atom<ConfirmProps>({
