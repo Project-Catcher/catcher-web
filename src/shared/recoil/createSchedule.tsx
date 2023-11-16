@@ -2,12 +2,12 @@ import { atom } from "recoil";
 import { CurrentPageType, ScheduleAnswerType } from "@shared/types";
 
 export const currentPageName = atom<CurrentPageType>({
-  key: "currentPage",
+  key: "currentSchedulePage",
   default: "작성 중인 일정",
 });
 
 export const currentProgress = atom<number>({
-  key: "currentProgress",
+  key: "currentScheduleProgress",
   default: 1,
 });
 
