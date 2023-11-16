@@ -35,6 +35,14 @@ const PageContent = () => {
           <ScheduleTagTemplate />
         </div>
       )}
+      {current === 4 && (
+        <div>
+          <Title
+            title={TITLE.fill}
+            subTitle={SUBTITLE.fillyourplan("명란마요")}
+          />
+        </div>
+      )}
     </>
   );
 };
