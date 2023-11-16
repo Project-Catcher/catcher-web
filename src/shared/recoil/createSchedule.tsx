@@ -20,5 +20,13 @@ export const scheduleAnswers = atom<ScheduleAnswerType>({
     endedAt: "",
     city: "",
     tag: [],
+    items: [
+      {
+        tag: "",
+        title: "",
+        background: "",
+        city: "",
+      },
+    ],
   },
 });

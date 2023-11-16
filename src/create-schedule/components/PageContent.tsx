@@ -1,6 +1,7 @@
 import { SUBTITLE, TITLE } from "@create-schedule/constants";
 import { useRecoilValue } from "recoil";
 import { currentProgress } from "@shared/recoil";
+import DragnDropContainer from "./DragnDropContainer";
 import PlanDefaultInfo from "./PlanDefaultInfo";
 import Remains from "./Remains";
 import ScheduleTagTemplate from "./ScheduleTagTemplate";
@@ -36,12 +37,17 @@ const PageContent = () => {
         </div>
       )}
       {current === 4 && (
-        <div>
-          <Title
-            title={TITLE.fill}
-            subTitle={SUBTITLE.fillyourplan("명란마요")}
-          />
-        </div>
+        <>
+          <div className="inline-block">
+            <Title
+              title={TITLE.fill}
+              subTitle={SUBTITLE.fillyourplan("명란마요")}
+            />
+          </div>
+          <div className="flex">
+            <DragnDropContainer />
+          </div>
+        </>
       )}
     </>
   );

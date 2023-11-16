@@ -58,6 +58,14 @@ export interface ScheduleAnswerType {
   endedAt: string;
   city: string;
   tag: string[];
+  items: [
+    {
+      tag: string;
+      title: string;
+      background: string;
+      city: string;
+    },
+  ];
 }
 
 export type CalendarSelectorType = "startedAt" | "endedAt";
