@@ -22,7 +22,7 @@ const LoginOption = ({ answer, handleError }: LoginOptionProps) => {
   };
 
   const onNaverLogin = () => {
-    push(`${NAVER_CODE_URL}`);
+    push(NAVER_CODE_URL);
   };
 
   return (
