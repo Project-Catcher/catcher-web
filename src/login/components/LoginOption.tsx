@@ -18,7 +18,7 @@ const LoginOption = ({ answer, handleError }: LoginOptionProps) => {
   };
 
   const onKakaoLogin = () => {
-    push(`${KAKAO_CODE_URL}`);
+    push(KAKAO_CODE_URL);
   };
 
   const onNaverLogin = () => {
