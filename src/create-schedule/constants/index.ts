@@ -33,3 +33,14 @@ export const SCHEDULE_SUBTITLE = {
   date: "준비기간 및 모집기간 등 전체 일정을 고려해 설정해 주세요.",
   city: "일정을 수행할 위치를 선택해주세요.",
 };
+
+export const PIXEL = {
+  itemHeight: 21,
+  cellHeight: 35,
+  padding: 6,
+  gap: 1,
+};
+
+export const TIME = {
+  hour: 60,
+};
