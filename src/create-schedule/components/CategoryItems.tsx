@@ -1,14 +1,13 @@
 import { SCHEDULE_TITLE } from "@create-schedule/constants";
+import { CategoryItem } from "@shared/types";
 import CategoryFrame from "./CategoryFrame";
-import { CategoryItem } from "./DragnDropContainer";
 import ScheduleTitle from "./ScheduleTitle";
 
 interface CategoryItemsProps {
   category: CategoryItem[];
-  onDragStart: (index: number) => void;
 }
 
-const CategoryItems = ({ category, onDragStart }: CategoryItemsProps) => {
+const CategoryItems = ({ category }: CategoryItemsProps) => {
   return (
     <div className="mt-[36px] mb-[18px]">
       <ScheduleTitle title={SCHEDULE_TITLE.categoryItems} />
@@ -20,7 +19,7 @@ const CategoryItems = ({ category, onDragStart }: CategoryItemsProps) => {
         />
       </div>
       <div className="w-[414px] h-fit bg-[#E7F9EE] rounded-[5px] px-[82px] py-[8px]">
-        <CategoryFrame category={category} onDragStart={onDragStart} />
+        <CategoryFrame category={category} hasPointer />
       </div>
     </div>
   );

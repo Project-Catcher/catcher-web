@@ -1,15 +1,9 @@
-import { DragEvent, useState } from "react";
+import { CategoryItem } from "@shared/types";
 import CategoryItems from "./CategoryItems";
 import TimeTableContainer from "./TimeTableContainer";
 
-export interface CategoryItem {
-  category: string;
-  title: string;
-  city: string;
-  tagBackground: string;
-}
-
 const DragnDropContainer = () => {
+  // TODO: fetch category
   const category: CategoryItem[] = [
     {
       category: "문화생활",
@@ -49,23 +43,11 @@ const DragnDropContainer = () => {
     },
   ];
 
-  const [selectedItem, setSelectedItem] = useState<CategoryItem | null>(null);
-
-  const onDragStart = (index: number) => {
-    setSelectedItem(category[index]);
-    console.log("start");
-  };
-
-  const onDrop = (e: DragEvent<HTMLTableRowElement>, index: number) => {
-    console.log("drop", index, selectedItem);
-    e.preventDefault();
-  };
-
   return (
     <>
-      <TimeTableContainer onDrop={onDrop} />
+      <TimeTableContainer />
       <div className="inline-block px-[50px]">
-        <CategoryItems category={category} onDragStart={onDragStart} />
+        <CategoryItems category={category} />
       </div>
     </>
   );
