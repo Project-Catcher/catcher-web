@@ -96,3 +96,12 @@ a {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.recruit-table-head {
+  @apply p-3 text-xs font-medium text-left text-gray-500
+}
+
+.recruit-table-data {
+  @apply p-3 text-sm text-gray-900
+}
+
