@@ -34,6 +34,7 @@ export { default as SelectCity } from "./SelectCity";
 export { default as SelectDate } from "./SelectDate";
 export { default as SelectMainImage } from "./SelectMainImage";
 export { default as SelectMainImageBox } from "./SelectMainImageBox";
+export { default as ShowDuration } from "./ShowDuration";
 export { default as ShowSelectedDate } from "./ShowSelectedDate";
 export { default as ShowSelectedItem } from "./ShowSelectedItem";
 export { default as SideBarIntro } from "./SideBarIntro";
