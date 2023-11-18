@@ -8,7 +8,7 @@ const ScheduleHeader = () => {
       {tabs.map((tab, i) => (
         <div
           key={`tab-${i}`}
-          className={`flex items-center justify-center w-48 text-sm rounded-md font-medium text-center text-zinc-500 cursor-pointer ${
+          className={`flex items-center justify-center w-[168px] text-sm rounded-md font-medium text-center text-zinc-500 cursor-pointer ${
             router.asPath === tab.path
               ? "bg-white text-zinc-800 font-bold border"
               : "text-zinc-400 font-medium hover:bg-gray-200"
@@ -44,6 +44,10 @@ const tabs = [
   {
     title: "스크랩",
     path: "/schedule/scrap",
+  },
+  {
+    title: "임시저장",
+    path: "/schedule/temporary",
   },
   {
     title: "나만의 아이템",
