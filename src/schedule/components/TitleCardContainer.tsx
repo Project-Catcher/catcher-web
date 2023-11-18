@@ -1,7 +1,8 @@
+// 제목, 작은 카드 목록
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { CardItemType } from "./AllContent";
 import EmptyContent from "./EmptyContent";
+import { CardItemType } from "./ScheduleContent";
 import ScheduleSmallCard, { scheduleSmallCardType } from "./ScheduleSmallCard";
 
 interface TitleCardContainerProps {
@@ -47,6 +48,13 @@ const TitleCardContainer = ({ title, cardList }: TitleCardContainerProps) => {
     }
   }, [handleSlide]);
 
+  // TODO: 삭제 요청 추가
+  const onClickDelete = (i: number) => {
+    const updatedCardList = [...filteredList];
+    updatedCardList.splice(i, 1);
+    setFilteredList(updatedCardList);
+  };
+
   return (
     <>
       <div className="flex justify-between pb-3">
@@ -89,6 +97,7 @@ const TitleCardContainer = ({ title, cardList }: TitleCardContainerProps) => {
           >
             {filteredList.map((card, i) => (
               <ScheduleSmallCard
+                idx={i}
                 key={`small card-${i}`}
                 type={title as scheduleSmallCardType}
                 title={card.title}
@@ -97,6 +106,7 @@ const TitleCardContainer = ({ title, cardList }: TitleCardContainerProps) => {
                 durationEnd={card.durationEnd}
                 participateNum={card.participateNum}
                 participateCapacity={card.participateCapacity}
+                onClickDelete={onClickDelete}
               />
             ))}
           </div>

@@ -2,7 +2,7 @@
 import { defaultCardList, defaultTemporaryCardList } from "@schedule/const";
 import React, { useState } from "react";
 import ScheduleCard, { cardType } from "./ScheduleCard";
-import { CardItemType } from "./ScheduleContent";
+import { CardItemType, scheduleType } from "./ScheduleContent";
 import TitleCardContainer from "./TitleCardContainer";
 
 const MyScheduleContent = () => {
@@ -33,6 +33,7 @@ const MyScheduleContent = () => {
         {temporaryCardList.map((card, i) => (
           <ScheduleCard
             cardType={"temporary" as cardType}
+            scheduleType={"my" as scheduleType}
             key={`card-${i}`}
             idx={i}
             theme={card.theme}

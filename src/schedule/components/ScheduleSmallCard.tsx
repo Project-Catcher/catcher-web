@@ -31,8 +31,6 @@ const ScheduleSmallCard = ({
 }: ScheduleSmallCardProps) => {
   const [isToggle, setIsToggle] = useState(false);
 
-  console.log("idx", idx, isToggle);
-
   const onClickToggle = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     setIsToggle((prev) => !prev);
