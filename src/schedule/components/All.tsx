@@ -3,7 +3,6 @@ import { defaultCardList } from "@schedule/const";
 import React, { useEffect, useState } from "react";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
-import ScheduleHeader from "./ScheduleHeader";
 import ScheduleTab from "./ScheduleTab";
 
 type TabType = "전체" | "진행 예정" | "진행중/완료 일정";

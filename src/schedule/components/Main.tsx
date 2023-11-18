@@ -1,7 +1,6 @@
 // 내 일정 메인
 import React from "react";
 import MyScheduleContent from "./MyScheduleContent";
-import ScheduleHeader from "./ScheduleHeader";
 
 const Main = () => {
   return (

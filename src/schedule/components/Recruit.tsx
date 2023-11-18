@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { DateProps } from "./All";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
-import ScheduleHeader from "./ScheduleHeader";
 import ScheduleTab from "./ScheduleTab";
 
 type TabType = "전체" | "모집 중/예정" | "모집 완료";
