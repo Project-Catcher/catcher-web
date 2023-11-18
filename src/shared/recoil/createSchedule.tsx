@@ -1,7 +1,11 @@
-import { CategoryItem } from "@create-schedule/components/DragnDropContainer";
 import { uniqueId } from "lodash";
 import { atom } from "recoil";
-import { CurrentPageType, ScheduleAnswerType } from "@shared/types";
+import {
+  AppliedItem,
+  CurrentPageType,
+  ScheduleAnswerType,
+  SelectedCategoryItem,
+} from "@shared/types";
 
 export const currentPageName = atom<CurrentPageType>({
   key: `currentSchedulePage/${uniqueId()}`,
@@ -33,19 +37,18 @@ export const scheduleAnswers = atom<ScheduleAnswerType>({
   },
 });
 
-export const selectedScheduleItem = atom<CategoryItem | null>({
+export const selectedScheduleItem = atom<SelectedCategoryItem | null>({
   key: `selectedScheduleItem/${uniqueId()}`,
   default: {
     category: "",
     title: "",
     tagBackground: "",
     city: "",
-    startTime: "",
-    endTime: "",
+    selectedTime: 0,
   },
 });
 
-export const appliedScheduleItem = atom<CategoryItem[] | null>({
+export const appliedScheduleItem = atom<AppliedItem[] | null>({
   key: `appliedScheduleItem${uniqueId()}`,
   default: null,
 });
