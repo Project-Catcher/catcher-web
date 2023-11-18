@@ -1,8 +1,11 @@
-// 모든 일정 목록
+// 일정 목록
 import React, { Dispatch, SetStateAction, useState } from "react";
-import ScheduleCard from "./ScheduleCard";
+import ScheduleCard, { cardType } from "./ScheduleCard";
 
-interface AllContentProps {
+export type scheduleType = "all" | "recruit" | "participate" | "temporary";
+
+interface ScheduleContentProps {
+  scheduleType: scheduleType;
   cardList: CardItemType[];
   setCardList: Dispatch<SetStateAction<CardItemType[]>>;
 }
@@ -18,14 +21,20 @@ export interface CardItemType {
   durationStart: string;
   durationEnd: string;
   createdAt: string;
+  participateNum: number;
+  participateCapacity: number;
+  recruitStart: string;
+  recruitEnd: string;
   like: number;
   comment: number;
   marked: number;
-  participateNum: number;
-  participateCapacity: number;
 }
 
-const AllContent = ({ cardList, setCardList }: AllContentProps) => {
+const ScheduleContent = ({
+  scheduleType,
+  cardList,
+  setCardList,
+}: ScheduleContentProps) => {
   const [isMySchedule, setIsMySchedule] = useState(false);
 
   // TODO: 내가 만든 일정만 필터 로직 추가
@@ -40,34 +49,37 @@ const AllContent = ({ cardList, setCardList }: AllContentProps) => {
 
   return (
     <div className="w-3/5">
-      <div className="flex justify-between mt-6 ">
+      <div className="flex justify-between h-6 mt-6">
         <div className="text-sm">
           전체 <span className="text-pink-400">{cardList.length}</span>개
         </div>
-        <div>
-          <label className="inline-flex items-center">
-            <input
-              type="checkbox"
-              className="w-5 h-5 border-4 accent-pink-500"
-              checked={isMySchedule}
-              onChange={onClickMySchedule}
-            />
-            <div
-              className={`ml-2 text-sm ${
-                isMySchedule ? "text-pink-500" : "text-neutral-400"
-              }`}
-            >
-              내가 만든 일정만 보기
-            </div>
-          </label>
-        </div>
+        {scheduleType === "all" && (
+          <div>
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                className="w-5 h-5 border-4 accent-pink-500"
+                checked={isMySchedule}
+                onChange={onClickMySchedule}
+              />
+              <div
+                className={`ml-2 text-sm ${
+                  isMySchedule ? "text-pink-500" : "text-neutral-400"
+                }`}
+              >
+                내가 만든 일정만 보기
+              </div>
+            </label>
+          </div>
+        )}
       </div>
 
       {/* TODO: 무한 스크롤 추가 */}
       <div className="relative flex flex-wrap mt-2.5 gap-y-12 gap-x-20">
         {cardList.map((card, i) => (
           <ScheduleCard
-            type="complete"
+            cardType={"complete" as cardType}
+            scheduleType={scheduleType}
             key={`card-${i}`}
             idx={i}
             theme={card.theme}
@@ -80,6 +92,10 @@ const AllContent = ({ cardList, setCardList }: AllContentProps) => {
             durationStart={card.durationStart}
             durationEnd={card.durationEnd}
             createdAt={card.createdAt}
+            participateNum={card.participateNum}
+            participateCapacity={card.participateCapacity}
+            recruitStart={card.recruitStart}
+            recruitEnd={card.recruitEnd}
             like={card.like}
             comment={card.comment}
             marked={card.marked}
@@ -91,4 +107,4 @@ const AllContent = ({ cardList, setCardList }: AllContentProps) => {
   );
 };
 
-export default AllContent;
+export default ScheduleContent;

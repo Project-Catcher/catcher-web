@@ -1,8 +1,8 @@
 // 모든 일정
 import { defaultCardList } from "@schedule/const";
 import React, { useEffect, useState } from "react";
-import AllContent, { CardItemType } from "./AllContent";
 import ContentFilter from "./ContentFilter";
+import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
 import ScheduleHeader from "./ScheduleHeader";
 import ScheduleTab from "./ScheduleTab";
 
@@ -17,7 +17,6 @@ const All = () => {
   const [cardList, setCardList] = useState<CardItemType[]>(defaultCardList);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
-    // TODO: 초기값을 undefined로 설정하면 warning이 발생
     start: undefined,
     end: undefined,
   });
@@ -123,7 +122,11 @@ const All = () => {
           onClickSearch={onClickSearch}
         />
         {/* 일정 카드*/}
-        <AllContent cardList={cardList} setCardList={setCardList} />
+        <ScheduleContent
+          scheduleType={"all" as scheduleType}
+          cardList={cardList}
+          setCardList={setCardList}
+        />
       </div>
     </>
   );
