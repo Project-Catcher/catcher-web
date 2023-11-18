@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 const DateMoveButton = () => {
+  // TODO: Date 객체 사용해서 날짜 이동
   return (
     <div className="flex gap-[8px] float-right">
       <div className="flex justify-center w-[33px] h-[33px] border border-[#1918251A] rounded-[100px]">

@@ -2,6 +2,7 @@ import { useRecoilValue } from "recoil";
 import { scheduleAnswers } from "@shared/recoil";
 
 const CurrentDate = () => {
+  // TODO: Date 객체로 사용
   const { startedAt, endedAt } = useRecoilValue(scheduleAnswers);
 
   return (
