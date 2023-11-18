@@ -69,3 +69,25 @@ export interface ScheduleAnswerType {
 }
 
 export type CalendarSelectorType = "startedAt" | "endedAt";
+
+export interface CategoryItem {
+  category: string;
+  title: string;
+  city: string;
+  tagBackground: string;
+}
+
+export interface SelectedCategoryItem extends CategoryItem {
+  selectedTime: number;
+}
+
+export interface AppliedItem extends CategoryItem {
+  startTime: {
+    hour: number;
+    minute: number;
+  };
+  endTime: {
+    hour: number;
+    minute: number;
+  };
+}
