@@ -91,3 +91,14 @@ export interface AppliedItem extends CategoryItem {
     minute: number;
   };
 }
+
+export interface Start2EndTime {
+  start: {
+    hour: string;
+    minute: string;
+  };
+  end: {
+    hour: string;
+    minute: string;
+  };
+}
