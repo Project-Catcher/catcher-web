@@ -31,7 +31,6 @@ const ContentFilter = ({
   handleEndDateChange,
   onClickSearch,
 }: ContentFilterProps) => {
-  console.log("date", date);
   return (
     <div className="flex items-center justify-center w-full py-3 bg-white">
       <div className="mr-2 text-sm font-light text-zinc-800">일정 제목</div>
