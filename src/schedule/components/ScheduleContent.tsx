@@ -2,7 +2,12 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import ScheduleCard, { cardType } from "./ScheduleCard";
 
-export type scheduleType = "all" | "recruit" | "participate" | "my";
+export type scheduleType =
+  | "all"
+  | "recruit"
+  | "participate"
+  | "my"
+  | "participate";
 
 interface ScheduleContentProps {
   scheduleType: scheduleType;

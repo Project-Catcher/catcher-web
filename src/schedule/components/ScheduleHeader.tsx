@@ -38,8 +38,8 @@ const tabs = [
     path: "/schedule/recruit",
   },
   {
-    title: "참여 일정",
-    path: "/schedule/participation",
+    title: "참여 신청",
+    path: "/schedule/participate",
   },
   {
     title: "스크랩",
