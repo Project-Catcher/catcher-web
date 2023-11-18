@@ -90,12 +90,7 @@ const All = () => {
   }, [tab]);
 
   return (
-    <>
-      <div className="flex justify-center pt-32">
-        {/* 탭 */}
-        <ScheduleHeader />
-      </div>
-
+    <div>
       <div className="flex justify-center">
         {/* 일정 탭 */}
         <div className="flex flex-col w-3/5 pt-10">
@@ -128,7 +123,7 @@ const All = () => {
           setCardList={setCardList}
         />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,17 +1,13 @@
 // 모집 일정
 import { defaultCardList } from "@schedule/const";
 import React, { useEffect, useState } from "react";
+import { DateProps } from "./All";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
 import ScheduleHeader from "./ScheduleHeader";
 import ScheduleTab from "./ScheduleTab";
 
 type TabType = "전체" | "모집 중/예정" | "모집 완료";
-
-interface DateProps {
-  start: Date | undefined;
-  end: Date | undefined;
-}
 
 const Recruit = () => {
   const [tab, setTab] = useState("전체");
@@ -100,11 +96,6 @@ const Recruit = () => {
 
   return (
     <div>
-      <div className="flex justify-center pt-32">
-        {/* 탭 */}
-        <ScheduleHeader />
-      </div>
-
       <div className="flex justify-center">
         {/* 일정 탭 */}
         <div className="flex flex-col w-3/5 pt-10">

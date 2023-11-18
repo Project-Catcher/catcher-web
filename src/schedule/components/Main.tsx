@@ -6,11 +6,6 @@ import ScheduleHeader from "./ScheduleHeader";
 const Main = () => {
   return (
     <div>
-      <div className="flex justify-center pt-32">
-        {/* 탭 */}
-        <ScheduleHeader />
-      </div>
-
       <div className="flex justify-center">
         {/* 일정 탭 */}
         <div className="flex flex-col w-3/5 py-10">
