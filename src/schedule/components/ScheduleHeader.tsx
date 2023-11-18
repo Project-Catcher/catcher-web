@@ -35,7 +35,7 @@ const tabs = [
   },
   {
     title: "모집 일정",
-    path: "/schedule/recruitment",
+    path: "/schedule/recruit",
   },
   {
     title: "참여 일정",
