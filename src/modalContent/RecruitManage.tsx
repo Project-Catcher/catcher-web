@@ -48,6 +48,12 @@ const RecruitManage = ({
     setFilter(e.target.value);
   };
 
+  const handleSelectApproval = (selectedList: number[]) => {
+    // TODO: 서버에 승인, 승인 취소 요청
+
+    console.log("selectedIds", selectedList);
+  };
+
   useEffect(() => {
     let filteredApplicants;
 
@@ -60,14 +66,14 @@ const RecruitManage = ({
         (applicant) => applicant.status === false,
       );
     } else {
-      filteredApplicants = defaultApplicants; // "전체"를 선택한 경우
+      filteredApplicants = defaultApplicants;
     }
 
     setApplicants(filteredApplicants);
   }, [filter]);
 
   return (
-    <div className="p-1">
+    <div className="">
       <div className="absolute -top-12" style={{ left: "calc(50% - 55px)" }}>
         <Image
           src="/assets/schedule/pencil.png"
@@ -76,7 +82,7 @@ const RecruitManage = ({
           height={110}
         />
       </div>
-      <div className="flex items-center justify-between px-5 py-2">
+      <div className="flex items-center justify-between px-5">
         <div className="flex flex-col">
           <div className="flex items-center">
             <span className="text-lg font-extrabold text-gray-900">
@@ -88,7 +94,7 @@ const RecruitManage = ({
           </div>
           <span className="text-sm text-gray-500">
             모집정원: {participateCapacity}명 / 승인대기:
-            {defaultApplicants.length - countTrueStatus}명 / 승인완료:{" "}
+            {defaultApplicants.length - countTrueStatus}명 / 승인완료:
             {countTrueStatus}명
           </span>
         </div>
@@ -127,8 +133,8 @@ const RecruitManage = ({
         </div>
       </div>
 
-      <div className="mt-2 min-h-[300px]">
-        <table className="min-w-full border-b divide-y divide-gray-200">
+      <div className="mt-2 max-h-[400px] overflow-y-auto">
+        <table className="min-w-full border-b divide-y divide-gray-200 ">
           <thead className="bg-gray-50">
             <tr>
               <th className="recruit-table-head">
@@ -150,7 +156,7 @@ const RecruitManage = ({
               <th className="recruit-table-head"></th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-200 ">
             {applicants.map((applicant, i) => (
               <tr key={applicant.id} className="h-[58px]">
                 <td className="recruit-table-data">
@@ -211,6 +217,7 @@ const RecruitManage = ({
                         ? "bg-red-600 hover:bg-red-700"
                         : "bg-emerald-500 hover:bg-emerald-600"
                     } `}
+                    onClick={() => handleSelectApproval([applicant.id])}
                   >
                     {applicant.status ? "승인 취소" : "승인"}
                   </button>
@@ -219,6 +226,14 @@ const RecruitManage = ({
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="mt-2 mr-4 text-right">
+        <button
+          className="w-[88px] h-[30px] bg-emerald-50 rounded-[5px] border border-emerald-500 text-emerald-500 text-sm"
+          onClick={() => handleSelectApproval(Array.from(selectedIds))}
+        >
+          선택승인
+        </button>
       </div>
       <div className="flex justify-center mt-2">
         <button
