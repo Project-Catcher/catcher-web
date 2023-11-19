@@ -14,12 +14,13 @@ permissions:
   id-token: write
   contents: read
 
-jobs:
+jobs:    
+  call_err_check:
+    name: Call workflow Error Check
+    uses: ./.github/workflows/check_errors.yml
   build:
-    needs: err_check
     name: To push ECR
     runs-on: self-hosted
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
