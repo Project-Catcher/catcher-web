@@ -5,6 +5,7 @@ import DragnDropContainer from "./DragnDropContainer";
 import PlanDefaultInfo from "./PlanDefaultInfo";
 import Remains from "./Remains";
 import ScheduleTagTemplate from "./ScheduleTagTemplate";
+import TimeTableContainer from "./TimeTableContainer";
 import Title from "./Title";
 
 const PageContent = () => {
@@ -45,6 +46,7 @@ const PageContent = () => {
             />
           </div>
           <div className="flex">
+            <TimeTableContainer />
             <DragnDropContainer />
           </div>
         </>

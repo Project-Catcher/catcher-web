@@ -45,7 +45,6 @@ const DragnDropContainer = () => {
 
   return (
     <>
-      <TimeTableContainer />
       <div className="inline-block px-[50px]">
         <CategoryItems category={category} />
       </div>
