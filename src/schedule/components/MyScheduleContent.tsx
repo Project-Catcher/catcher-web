@@ -1,5 +1,9 @@
 // 내 일정 목록
-import { defaultCardList, defaultTemporaryCardList } from "@schedule/const";
+import {
+  defaultCardList,
+  defaultParticipateList,
+  defaultTemporaryCardList,
+} from "@schedule/const";
 import React, { useState } from "react";
 import ScheduleCard, { cardType } from "./ScheduleCard";
 import { CardItemType, scheduleType } from "./ScheduleContent";
@@ -13,8 +17,9 @@ const MyScheduleContent = () => {
   );
   const [recruitCardList, setRecruitCardList] =
     useState<CardItemType[]>(defaultCardList);
-  const [participateCardList, setParticipateCardList] =
-    useState<CardItemType[]>(defaultCardList);
+  const [participateCardList, setParticipateCardList] = useState<
+    CardItemType[]
+  >(defaultParticipateList);
 
   // TODO: 삭제 요청 추가
   const onClickDelete = (i: number) => {
