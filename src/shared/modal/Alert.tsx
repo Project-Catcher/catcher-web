@@ -5,7 +5,7 @@ import { convertTextLineBreak } from "@shared/utils/format";
 import { alertState } from "../recoil/modal";
 import { ModalWrapper } from "./ModalWrapper";
 import CloseButton from "/public/images/samples/closeButton.svg";
-import Pin from "/public/images/samples/pin.svg";
+import Pin from "/public/images/samples/just-pin.svg";
 
 const Alert = () => {
   const {
