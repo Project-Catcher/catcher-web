@@ -2,7 +2,12 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import ScheduleCard, { cardType } from "./ScheduleCard";
 
-export type scheduleType = "all" | "recruit" | "participate" | "my";
+export type scheduleType =
+  | "all"
+  | "recruit"
+  | "participate"
+  | "my"
+  | "temporary";
 
 interface ScheduleContentProps {
   scheduleType: scheduleType;
@@ -79,7 +84,11 @@ const ScheduleContent = ({
       <div className="relative flex flex-wrap mt-2.5 gap-y-12 gap-x-20">
         {cardList.map((card, i) => (
           <ScheduleCard
-            cardType={"complete" as cardType}
+            cardType={
+              scheduleType === "temporary"
+                ? ("temporary" as cardType)
+                : ("complete" as cardType)
+            }
             scheduleType={scheduleType}
             key={`card-${i}`}
             idx={i}

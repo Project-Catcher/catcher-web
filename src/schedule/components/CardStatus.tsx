@@ -121,6 +121,12 @@ const CardStatus = ({
     >
       {status}
     </div>
+  ) : scheduleType === "temporary" ? (
+    <div
+      className={`px-[6px] py-1 font-semibold text-center text-base text-white ${bgColor}`}
+    >
+      {status}
+    </div>
   ) : null;
 };
 
