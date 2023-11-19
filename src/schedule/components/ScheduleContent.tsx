@@ -2,12 +2,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import ScheduleCard, { cardType } from "./ScheduleCard";
 
-export type scheduleType =
-  | "all"
-  | "recruit"
-  | "participate"
-  | "my"
-  | "participate";
+export type scheduleType = "all" | "recruit" | "participate" | "my";
 
 interface ScheduleContentProps {
   scheduleType: scheduleType;
@@ -21,7 +16,6 @@ export interface CardItemType {
   title: string;
   content: string;
   writer: string;
-  status: boolean;
   location: string;
   durationStart: string;
   durationEnd: string;
@@ -33,6 +27,8 @@ export interface CardItemType {
   like: number;
   comment: number;
   marked: number;
+  status: boolean;
+  approvalStatus?: number;
 }
 
 const ScheduleContent = ({
@@ -104,6 +100,7 @@ const ScheduleContent = ({
             like={card.like}
             comment={card.comment}
             marked={card.marked}
+            approvalStatus={card.approvalStatus}
             onClickDelete={onClickDelete}
           />
         ))}

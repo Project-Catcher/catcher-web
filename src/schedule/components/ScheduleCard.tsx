@@ -13,7 +13,7 @@ export type cardType = "complete" | "temporary";
 export interface Applicant {
   id: number;
   nickname: string;
-  gender: string;
+  gender?: string;
   applicationDate: string;
   status: boolean;
   info: string;
@@ -40,6 +40,7 @@ interface ScheduleCardProps {
   like?: number;
   comment?: number;
   marked?: number;
+  approvalStatus?: number;
   onClickDelete: (i: number) => void;
 }
 
@@ -64,6 +65,7 @@ const ScheduleCard = ({
   like,
   comment,
   marked,
+  approvalStatus,
   onClickDelete,
 }: ScheduleCardProps) => {
   const { openModal, closeModal } = useModal();
@@ -108,6 +110,7 @@ const ScheduleCard = ({
             participateCapacity={participateCapacity}
             recruitStart={recruitStart}
             recruitEnd={recruitEnd}
+            approvalStatus={approvalStatus}
           />
           <div
             className="px-2 py-1 cursor-pointer"
