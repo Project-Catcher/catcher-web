@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CategoryItem, CategoryTags } from "@shared/types";
 import Categories from "./Categories";
 import CategoryItems from "./CategoryItems";
+import MakeCustomItem from "./MakeCustomItem";
 
 const DragnDropContainer = () => {
   const [clickedCategory, setClickedCategory] = useState<CategoryTags>("전체");
@@ -91,6 +92,7 @@ const DragnDropContainer = () => {
           handleClickCategory={handleClickCategory}
         />
         <CategoryItems category={category} clickedCategory={clickedCategory} />
+        <MakeCustomItem />
       </div>
     </>
   );
