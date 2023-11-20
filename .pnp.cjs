@@ -63,6 +63,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["prettier-plugin-tailwindcss", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.5.6"],\
             ["react", "npm:18.2.0"],\
+            ["react-calendar", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:4.6.1"],\
             ["react-dom", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:18.2.0"],\
             ["react-query", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.39.3"],\
             ["recoil", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.7.7"],\
@@ -7188,6 +7189,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/lodash", "npm:4.14.200"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:4.14.201", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.201-0c286bbc0c-484be65529.zip/node_modules/@types/lodash/",\
+          "packageDependencies": [\
+            ["@types/lodash", "npm:4.14.201"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/lodash.memoize", [\
+        ["npm:4.1.9", {\
+          "packageLocation": "./.yarn/cache/@types-lodash.memoize-npm-4.1.9-57da73777b-d11efe6049.zip/node_modules/@types/lodash.memoize/",\
+          "packageDependencies": [\
+            ["@types/lodash.memoize", "npm:4.1.9"],\
+            ["@types/lodash", "npm:4.14.201"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@types/mdx", [\
@@ -7993,6 +8011,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@webassemblyjs/wast-printer", "npm:1.11.6"],\
             ["@webassemblyjs/ast", "npm:1.11.6"],\
             ["@xtuc/long", "npm:4.2.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@wojtekmaj/date-utils", [\
+        ["npm:1.5.1", {\
+          "packageLocation": "./.yarn/cache/@wojtekmaj-date-utils-npm-1.5.1-e21d58f022-ba28a0ba10.zip/node_modules/@wojtekmaj/date-utils/",\
+          "packageDependencies": [\
+            ["@wojtekmaj/date-utils", "npm:1.5.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9620,6 +9647,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["prettier-plugin-tailwindcss", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.5.6"],\
             ["react", "npm:18.2.0"],\
+            ["react-calendar", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:4.6.1"],\
             ["react-dom", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:18.2.0"],\
             ["react-query", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:3.39.3"],\
             ["recoil", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:0.7.7"],\
@@ -9857,6 +9885,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-plain-object", "npm:2.0.4"],\
             ["kind-of", "npm:6.0.3"],\
             ["shallow-clone", "npm:3.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["clsx", [\
+        ["npm:2.0.0", {\
+          "packageLocation": "./.yarn/cache/clsx-npm-2.0.0-afafbbe44a-a2cfb2351b.zip/node_modules/clsx/",\
+          "packageDependencies": [\
+            ["clsx", "npm:2.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -12786,6 +12823,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["get-user-locale", [\
+        ["npm:2.3.1", {\
+          "packageLocation": "./.yarn/cache/get-user-locale-npm-2.3.1-3a88ff749b-9c6b254ea0.zip/node_modules/get-user-locale/",\
+          "packageDependencies": [\
+            ["get-user-locale", "npm:2.3.1"],\
+            ["@types/lodash.memoize", "npm:4.1.9"],\
+            ["lodash.memoize", "npm:4.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["giget", [\
         ["npm:1.1.2", {\
           "packageLocation": "./.yarn/cache/giget-npm-1.1.2-5a01fa1d39-76ad0f7e79.zip/node_modules/giget/",\
@@ -15138,6 +15186,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash.debounce-npm-4.0.8-f1d6e09799-a3f527d22c.zip/node_modules/lodash.debounce/",\
           "packageDependencies": [\
             ["lodash.debounce", "npm:4.0.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash.memoize", [\
+        ["npm:4.1.2", {\
+          "packageLocation": "./.yarn/cache/lodash.memoize-npm-4.1.2-0e6250041f-9ff3942fee.zip/node_modules/lodash.memoize/",\
+          "packageDependencies": [\
+            ["lodash.memoize", "npm:4.1.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -17522,6 +17579,37 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-calendar", [\
+        ["npm:4.6.1", {\
+          "packageLocation": "./.yarn/cache/react-calendar-npm-4.6.1-86ff8fbeeb-54e9414a79.zip/node_modules/react-calendar/",\
+          "packageDependencies": [\
+            ["react-calendar", "npm:4.6.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:4.6.1", {\
+          "packageLocation": "./.yarn/__virtual__/react-calendar-virtual-78eaecb2d7/0/cache/react-calendar-npm-4.6.1-86ff8fbeeb-54e9414a79.zip/node_modules/react-calendar/",\
+          "packageDependencies": [\
+            ["react-calendar", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:4.6.1"],\
+            ["@types/react", "npm:18.2.24"],\
+            ["@types/react-dom", "npm:18.2.9"],\
+            ["@wojtekmaj/date-utils", "npm:1.5.1"],\
+            ["clsx", "npm:2.0.0"],\
+            ["get-user-locale", "npm:2.3.1"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:5c27e03dae35d0976fad331e8fffa55eb62b5bc849583336ab59ba9f7c56861263fd0502a76a9335956f901566959f012bae9b45f34a60bde556a5b21d514601#npm:18.2.0"],\
+            ["tiny-warning", "npm:1.0.3"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-colorful", [\
         ["npm:5.6.1", {\
           "packageLocation": "./.yarn/cache/react-colorful-npm-5.6.1-ba0c706357-e432b7cb0d.zip/node_modules/react-colorful/",\
@@ -19660,6 +19748,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tiny-invariant-npm-1.3.1-a8ca214e49-872dbd1ff2.zip/node_modules/tiny-invariant/",\
           "packageDependencies": [\
             ["tiny-invariant", "npm:1.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tiny-warning", [\
+        ["npm:1.0.3", {\
+          "packageLocation": "./.yarn/cache/tiny-warning-npm-1.0.3-750b7a07c4-da62c4acac.zip/node_modules/tiny-warning/",\
+          "packageDependencies": [\
+            ["tiny-warning", "npm:1.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
