@@ -44,3 +44,15 @@ export const PIXEL = {
 export const TIME = {
   hour: 60,
 };
+
+export const CATEGORY_TAGS = [
+  { imageSrc: "/images/samples/category_all.svg", title: "전체" },
+  { imageSrc: "/images/samples/category_movie.svg", title: "영화" },
+  { imageSrc: "/images/samples/category_festival.svg", title: "축제" },
+  { imageSrc: "/images/samples/category_camping.svg", title: "캠핑" },
+  { imageSrc: "/images/samples/category_tour.svg", title: "관광" },
+  { imageSrc: "/images/samples/category_shopping.svg", title: "쇼핑" },
+  { imageSrc: "/images/samples/category_food.svg", title: "음식점" },
+  { imageSrc: "/images/samples/category_culture.svg", title: "문화생활" },
+  { imageSrc: "/images/samples/category_hiking.svg", title: "등산" },
+];
