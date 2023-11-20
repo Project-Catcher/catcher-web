@@ -8008,7 +8008,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-<<<<<<< HEAD
       ["@wojtekmaj/date-utils", [\
         ["npm:1.5.1", {\
           "packageLocation": "./.yarn/cache/@wojtekmaj-date-utils-npm-1.5.1-e21d58f022-ba28a0ba10.zip/node_modules/@wojtekmaj/date-utils/",\
@@ -8027,8 +8026,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-=======
->>>>>>> 2ff70b892ef579cad70986c04cdbc2267bda059e
       ["@xtuc/ieee754", [\
         ["npm:1.2.0", {\
           "packageLocation": "./.yarn/cache/@xtuc-ieee754-npm-1.2.0-ec0ce4e025-ac56d4ca6e.zip/node_modules/@xtuc/ieee754/",\
