@@ -75,6 +75,7 @@ export interface CategoryItem {
   title: string;
   city: string;
   tagBackground: string;
+  imageSrc: string;
 }
 
 export interface SelectedCategoryItem extends CategoryItem {
@@ -102,3 +103,14 @@ export interface Start2EndTime {
     minute: string;
   };
 }
+
+export type CategoryTags =
+  | "전체"
+  | "영화"
+  | "축제"
+  | "캠핑"
+  | "관광"
+  | "쇼핑"
+  | "음식점"
+  | "문화생활"
+  | "등산";
