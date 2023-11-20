@@ -22,7 +22,8 @@
       "@findid/*": ["findid/*"],
       "@notice/*": ["notice/*"],
       "@faq/*": ["faq/*"],
-      "@mypage/*": ["mypage/*"]
+      "@mypage/*": ["mypage/*"],
+      "@findSchedule/*": ["findSchedule/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
