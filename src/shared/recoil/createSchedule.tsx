@@ -2,6 +2,7 @@ import { uniqueId } from "lodash";
 import { atom } from "recoil";
 import {
   AppliedItem,
+  CategoryItem,
   CurrentPageType,
   ScheduleAnswerType,
   SelectedCategoryItem,
@@ -44,11 +45,17 @@ export const selectedScheduleItem = atom<SelectedCategoryItem | null>({
     title: "",
     tagBackground: "",
     city: "",
+    imageSrc: "",
     selectedTime: 0,
   },
 });
 
 export const appliedScheduleItem = atom<AppliedItem[] | null>({
   key: `appliedScheduleItem${uniqueId()}`,
+  default: null,
+});
+
+export const customItem = atom<CategoryItem[] | null>({
+  key: `customScheduleItem${uniqueId()}`,
   default: null,
 });
