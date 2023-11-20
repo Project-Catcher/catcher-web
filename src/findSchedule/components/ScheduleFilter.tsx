@@ -1,21 +1,18 @@
-import Image from "next/image";
-import React from "react";
+// 일정 찾기 페이지 필터
+import React, { Dispatch, SetStateAction } from "react";
+import FilterTab from "./FilterTab";
+import ThemeTab from "./ThemeTab";
 
-const ScheduleFilter = () => {
+interface ScheduleFilterProps {
+  theme: string;
+  setTheme: Dispatch<SetStateAction<string>>;
+}
+
+const ScheduleFilter = ({ theme, setTheme }: ScheduleFilterProps) => {
   return (
     <div className="inline-block w-[281px] bg-neutral-50 h-full">
-      <div className="flex items-center p-5">
-        <Image
-          src="/assets/findSchedule/filter.svg"
-          alt="filter"
-          width={24}
-          height={24}
-        />
-        <span className="ml-2 text-base font-bold text-zinc-800">필터</span>
-        <button className="ml-auto text-sm text-zinc-800 hover:text-zinc-900">
-          초기화
-        </button>
-      </div>
+      <FilterTab />
+      <ThemeTab theme={theme} setTheme={setTheme} />
     </div>
   );
 };
