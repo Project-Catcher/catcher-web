@@ -1,4 +1,5 @@
 export { default as AuthErrorMessage } from "./AuthErrorMessage";
+export { default as AuthNumberInput } from "./AuthNumberInput";
 export { default as AuthTimer } from "./AuthTimer";
 export { default as BackgroundHeart } from "./BackgroundHeart";
 export { default as CaptchaWithButton } from "./CaptchaWithButton";
