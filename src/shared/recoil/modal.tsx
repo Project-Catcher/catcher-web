@@ -85,4 +85,5 @@ export type ModalContentId =
   | "thumbnailSelector"
   | "calendarSelector_start"
   | "calendarSelector_end"
-  | "scheduleTimeSelector";
+  | "scheduleTimeSelector"
+  | "customScheduleSelector";

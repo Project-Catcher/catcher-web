@@ -1,5 +1,6 @@
 import { ModalContentId } from "@shared/recoil/modal";
 import CalendarSelector from "./CalendarSelector";
+import CustomScheduleSelector from "./CustomScheduleSelector";
 import ScheduleTimeSelector from "./ScheduleTimeSelector";
 import ThumbnailSelector, { ThumbnailSelectorProps } from "./ThumbnailSelector";
 
@@ -18,6 +19,8 @@ const ModalContent = <T,>(modalProps: ModalContentProps) => {
       return <CalendarSelector type="endedAt" />;
     case "scheduleTimeSelector":
       return <ScheduleTimeSelector />;
+    case "customScheduleSelector":
+      return <CustomScheduleSelector />;
     default:
       return <></>;
   }
