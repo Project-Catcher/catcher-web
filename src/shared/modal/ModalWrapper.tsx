@@ -39,7 +39,7 @@ export const ModalWrapper = ({
   };
 
   return (
-    <div className="fixed top-0 right-0 flex items-center justify-center w-full h-full">
+    <div className="fixed top-0 right-0 z-40 flex items-center justify-center w-full h-full">
       <div
         className="absolute top-0 right-0 z-10 w-full h-full bg-black opacity-50 "
         onClick={handleClickOutside}
