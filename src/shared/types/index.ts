@@ -7,7 +7,7 @@ export type PasswordType = "password" | "newPassword" | "checkNewPassword";
 export interface LoginFormType {
   id: string;
   password: string;
-  isChecked: boolean;
+  isAutoLoginChecked: boolean;
 }
 
 export interface PasswordResetFormContent {
@@ -29,3 +29,5 @@ export interface Captcha {
   captchaValue: string;
   doneCaptcha: boolean;
 }
+
+export type LoginType = "kakao" | "naver" | "catcher";

@@ -39,6 +39,11 @@ a {
   }
 } */
 
+/* 수평 및 수직 가운데 정렬 */
+.flex-center {
+ @apply flex items-center justify-center 
+}
+
 @layer components {
   .button-full {
     @apply w-full h-[54px];
@@ -65,11 +70,43 @@ a {
     @apply border border-solid border-[#ADADAD] focus:border-[#4285F4];
   }
 }
+
 /* 약관 동의 우측 스크롤 바 */
 .overflow-content {
   @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#F5A200] scrollbar-track-[#E2E2E2];
 }
 
+@keyframes heart-balloon {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-300px) scale(1);
+    opacity: 0;
+  }
+}
+
+.animated-balloon-3 {
+  animation: heart-balloon 3s linear infinite;
+}
+.animated-balloon-4 {
+  animation: heart-balloon 4s linear infinite;
+}
+.animated-balloon-5 {
+  animation: heart-balloon 5s linear infinite;
+}
+.animated-balloon-6 {
+  animation: heart-balloon 6s linear infinite;
+}
+.animated-balloon-7 {
+  animation: heart-balloon 7s linear infinite;
+}
+/* 중앙정렬 */
+.flex-center {
+  @apply flex justify-center items-center
+}
+
 .overflow-FAQ {
-  @apply overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
+  @apply overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
 }

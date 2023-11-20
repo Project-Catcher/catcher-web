@@ -14,6 +14,7 @@ const EnterNewPassword = ({
       <div className="mb-[15px]">
         <PasswordInput
           label="새 비밀번호"
+          isPasswordIcon
           placeholder="새 비밀번호"
           type="newPassword"
           shape="normal"
@@ -25,6 +26,7 @@ const EnterNewPassword = ({
       <div>
         <PasswordInput
           label="새 비밀번호 확인"
+          isPasswordIcon
           placeholder="새 비밀번호 확인"
           type="checkNewPassword"
           shape="normal"

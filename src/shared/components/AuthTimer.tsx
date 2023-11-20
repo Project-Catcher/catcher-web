@@ -1,30 +1,35 @@
-import { useEffect, useState } from "react";
-import { clearInterval, setInterval } from "timers";
+import { useEffect } from "react";
 
-const AuthTimer = () => {
-  const MINUTES_IN_MS = 3 * 60 * 1000;
-  const INTERVAL = 1000;
-  const [timeLeft, setTimeLeft] = useState(MINUTES_IN_MS);
-  const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(2);
-  const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, "0");
+interface AuthTimerProps {
+  isDonePhoneInput: boolean;
+  timerStyle: string;
+  formattedMin: number;
+  formattedSec: number;
+  startTimer: () => void;
+}
 
+const AuthTimer = ({
+  isDonePhoneInput,
+  timerStyle,
+  formattedMin,
+  formattedSec,
+  startTimer,
+}: AuthTimerProps) => {
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - INTERVAL);
-    }, INTERVAL);
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      alert("다시하세요");
+    if (isDonePhoneInput) {
+      alert("요청 성공");
+      startTimer();
     }
-
-    return () => clearInterval(timer);
-  }, [timeLeft]);
+  }, [isDonePhoneInput, startTimer]);
 
   return (
-    <div className="inline-block mb-[7px] text-base text-[#00D179] leading-[22px]">
-      {minutes}분 {second}초
-    </div>
+    <>
+      {isDonePhoneInput && (
+        <div className={`${timerStyle} inline-block text-[#00D179]`}>
+          {formattedMin}분 {formattedSec}초
+        </div>
+      )}
+    </>
   );
 };
 

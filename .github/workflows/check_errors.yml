@@ -3,6 +3,7 @@ name: Check Errors
 on:
   pull_request:
     branches: [ "develop", "main" ]
+  workflow_call:
 
 jobs:
   err_check:
