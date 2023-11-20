@@ -1,7 +1,9 @@
 export { default as BasicInfo } from "./BasicInfo";
 export { default as BlockShowing } from "./BlockShowing";
+export { default as Categories } from "./Categories";
 export { default as CategoryFrame } from "./CategoryFrame";
 export { default as CategoryItems } from "./CategoryItems";
+export { default as CategoryTagBox } from "./CategoryTagBox";
 export { default as Continue } from "./Continue";
 export { default as CurrentDate } from "./CurrentDate";
 export { default as CurrentPage } from "./CurrentPage";
