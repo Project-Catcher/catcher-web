@@ -10,7 +10,7 @@ interface CategoryItemsProps {
 
 const CategoryItems = ({ category, clickedCategory }: CategoryItemsProps) => {
   return (
-    <div className="mt-[36px] mb-[18px]">
+    <div className="my-[36px]">
       <ScheduleTitle title={SCHEDULE_TITLE.categoryItems} />
       <div className="w-[414px] border border-[#ADADAD] rounded-[5px] mb-[6px] focus-within:border focus-within:border-[#4285F4]">
         <input
