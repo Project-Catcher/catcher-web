@@ -40,14 +40,7 @@ export const scheduleAnswers = atom<ScheduleAnswerType>({
 
 export const selectedScheduleItem = atom<SelectedCategoryItem | null>({
   key: `selectedScheduleItem/${uniqueId()}`,
-  default: {
-    category: "",
-    title: "",
-    tagBackground: "",
-    city: "",
-    imageSrc: "",
-    selectedTime: 0,
-  },
+  default: null,
 });
 
 export const appliedScheduleItem = atom<AppliedItem[] | null>({
