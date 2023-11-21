@@ -19,7 +19,7 @@ const CategoryItems = ({ category, clickedCategory }: CategoryItemsProps) => {
           placeholder="카테고리별 아이템 검색"
         />
       </div>
-      <div className="w-[414px] h-fit bg-[#E7F9EE] rounded-[5px] px-[82px] py-[8px]">
+      <div className="w-[414px] h-[181px] bg-[#E7F9EE] rounded-[5px] px-[78px] py-[8px] overflow-FAQ">
         <CategoryFrame
           clickedCategory={clickedCategory}
           category={category}
