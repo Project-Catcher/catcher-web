@@ -1,4 +1,4 @@
-import { PlanSubTitle, PlanTitle } from "@shared/types";
+import { CategoryItem, PlanSubTitle, PlanTitle } from "@shared/types";
 
 export const TITLE: PlanTitle = {
   remains: "잠깐, 작성중이던 일정이 있어요",
@@ -55,4 +55,67 @@ export const CATEGORY_TAGS = [
   { imageSrc: "/images/samples/category_food.svg", title: "음식점" },
   { imageSrc: "/images/samples/category_culture.svg", title: "문화생활" },
   { imageSrc: "/images/samples/category_hiking.svg", title: "등산" },
+];
+
+export const category: CategoryItem[] = [
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#A3FAF2]",
+  },
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#FFE779]",
+  },
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#FFC395]",
+  },
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#CFE1FF]",
+  },
+  {
+    category: "문화생활",
+    title: "마블 영화 감상",
+    city: "연남동",
+    tagBackground: "bg-[#A3FAF2]",
+  },
+  {
+    category: "문화생활",
+    title: "도서관 가서 신간 읽기",
+    city: "연남동",
+    tagBackground: "bg-[#FFE779]",
+  },
+  {
+    category: "문화생활",
+    title: "국립미술관 가서 전시 관람",
+    city: "연남동",
+    tagBackground: "bg-[#FFC395]",
+  },
+  {
+    category: "문화생활",
+    title: "독서모임 참가하기",
+    city: "연남동",
+    tagBackground: "bg-[#CFE1FF]",
+  },
+  {
+    category: "문화생활",
+    title: "예술의 전당에서 뮤지컬 관람",
+    city: "연남동",
+    tagBackground: "bg-[#DDD1FF]",
+  },
+  {
+    category: "문화생활",
+    title: "오일파스텔 그림그리기",
+    city: "연남동",
+    tagBackground: "bg-[#FFDCDC]",
+  },
 ];
