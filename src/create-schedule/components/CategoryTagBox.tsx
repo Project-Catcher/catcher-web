@@ -3,7 +3,7 @@ import { CategoryTags } from "@shared/types";
 
 interface CategoryTagBoxProps {
   imageSrc: string;
-  title: string;
+  title: CategoryTags;
   clickedCategory: CategoryTags;
   handleClickCategory: (value: CategoryTags) => void;
 }
@@ -17,7 +17,7 @@ const CategoryTagBox = ({
   return (
     <div
       className="inline-block cursor-pointer"
-      onClick={() => handleClickCategory(title as CategoryTags)}
+      onClick={() => handleClickCategory(title)}
     >
       <div
         className={`${

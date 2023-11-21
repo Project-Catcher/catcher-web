@@ -1,4 +1,9 @@
-import { CategoryItem, PlanSubTitle, PlanTitle } from "@shared/types";
+import {
+  CategoryItem,
+  CategoryTags,
+  PlanSubTitle,
+  PlanTitle,
+} from "@shared/types";
 
 export const TITLE: PlanTitle = {
   remains: "잠깐, 작성중이던 일정이 있어요",
@@ -45,7 +50,7 @@ export const TIME = {
   hour: 60,
 };
 
-export const CATEGORY_TAGS = [
+export const CATEGORY_TAGS: { imageSrc: string; title: CategoryTags }[] = [
   { imageSrc: "/images/samples/category_all.svg", title: "전체" },
   { imageSrc: "/images/samples/category_movie.svg", title: "영화" },
   { imageSrc: "/images/samples/category_festival.svg", title: "축제" },
@@ -55,6 +60,7 @@ export const CATEGORY_TAGS = [
   { imageSrc: "/images/samples/category_food.svg", title: "음식점" },
   { imageSrc: "/images/samples/category_culture.svg", title: "문화생활" },
   { imageSrc: "/images/samples/category_hiking.svg", title: "등산" },
+  { imageSrc: "/images/samples/category_etc.svg", title: "기타" },
 ];
 
 export const category: CategoryItem[] = [
