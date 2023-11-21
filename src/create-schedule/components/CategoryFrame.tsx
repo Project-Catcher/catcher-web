@@ -46,7 +46,9 @@ const CategoryFrame = ({
             draggable={hasPointer}
             onDragStart={() => onDragStart(index)}
             onDragOver={(e) => e.preventDefault()}
-            className={`${isLastIndex ? "" : "mb-[8px] "}${pointer}flex`}
+            className={`${
+              isLastIndex ? "" : "mb-[8px] "
+            }${pointer}flex w-[250px]`}
             key={_category.city + _category.tagBackground}
             style={{ height: `${itemHeight}px` }}
           >
