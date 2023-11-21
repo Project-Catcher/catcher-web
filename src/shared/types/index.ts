@@ -71,11 +71,10 @@ export interface ScheduleAnswerType {
 export type CalendarSelectorType = "startedAt" | "endedAt";
 
 export interface CategoryItem {
-  category: string;
+  category: CategoryTags;
   title: string;
   city: string;
   tagBackground: string;
-  imageSrc: string;
 }
 
 export interface SelectedCategoryItem extends CategoryItem {
