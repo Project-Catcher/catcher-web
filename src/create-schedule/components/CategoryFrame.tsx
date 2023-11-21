@@ -1,3 +1,4 @@
+import { handleImageSrc } from "@create-schedule/util";
 import Image from "next/image";
 import React from "react";
 import { useSetRecoilState } from "recoil";
@@ -38,6 +39,7 @@ const CategoryFrame = ({
       {filteredCategory.map((_category, index) => {
         const isLastIndex = index === category.length - 1;
         const pointer = hasPointer ? "cursor-pointer " : "";
+        const imageSrc = handleImageSrc(_category.category);
 
         return (
           <div
@@ -63,8 +65,8 @@ const CategoryFrame = ({
             >
               <Image
                 draggable={false}
-                src={_category.imageSrc}
-                alt={_category.imageSrc}
+                src={imageSrc!}
+                alt={imageSrc}
                 width={16}
                 height={15}
               />
