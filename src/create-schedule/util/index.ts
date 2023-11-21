@@ -1,7 +1,7 @@
 import { TableArrayType } from "@create-schedule/components/TimeTable";
 import { PIXEL, TIME } from "@create-schedule/constants";
 import { Dispatch, SetStateAction } from "react";
-import { AppliedItem, Start2EndTime } from "@shared/types";
+import { AppliedItem, CategoryTags, Start2EndTime } from "@shared/types";
 
 export const calculateItemHeight = (
   start: { hour: number; minute: number },
@@ -166,4 +166,25 @@ export const sortByStartTime = (appliedItem: AppliedItem[]) => {
     }
     return a.startTime.minute - b.startTime.minute;
   });
+};
+
+export const handleImageSrc = (category: CategoryTags) => {
+  switch (category) {
+    case "영화":
+      return "/images/samples/category_movie.svg";
+    case "축제":
+      return "/images/samples/category_festival.svg";
+    case "캠핑":
+      return "/images/samples/category_camping.svg";
+    case "관광":
+      return "/images/samples/category_tour.svg";
+    case "쇼핑":
+      return "/images/samples/category_shopping.svg";
+    case "음식점":
+      return "/images/samples/category_food.svg";
+    case "문화생활":
+      return "/images/samples/category_culture.svg";
+    case "등산":
+      return "/images/samples/category_hiking.svg";
+  }
 };
