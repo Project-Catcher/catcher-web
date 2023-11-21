@@ -8,11 +8,10 @@ import { CategoryItem } from "@shared/types";
 const CustomScheduleSelector = () => {
   const { closeModal } = useModal();
   const [newItem, setNewItem] = useState<CategoryItem>({
-    category: "",
+    category: "기타",
     title: "",
     city: "",
     tagBackground: "",
-    imageSrc: "",
   });
   const setCustomItems = useSetRecoilState(customItem);
 
@@ -37,23 +36,52 @@ const CustomScheduleSelector = () => {
   return (
     <>
       <ScheduleTitle title="나만의 아이템 만들기" />
-      <div className="inline-block text-[#333333] mb-[8px]">아이템명</div>
-      <span className="w-[11px] h-[22px] text-[#FF0000] text-xl font-light">
-        *
-      </span>
-      <input
-        className="w-[362px] h-[57px] border border-[#ADADAD] px-[16px] rounded-[9px] mb-[13px]"
-        type="text"
-        placeholder="산책하기"
-        onChange={({ target: { value } }) => handleInput("title", value)}
-      />
-      <div className="text-[#333333] mb-[8px]">위치(선택)</div>
-      <input
-        className="w-[362px] h-[57px] border border-[#ADADAD] px-[16px] rounded-[9px] mb-[13px]"
-        type="text"
-        placeholder="위치"
-        onChange={({ target: { value } }) => handleInput("city", value)}
-      />
+      <div className="text-[#333333] mb-[8px]">
+        카테고리
+        <span className="w-[11px] h-[22px] text-[#FF0000] text-xl font-light">
+          *
+        </span>
+      </div>
+      <div className="w-[362px] h-[57px] border border-[#ADADAD] rounded-[9px] px-[16px] mb-[13px] focus-within:border-[#4285F4]">
+        <select
+          defaultValue="기타"
+          className="w-full h-full text-[#333333] outline-0"
+          onChange={({ target: { value } }) => handleInput("category", value)}
+        >
+          <option>기타</option>
+          <option>영화</option>
+          <option>축제</option>
+          <option>캠핑</option>
+          <option>관광</option>
+          <option>쇼핑</option>
+          <option>음식점</option>
+          <option>문화생활</option>
+          <option>등산</option>
+        </select>
+      </div>
+      <div className="inline-block">
+        <div className="text-[#333333] mb-[8px]">
+          아이템명
+          <span className="w-[11px] h-[22px] text-[#FF0000] text-xl font-light">
+            *
+          </span>
+        </div>
+        <input
+          className="w-[180px] h-[57px] border border-[#ADADAD] px-[16px] rounded-[9px] mb-[13px] mr-[2px]"
+          type="text"
+          placeholder="산책하기"
+          onChange={({ target: { value } }) => handleInput("title", value)}
+        />
+      </div>
+      <div className="inline-block">
+        <div className="text-[#333333] mb-[8px]">위치(선택)</div>
+        <input
+          className="w-[180px] h-[57px] border border-[#ADADAD] px-[16px] rounded-[9px] mb-[13px]"
+          type="text"
+          placeholder="위치"
+          onChange={({ target: { value } }) => handleInput("city", value)}
+        />
+      </div>
       <div className="text-[#333333] mb-[8px]">세부내용(선택)</div>
       <div className="w-[362px] h-[78px] border border-[#ADADAD] rounded-[9px] px-[16px] py-[10px] mb-[17px] focus-within:border-[#4285F4]">
         <textarea
