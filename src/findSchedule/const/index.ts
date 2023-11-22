@@ -10,15 +10,23 @@ export const themeList = [
   { title: "등산", img: "/assets/findSchedule/mountain.svg" },
 ];
 
-export interface PriceRange {
+export interface RadioRange {
   label: string;
   value: string;
 }
 
-export const priceRanges: PriceRange[] = [
+export const priceRanges: RadioRange[] = [
   { label: "0 ~ 10,000", value: "0-10000" },
   { label: "10,001 ~ 50,000", value: "10001-50000" },
   { label: "50,001 ~ 100,000", value: "50001-100000" },
   { label: "100,000 이상", value: "100000+" },
+  { label: "미정", value: "undefined" },
+];
+
+export const PersonnelRanges: RadioRange[] = [
+  { label: "나홀로", value: "나홀로" },
+  { label: "2 ~ 4명", value: "2 ~ 4명" },
+  { label: "5 ~ 10명", value: "5 ~ 10명" },
+  { label: "최대 30명", value: "최대 30명" },
   { label: "미정", value: "undefined" },
 ];

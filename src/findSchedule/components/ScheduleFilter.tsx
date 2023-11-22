@@ -3,10 +3,13 @@ import React, { Dispatch, SetStateAction } from "react";
 import DurationTab from "./DurationTab";
 import ExpenseTab from "./ExpenseTab";
 import FilterTab from "./FilterTab";
+import LocationTab from "./LocationTab";
 import { DateProps, ShowCalendarType } from "./Page";
+import PersonnelTab from "./PersonnelTab";
 import ThemeTab from "./ThemeTab";
 
 interface ScheduleFilterProps {
+  handleReset: VoidFunction;
   theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
   date: DateProps;
@@ -16,9 +19,12 @@ interface ScheduleFilterProps {
   handleEndDateChange: (newDate: Date) => void;
   expense: string;
   handleExpenseChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  personnel: string;
+  handlePersonnelChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const ScheduleFilter = ({
+  handleReset,
   theme,
   setTheme,
   date,
@@ -28,10 +34,12 @@ const ScheduleFilter = ({
   handleEndDateChange,
   expense,
   handleExpenseChange,
+  personnel,
+  handlePersonnelChange,
 }: ScheduleFilterProps) => {
   return (
     <div className="inline-block w-[281px] bg-neutral-50 h-full">
-      <FilterTab />
+      <FilterTab handleReset={handleReset} />
       <ThemeTab theme={theme} setTheme={setTheme} />
       <DurationTab
         date={date}
@@ -41,6 +49,11 @@ const ScheduleFilter = ({
         handleEndDateChange={handleEndDateChange}
       />
       <ExpenseTab expense={expense} handleExpenseChange={handleExpenseChange} />
+      <LocationTab />
+      <PersonnelTab
+        personnel={personnel}
+        handlePersonnelChange={handlePersonnelChange}
+      />
     </div>
   );
 };
