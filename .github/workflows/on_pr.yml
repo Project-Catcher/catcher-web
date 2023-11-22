@@ -17,13 +17,13 @@ jobs:
     name: Error Check
     uses: ./.github/workflows/check_err.yml
 
-  pushed-1:
-    if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
-    name: Error Check
-    uses: ./.github/workflows/check_err.yml
+  # pushed-1:
+  #   if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
+  #   name: Error Check
+  #   uses: ./.github/workflows/check_err.yml
 
   pushed-2:
     if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
     name: Build Nextjs
     uses: ./.github/workflows/front.yml
-    needs: pushed-1
+    # needs: pushed-1
