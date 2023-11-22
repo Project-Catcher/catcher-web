@@ -11,6 +11,11 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Build Nextjs
     uses: ./.github/workflows/front.yml
+    secrets:
+      ECR_URL: ${{ secrets.ECR_REPO_DEV_FRONT }}
+      ROLE_ARN: ${{ secrets.OIDC_ROLE }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      WEBHOOK_URL: ${{ secrets.WEBHOOK }}
 
   pr:
     if: ${{ github.event.pull_request.merged == false && github.event == 'push'}}
