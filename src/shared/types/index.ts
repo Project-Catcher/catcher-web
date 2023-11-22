@@ -7,7 +7,7 @@ export type PasswordType = "password" | "newPassword" | "checkNewPassword";
 export interface LoginFormType {
   id: string;
   password: string;
-  isChecked: boolean;
+  isAutoLoginChecked: boolean;
 }
 
 export interface PasswordResetFormContent {
@@ -114,3 +114,4 @@ export type CategoryTags =
   | "문화생활"
   | "등산"
   | "기타";
+export type LoginType = "kakao" | "naver" | "catcher";
