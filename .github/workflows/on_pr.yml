@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ "develop", "main" ]
   push:
-    branches: [ "develop", "main", "git:refactor-jdb-gitaction-workflow" ]
+    branches: [ "develop", "main", "refactor-jdb-gitaction-workflow" ]
 
 jobs:
   merged:
