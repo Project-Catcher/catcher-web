@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ "develop", "main" ]
   push:
-    branches: [ "develop", "main", "refactor-jdb-gitaction-workflow" ]
+    branches: [ "develop", "main" ]
 
 jobs:
   merged:
@@ -22,10 +22,10 @@ jobs:
     name: Error Check
     uses: ./.github/workflows/check_err.yml
 
-  # pushed-1:
-  #   if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
-  #   name: Error Check
-  #   uses: ./.github/workflows/check_err.yml
+  pushed-1:
+    if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
+    name: Error Check
+    uses: ./.github/workflows/check_err.yml
 
   pushed-2:
     if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
@@ -36,4 +36,4 @@ jobs:
       ROLE_ARN: ${{ secrets.OIDC_ROLE }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
       WEBHOOK_URL: ${{ secrets.WEBHOOK }}
-    # needs: pushed-1
+    needs: pushed-1

@@ -22,8 +22,8 @@ jobs:
         with:
           fetch-depth: 1
 
-      # - name: Docker build
-      #   run: docker build -t catcher-web .
+      - name: Docker build
+        run: docker build -t catcher-web .
         
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -32,46 +32,46 @@ jobs:
           role-session-name: GitHubActions
           role-to-assume: ${{ secrets.OIDC_ROLE }}
 
-      # - name: Login to Amazon ECR
-      #   id: login-ecr
-      #   uses: aws-actions/amazon-ecr-login@v1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-      # - name: Remove Old Image from ECR(CATCHER-WEB)
-      #   run: |
-      #     # ECR Front 레포의 기존 이미지 조회
-      #     aws ecr describe-images \
-      #     --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
-      #     --region ${{ secrets.AWS_REGION }} \
-      #     --output yaml | grep imageDigest | awk -F ' ' '{print $2}' > ./delete_list.txt
+      - name: Remove Old Image from ECR(CATCHER-WEB)
+        run: |
+          # ECR Front 레포의 기존 이미지 조회
+          aws ecr describe-images \
+          --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+          --region ${{ secrets.AWS_REGION }} \
+          --output yaml | grep imageDigest | awk -F ' ' '{print $2}' > ./delete_list.txt
 
-      #     # ECR Front 레포의 기존 이미지 모두 삭제
-      #     for front_image in `cat ./delete_list.txt`
-      #     do
-      #     aws ecr batch-delete-image \
-      #         --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
-      #         --image-ids imageDigest=$front_image \
-      #         --output yaml > /dev/null
-      #     done
+          # ECR Front 레포의 기존 이미지 모두 삭제
+          for front_image in `cat ./delete_list.txt`
+          do
+          aws ecr batch-delete-image \
+              --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+              --image-ids imageDigest=$front_image \
+              --output yaml > /dev/null
+          done
 
-      # - name: Publish Image to ECR(CATCHER-WEB)
-      #   run: |
-      #     docker tag catcher-web:latest ${{ secrets.ECR_URL }}:${{ github.sha }}
-      #     docker push ${{ secrets.ECR_URL }}:${{ github.sha }}
+      - name: Publish Image to ECR(CATCHER-WEB)
+        run: |
+          docker tag catcher-web:latest ${{ secrets.ECR_URL }}:${{ github.sha }}
+          docker push ${{ secrets.ECR_URL }}:${{ github.sha }}
 
-      # - name: Deploy to Frontend Instance from ECR Image
-      #   run: |
-      #     aws deploy create-deployment \
-      #       --application-name ${{ secrets.AWS_DEPLOY_APP_NAME }} \
-      #       --deployment-group-name ${{ secrets.AWS_DEPLOY_GROUP }}  \
-      #       --deployment-config-name ${{ secrets.AWS_DEPLOY_CONFIG }} \
-      #       --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+      - name: Deploy to Frontend Instance from ECR Image
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ secrets.AWS_DEPLOY_APP_NAME }} \
+            --deployment-group-name ${{ secrets.AWS_DEPLOY_GROUP }}  \
+            --deployment-config-name ${{ secrets.AWS_DEPLOY_CONFIG }} \
+            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
 
-      # - name: Send Notification
-      #   if: ${{ always() }}
-      #   run: |
-      #     if [[ ${{ job.status }} == "success" ]]; then
-      #       MESSAGE="✅ ${{ job.status }} 프론트 배포 성공 : catcher-web - by ${{ github.actor }}"
-      #     else
-      #       MESSAGE="❌ ${{ job.status }} 프론트 배포 실패 : catcher-web - by ${{ github.actor }}"
-      #     fi
-      #     curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ secrets.WEBHOOK_URL }}
+      - name: Send Notification
+        if: ${{ always() }}
+        run: |
+          if [[ ${{ job.status }} == "success" ]]; then
+            MESSAGE="✅ ${{ job.status }} 프론트 배포 성공 : catcher-web - by ${{ github.actor }}"
+          else
+            MESSAGE="❌ ${{ job.status }} 프론트 배포 실패 : catcher-web - by ${{ github.actor }}"
+          fi
+          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ secrets.WEBHOOK_URL }}
