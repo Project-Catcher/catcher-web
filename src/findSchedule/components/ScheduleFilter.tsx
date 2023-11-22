@@ -1,6 +1,7 @@
 // 일정 찾기 페이지 필터
 import React, { Dispatch, SetStateAction } from "react";
 import DurationTab from "./DurationTab";
+import ExpenseTab from "./ExpenseTab";
 import FilterTab from "./FilterTab";
 import { DateProps, ShowCalendarType } from "./Page";
 import ThemeTab from "./ThemeTab";
@@ -13,6 +14,8 @@ interface ScheduleFilterProps {
   handleCalendarClick: (type: "start" | "end") => void;
   handleStartDateChange: (newDate: Date) => void;
   handleEndDateChange: (newDate: Date) => void;
+  expense: string;
+  handleExpenseChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const ScheduleFilter = ({
@@ -23,6 +26,8 @@ const ScheduleFilter = ({
   handleCalendarClick,
   handleStartDateChange,
   handleEndDateChange,
+  expense,
+  handleExpenseChange,
 }: ScheduleFilterProps) => {
   return (
     <div className="inline-block w-[281px] bg-neutral-50 h-full">
@@ -35,6 +40,7 @@ const ScheduleFilter = ({
         handleStartDateChange={handleStartDateChange}
         handleEndDateChange={handleEndDateChange}
       />
+      <ExpenseTab expense={expense} handleExpenseChange={handleExpenseChange} />
     </div>
   );
 };

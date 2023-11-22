@@ -26,6 +26,8 @@ const Page = () => {
     end: false,
   });
 
+  const [expense, setExpense] = useState<string>("");
+
   const handleCalendarClick = (type: "start" | "end") => {
     setShowCalendar((prev) => ({
       start: type === "start" ? !prev.start : false,
@@ -71,6 +73,10 @@ const Page = () => {
     handleCalendarClick("end");
   };
 
+  const handleExpenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setExpense(e.target.value);
+  };
+
   return (
     <div className="w-4/5 min-h-[90vh]">
       <ScheduleFilter
@@ -81,6 +87,8 @@ const Page = () => {
         handleCalendarClick={handleCalendarClick}
         handleStartDateChange={handleStartDateChange}
         handleEndDateChange={handleEndDateChange}
+        expense={expense}
+        handleExpenseChange={handleExpenseChange}
       />
       <ScheduleContent />
     </div>

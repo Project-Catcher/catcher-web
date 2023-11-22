@@ -9,3 +9,16 @@ export const themeList = [
   { title: "문화생활", img: "/assets/findSchedule/palette.svg" },
   { title: "등산", img: "/assets/findSchedule/mountain.svg" },
 ];
+
+export interface PriceRange {
+  label: string;
+  value: string;
+}
+
+export const priceRanges: PriceRange[] = [
+  { label: "0 ~ 10,000", value: "0-10000" },
+  { label: "10,001 ~ 50,000", value: "10001-50000" },
+  { label: "50,001 ~ 100,000", value: "50001-100000" },
+  { label: "100,000 이상", value: "100000+" },
+  { label: "미정", value: "undefined" },
+];
