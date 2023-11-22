@@ -28,11 +28,11 @@ jobs:
         run: docker build -t catcher-web .
         
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ env.FRONT_AWS_REGION }}
+          aws-region: ${{ secrets.FRONT_AWS_REGION }}
           role-session-name: GitHubActions
-          role-to-assume: ${{ env.ROLE_ARN }}
+          role-to-assume: ${{ secrets.OIDC_ROLE }}
 
       - name: Login to Amazon ECR
         id: login-ecr
