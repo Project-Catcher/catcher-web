@@ -15,12 +15,12 @@ jobs:
   pr:
     if: ${{ github.event.pull_request.merged == false && github.event == 'push'}}
     name: Call workflow - Error Check
-    uses: ./.github/workflows/check_errors.yml
+    uses: ./.github/workflows/check_err.yml
 
   pushed-1:
     if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
     name: Call workflow - Error Check
-    uses: ./.github/workflows/check_errors.yml
+    uses: ./.github/workflows/check_err.yml
 
   pushed-2:
     if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
