@@ -16,7 +16,6 @@ export interface ShowCalendarType {
 const Page = () => {
   const { openAlert } = useModal();
   const [theme, setTheme] = useState("전체");
-
   const [date, setDate] = useState<DateProps>({
     start: undefined,
     end: undefined,
@@ -25,8 +24,22 @@ const Page = () => {
     start: false,
     end: false,
   });
-
   const [expense, setExpense] = useState<string>("");
+  const [personnel, setPersonnel] = useState<string>("");
+
+  const handleReset = () => {
+    setTheme("전체");
+    setDate({
+      start: undefined,
+      end: undefined,
+    });
+    setShowCalendar({
+      start: false,
+      end: false,
+    });
+    setExpense("");
+    setPersonnel("");
+  };
 
   const handleCalendarClick = (type: "start" | "end") => {
     setShowCalendar((prev) => ({
@@ -77,9 +90,14 @@ const Page = () => {
     setExpense(e.target.value);
   };
 
+  const handlePersonnelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPersonnel(e.target.value);
+  };
+
   return (
     <div className="w-4/5 min-h-[90vh]">
       <ScheduleFilter
+        handleReset={handleReset}
         theme={theme}
         setTheme={setTheme}
         date={date}
@@ -89,6 +107,8 @@ const Page = () => {
         handleEndDateChange={handleEndDateChange}
         expense={expense}
         handleExpenseChange={handleExpenseChange}
+        personnel={personnel}
+        handlePersonnelChange={handlePersonnelChange}
       />
       <ScheduleContent />
     </div>
