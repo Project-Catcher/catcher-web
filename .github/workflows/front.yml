@@ -2,13 +2,19 @@ name: Build Nextjs
 
 on:
   workflow_call:
+      secrets:
+        ECR_URL:
+        ROLE_ARN:
+        AWS_REGION:
+        WEBHOOK_URL:
+          required: true
 
-env:
-  ECR_URL: ${{ secrets.ECR_REPO_DEV_FRONT }}
-  ROLE_ARN: ${{ secrets.OIDC_ROLE }}
-  # AWS_REGION: ${{ secrets.AWS_REGION }}
-  FRONT_AWS_REGION: ${{ secrets.FRONT_AWS_REGION }}
-  WEBHOOK_URL: ${{ secrets.WEBHOOK }}
+# env:
+#   ECR_URL: ${{ secrets.ECR_REPO_DEV_FRONT }}
+#   ROLE_ARN: ${{ secrets.OIDC_ROLE }}
+#   # AWS_REGION: ${{ secrets.AWS_REGION }}
+#   FRONT_AWS_REGION: ${{ secrets.FRONT_AWS_REGION }}
+#   WEBHOOK_URL: ${{ secrets.WEBHOOK }}
 
 permissions:
   id-token: write
@@ -57,8 +63,8 @@ jobs:
 
       - name: Publish Image to ECR(CATCHER-WEB)
         run: |
-          docker tag catcher-web:latest ${{ env.ECR_URL }}:${{ github.sha }}
-          docker push ${{ env.ECR_URL }}:${{ github.sha }}
+          docker tag catcher-web:latest ${{ secrets.ECR_URL }}:${{ github.sha }}
+          docker push ${{ secrets.ECR_URL }}:${{ github.sha }}
 
       - name: Deploy to Frontend Instance from ECR Image
         run: |
@@ -76,4 +82,4 @@ jobs:
           else
             MESSAGE="❌ ${{ job.status }} 프론트 배포 실패 : catcher-web - by ${{ github.actor }}"
           fi
-          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ env.WEBHOOK_URL }}
+          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ secrets.WEBHOOK_URL }}
