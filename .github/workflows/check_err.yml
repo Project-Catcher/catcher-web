@@ -1,15 +1,12 @@
 name: Check Errors
 
 on:
-  pull_request:
-    branches: [ "develop", "main" ]
   workflow_call:
 
 jobs:
   err_check:
     name: Check Errors
-    # runs-on: self-hosted
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
@@ -17,10 +14,10 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v3
+      - name: Set Node.js 18.18
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.18
+            node-version: 18.18
   
       - name: Setup yarn
         run: npm install -g yarn
