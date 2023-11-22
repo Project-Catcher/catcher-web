@@ -1,0 +1,29 @@
+name: ON PR/Merge - Check Errors | Build
+
+on:
+  pull_request:
+    branches: [ "develop", "main" ]
+  push:
+    branches: [ "develop", "main", "git:refactor-jdb-gitaction-workflow" ]
+
+jobs:
+  merged:
+    if: github.event.pull_request.merged == true
+    name: Call workflow - Build Nextjs
+    uses: ./.github/workflows/front.yml
+
+  pr:
+    if: ${{ github.event.pull_request.merged == false && github.event == 'push'}}
+    name: Call workflow - Error Check
+    uses: ./.github/workflows/check_errors.yml
+
+  pushed-1:
+    if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
+    name: Call workflow - Error Check
+    uses: ./.github/workflows/check_errors.yml
+
+  pushed-2:
+    if: ${{ github.event.pull_request.merged == false && github.event != 'push'}}
+    name: Call workflow - Build Nextjs
+    uses: ./.github/workflows/front.yml
+    needs: pushed-1

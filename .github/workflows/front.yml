@@ -1,8 +1,7 @@
-name: CI/CD nextjs
+name: Build Nextjs
 
 on:
-  push:
-    branches: [ "develop", "main" ]
+  workflow_call:
 
 env:
   ECR_URL: ${{ secrets.ECR_REPO_DEV_FRONT }}
