@@ -1,6 +1,7 @@
 import { themeList } from "@findSchedule/const";
 import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
+import CategoryTitle from "./CategoryTitle";
 
 interface ThemeTabProps {
   theme: string;
@@ -14,15 +15,7 @@ const ThemeTab = ({ theme, setTheme }: ThemeTabProps) => {
 
   return (
     <div className="p-5 border-t">
-      <div className="flex items-center">
-        <Image
-          src="/assets/findSchedule/category.svg"
-          alt="category"
-          width={24}
-          height={24}
-        />
-        <span className="ml-2 text-base font-bold text-zinc-800">테마</span>
-      </div>
+      <CategoryTitle title="테마" />
       <div className="flex gap-x-[7px] gap-y-[6px] flex-wrap mt-2">
         {themeList.map((item, i) => (
           <button

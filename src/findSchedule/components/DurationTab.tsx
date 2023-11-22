@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import CategoryTitle from "./CategoryTitle";
 import InputCalender from "./InputCalendar";
 import { DateProps, ShowCalendarType } from "./Page";
 
@@ -20,15 +21,7 @@ const DurationTab = ({
 }: DurationTabProps) => {
   return (
     <div className="p-5 border-t">
-      <div className="flex items-center">
-        <Image
-          src="/assets/findSchedule/category.svg"
-          alt="category"
-          width={24}
-          height={24}
-        />
-        <span className="ml-2 text-base font-bold text-zinc-800">기간</span>
-      </div>
+      <CategoryTitle title="기간" />
       <div className="flex gap-x-[10px] flex-wrap mt-3">
         <InputCalender
           date={date.start}
