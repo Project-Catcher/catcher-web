@@ -34,7 +34,7 @@ const ContentFilter = ({
   return (
     <div className="flex items-center justify-center w-full py-3 bg-white">
       <div className="mr-2 text-sm font-light text-zinc-800">일정 제목</div>
-      <div className="w-[280px] h-[38px] bg-white rounded-[5px] border border-neutral-200 flex items-center mr-6">
+      <div className="w-1/6 h-[38px] bg-white rounded-[5px] border border-neutral-200 flex items-center mr-6">
         <input
           className="w-full px-2 py-1 text-sm font-normal text-zinc-500 focus:outline-none"
           placeholder="일정 제목을 입력해주세요"

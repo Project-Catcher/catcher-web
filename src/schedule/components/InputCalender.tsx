@@ -18,7 +18,7 @@ const InputCalender = ({
   handleDateChange,
 }: InputCalenderProps) => {
   return (
-    <div className="w-[145px] h-[38px] bg-white rounded-[5px] border border-neutral-200  relative cursor-pointer">
+    <div className="w-[10%] h-[38px] bg-white rounded-[5px] border border-neutral-200  relative cursor-pointer">
       <div className="h-full flex-center" onClick={handleCalendarClick}>
         <input
           className="w-full px-2 py-1 text-sm font-normal cursor-pointer text-zinc-500 focus:outline-none"
