@@ -6,7 +6,8 @@ on:
 env:
   ECR_URL: ${{ secrets.ECR_REPO_DEV_FRONT }}
   ROLE_ARN: ${{ secrets.OIDC_ROLE }}
-  AWS_REGION: ${{ secrets.AWS_REGION }}
+  # AWS_REGION: ${{ secrets.AWS_REGION }}
+  FRONT_AWS_REGION: ${{ secrets.FRONT_AWS_REGION }}
   WEBHOOK_URL: ${{ secrets.WEBHOOK }}
 
 permissions:
@@ -29,9 +30,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
+          aws-region: ${{ env.FRONT_AWS_REGION }}
           role-session-name: GitHubActions
-          role-to-assume: ${{ secrets.ROLE_ARN }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ env.ROLE_ARN }}
 
       - name: Login to Amazon ECR
         id: login-ecr
