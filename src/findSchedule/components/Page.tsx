@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useModal } from "@shared/hook";
 import ScheduleContent from "./ScheduleContent";
 import ScheduleFilter from "./ScheduleFilter";
@@ -26,6 +26,10 @@ const Page = () => {
   });
   const [expense, setExpense] = useState<string>("");
   const [personnel, setPersonnel] = useState<string>("");
+  const [keywordFilter, setKeywordFilter] = useState({
+    option: "전체",
+    keyword: "",
+  });
 
   const handleReset = () => {
     setTheme("전체");
@@ -94,8 +98,18 @@ const Page = () => {
     setPersonnel(e.target.value);
   };
 
+  const handleKeywordChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
+    setKeywordFilter((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
-    <div className="w-4/5 min-h-[90vh]">
+    <div className="w-4/5 min-h-[90vh] flex">
       <ScheduleFilter
         handleReset={handleReset}
         theme={theme}
@@ -110,7 +124,10 @@ const Page = () => {
         personnel={personnel}
         handlePersonnelChange={handlePersonnelChange}
       />
-      <ScheduleContent />
+      <ScheduleContent
+        keywordFilter={keywordFilter}
+        handleKeywordChange={handleKeywordChange}
+      />
     </div>
   );
 };
