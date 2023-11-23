@@ -3,10 +3,13 @@ name: Build Nextjs
 on:
   workflow_call:
     secrets:
-      ECR_URL:
-      ROLE_ARN:
+      ECR_REPO_DEV_FRONT:
+      OIDC_ROLE:
       AWS_REGION:
-      WEBHOOK_URL:
+      WEBHOOK:
+      AWS_DEPLOY_APP_NAME: 
+      AWS_DEPLOY_GROUP: 
+      AWS_DEPLOY_CONFIG: 
 
 permissions:
   id-token: write
@@ -40,7 +43,7 @@ jobs:
         run: |
           # ECR Front 레포의 기존 이미지 조회
           aws ecr describe-images \
-          --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+          --repository-name ${{ secrets.ECR_REPO_DEV_FRONT }} \
           --region ${{ secrets.AWS_REGION }} \
           --output yaml | grep imageDigest | awk -F ' ' '{print $2}' > ./delete_list.txt
 
@@ -48,7 +51,7 @@ jobs:
           for front_image in `cat ./delete_list.txt`
           do
           aws ecr batch-delete-image \
-              --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
+              --repository-name ${{ secrets.ECR_REPO_DEV_FRONT }} \
               --image-ids imageDigest=$front_image \
               --output yaml > /dev/null
           done
@@ -74,4 +77,4 @@ jobs:
           else
             MESSAGE="❌ ${{ job.status }} 프론트 배포 실패 : catcher-web - by ${{ github.actor }}"
           fi
-          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ secrets.WEBHOOK_URL }}
+          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ secrets.WEBHOOK }}
