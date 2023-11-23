@@ -3,7 +3,7 @@ name: Build Nextjs
 on:
   workflow_call:
     secrets:
-      ECR_REPO_DEV_FRONT:
+      AWS_FRONT_ECR_NAME:
       OIDC_ROLE:
       AWS_REGION:
       WEBHOOK:
@@ -43,7 +43,7 @@ jobs:
         run: |
           # ECR Front 레포의 기존 이미지 조회
           aws ecr describe-images \
-          --repository-name ${{ secrets.ECR_REPO_DEV_FRONT }} \
+          --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
           --region ${{ secrets.AWS_REGION }} \
           --output yaml | grep imageDigest | awk -F ' ' '{print $2}' > ./delete_list.txt
 
@@ -51,7 +51,7 @@ jobs:
           for front_image in `cat ./delete_list.txt`
           do
           aws ecr batch-delete-image \
-              --repository-name ${{ secrets.ECR_REPO_DEV_FRONT }} \
+              --repository-name ${{ secrets.AWS_FRONT_ECR_NAME }} \
               --image-ids imageDigest=$front_image \
               --output yaml > /dev/null
           done
