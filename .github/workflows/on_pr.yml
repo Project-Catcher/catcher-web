@@ -13,7 +13,7 @@ jobs:
     name: Build Nextjs
     uses: ./.github/workflows/front.yml
     secrets:
-      AWS_FRONT_ECR_NAME: ${{ secrets.AWS_FRONT_ECR_NAME }}
+      ECR_REPO_DEV_FRONT: ${{ secrets.ECR_REPO_DEV_FRONT }}
       OIDC_ROLE: ${{ secrets.OIDC_ROLE }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
       WEBHOOK: ${{ secrets.WEBHOOK }}
@@ -36,7 +36,7 @@ jobs:
     name: Build Nextjs
     uses: ./.github/workflows/front.yml
     secrets:
-      AWS_FRONT_ECR_NAME: ${{ secrets.AWS_FRONT_ECR_NAME }}
+      ECR_REPO_DEV_FRONT: ${{ secrets.ECR_REPO_DEV_FRONT }}
       OIDC_ROLE: ${{ secrets.OIDC_ROLE }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
       WEBHOOK: ${{ secrets.WEBHOOK }}
