@@ -58,8 +58,8 @@ jobs:
 
       - name: Publish Image to ECR(CATCHER-WEB)
         run: |
-          docker tag catcher-web:latest ${{ secrets.ECR_URL }}:${{ github.sha }}
-          docker push ${{ secrets.ECR_URL }}:${{ github.sha }}
+          docker tag catcher-web:latest ${{ secrets.AWS_FRONT_ECR_NAME }}:${{ github.sha }}
+          docker push ${{ secrets.AWS_FRONT_ECR_NAME }}:${{ github.sha }}
 
       - name: Deploy to Frontend Instance from ECR Image
         run: |
