@@ -11,6 +11,7 @@ interface ScheduleContentProps {
   ) => void;
   sortFilter: string;
   handleSortChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onClickSearch: VoidFunction;
 }
 
 const ScheduleContent = ({
@@ -19,12 +20,14 @@ const ScheduleContent = ({
   handleKeywordChange,
   sortFilter,
   handleSortChange,
+  onClickSearch,
 }: ScheduleContentProps) => {
   return (
     <div className="w-full ml-8">
       <KeywordFilter
         keywordFilter={keywordFilter}
         handleKeywordChange={handleKeywordChange}
+        onClickSearch={onClickSearch}
       />
       <div className="flex items-center justify-between px-2 mt-2">
         <div>

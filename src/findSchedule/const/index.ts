@@ -16,17 +16,26 @@ export interface RadioRange {
 }
 
 export const priceRanges: RadioRange[] = [
-  { label: "0 ~ 10,000", value: "0-10000" },
-  { label: "10,001 ~ 50,000", value: "10001-50000" },
-  { label: "50,001 ~ 100,000", value: "50001-100000" },
-  { label: "100,000 이상", value: "100000+" },
-  { label: "미정", value: "undefined" },
+  { label: "0 ~ 10,000", value: "1" },
+  { label: "10,001 ~ 50,000", value: "2" },
+  { label: "50,001 ~ 100,000", value: "3" },
+  { label: "100,000 이상", value: "4" },
+  { label: "미정", value: "5" },
 ];
 
-export const PersonnelRanges: RadioRange[] = [
-  { label: "나홀로", value: "나홀로" },
-  { label: "2 ~ 4명", value: "2 ~ 4명" },
-  { label: "5 ~ 10명", value: "5 ~ 10명" },
-  { label: "최대 30명", value: "최대 30명" },
-  { label: "미정", value: "undefined" },
+export const personnelRanges: RadioRange[] = [
+  { label: "나홀로", value: "1" },
+  { label: "2 ~ 4명", value: "2" },
+  { label: "5 ~ 10명", value: "3" },
+  { label: "최대 30명", value: "4" },
+  { label: "미정", value: "5" },
+];
+
+export const keywordRanges: RadioRange[] = [
+  { label: "전체", value: "1" },
+  { label: "제목", value: "2" },
+  { label: "작성자", value: "3" },
+  { label: "내용", value: "4" },
+  { label: "제목+내용", value: "5" },
+  { label: "태그", value: "6" },
 ];

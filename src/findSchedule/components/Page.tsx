@@ -29,8 +29,8 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
     start: false,
     end: false,
   });
-  const [expense, setExpense] = useState<string>("");
-  const [personnel, setPersonnel] = useState<string>("");
+  const [expense, setExpense] = useState("");
+  const [personnel, setPersonnel] = useState("");
   const [keywordFilter, setKeywordFilter] = useState({
     option: "전체",
     keyword: "",
@@ -39,10 +39,21 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
   const [cardList, setCardList] = useState(defaultCardList);
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`).then((res) => {
-      setCardList(res.data);
-    });
-  }, []);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`, {
+        params: {
+          theme,
+          dateStart: date.start,
+          dateEnd: date.end,
+          expense,
+          personnel,
+        },
+      })
+      .then((res) => {
+        console.log("cardList", res.data);
+        setCardList(res.data);
+      });
+  }, [theme, date, expense, personnel]);
 
   const handleReset = () => {
     setTheme("전체");
@@ -121,6 +132,29 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
     }));
   };
 
+  const onClickSearch = () => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`, {
+        params: {
+          theme,
+          dateStart: date.start,
+          dateEnd: date.end,
+          expense,
+          personnel,
+          keywordOption: keywordFilter.option,
+          keyword: keywordFilter.keyword,
+        },
+      })
+      .then((res) => {
+        console.log("cardList", res.data);
+        setCardList(res.data);
+        setKeywordFilter((prev) => ({
+          ...prev,
+          keyword: "",
+        }));
+      });
+  };
+
   const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setSortFilter(value);
@@ -148,6 +182,7 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
         cardList={cardList}
         sortFilter={sortFilter}
         handleSortChange={handleSortChange}
+        onClickSearch={onClickSearch}
       />
     </div>
   );

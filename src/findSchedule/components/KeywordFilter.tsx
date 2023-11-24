@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from "react";
+import { keywordRanges } from "@findSchedule/const";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 
 export interface keywordFilterType {
   option: string;
@@ -10,13 +11,21 @@ interface KeywordFilterProps {
   handleKeywordChange: (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
+  onClickSearch: VoidFunction;
 }
 
 const KeywordFilter = ({
   keywordFilter,
   handleKeywordChange,
+  onClickSearch,
 }: KeywordFilterProps) => {
   const { option, keyword } = keywordFilter;
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onClickSearch();
+    }
+  };
 
   return (
     <div className="flex items-center justify-between pb-3 border-b">
@@ -29,12 +38,11 @@ const KeywordFilter = ({
             value={option}
             onChange={handleKeywordChange}
           >
-            <option value="전체">전체</option>
-            <option value="제목">제목</option>
-            <option value="작성자">작성자</option>
-            <option value="내용">내용</option>
-            <option value="제목+내용">제목+내용</option>
-            <option value="태그">태그</option>
+            {keywordRanges.map((keyword, i) => (
+              <option key={`keyword-${i}`} value={keyword.value}>
+                {keyword.label}
+              </option>
+            ))}
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
             <svg
@@ -53,9 +61,13 @@ const KeywordFilter = ({
             name="keyword"
             value={keyword}
             onChange={handleKeywordChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
-        <button className="w-[100px] h-[38px] px-5 bg-pink-400 rounded-[5px] text-white hover:bg-pink-500">
+        <button
+          className="w-[100px] h-[38px] px-5 bg-pink-400 rounded-[5px] text-white hover:bg-pink-500"
+          onClick={onClickSearch}
+        >
           <span>찾기</span>
         </button>
       </div>
