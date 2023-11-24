@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 flex items-center justify-between px-20 py-2 bg-${headerColor} transition-background duration-500 ease-in-out`}
+      className={`fixed top-0 left-0 right-0 flex items-center justify-between px-20 py-2 bg-${headerColor} transition-background duration-500 ease-in-out z-50`}
     >
       <div className="flex items-center cursor-pointer">
         <Link href="/">
