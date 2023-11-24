@@ -1,8 +1,13 @@
-import React, { ChangeEvent, useState } from "react";
+import axios from "axios";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useModal } from "@shared/hook";
+import { CardType } from "./Card";
 import ScheduleContent from "./ScheduleContent";
 import ScheduleFilter from "./ScheduleFilter";
 
+interface FindScheduleProps {
+  defaultCardList: CardType[];
+}
 export interface DateProps {
   start: Date | undefined;
   end: Date | undefined;
@@ -13,7 +18,7 @@ export interface ShowCalendarType {
   end: boolean;
 }
 
-const Page = () => {
+const Page = ({ defaultCardList }: FindScheduleProps) => {
   const { openAlert } = useModal();
   const [theme, setTheme] = useState("전체");
   const [date, setDate] = useState<DateProps>({
@@ -30,6 +35,14 @@ const Page = () => {
     option: "전체",
     keyword: "",
   });
+  const [sortFilter, setSortFilter] = useState("최신순");
+  const [cardList, setCardList] = useState(defaultCardList);
+
+  useEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`).then((res) => {
+      setCardList(res.data);
+    });
+  }, []);
 
   const handleReset = () => {
     setTheme("전체");
@@ -108,6 +121,11 @@ const Page = () => {
     }));
   };
 
+  const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    setSortFilter(value);
+  };
+
   return (
     <div className="w-4/5 min-h-[90vh] flex">
       <ScheduleFilter
@@ -127,6 +145,9 @@ const Page = () => {
       <ScheduleContent
         keywordFilter={keywordFilter}
         handleKeywordChange={handleKeywordChange}
+        cardList={cardList}
+        sortFilter={sortFilter}
+        handleSortChange={handleSortChange}
       />
     </div>
   );

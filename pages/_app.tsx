@@ -6,7 +6,10 @@ import Confirm from "@shared/modal/Confirm";
 import Modal from "@shared/modal/Modal";
 import "@shared/styles/globals.css";
 
-if (process.env.NODE_ENV === "development" && process.env.MOCK === "true") {
+if (
+  process.env.NEXT_PUBLIC_NODE_ENV === "development" &&
+  process.env.NEXT_PUBLIC_MOCK === "true"
+) {
   import("mock");
 }
 
