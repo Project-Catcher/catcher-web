@@ -54,4 +54,3 @@ export { default as TimeModal } from "./TimeModal";
 export { default as TimeTable } from "./TimeTable";
 export { default as TimeTableContainer } from "./TimeTableContainer";
 export { default as Title } from "./Title";
-export { default as WritingPlanExisted } from "./WritingPlanExisted";
