@@ -23,8 +23,8 @@ export const scheduleAnswers = atom<ScheduleAnswerType>({
   default: {
     title: "",
     imageSrc: "",
-    startedAt: "",
-    endedAt: "",
+    startedAt: null,
+    endedAt: null,
     city: "",
     tag: [],
     items: [
