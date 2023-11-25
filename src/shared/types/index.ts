@@ -54,8 +54,8 @@ export interface PlanSubTitle {
 export interface ScheduleAnswerType {
   title: string;
   imageSrc: string;
-  startedAt: string;
-  endedAt: string;
+  startedAt: Date | null;
+  endedAt: Date | null;
   city: string;
   tag: string[];
   items: [
