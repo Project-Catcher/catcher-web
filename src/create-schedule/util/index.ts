@@ -190,3 +190,33 @@ export const handleImageSrc = (category: CategoryTags) => {
       return "/images/samples/category_etc.svg";
   }
 };
+
+export const handleDateFormat = (value: Date) => {
+  const year = value.getFullYear();
+  const month = String(value.getMonth() + 1).padStart(2, "0");
+  const day = String(value.getDate()).padStart(2, "0");
+
+  return `${year}.${month}.${day}`;
+};
+
+export const handleCurrentDate = (prev: Date | null, type: "next" | "prev") => {
+  if (prev && type === "next") {
+    const newDate = new Date(
+      prev.getFullYear(),
+      prev.getMonth(),
+      prev.getDate() + 1,
+    );
+
+    return newDate;
+  } else if (prev && type === "prev") {
+    const newDate = new Date(
+      prev.getFullYear(),
+      prev.getMonth(),
+      prev.getDate() - 1,
+    );
+
+    return newDate;
+  }
+
+  return null;
+};
