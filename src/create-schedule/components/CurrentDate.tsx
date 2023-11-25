@@ -1,13 +1,15 @@
-import { useRecoilValue } from "recoil";
-import { scheduleAnswers } from "@shared/recoil";
+import { handleDateFormat } from "@create-schedule/util";
 
-const CurrentDate = () => {
-  // TODO: Date 객체로 사용
-  const { startedAt, endedAt } = useRecoilValue(scheduleAnswers);
+interface CurrentDateProps {
+  currentDate: Date | null;
+}
 
+const CurrentDate = ({ currentDate }: CurrentDateProps) => {
   return (
     <div className="w-full h-[32px] bg-[#ACBEFF] rounded-[5px] text-center leading-[32px] mb-[10px]">
-      <p className="text-[18px] text-white font-semibold">{startedAt}</p>
+      <p className="text-[18px] text-white font-semibold">
+        {currentDate && handleDateFormat(currentDate)}
+      </p>
     </div>
   );
 };

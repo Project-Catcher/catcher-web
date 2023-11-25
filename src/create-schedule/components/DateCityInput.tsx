@@ -1,3 +1,5 @@
+import { handleDateFormat } from "@create-schedule/util";
+import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { scheduleAnswers } from "@shared/recoil";
 import DateCityHandler from "./DateCityHandler";
@@ -15,6 +17,18 @@ const DateCityInput = ({
 }: DateCityInputProps) => {
   const answer = useRecoilValue(scheduleAnswers);
 
+  const startDate = useMemo(() => {
+    if (answer.startedAt) {
+      return handleDateFormat(answer.startedAt);
+    }
+  }, [answer.startedAt]);
+
+  const endDate = useMemo(() => {
+    if (answer.endedAt) {
+      return handleDateFormat(answer.endedAt);
+    }
+  }, [answer.endedAt]);
+
   return (
     <div className="relative inline-block">
       <DateCityHandler callType={callType} />
@@ -25,7 +39,9 @@ const DateCityInput = ({
         placeholder={placeholder}
         value={
           answerType && callType.includes("date")
-            ? answer[answerType]
+            ? callType === "date_start"
+              ? startDate
+              : endDate
             : answer.city
         }
       />

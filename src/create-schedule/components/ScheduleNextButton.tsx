@@ -1,3 +1,4 @@
+import { handleDateFormat } from "@create-schedule/util";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useModal } from "@shared/hook";
 import { currentProgress, scheduleAnswers } from "@shared/recoil";
@@ -13,16 +14,22 @@ const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
   const setCurrentProgress = useSetRecoilState(currentProgress);
 
   const handleInputCheck = () => {
-    const startDate = parseInt(answer.startedAt.replace(/\./g, ""));
-    const endDate = parseInt(answer.endedAt.replace(/\./g, ""));
+    if (answer.startedAt && answer.endedAt) {
+      const startDate = parseInt(
+        handleDateFormat(answer.startedAt).replace(/\./g, ""),
+      );
+      const endDate = parseInt(
+        handleDateFormat(answer.endedAt).replace(/\./g, ""),
+      );
 
-    if (endDate - startDate < 0) {
-      openAlert({
-        title: "종료일은 시작일보다 전일 수 없어요.",
-        isHeaderCloseBtn: true,
-      });
+      if (endDate - startDate < 0) {
+        openAlert({
+          title: "종료일은 시작일보다 전일 수 없어요.",
+          isHeaderCloseBtn: true,
+        });
 
-      return false;
+        return false;
+      }
     }
 
     return true;
