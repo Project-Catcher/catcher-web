@@ -29,9 +29,12 @@ const TimerWithButton = ({
   return (
     <>
       <button
-        className={`${
-          callType === "findidpw" ? "h-[36px]" : "h-[46px]"
-        } ${buttonStyle} text-white bg-[#FACD49]`}
+        disabled={!isDonePhoneInput}
+        className={`${callType === "findidpw" ? "h-[36px]" : "h-[46px]"} ${
+          isDonePhoneInput
+            ? "bg-[#FACD49]"
+            : "bg-[#FACD4975] cursor-not-allowed"
+        } ${buttonStyle} text-white`}
         onClick={handleRetransmit}
       >
         재발송
@@ -58,14 +61,11 @@ const TimerWithButton = ({
       )}
 
       {isDonePhoneInput ? (
-        <>
-          {!isAuthNumValidate && (
-            <AuthErrorMessage
-              messageStyle="text-[12px]"
-              isExpired={isExpired}
-            />
-          )}
-        </>
+        !isAuthNumValidate ? (
+          <AuthErrorMessage messageStyle="text-[12px]" isExpired={isExpired} />
+        ) : (
+          <div className="h-[18px] invisible mt-[5px] mb-[5px]"></div>
+        )
       ) : (
         <div className="h-[18px] invisible mt-[5px] mb-[5px]"></div>
       )}
