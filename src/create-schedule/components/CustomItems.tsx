@@ -16,7 +16,9 @@ const CustomItems = () => {
 
   return (
     <>
-      {customItems && <CategoryFrame category={customItems} hasPointer />}
+      <div className="w-[250px] mb-[12px]">
+        {customItems && <CategoryFrame category={customItems} hasPointer />}
+      </div>
       <button
         className="w-[281px] h-[33px] text-[#505960] border border-dashed border-[#D9D9D9] rounded-[8px]"
         onClick={makeNewItem}
