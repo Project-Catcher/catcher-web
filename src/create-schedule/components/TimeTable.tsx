@@ -33,7 +33,11 @@ const TimeTable = () => {
       ...(prev as CategoryItem),
       selectedTime: index,
     }));
-    if (selectedItem?.title && selectedItem.category && selectedItem.city) {
+    if (
+      selectedItem?.title &&
+      selectedItem.category &&
+      selectedItem.tagBackground
+    ) {
       openModal({ contentId: "scheduleTimeSelector", isHeaderCloseBtn: true });
     }
     e.preventDefault();
