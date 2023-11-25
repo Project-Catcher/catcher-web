@@ -33,17 +33,17 @@ const Card = ({
   participateCapacity,
 }: CardType) => {
   return (
-    <div className="w-[260px] h-[420px] relative flex-col flex box-content transition-transform hover:-translate-y-1 m-auto">
+    <div className="w-[260px] h-[428px] relative flex-col flex box-content transition-transform hover:-translate-y-1 m-auto shadow-md hover:shadow-lg">
       <div className={`w-full h-[170px] bg-stone-300 border-zinc-400 relatvie`}>
         {img?.length !== 0 ? (
           <Image src={img} alt="sample img" width={260} height={170} />
         ) : (
-          <div className="flex items-center justify-center h-full text-white">
+          <div className="h-[170px] flex items-center justify-center text-white">
             대표 이미지가 없어요
           </div>
         )}
       </div>
-      <div className="p-2 pb-0.5">
+      <div className="h-full px-3 py-2">
         <h1 className="w-full h-[50px] text-base font-bold text-zinc-800 truncate-text-2-wrap">
           {title}
         </h1>
