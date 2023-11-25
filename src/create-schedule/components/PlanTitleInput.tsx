@@ -1,11 +1,11 @@
-import { SCHEDULE_TITLE } from "@create-schedule/constants";
+import { SCHEDULE_TITLE, TITLE_MAX_LENGTH } from "@create-schedule/constants";
 import { useRecoilState } from "recoil";
 import { scheduleAnswers } from "@shared/recoil";
-import RemainChar from "./RemainChar";
 import ScheduleTitle from "./ScheduleTitle";
 
 const PlanTitleInput = () => {
   const [{ title }, setTitle] = useRecoilState(scheduleAnswers);
+  const remainChar = TITLE_MAX_LENGTH - title.length;
 
   const handleTitle = (title: string) => {
     setTitle((prev) => ({ ...prev, title }));
@@ -18,10 +18,12 @@ const PlanTitleInput = () => {
         className="w-[628px] h-[55px] border border-[#E0E0E0] rounded-[5px] px-[26px]"
         type="text"
         placeholder="일정 제목을 입력해주세요."
-        maxLength={40}
+        maxLength={TITLE_MAX_LENGTH}
         onChange={({ target: { value } }) => handleTitle(value)}
       />
-      <RemainChar title={title} />
+      <div className="text-[12px] text-[#8D8D8D] font-medium -tracking-[0.01em]">
+        {remainChar < 0 ? 0 : remainChar}자 남음
+      </div>
     </div>
   );
 };

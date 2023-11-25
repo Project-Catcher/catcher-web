@@ -174,3 +174,5 @@ export const itemColor = [
   "bg-[#FF9292]",
   "bg-[#A1A1A1]",
 ];
+
+export const TITLE_MAX_LENGTH = 40;

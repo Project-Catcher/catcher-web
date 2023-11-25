@@ -25,7 +25,6 @@ export { default as PlanDefaultInfo } from "./PlanDefaultInfo";
 export { default as PlanMainImage } from "./PlanMainImage";
 export { default as PlanSideBar } from "./PlanSideBar";
 export { default as PlanTitleInput } from "./PlanTitleInput";
-export { default as RemainChar } from "./RemainChar";
 export { default as RemainContent } from "./RemainContent";
 export { default as Remains } from "./Remains";
 export { default as ScheduleNextButton } from "./ScheduleNextButton";
