@@ -65,20 +65,22 @@ const CategoryFrame = ({
             <div
               className={`${_category.tagBackground} flex items-center w-[234px] p-[3px]`}
             >
-              <Image
-                draggable={false}
-                src={imageSrc!}
-                alt={imageSrc}
-                width={16}
-                height={15}
-              />
-              <span className="text-[10px] text-[#454545] font-semibold ml-[4px] mr-[10px]">
+              {imageSrc && (
+                <Image
+                  draggable={false}
+                  src={imageSrc}
+                  alt={imageSrc}
+                  width={16}
+                  height={15}
+                />
+              )}
+              <span className="text-[10px] text-[#454545] font-semibold shrink-0 ml-[4px] mr-[10px]">
                 {_category.category}
               </span>
-              <span className="text-[10px] text-[#454545] font-medium grow">
+              <span className="text-[10px] text-[#454545] font-medium grow truncate">
                 {_category.title}
               </span>
-              <span className="text-[11px] text-[#00000080] font-semibold">
+              <span className="max-w-[40px] text-[11px] text-[#00000080] font-semibold truncate">
                 {_category.city}
               </span>
             </div>
