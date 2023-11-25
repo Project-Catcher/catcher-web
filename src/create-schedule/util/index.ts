@@ -186,5 +186,7 @@ export const handleImageSrc = (category: CategoryTags) => {
       return "/images/samples/category_culture.svg";
     case "등산":
       return "/images/samples/category_hiking.svg";
+    case "기타":
+      return "/images/samples/category_etc.svg";
   }
 };
