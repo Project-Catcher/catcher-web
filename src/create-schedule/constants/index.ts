@@ -156,3 +156,21 @@ export const templateContent = [
     requiredTime: "2~3일 일정",
   },
 ];
+
+export const itemColor = [
+  "bg-[#A3FAF2]",
+  "bg-[#FFE779]",
+  "bg-[#FFC395]",
+  "bg-[#CFE1FF]",
+  "bg-[#DDD1FF]",
+  "bg-[#FFDCDC]",
+  "bg-[#9BF2CE]",
+  "bg-[#FFB8B4]",
+  "bg-[#95CCFF]",
+  "bg-[#EEB785]",
+  "bg-[#FFD1EA]",
+  "bg-[#D8D8D8]",
+  "bg-[#D8B9F8]",
+  "bg-[#FF9292]",
+  "bg-[#A1A1A1]",
+];
