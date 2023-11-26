@@ -110,3 +110,24 @@ a {
 .overflow-FAQ {
   @apply overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
 }
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url('/fonts/NotoSansKR-Thin.ttf');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/NotoSansKR-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/NotoSansKR-Bold.ttf');
+}
