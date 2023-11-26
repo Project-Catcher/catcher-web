@@ -15,14 +15,25 @@ export interface Schedule {
 interface ScheduleCardProps {
   content: Schedule[];
   callType: "remain" | "template";
+  isClicked: {
+    template: boolean;
+    custom: boolean;
+  };
+  onClick?: (key: "template" | "custom") => void;
 }
 
-const ScheduleCard = ({ content, callType }: ScheduleCardProps) => {
+const ScheduleCard = ({
+  content,
+  callType,
+  isClicked,
+  onClick: handleClickCard,
+}: ScheduleCardProps) => {
   const { openModal } = useModal();
   const [clickedContent, setClickedContent] = useState<number | null>(null);
 
   const onClick = (index: number) => {
-    if (callType === "template") {
+    if (callType === "template" && handleClickCard) {
+      handleClickCard("template");
       openModal({ contentId: "templatePreview", isHeaderCloseBtn: true });
     }
     setClickedContent(index);
@@ -65,8 +76,12 @@ const ScheduleCard = ({ content, callType }: ScheduleCardProps) => {
         ))}
       </div>
       <div>
-        {callType === "template" ? (
-          <TemplateButton clickedContent={clickedContent} />
+        {callType === "template" && handleClickCard ? (
+          <TemplateButton
+            {...isClicked}
+            clickedContent={clickedContent}
+            onClick={handleClickCard}
+          />
         ) : (
           <Continue />
         )}
