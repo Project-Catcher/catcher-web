@@ -1,5 +1,5 @@
 import { TableArrayType } from "@create-schedule/components/TimeTable";
-import { PIXEL, TIME } from "@create-schedule/constants";
+import { PIXEL, TIME, WEEK } from "@create-schedule/constants";
 import { Dispatch, SetStateAction } from "react";
 import { AppliedItem, CategoryTags, Start2EndTime } from "@shared/types";
 
@@ -219,4 +219,10 @@ export const handleCurrentDate = (prev: Date | null, type: "next" | "prev") => {
   }
 
   return null;
+};
+
+export const getDay = (value: Date) => {
+  const currentDayIndex = value.getDay();
+
+  return WEEK[currentDayIndex];
 };

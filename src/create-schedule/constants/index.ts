@@ -176,3 +176,5 @@ export const itemColor = [
 ];
 
 export const TITLE_MAX_LENGTH = 40;
+
+export const WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
