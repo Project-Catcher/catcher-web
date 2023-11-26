@@ -2,6 +2,7 @@ import { ModalContentId } from "@shared/recoil/modal";
 import CalendarSelector from "./CalendarSelector";
 import CustomScheduleSelector from "./CustomScheduleSelector";
 import ScheduleTimeSelector from "./ScheduleTimeSelector";
+import TemplatePreview from "./TemplatePreview";
 import ThumbnailSelector, { ThumbnailSelectorProps } from "./ThumbnailSelector";
 
 export interface ModalContentProps {
@@ -21,6 +22,8 @@ const ModalContent = <T,>(modalProps: ModalContentProps) => {
       return <ScheduleTimeSelector />;
     case "customScheduleSelector":
       return <CustomScheduleSelector />;
+    case "templatePreview":
+      return <TemplatePreview />;
     default:
       return <></>;
   }

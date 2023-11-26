@@ -1,5 +1,6 @@
 import { Continue, TemplateButton } from "@create-schedule/components";
 import { useState } from "react";
+import { useModal } from "@shared/hook";
 
 // TODO: 일정 타입 지정
 export interface Schedule {
@@ -17,9 +18,13 @@ interface ScheduleCardProps {
 }
 
 const ScheduleCard = ({ content, callType }: ScheduleCardProps) => {
+  const { openModal } = useModal();
   const [clickedContent, setClickedContent] = useState<number | null>(null);
 
-  const handleClick = (index: number) => {
+  const onClick = (index: number) => {
+    if (callType === "template") {
+      openModal({ contentId: "templatePreview", isHeaderCloseBtn: true });
+    }
     setClickedContent(index);
   };
 
@@ -32,7 +37,7 @@ const ScheduleCard = ({ content, callType }: ScheduleCardProps) => {
             className={`${
               clickedContent === index ? "border-[#22AFFF]" : "border-[#E0E0E0]"
             } w-[151px] h-[196px] border  rounded-[5px] cursor-pointer`}
-            onClick={() => handleClick(index)}
+            onClick={() => onClick(index)}
           >
             <div className="w-[149px] h-[113px] bg-black rounded-t-[5px]">
               {_content.imageSrc}
