@@ -8,7 +8,7 @@ import { DragEvent, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useModal } from "@shared/hook";
 import { appliedScheduleItem, selectedScheduleItem } from "@shared/recoil";
-import { CategoryItem } from "@shared/types";
+import { AppliedItem, CategoryItem } from "@shared/types";
 import CategoryFrame from "./CategoryFrame";
 
 export interface TableArrayType {
@@ -16,7 +16,12 @@ export interface TableArrayType {
   cellHeight: number;
 }
 
-const TimeTable = () => {
+interface TimeTableProps {
+  callType: "template" | "custom";
+  initialData?: AppliedItem[];
+}
+
+const TimeTable = ({ callType, initialData }: TimeTableProps) => {
   const [tableArray, setTableArray] = useState<TableArrayType[]>(
     Array.from({ length: 25 }, (_, index) => ({
       time: index,
@@ -43,6 +48,37 @@ const TimeTable = () => {
     e.preventDefault();
   };
 
+  const renderItems = (
+    items: AppliedItem[],
+    cellHeight: number,
+    index: number,
+  ) => {
+    return items.map((item, _index) => {
+      const { type, itemHeight } = calculateItemHeight(
+        item.startTime,
+        item.endTime,
+      );
+      const top = calculateTop(cellHeight);
+
+      if (item.startTime.hour === index)
+        return (
+          <div
+            key={item.category + item.tagBackground + item.startTime}
+            style={type === "sameCell" ? {} : { top: top }}
+            className={`${
+              item.startTime.hour === item.endTime.hour ||
+              (item.endTime.minute === 0 &&
+                item.endTime.hour - item.startTime.hour === 1)
+                ? "relative"
+                : "absolute left-[80px]"
+            }`}
+          >
+            <CategoryFrame category={[item]} itemHeight={itemHeight} />
+          </div>
+        );
+    });
+  };
+
   useEffect(() => {
     calculateTableHeight({ appliedItem, tableArray, setTableArray });
   }, [appliedItem]);
@@ -65,35 +101,9 @@ const TimeTable = () => {
             >
               <div className="inline-block w-[56px]">{time}:00</div>
               <div className="flex flex-col gap-[1px] inline-block float-right w-[250px]">
-                {appliedItem?.map((item, _index) => {
-                  const { type, itemHeight } = calculateItemHeight(
-                    item.startTime,
-                    item.endTime,
-                  );
-                  const top = calculateTop(cellHeight);
-
-                  if (item.startTime.hour === index)
-                    return (
-                      <div
-                        key={
-                          item.category + item.tagBackground + item.startTime
-                        }
-                        style={type === "sameCell" ? {} : { top: top }}
-                        className={`${
-                          item.startTime.hour === item.endTime.hour ||
-                          (item.endTime.minute === 0 &&
-                            item.endTime.hour - item.startTime.hour === 1)
-                            ? "relative"
-                            : "absolute left-[80px]"
-                        }`}
-                      >
-                        <CategoryFrame
-                          category={[item]}
-                          itemHeight={itemHeight}
-                        />
-                      </div>
-                    );
-                })}
+                {callType === "template"
+                  ? initialData && renderItems(initialData, cellHeight, index)
+                  : appliedItem && renderItems(appliedItem, cellHeight, index)}
               </div>
             </td>
           </tr>
