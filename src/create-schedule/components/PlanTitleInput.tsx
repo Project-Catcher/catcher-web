@@ -12,7 +12,7 @@ const PlanTitleInput = () => {
   };
 
   return (
-    <div className="mb-[30px]">
+    <div id="일정 제목 입력" className="mb-[30px]">
       <ScheduleTitle title={SCHEDULE_TITLE.planTitle} />
       <input
         className="w-[628px] h-[55px] border border-[#E0E0E0] rounded-[5px] px-[26px]"

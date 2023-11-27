@@ -4,7 +4,7 @@ import ScheduleTitle from "./ScheduleTitle";
 
 const SelectCity = () => {
   return (
-    <div className="mb-[60px]">
+    <div id="장소 선택" className="mb-[60px]">
       <ScheduleTitle
         hasSubTitle
         title={SCHEDULE_TITLE.city}

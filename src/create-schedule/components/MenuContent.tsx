@@ -31,7 +31,7 @@ const MenuContent = ({
         setCurrentProgress(targetProgress);
       }}
     >
-      {title}
+      <a href={`#${title}`}>{title}</a>
     </div>
   );
 };

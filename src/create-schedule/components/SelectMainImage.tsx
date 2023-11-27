@@ -19,6 +19,7 @@ const SelectMainImage = () => {
       });
       setImageSrc((prev) => ({ ...prev, imageSrc: image.data.src.large }));
     } catch (error) {
+      // TODO: Error handling
       console.log(error);
     }
   };
@@ -35,6 +36,7 @@ const SelectMainImage = () => {
 
   return (
     <div
+      id="대표 이미지 설정"
       className="w-[222px] h-[126px] border border-[#E0E0E0] rounded-[5px] mr-[8px] cursor-pointer"
       onClick={handleModal}
     >

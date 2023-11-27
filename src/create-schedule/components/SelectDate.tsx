@@ -4,7 +4,7 @@ import ScheduleTitle from "./ScheduleTitle";
 
 const SelectDate = () => {
   return (
-    <div className="mb-[38px]">
+    <div id="시작일 종료일 설정" className="mb-[38px]">
       <ScheduleTitle
         hasSubTitle
         title={SCHEDULE_TITLE.date}

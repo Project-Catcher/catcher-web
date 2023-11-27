@@ -15,13 +15,6 @@ import TagNTemplate from "./TagNTemplate";
 const PlanSideBar = () => {
   const current = useRecoilValue(currentProgress);
   const [currentTab, setCurrentTab] = useState("일정 제목 입력");
-  console.log(
-    currentTab ===
-      ("일정 제목 입력" ||
-        "대표 이미지 설정" ||
-        "시작일 종료일 설정" ||
-        "장소 선택"),
-  );
 
   const handleTab = (value: string) => {
     setCurrentTab(value);
