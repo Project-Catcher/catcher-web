@@ -1,28 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuContent from "./MenuContent";
 import MenuContentContainer from "./MenuContentContainer";
 import SideBarMenuBox from "./SideBarMenuBox";
 
-const TagNTemplate = () => {
-  const boxTitle = "태그 및 일정 템플릿";
+interface TagNTemplateProps {
+  current: number;
+  currentTab: string;
+  handleTab: (value: string) => void;
+}
+
+const TagNTemplate = ({
+  current,
+  currentTab,
+  handleTab,
+}: TagNTemplateProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (current === 3) {
+      setIsOpen(true);
+    }
+  }, [current]);
+
   return (
     <>
       <SideBarMenuBox
-        title={boxTitle}
+        title="태그 및 일정 템플릿"
         isOpen={isOpen}
         isAccordion
         handleToggle={handleToggle}
       />
       {isOpen && (
         <MenuContentContainer>
-          <MenuContent title="제목 및 썸네일" boxTitle={boxTitle} />
-          <MenuContent title="템플릿 선택" boxTitle={boxTitle} />
+          {["제목 및 썸네일", "태그 및 일정 템플릿"].map((title) => (
+            <MenuContent
+              key={title}
+              title={title}
+              boxTitle="태그 및 일정 템플릿"
+              targetProgress={3}
+              currentTab={currentTab}
+              handleTab={handleTab}
+            />
+          ))}
         </MenuContentContainer>
       )}
     </>

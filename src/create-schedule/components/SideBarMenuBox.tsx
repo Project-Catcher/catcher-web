@@ -14,16 +14,15 @@ const SideBarMenuBox = ({
   handleToggle,
 }: SideBarMenuBoxProps) => {
   return (
-    <div className="w-full h-[63px] -tracking-[0.5px] px-[27px] py-[20px]">
+    <div
+      className="w-full h-[63px] -tracking-[0.5px] px-[27px] py-[20px] cursor-pointer"
+      onClick={handleToggle}
+    >
       <p className="inline-block text-[14px] text-[#F864A1] font-bold leading-[23px]">
         {title}
       </p>
       {isAccordion && (
-        // TODO: rotate image, onclick
-        <span
-          className={`${isOpen ? "" : "rotate-180 "}float-right cursor-pointer`}
-          onClick={handleToggle}
-        >
+        <span className={`${isOpen ? "" : "rotate-180 "}float-right`}>
           <Image
             src="/images/samples/accordionMenu.svg"
             alt="fold"
