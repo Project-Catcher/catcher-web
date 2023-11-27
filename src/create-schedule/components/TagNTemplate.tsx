@@ -1,3 +1,4 @@
+import { TAG_N_TEMPLATE_TAG } from "@create-schedule/constants";
 import { useEffect, useState } from "react";
 import MenuContent from "./MenuContent";
 import MenuContentContainer from "./MenuContentContainer";
@@ -36,7 +37,7 @@ const TagNTemplate = ({
       />
       {isOpen && (
         <MenuContentContainer>
-          {["제목 및 썸네일", "태그 및 일정 템플릿"].map((title) => (
+          {TAG_N_TEMPLATE_TAG.map((title) => (
             <MenuContent
               key={title}
               title={title}

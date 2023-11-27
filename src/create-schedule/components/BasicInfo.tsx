@@ -1,3 +1,4 @@
+import { BASIC_INFO_TAG } from "@create-schedule/constants";
 import { useEffect, useState } from "react";
 import MenuContent from "./MenuContent";
 import MenuContentContainer from "./MenuContentContainer";
@@ -32,12 +33,7 @@ const BasicInfo = ({ current, currentTab, handleTab }: BasicInfoProps) => {
       />
       {isOpen && (
         <MenuContentContainer>
-          {[
-            "일정 제목 입력",
-            "대표 이미지 설정",
-            "시작일 종료일 설정",
-            "위치 선택",
-          ].map((title) => (
+          {BASIC_INFO_TAG.map((title) => (
             <MenuContent
               key={title}
               title={title}

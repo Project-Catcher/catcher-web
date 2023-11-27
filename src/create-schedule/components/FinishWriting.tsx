@@ -1,3 +1,4 @@
+import { FINISH_WRITING_TAG } from "@create-schedule/constants";
 import { useEffect, useState } from "react";
 import MenuContent from "./MenuContent";
 import MenuContentContainer from "./MenuContentContainer";
@@ -24,7 +25,7 @@ const FinishWriting = ({
     if (current === 5) {
       setIsOpen(true);
     }
-  }, []);
+  }, [current]);
 
   return (
     <>
@@ -36,7 +37,7 @@ const FinishWriting = ({
       />
       {isOpen && (
         <MenuContentContainer>
-          {["공개범위 설정", "일정 소개"].map((title) => (
+          {FINISH_WRITING_TAG.map((title) => (
             <MenuContent
               key={title}
               title={title}

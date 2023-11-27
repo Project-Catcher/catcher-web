@@ -20,7 +20,7 @@ const PlanSideBar = () => {
       case 2:
         return setCurrentTab("일정 제목 입력");
       case 3:
-        return setCurrentTab("제목 및 썸네일");
+        return setCurrentTab("태그");
       case 5:
         return setCurrentTab("공개범위 설정");
       default:

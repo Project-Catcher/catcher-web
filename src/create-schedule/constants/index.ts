@@ -63,3 +63,14 @@ export const templateContent = [
     requiredTime: "2~3일 일정",
   },
 ];
+
+export const BASIC_INFO_TAG = [
+  "일정 제목 입력",
+  "대표 이미지 설정",
+  "시작일 종료일 설정",
+  "장소 선택",
+];
+
+export const TAG_N_TEMPLATE_TAG = ["태그", "일정 템플릿"];
+
+export const FINISH_WRITING_TAG = ["공개범위 설정", "일정 소개"];
