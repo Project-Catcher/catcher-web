@@ -28,3 +28,4 @@ const LoginBackground = () => {
 };
 
 export default LoginBackground;
+
