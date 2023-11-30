@@ -62,3 +62,13 @@ export interface ScheduleAnswerType {
 
 export type CalendarSelectorType = "startedAt" | "endedAt";
 export type LoginType = "kakao" | "naver" | "catcher";
+
+// TODO: 일정 타입 지정
+export interface ScheduleCardSection {
+  id: number;
+  imageSrc: string;
+  title: string;
+  position: string;
+  createdAt?: string;
+  requiredTime?: string;
+}
