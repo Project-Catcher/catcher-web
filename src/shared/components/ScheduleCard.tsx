@@ -1,18 +1,9 @@
 import { Continue, TemplateButton } from "@create-schedule/components";
 import { useState } from "react";
-
-// TODO: 일정 타입 지정
-export interface Schedule {
-  id: number;
-  imageSrc: string;
-  title: string;
-  position: string;
-  createdAt?: string;
-  requiredTime?: string;
-}
+import { ScheduleCardSection } from "@shared/types";
 
 interface ScheduleCardProps {
-  content: Schedule[];
+  content: ScheduleCardSection[];
   callType: "remain" | "template";
 }
 

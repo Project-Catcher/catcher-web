@@ -1,12 +1,18 @@
 import { SUBTITLE, TITLE } from "@create-schedule/constants";
 import { useRecoilValue } from "recoil";
 import { currentProgress } from "@shared/recoil";
+import { ScheduleCardSection } from "@shared/types";
 import PlanDefaultInfo from "./PlanDefaultInfo";
 import Remains from "./Remains";
 import ScheduleTagTemplate from "./ScheduleTagTemplate";
 import Title from "./Title";
 
-const PageContent = () => {
+interface PageContentProps {
+  remains: ScheduleCardSection[];
+  templates: ScheduleCardSection[];
+}
+
+const PageContent = ({ remains, templates }: PageContentProps) => {
   const current = useRecoilValue(currentProgress);
 
   return (
@@ -17,7 +23,7 @@ const PageContent = () => {
             title={TITLE.remains}
             subTitle={SUBTITLE.fighting("명란마요")}
           />
-          <Remains />
+          <Remains remains={remains} />
         </>
       )}
       {current === 2 && (
@@ -32,7 +38,7 @@ const PageContent = () => {
       {current === 3 && (
         <div className="w-[628px]">
           <Title title={TITLE.tag} subTitle={SUBTITLE.withyou} />
-          <ScheduleTagTemplate />
+          <ScheduleTagTemplate templates={templates} />
         </div>
       )}
     </>

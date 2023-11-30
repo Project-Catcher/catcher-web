@@ -1,8 +1,12 @@
-import { templateContent } from "@create-schedule/constants";
 import { ScheduleCard } from "@shared/components";
+import { ScheduleCardSection } from "@shared/types";
 
-const Template = () => {
-  return <ScheduleCard content={templateContent} callType="template" />;
+interface TemplateProps {
+  templates: ScheduleCardSection[];
+}
+
+const Template = ({ templates }: TemplateProps) => {
+  return <ScheduleCard content={templates} callType="template" />;
 };
 
 export default Template;
