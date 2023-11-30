@@ -1,5 +1,6 @@
 import { SUBTITLE, TITLE } from "@create-schedule/constants";
-import { useRecoilValue } from "recoil";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import { currentProgress } from "@shared/recoil";
 import { ScheduleCardSection } from "@shared/types";
 import PlanDefaultInfo from "./PlanDefaultInfo";
@@ -13,7 +14,13 @@ interface PageContentProps {
 }
 
 const PageContent = ({ remains, templates }: PageContentProps) => {
-  const current = useRecoilValue(currentProgress);
+  const [current, setCurrent] = useRecoilState(currentProgress);
+
+  useEffect(() => {
+    if (remains.length === 0 && current !== 2) {
+      setCurrent(2);
+    }
+  }, [remains]);
 
   return (
     <>
