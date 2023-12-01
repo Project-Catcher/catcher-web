@@ -11,7 +11,7 @@ const ItemCard = ({ theme, title, place, content }: ItemCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className="mt-2 w-[270px] h-[80px] bg-amber-200 flex relative"
+      className="mt-2 w-[270px] h-[80px] bg-amber-200 flex relative m-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

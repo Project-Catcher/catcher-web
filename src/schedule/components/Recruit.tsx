@@ -11,7 +11,7 @@ type TabType = "전체" | "모집 중/예정" | "모집 완료";
 
 const Recruit = () => {
   const [tab, setTab] = useState("전체");
-  const [cardList, setCardList] = useState<CardItemType[]>();
+  const [cardList, setCardList] = useState<CardItemType[]>([]);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
     start: undefined,

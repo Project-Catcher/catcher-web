@@ -13,8 +13,8 @@ export type scheduleType =
 
 interface ScheduleContentProps {
   scheduleType: scheduleType;
-  cardList?: CardItemType[];
-  setCardList: Dispatch<SetStateAction<CardItemType[] | undefined>>;
+  cardList: CardItemType[];
+  setCardList: Dispatch<SetStateAction<CardItemType[]>>;
 }
 
 export interface CardItemType {
@@ -98,10 +98,10 @@ const ScheduleContent = ({
             {...card}
           />
         ))}
-        {/* 카드 구조를 위해 빈 카드 추가 */}
-        <div className="w-[260px] h-[454px] m-auto" />
-        <div className="w-[260px] h-[454px] m-auto" />
-        <div className="w-[260px] h-[454px] m-auto" />
+
+        {[...Array(3 - (cardList.length % 3)).keys()].map((i) => (
+          <div key={`empty-${i}`} className="w-[260px] h-[454px] m-auto" />
+        ))}
       </div>
     </div>
   );

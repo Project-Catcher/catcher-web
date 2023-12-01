@@ -19,6 +19,10 @@ const ItemContent = ({ itemList }: ItemContentProps) => {
         {itemList.map((item, i) => (
           <ItemCard key={`item-${i}`} {...item} />
         ))}
+        {/* itemList가 3의 배수가 아닐 때 필요한 만큼 빈 div를 추가합니다. */}
+        {[...Array(3 - (itemList.length % 3)).keys()].map((i) => (
+          <div key={`empty-${i}`} className="w-[270px] h-[80px] m-auto" />
+        ))}
       </div>
     </div>
   );

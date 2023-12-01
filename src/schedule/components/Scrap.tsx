@@ -14,7 +14,7 @@ type TabType = "전체";
 
 const Scrap = () => {
   const [tab, setTab] = useState("전체");
-  const [cardList, setCardList] = useState<CardItemType[]>();
+  const [cardList, setCardList] = useState<CardItemType[]>([]);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
     start: undefined,

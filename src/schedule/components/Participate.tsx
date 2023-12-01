@@ -11,7 +11,7 @@ type TabType = "전체" | "승인 대기 중" | "승인 완료" | "승인 거절
 
 const Participate = () => {
   const [tab, setTab] = useState("전체");
-  const [cardList, setCardList] = useState<CardItemType[]>();
+  const [cardList, setCardList] = useState<CardItemType[]>([]);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
     start: undefined,
