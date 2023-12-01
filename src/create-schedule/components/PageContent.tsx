@@ -4,6 +4,7 @@ import { currentProgress } from "@shared/recoil";
 import DragnDropContainer from "./DragnDropContainer";
 import PlanDefaultInfo from "./PlanDefaultInfo";
 import Remains from "./Remains";
+import ScheduleNextButton from "./ScheduleNextButton";
 import ScheduleTagTemplate from "./ScheduleTagTemplate";
 import TimeTableContainer from "./TimeTableContainer";
 import Title from "./Title";
@@ -45,9 +46,15 @@ const PageContent = () => {
               subTitle={SUBTITLE.fillyourplan("명란마요")}
             />
           </div>
-          <div className="flex">
+          <div className="flex flex-wrap">
             <TimeTableContainer />
             <DragnDropContainer />
+            <div className="ml-[80px] mt-[80px]">
+              <ScheduleNextButton
+                value="다음으로 넘어갈까요?"
+                callType="template"
+              />
+            </div>
           </div>
         </>
       )}

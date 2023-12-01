@@ -9,7 +9,7 @@ const TimeTableContainer = ({}: TimeTableContainerProps) => {
       <div className="min-w-[362px] max-w-[362px]">
         <DateContainer />
         <div className="w-full border border-[#ACBEFF] rounded-[5px] bg-[#FFF9FC]">
-          <TimeTable />
+          <TimeTable callType="custom" />
         </div>
       </div>
     </>
