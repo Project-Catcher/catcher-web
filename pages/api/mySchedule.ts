@@ -137,3 +137,11 @@ export const getApplicantsList = async (id: number) => {
     },
   );
 };
+
+export const getItemList = async (title?: string) => {
+  return await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/getItemList`, {
+    params: {
+      title,
+    },
+  });
+};

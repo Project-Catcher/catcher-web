@@ -17,13 +17,7 @@ const ItemContent = ({ itemList }: ItemContentProps) => {
       {/* 카드 */}
       <div className="relative flex flex-wrap mt-2.5 gap-y-12 gap-x-6">
         {itemList.map((item, i) => (
-          <ItemCard
-            key={`item-${i}`}
-            theme={item.theme}
-            name={item.name}
-            place={item.place}
-            content={item.content}
-          />
+          <ItemCard key={`item-${i}`} {...item} />
         ))}
       </div>
     </div>

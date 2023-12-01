@@ -268,3 +268,20 @@ export const applicants = [
     list: [],
   },
 ];
+
+export const defaultItems = [
+  {
+    id: 1,
+    theme: "문화생활",
+    title: "도서관 가서 신간 읽기",
+    place: "연남동",
+    content: "코엑스 별마당 도서관을 가서 신간을 찾아가보자아아",
+  },
+  {
+    id: 2,
+    theme: "문화생활",
+    title: "도서관 자기",
+    place: "잠실",
+    content: "롯데 타워 놀러가자 !",
+  },
+];

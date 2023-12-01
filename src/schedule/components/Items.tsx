@@ -1,5 +1,5 @@
-import { defaultItems } from "@schedule/const";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getItemList } from "@pages/api/mySchedule";
 import ItemContent from "./ItemContent";
 import ScheduleTab from "./ScheduleTab";
 import TitleSearch from "./TitleSearch";
@@ -8,14 +8,14 @@ type TabType = "전체";
 
 export interface ItemCardType {
   theme: string;
-  name: string;
+  title: string;
   place: string;
   content: string;
 }
 
 const Items = () => {
   const [tab, setTab] = useState("전체");
-  const [itemList, setItemList] = useState<ItemCardType[]>(defaultItems);
+  const [itemList, setItemList] = useState<ItemCardType[]>([]);
   const [title, setTitle] = useState("");
 
   const onClickTab = (tab: string) => {
@@ -23,13 +23,18 @@ const Items = () => {
   };
 
   const onClickSearch = () => {
-    const searchData = {
-      title: title,
-    };
-
-    console.log("searchData", searchData);
-    // TODO: API 요청 추가 ??? 아님 프론트에서 다시 필터 ??? <- 확인해야 함
+    getItemList(title).then((res) => setItemList(res.data));
   };
+
+  useEffect(() => {
+    try {
+      getItemList().then((res) => {
+        setItemList(res.data);
+      });
+    } catch (error) {
+      console.error("API 호출 오류", error);
+    }
+  }, []);
 
   return (
     <div>

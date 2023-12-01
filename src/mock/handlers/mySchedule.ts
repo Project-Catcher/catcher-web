@@ -1,6 +1,7 @@
 import {
   allScheduleList,
   applicants,
+  defaultItems,
   defaultParticipateList,
   temporaryCardList,
 } from "mock/data/schedule";
@@ -115,14 +116,6 @@ export const myScheduleHandlers = [
         ),
       );
     }
-
-    const kk = allScheduleList.filter((item) => {
-      return (
-        new Date(item.durationStart) >= start &&
-        new Date(item.durationEnd) <= end &&
-        item.title.includes(title)
-      );
-    });
 
     return new Response(
       JSON.stringify(
@@ -248,6 +241,19 @@ export const myScheduleHandlers = [
 
     return new Response(
       JSON.stringify(matchedApplicant ? matchedApplicant.list : []),
+    );
+  }),
+
+  http.get(`${baseUrl}/getItemList`, ({ request }) => {
+    const url = new URL(request.url);
+    const title = url.searchParams.get("title") ?? "";
+
+    return new Response(
+      JSON.stringify(
+        defaultItems.filter((item) => {
+          return item.title.includes(title);
+        }),
+      ),
     );
   }),
 ];
