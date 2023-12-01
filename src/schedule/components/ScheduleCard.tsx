@@ -1,8 +1,8 @@
 // 일정 카드 컴포넌트
-import { applicants } from "@schedule/const";
 import { RecruitManageProps } from "modalContent/RecruitManage";
 import Image from "next/image";
 import { useState } from "react";
+import { getApplicantsList } from "@pages/api/mySchedule";
 import { useModal } from "@shared/hook";
 import CardStatus from "./CardStatus";
 import { scheduleType } from "./ScheduleContent";
@@ -74,11 +74,13 @@ const ScheduleCard = ({
     setIsDeleteToggle((prev) => !prev);
   };
 
-  const handleModal = () => {
+  const handleModal = async (id: number) => {
+    const res = await getApplicantsList(id);
+
     openModal<RecruitManageProps>({
       contentId: "RecruitManage",
       scheduleTitle: title,
-      applicants,
+      applicants: res.data,
       participateCapacity: participateCapacity ?? 0,
       noCallback: () => {
         closeModal();
@@ -197,7 +199,7 @@ const ScheduleCard = ({
         <div className="flex">
           <div
             className="flex-1 py-4 text-sm font-medium text-center bg-white border-r text-zinc-500"
-            onClick={handleModal}
+            onClick={() => handleModal(id)}
           >
             신청자 관리
           </div>

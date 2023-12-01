@@ -126,3 +126,14 @@ export const getMainSchedule = async () => {
     throw error; // 오류를 호출자에게 전달
   }
 };
+
+export const getApplicantsList = async (id: number) => {
+  return await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/getApplicantsList`,
+    {
+      params: {
+        id,
+      },
+    },
+  );
+};

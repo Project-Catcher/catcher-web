@@ -1,5 +1,6 @@
 import {
   allScheduleList,
+  applicants,
   defaultParticipateList,
   temporaryCardList,
 } from "mock/data/schedule";
@@ -234,6 +235,19 @@ export const myScheduleHandlers = [
           );
         }),
       ),
+    );
+  }),
+
+  http.get(`${baseUrl}/getApplicantsList`, ({ request }) => {
+    const url = new URL(request.url);
+    const id = url.searchParams.get("id");
+
+    const matchedApplicant = applicants.find(
+      (applicant) => applicant.id.toString() === id,
+    );
+
+    return new Response(
+      JSON.stringify(matchedApplicant ? matchedApplicant.list : []),
     );
   }),
 ];

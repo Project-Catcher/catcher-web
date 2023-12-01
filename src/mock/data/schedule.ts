@@ -198,3 +198,73 @@ export const temporaryCardList = [
     recruitEnd: "2023/11/19",
   },
 ];
+
+export const applicants = [
+  {
+    id: 1,
+    list: [
+      {
+        user_id: 2,
+        nickname: "사용자1",
+        gender: "여성",
+        applicationDate: "2023-01-01",
+        status: true,
+        info: "상세 정보 1",
+      },
+      {
+        user_id: 3,
+        nickname: "사용자2",
+        gender: "남성",
+        applicationDate: "2023-01-02",
+        status: false,
+        info: "상세 정보 2",
+      },
+    ],
+  },
+  {
+    id: 2,
+    list: [
+      {
+        user_id: 4,
+        nickname: "사용자닉네임",
+        gender: "남성",
+        applicationDate: "2021-01-01",
+        status: false,
+        info: "상세 정보",
+      },
+      {
+        user_id: 5,
+        nickname: "사용자오2",
+        // gender: "",
+        applicationDate: "2021-01-01",
+        status: false,
+        info: "상세 정보",
+      },
+      {
+        user_id: 6,
+        nickname: "사용자오오",
+        // gender: "",
+        applicationDate: "2021-01-01",
+        status: false,
+        info: "상세 정보",
+      },
+    ],
+  },
+  {
+    id: 3,
+    list: [
+      {
+        user_id: 4,
+        nickname: "사용자닉네임",
+        gender: "남성",
+        applicationDate: "2021-01-01",
+        status: false,
+        info: "상세 정보",
+      },
+    ],
+  },
+  {
+    id: 4,
+    list: [],
+  },
+];
