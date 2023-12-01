@@ -98,36 +98,26 @@ const CardStatus = ({
         ),
       );
     } else if (scheduleType === "participate") {
-      console.log("approvalStatus", approvalStatus);
       setStatus(participateStatus(approvalStatus));
     }
-  }, [tab]);
+  }, [
+    tab,
+    scheduleType,
+    durationStart,
+    recruitStart,
+    recruitEnd,
+    participateNum,
+    participateCapacity,
+    approvalStatus,
+  ]);
 
-  return scheduleType === "all" ? (
+  return (
     <div
       className={`px-[6px] py-1 font-semibold text-center text-base text-white ${bgColor}`}
     >
       {status}
     </div>
-  ) : scheduleType === "recruit" ? (
-    <div
-      className={`px-[6px] py-1 font-semibold text-center text-base text-white ${bgColor}`}
-    >
-      {status}
-    </div>
-  ) : scheduleType === "participate" ? (
-    <div
-      className={`px-[6px] py-1 font-semibold text-center text-base text-white ${bgColor}`}
-    >
-      {status}
-    </div>
-  ) : scheduleType === "temporary" ? (
-    <div
-      className={`px-[6px] py-1 font-semibold text-center text-base text-white ${bgColor}`}
-    >
-      {status}
-    </div>
-  ) : null;
+  );
 };
 
 export default CardStatus;

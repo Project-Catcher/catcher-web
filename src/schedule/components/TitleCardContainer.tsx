@@ -15,18 +15,20 @@ const TitleCardContainer = ({ title, cardList }: TitleCardContainerProps) => {
   const [filteredList, setFilteredList] = useState(cardList);
   const [current, setCurrent] = useState(4);
   const [carouselTransition, setCarouselTransition] = useState("");
-  const infiniteCarousel = cardList.length >= 4;
+  const infiniteCarousel = cardList?.length >= 4;
 
   useEffect(() => {
-    // 4개 이상인 경우 무한 캐러셀
     if (infiniteCarousel) {
       setFilteredList([
-        ...filteredList.slice(-4),
-        ...filteredList,
-        ...filteredList.slice(0, 4),
+        ...cardList.slice(-4),
+        ...cardList,
+        ...cardList.slice(0, 4),
       ]);
-    } else setCurrent(0);
-  }, []);
+    } else {
+      setFilteredList(cardList);
+      setCurrent(0);
+    }
+  }, [cardList]);
 
   const handleSlide = (direction: string) => {
     if (direction === "prev") setCurrent((current) => current - 1);

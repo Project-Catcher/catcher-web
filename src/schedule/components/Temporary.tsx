@@ -1,5 +1,6 @@
-import { defaultTemporaryCardList } from "@schedule/const";
-import React, { useState } from "react";
+// import { allSchedule } from "@schedule/const";
+import React, { useEffect, useState } from "react";
+import { getTemporarySchedule } from "@pages/api/mySchedule";
 import { DateProps } from "./All";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
@@ -9,9 +10,7 @@ type TabType = "전체";
 
 const Temporary = () => {
   const [tab, setTab] = useState("전체");
-  const [cardList, setCardList] = useState<CardItemType[]>(
-    defaultTemporaryCardList,
-  );
+  const [cardList, setCardList] = useState<CardItemType[]>();
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
     start: undefined,
@@ -51,19 +50,25 @@ const Temporary = () => {
       start: false,
       end: false,
     });
+    setTitle("");
     setDate({ start: undefined, end: undefined });
   };
 
   const onClickSearch = () => {
-    const searchData = {
-      title: title,
-      startDate: date.start,
-      endDate: date.end ?? new Date(),
-    };
-
-    console.log("searchData", searchData);
-    // TODO: API 요청 추가 ??? 아님 프론트에서 다시 필터 ??? <- 확인해야 함
+    getTemporarySchedule(title, date.start, date.end).then((res) =>
+      setCardList(res.data),
+    );
   };
+
+  useEffect(() => {
+    try {
+      getTemporarySchedule().then((res) => {
+        setCardList(res.data);
+      });
+    } catch (error) {
+      console.error("API 호출 오류", error);
+    }
+  }, [tab]);
 
   return (
     <div>

@@ -22,7 +22,7 @@ export interface Applicant {
 interface ScheduleCardProps {
   cardType: cardType;
   scheduleType: scheduleType;
-  idx: number;
+  id: number;
   theme: string;
   img: string;
   title: string;
@@ -45,9 +45,9 @@ interface ScheduleCardProps {
 }
 
 const ScheduleCard = ({
+  id,
   cardType,
   scheduleType,
-  idx,
   theme,
   img,
   title,
@@ -88,7 +88,7 @@ const ScheduleCard = ({
 
   return cardType === "complete" ? (
     <div
-      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 ${
+      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 m-auto ${
         isDeleteToggle ? "" : "cursor-pointer"
       }`}
     >
@@ -222,7 +222,7 @@ const ScheduleCard = ({
               className="relative -right-28 mt-4 w-[67px] h-[25px] bg-white rounded-[3px] cursor-pointer"
               onClick={() => {
                 handleDeleteToggle();
-                onClickDelete(idx);
+                onClickDelete(id);
               }}
             >
               <div className="p-1 text-[12px] font-semibold text-center text-zinc-800">
@@ -236,7 +236,7 @@ const ScheduleCard = ({
   ) : (
     // 임시저장 일정
     <TemporaryCard
-      idx={idx}
+      id={id}
       theme={theme}
       img={img}
       title={title}

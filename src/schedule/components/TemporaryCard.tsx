@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 interface TemporaryCardProps {
-  idx: number;
+  id: number;
   theme: string;
   img: string;
   title: string;
@@ -17,7 +17,7 @@ interface TemporaryCardProps {
 }
 
 const TemporaryCard = ({
-  idx,
+  id,
   theme,
   img,
   title,
@@ -50,7 +50,7 @@ const TemporaryCard = ({
               className="relative -right-28 mt-4 w-[67px] h-[25px] bg-white rounded-[3px] cursor-pointer"
               onClick={() => {
                 handleDeleteToggle();
-                onClickDelete(idx);
+                onClickDelete(id);
               }}
             >
               <div className="p-1 text-[12px] font-semibold text-center text-zinc-800">

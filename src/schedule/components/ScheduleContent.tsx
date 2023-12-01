@@ -11,11 +11,12 @@ export type scheduleType =
 
 interface ScheduleContentProps {
   scheduleType: scheduleType;
-  cardList: CardItemType[];
-  setCardList: Dispatch<SetStateAction<CardItemType[]>>;
+  cardList?: CardItemType[];
+  setCardList: Dispatch<SetStateAction<CardItemType[] | undefined>>;
 }
 
 export interface CardItemType {
+  id: number;
   theme: string;
   img: string;
   title: string;
@@ -48,16 +49,16 @@ const ScheduleContent = ({
 
   // TODO: 삭제 요청 추가
   const onClickDelete = (i: number) => {
-    const updatedCardList = [...cardList];
-    updatedCardList.splice(i, 1);
-    setCardList(updatedCardList);
+    // const updatedCardList = [...(cardList ?? [])];
+    // updatedCardList.splice(i, 1);
+    // setCardList(updatedCardList);
   };
 
   return (
     <div className="w-3/5">
-      <div className="flex justify-between h-6 mt-6">
+      <div className="flex justify-between h-6 px-4 mt-6">
         <div className="text-sm">
-          전체 <span className="text-pink-400">{cardList.length}</span>개
+          전체 <span className="text-pink-400">{cardList?.length}</span>개
         </div>
         {scheduleType === "all" && (
           <div>
@@ -82,7 +83,7 @@ const ScheduleContent = ({
 
       {/* TODO: 무한 스크롤 추가 */}
       <div className="relative flex flex-wrap mt-2.5 gap-y-12 gap-x-20">
-        {cardList.map((card, i) => (
+        {cardList?.map((card, i) => (
           <ScheduleCard
             cardType={
               scheduleType === "temporary"
@@ -91,28 +92,14 @@ const ScheduleContent = ({
             }
             scheduleType={scheduleType}
             key={`card-${i}`}
-            idx={i}
-            theme={card.theme}
-            img={card.img}
-            title={card.title}
-            content={card.content}
-            writer={card.writer}
-            status={card.status}
-            location={card.location}
-            durationStart={card.durationStart}
-            durationEnd={card.durationEnd}
-            createdAt={card.createdAt}
-            participateNum={card.participateNum}
-            participateCapacity={card.participateCapacity}
-            recruitStart={card.recruitStart}
-            recruitEnd={card.recruitEnd}
-            like={card.like}
-            comment={card.comment}
-            marked={card.marked}
-            approvalStatus={card.approvalStatus}
             onClickDelete={onClickDelete}
+            {...card}
           />
         ))}
+        {/* 카드 구조를 위해 빈 카드 추가 */}
+        <div className="w-[260px] h-[454px] m-auto" />
+        <div className="w-[260px] h-[454px] m-auto" />
+        <div className="w-[260px] h-[454px] m-auto" />
       </div>
     </div>
   );
