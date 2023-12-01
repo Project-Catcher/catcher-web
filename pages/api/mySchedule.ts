@@ -80,6 +80,23 @@ export const getParticipateSchedule = async (
   );
 };
 
+export const getScrapSchedule = async (
+  title?: string,
+  startDate?: Date,
+  endDate?: Date,
+) => {
+  return await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/getScrapSchedule`,
+    {
+      params: {
+        title,
+        startDate,
+        endDate,
+      },
+    },
+  );
+};
+
 export const getTemporarySchedule = async (
   title?: string,
   startDate?: Date,

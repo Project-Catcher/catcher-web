@@ -7,7 +7,8 @@ export type scheduleType =
   | "recruit"
   | "participate"
   | "my"
-  | "temporary";
+  | "temporary"
+  | "scrap";
 
 interface ScheduleContentProps {
   scheduleType: scheduleType;

@@ -204,6 +204,33 @@ export const myScheduleHandlers = [
     );
   }),
 
+  http.get(`${baseUrl}/getScrapSchedule`, ({ request }) => {
+    const url = new URL(request.url);
+    const title = url.searchParams.get("title") ?? "";
+    const startDate = url.searchParams.get("startDate");
+    const endDate = url.searchParams.get("endDate");
+
+    let start: Date, end: Date;
+    startDate
+      ? (start = new Date(startDate))
+      : (start = new Date("2019/01/01"));
+    endDate ? (end = new Date(endDate)) : (end = new Date("2025/01/01"));
+
+    return new Response(
+      JSON.stringify(
+        allScheduleList.filter((item) => {
+          return (
+            new Date(item.durationStart ? item.durationStart : "2019/01/01") >=
+              start &&
+            new Date(item.durationEnd ? item.durationEnd : "2015/01/01") <=
+              end &&
+            item.title.includes(title)
+          );
+        }),
+      ),
+    );
+  }),
+
   http.get(`${baseUrl}/getTemporarySchedule`, ({ request }) => {
     const url = new URL(request.url);
     const title = url.searchParams.get("title") ?? "";
