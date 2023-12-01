@@ -7,7 +7,7 @@ import TitleCardContainer from "./TitleCardContainer";
 
 const MyScheduleContent = () => {
   const [onComingCardList, setOnComingCardList] = useState<CardItemType[]>([]);
-  const [temporaryCardList, setTemporarayCardList] = useState<CardItemType[]>(
+  const [temporaryCardList, setTemporaryCardList] = useState<CardItemType[]>(
     [],
   );
   const [recruitCardList, setRecruitCardList] = useState<CardItemType[]>([]);
@@ -28,7 +28,7 @@ const MyScheduleContent = () => {
         setOnComingCardList(res.allSchedule);
         setRecruitCardList(res.recruitSchedule);
         setParticipateCardList(res.participateSchedule);
-        setTemporarayCardList(res.temporarySchedule);
+        setTemporaryCardList(res.temporarySchedule);
       });
     } catch (error) {
       console.error("API 호출 오류", error);

@@ -14,7 +14,7 @@ interface TemporaryCardProps {
   durationStart: string;
   durationEnd: string;
   isDeleteToggle: boolean;
-  handleDeleteToggle: () => void;
+  handleDeleteToggle: VoidFunction;
   onClickDelete: (i: number) => void;
 }
 

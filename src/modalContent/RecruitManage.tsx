@@ -6,7 +6,7 @@ export interface RecruitManageProps {
   scheduleTitle: string;
   applicants: Applicant[];
   participateCapacity: number;
-  noCallback: () => void;
+  noCallback: VoidFunction;
 }
 
 const RecruitManage = ({

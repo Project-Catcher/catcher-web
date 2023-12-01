@@ -1,9 +1,7 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import ScheduleHeader from "./ScheduleHeader";
 
-interface ScheduleWrapperProps {
-  children: React.ReactNode;
-}
+interface ScheduleWrapperProps extends PropsWithChildren {}
 
 const ScheduleWrapper = ({ children }: ScheduleWrapperProps) => {
   return (
