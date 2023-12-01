@@ -53,6 +53,12 @@ const Recruit = () => {
     });
     setTitle("");
     setDate({ start: undefined, end: undefined });
+
+    try {
+      getRecruitSchedule(tab).then((res) => setCardList(res.data));
+    } catch (error) {
+      console.error("API 호출 오류", error);
+    }
   };
 
   const onClickSearch = () => {
@@ -67,7 +73,7 @@ const Recruit = () => {
     } catch (error) {
       console.error("API 호출 오류", error);
     }
-  }, [tab]);
+  }, []);
 
   return (
     <TabContext.Provider value={tab}>

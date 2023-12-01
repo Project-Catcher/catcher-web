@@ -53,6 +53,14 @@ const Participate = () => {
     });
     setTitle("");
     setDate({ start: undefined, end: undefined });
+
+    try {
+      getParticipateSchedule(tab).then((res) => {
+        setCardList(res.data);
+      });
+    } catch (error) {
+      console.error("API 호출 오류", error);
+    }
   };
 
   const onClickSearch = () => {
@@ -69,7 +77,7 @@ const Participate = () => {
     } catch (error) {
       console.error("API 호출 오류", error);
     }
-  }, [tab]);
+  }, []);
 
   return (
     <TabContext.Provider value={tab}>

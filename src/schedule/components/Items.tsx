@@ -20,6 +20,14 @@ const Items = () => {
 
   const onClickTab = (tab: string) => {
     setTab(tab as TabType);
+
+    try {
+      getItemList().then((res) => {
+        setItemList(res.data);
+      });
+    } catch (error) {
+      console.error("API 호출 오류", error);
+    }
   };
 
   const onClickSearch = () => {
