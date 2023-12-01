@@ -239,6 +239,7 @@ const ScheduleCard = ({
     // 임시저장 일정
     <TemporaryCard
       id={id}
+      scheduleType={scheduleType}
       theme={theme}
       img={img}
       title={title}

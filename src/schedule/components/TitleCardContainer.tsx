@@ -2,15 +2,21 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import EmptyContent from "./EmptyContent";
-import { CardItemType } from "./ScheduleContent";
+import ScheduleCard, { cardType } from "./ScheduleCard";
+import { CardItemType, scheduleType } from "./ScheduleContent";
 import ScheduleSmallCard, { scheduleSmallCardType } from "./ScheduleSmallCard";
 
 interface TitleCardContainerProps {
   title: string;
   cardList: CardItemType[];
+  cardType?: string;
 }
 
-const TitleCardContainer = ({ title, cardList }: TitleCardContainerProps) => {
+const TitleCardContainer = ({
+  title,
+  cardList,
+  cardType,
+}: TitleCardContainerProps) => {
   // TODO: cardList prop은 필터된 것(다가오는, 모집 중인, 참여하는 카드만)
   const [filteredList, setFilteredList] = useState(cardList);
   const [current, setCurrent] = useState(4);
@@ -97,20 +103,30 @@ const TitleCardContainer = ({ title, cardList }: TitleCardContainerProps) => {
                 : "",
             }}
           >
-            {filteredList.map((card, i) => (
-              <ScheduleSmallCard
-                idx={i}
-                key={`small card-${i}`}
-                type={title as scheduleSmallCardType}
-                title={card.title}
-                location={card.location}
-                durationStart={card.durationStart}
-                durationEnd={card.durationEnd}
-                participateNum={card.participateNum}
-                participateCapacity={card.participateCapacity}
-                onClickDelete={onClickDelete}
-              />
-            ))}
+            {filteredList.map((card, i) =>
+              cardType === "temporary" ? (
+                <ScheduleCard
+                  key={`card-${i}`}
+                  cardType={"temporary" as cardType}
+                  scheduleType={"main" as scheduleType}
+                  onClickDelete={onClickDelete}
+                  {...card}
+                />
+              ) : (
+                <ScheduleSmallCard
+                  idx={i}
+                  key={`small card-${i}`}
+                  type={title as scheduleSmallCardType}
+                  title={card.title}
+                  location={card.location}
+                  durationStart={card.durationStart}
+                  durationEnd={card.durationEnd}
+                  participateNum={card.participateNum}
+                  participateCapacity={card.participateCapacity}
+                  onClickDelete={onClickDelete}
+                />
+              ),
+            )}
           </div>
         </div>
       ) : (

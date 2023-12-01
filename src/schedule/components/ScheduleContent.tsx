@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import ScheduleCard, { cardType } from "./ScheduleCard";
 
 export type scheduleType =
+  | "main"
   | "all"
   | "recruit"
   | "participate"

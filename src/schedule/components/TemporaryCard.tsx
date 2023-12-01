@@ -1,9 +1,11 @@
 // 임시저장 카드
 import Image from "next/image";
 import React from "react";
+import { scheduleType } from "./ScheduleContent";
 
 interface TemporaryCardProps {
   id: number;
+  scheduleType: scheduleType;
   theme: string;
   img: string;
   title: string;
@@ -18,6 +20,7 @@ interface TemporaryCardProps {
 
 const TemporaryCard = ({
   id,
+  scheduleType,
   theme,
   img,
   title,
@@ -31,9 +34,9 @@ const TemporaryCard = ({
 }: TemporaryCardProps) => {
   return (
     <div
-      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 m-auto ${
-        isDeleteToggle ? "" : "cursor-pointer"
-      }`}
+      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 ${
+        scheduleType !== "main" ? "m-auto" : ""
+      } ${isDeleteToggle ? "" : "cursor-pointer"}`}
     >
       {isDeleteToggle && (
         <div className="w-[260px] top-0 bottom-0 bg-black bg-opacity-60 absolute z-20">

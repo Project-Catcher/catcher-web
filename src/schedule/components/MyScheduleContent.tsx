@@ -38,21 +38,11 @@ const MyScheduleContent = () => {
   return (
     <div className="w-3/5 pt-10">
       <TitleCardContainer title="다가오는 일정" cardList={onComingCardList} />
-      <div className="text-neutral-700 text-[28px] font-bold pb-3">
-        작성 중인 일정
-      </div>
-      <div className="relative flex flex-wrap mb-10 gap-y-12 gap-x-20">
-        {temporaryCardList?.map((card, i) => (
-          <ScheduleCard
-            cardType={"temporary" as cardType}
-            scheduleType={"my" as scheduleType}
-            key={`card-${i}`}
-            onClickDelete={onClickDelete}
-            {...card}
-          />
-        ))}
-      </div>
-
+      <TitleCardContainer
+        title="작성 중인 일정"
+        cardList={temporaryCardList}
+        cardType={"temporary"}
+      />
       <TitleCardContainer title="모집 중" cardList={recruitCardList} />
       <TitleCardContainer title="참여 신청" cardList={participateCardList} />
     </div>
