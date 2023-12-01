@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Noto Sans KR", "sans-serif", ...defaultTheme.fontFamily.sans],
+    },
     extend: {
       colors: {
         "c-accept": "#00D179", // green. 확인용 색상
@@ -32,14 +37,20 @@ module.exports = {
         mypageMenu: "url(/images/samples/mypageMenu.svg)",
         changeProfileImageButton:
           "url(/images/samples/changeProfileImageButton.svg)",
+        checked: "url(/images/samples/checked.svg)",
+        calender: "url(/images/samples/calender.svg)",
+        city: "url(/images/samples/city.svg)",
       },
       width: {
         "3/5-10": "calc(60% - 10px)",
         "full-177": "calc(100% - 177px)",
         "full-30": "calc(100% - 30px)",
+        planContent: "calc(100% - 250px)",
       },
       height: {
         "full-204": "calc(100% - 204px)",
+        "without-header": "calc(100vh - 78px)",
+        planScrollbar: "calc(100vh - 85px)",
       },
       maxHeight: {
         "full-204": "calc(100% - 204px)",

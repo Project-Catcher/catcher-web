@@ -23,7 +23,8 @@
       "@schedule/*": ["schedule/*"],
       "@notice/*": ["notice/*"],
       "@faq/*": ["faq/*"],
-      "@mypage/*": ["mypage/*"]
+      "@mypage/*": ["mypage/*"],
+      "@create-schedule/*": ["create-schedule/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

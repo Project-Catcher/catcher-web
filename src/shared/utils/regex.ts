@@ -18,6 +18,7 @@ export const checkPhoneValidation = (phone: string) => {
 
 export const checkEmailValidation = (email: string) => {
   const regexEmail = /^[a-z0-9]+(\.[a-z0-9]+)*@[a-z]+\.[a-z]{2,3}$/;
+
   // TODO: 이메일 정규식 수정
   return regexEmail.test(email);
 };

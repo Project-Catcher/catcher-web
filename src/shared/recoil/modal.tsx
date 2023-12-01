@@ -85,4 +85,8 @@ export const useAlertState = () => useRecoilState(alertState);
 export const useConfirmState = () => useRecoilState(confirmState);
 export const useModalState = () => useRecoilState(modalState);
 
-export type ModalContentId = "thumbnailSelector" | "RecruitManage";
+export type ModalContentId =
+  | "thumbnailSelector"
+  | "calendarSelector_start"
+  | "calendarSelector_end"
+  | "RecruitManage";
