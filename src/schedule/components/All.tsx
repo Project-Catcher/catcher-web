@@ -1,7 +1,7 @@
 // 모든 일정
-import { defaultCardList } from "@schedule/const";
 import { TabContext } from "@schedule/context/TabContext";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllSchedule } from "@pages/api/mySchedule";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
 import ScheduleTab from "./ScheduleTab";
@@ -14,7 +14,7 @@ export interface DateProps {
 
 const All = () => {
   const [tab, setTab] = useState("전체");
-  const [cardList, setCardList] = useState<CardItemType[]>(defaultCardList);
+  const [cardList, setCardList] = useState<CardItemType[]>();
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
     start: undefined,
@@ -54,36 +54,25 @@ const All = () => {
       start: false,
       end: false,
     });
+    setTitle("");
     setDate({ start: undefined, end: undefined });
-    setCardList(filteredInTab(tab as TabType, defaultCardList));
   };
 
   const onClickSearch = () => {
-    const searchData = {
-      title: title,
-      startDate: date.start,
-      endDate: date.end ?? new Date(),
-    };
-
-    console.log("searchData", searchData);
-    // TODO: API 요청 추가 ??? 아님 프론트에서 다시 필터 ??? <- 확인해야 함
+    getAllSchedule(tab, title, date.start, date.end).then((res) =>
+      setCardList(res.data),
+    );
   };
 
-  const filteredInTab = (tab: string, dataList: CardItemType[]) => {
-    const currentDate = new Date();
-
-    if (tab === "진행 예정") {
-      return dataList.filter((item) => {
-        return new Date(item.durationStart) > currentDate;
+  useEffect(() => {
+    try {
+      getAllSchedule(tab).then((res) => {
+        setCardList(res.data);
       });
-    } else if (tab === "진행중/완료 일정") {
-      return dataList.filter((item) => {
-        return new Date(item.durationStart) <= currentDate;
-      });
-    } else {
-      return dataList;
+    } catch (error) {
+      console.error("API 호출 오류", error);
     }
-  };
+  }, [tab]);
 
   return (
     <TabContext.Provider value={tab}>

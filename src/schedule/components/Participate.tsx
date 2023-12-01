@@ -1,7 +1,7 @@
 // 참여 신청 일정
-import { defaultParticipateList } from "@schedule/const";
 import { TabContext } from "@schedule/context/TabContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getParticipateSchedule } from "@pages/api/mySchedule";
 import { DateProps } from "./All";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
@@ -11,9 +11,7 @@ type TabType = "전체" | "승인 대기 중" | "승인 완료" | "승인 거절
 
 const Participate = () => {
   const [tab, setTab] = useState("전체");
-  const [cardList, setCardList] = useState<CardItemType[]>(
-    defaultParticipateList,
-  );
+  const [cardList, setCardList] = useState<CardItemType[]>();
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<DateProps>({
     start: undefined,
@@ -53,38 +51,25 @@ const Participate = () => {
       start: false,
       end: false,
     });
+    setTitle("");
     setDate({ start: undefined, end: undefined });
-    setCardList(filteredInTab(tab as TabType, defaultParticipateList));
   };
 
   const onClickSearch = () => {
-    const searchData = {
-      title: title,
-      startDate: date.start,
-      endDate: date.end ?? new Date(),
-    };
-
-    console.log("searchData", searchData);
-    // TODO: API 요청 추가 ??? 아님 프론트에서 다시 필터 ??? <- 확인해야 함
+    getParticipateSchedule(tab, title, date.start, date.end).then((res) =>
+      setCardList(res.data),
+    );
   };
 
-  const filteredInTab = (tab: string, dataList: CardItemType[]) => {
-    if (tab === "승인 대기 중") {
-      return dataList.filter((item) => {
-        return item.approvalStatus === 0;
+  useEffect(() => {
+    try {
+      getParticipateSchedule(tab).then((res) => {
+        setCardList(res.data);
       });
-    } else if (tab === "승인 완료") {
-      return dataList.filter((item) => {
-        return item.approvalStatus === 1;
-      });
-    } else if (tab === "승인 거절") {
-      return dataList.filter((item) => {
-        return item.approvalStatus === 2;
-      });
-    } else {
-      return dataList;
+    } catch (error) {
+      console.error("API 호출 오류", error);
     }
-  };
+  }, [tab]);
 
   return (
     <TabContext.Provider value={tab}>
