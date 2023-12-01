@@ -31,7 +31,7 @@ const TemporaryCard = ({
 }: TemporaryCardProps) => {
   return (
     <div
-      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 ${
+      className={`w-[260px] relative border-gray-300 border box-content transition-transform hover:-translate-y-1 m-auto ${
         isDeleteToggle ? "" : "cursor-pointer"
       }`}
     >
@@ -62,7 +62,7 @@ const TemporaryCard = ({
       )}
 
       <div
-        className={`w-[260px] h-[225px] bg-stone-300 border-b border-zinc-400 relatvie`}
+        className={`w-[260px] h-[227px] bg-stone-300 border-b border-zinc-400 relatvie`}
       >
         <div className="absolute w-[260px] top-0 flex justify-between z-10">
           <div className="px-[6px] py-1 font-semibold text-center text-base text-white bg-emerald-400">
@@ -90,7 +90,7 @@ const TemporaryCard = ({
         )}
       </div>
 
-      <div className="flex flex-col border-b-[1px] border-zinc-200 px-6 py-4 bg-white">
+      <div className="flex flex-col border-b-[1px] border-zinc-200 px-6 py-4 bg-white h-[175px]">
         <div className="text-base font-medium truncate-text">
           {title.length !== 0 ? title : "제목을 입력해주세요."}
         </div>
