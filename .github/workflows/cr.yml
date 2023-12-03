@@ -1,0 +1,35 @@
+name: Code Review
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+env:
+  WEBHOOK_URL: ${{ secrets.WEBHOOK }}
+  GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  code_review:
+    runs-on: self-hosted
+    steps:
+      - uses: anc95/ChatGPT-CodeReview@main
+        env:
+          GITHUB_TOKEN: ${{ env.GIT_TOKEN }}
+          OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
+          MODEL: gpt-3.5-turbo
+          LANGUAGE: Korean
+
+      - name: Send Notification
+        if: ${{ always() }}
+        run: |
+          if [[ ${{ job.status }} == "success" ]]; then
+            MESSAGE="✅ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : catcher-web - by ${{ github.actor }}"
+          else
+            MESSAGE="❌ ${{ job.status }} 프론트 OpenAI 코드 리뷰 : catcher-web - by ${{ github.actor }}"
+          fi
+          curl -X POST -H "Content-Type: application/json" --data "{\"text\":\"${MESSAGE}\"}" ${{ env.WEBHOOK_URL }}
