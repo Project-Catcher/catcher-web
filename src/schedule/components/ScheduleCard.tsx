@@ -95,7 +95,7 @@ const ScheduleCard = ({
       }`}
     >
       <div
-        className={`w-[260px] h-[225px] bg-stone-300 border-b border-zinc-400 relatvie`}
+        className={`w-[260px] h-[225px] bg-stone-300 border-b border-zinc-400 relative`}
       >
         {img.length !== 0 ? (
           <Image src={img} alt="sample img" width={270} height={235} />

@@ -65,7 +65,7 @@ const TemporaryCard = ({
       )}
 
       <div
-        className={`w-[260px] h-[227px] bg-stone-300 border-b border-zinc-400 relatvie`}
+        className={`w-[260px] h-[227px] bg-stone-300 border-b border-zinc-400 relative`}
       >
         <div className="absolute w-[260px] top-0 flex justify-between z-10">
           <div className="px-[6px] py-1 font-semibold text-center text-base text-white bg-emerald-400">
