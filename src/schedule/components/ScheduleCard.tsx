@@ -106,6 +106,7 @@ const ScheduleCard = ({
         )}
         <div className="absolute w-[260px] top-0 flex justify-between">
           <CardStatus
+            id={id}
             scheduleType={scheduleType}
             durationStart={durationStart}
             participateNum={participateNum}

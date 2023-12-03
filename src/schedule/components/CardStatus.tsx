@@ -1,10 +1,10 @@
 // 일정카드의 상태 뱃지
-import { TabContext } from "@schedule/context/TabContext";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getDaysDifference } from "@shared/utils";
 import { scheduleType } from "./ScheduleContent";
 
 interface CardStatusProps {
+  id: number;
   scheduleType: scheduleType;
   durationStart: string;
   participateNum?: number;
@@ -16,6 +16,7 @@ interface CardStatusProps {
 
 // TODO: 임시저장 데이터 관련 값 백에서 어떻게 넘겨주는지 확인 후 prop 수정
 const CardStatus = ({
+  id,
   scheduleType,
   durationStart,
   participateNum = 0,
@@ -24,7 +25,6 @@ const CardStatus = ({
   recruitEnd = "2023-11-17",
   approvalStatus = 0,
 }: CardStatusProps) => {
-  const tab = useContext(TabContext);
   const [status, setStatus] = useState("");
   const [bgColor, setBgColor] = useState("");
 
@@ -100,16 +100,7 @@ const CardStatus = ({
     } else if (scheduleType === "participate") {
       setStatus(participateStatus(approvalStatus));
     }
-  }, [
-    tab,
-    scheduleType,
-    durationStart,
-    recruitStart,
-    recruitEnd,
-    participateNum,
-    participateCapacity,
-    approvalStatus,
-  ]);
+  }, [id]);
 
   return (
     <div

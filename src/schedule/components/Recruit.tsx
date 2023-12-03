@@ -1,5 +1,4 @@
 // 모집 일정
-import { TabContext } from "@schedule/context/TabContext";
 import React, { useEffect, useState } from "react";
 import { getRecruitSchedule } from "@pages/api/mySchedule";
 import { DateProps } from "./All";
@@ -76,41 +75,39 @@ const Recruit = () => {
   }, []);
 
   return (
-    <TabContext.Provider value={tab}>
-      <div>
-        <div className="flex justify-center">
-          {/* 일정 탭 */}
-          <div className="flex flex-col w-3/5 pt-10">
-            <ScheduleTab
-              tabTitle="모집 일정"
-              tabItems={recruitTabItems}
-              currentTab={tab}
-              onClickTab={onClickTab}
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center min-h-[640px] bg-slate-100 border-t">
-          <ContentFilter
-            title={title}
-            setTitle={setTitle}
-            date={date}
-            setDate={setDate}
-            showCalendar={showCalendar}
-            handleCalendarClick={handleCalendarClick}
-            handleStartDateChange={handleStartDateChange}
-            handleEndDateChange={handleEndDateChange}
-            onClickSearch={onClickSearch}
-          />
-          {/* 일정 카드*/}
-          <ScheduleContent
-            scheduleType={"recruit" as scheduleType}
-            cardList={cardList}
-            setCardList={setCardList}
+    <div>
+      <div className="flex justify-center">
+        {/* 일정 탭 */}
+        <div className="flex flex-col w-3/5 pt-10">
+          <ScheduleTab
+            tabTitle="모집 일정"
+            tabItems={recruitTabItems}
+            currentTab={tab}
+            onClickTab={onClickTab}
           />
         </div>
       </div>
-    </TabContext.Provider>
+
+      <div className="flex flex-col items-center min-h-[640px] bg-slate-100 border-t">
+        <ContentFilter
+          title={title}
+          setTitle={setTitle}
+          date={date}
+          setDate={setDate}
+          showCalendar={showCalendar}
+          handleCalendarClick={handleCalendarClick}
+          handleStartDateChange={handleStartDateChange}
+          handleEndDateChange={handleEndDateChange}
+          onClickSearch={onClickSearch}
+        />
+        {/* 일정 카드*/}
+        <ScheduleContent
+          scheduleType={"recruit" as scheduleType}
+          cardList={cardList}
+          setCardList={setCardList}
+        />
+      </div>
+    </div>
   );
 };
 

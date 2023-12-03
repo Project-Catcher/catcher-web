@@ -1,5 +1,4 @@
 // 모든 일정
-import { TabContext } from "@schedule/context/TabContext";
 import { useEffect, useState } from "react";
 import { getAllSchedule } from "@pages/api/mySchedule";
 import ContentFilter from "./ContentFilter";
@@ -83,43 +82,41 @@ const All = () => {
   }, []);
 
   return (
-    <TabContext.Provider value={tab}>
-      <div>
-        <div className="flex justify-center">
-          {/* 일정 탭 */}
-          <div className="flex flex-col w-3/5 pt-10">
-            <ScheduleTab
-              tabTitle="모든 일정"
-              tabItems={allTabItems}
-              currentTab={tab}
-              onClickTab={onClickTab}
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center min-h-[660px] bg-slate-100 border-t">
-          {/* 일정 필터*/}
-          <ContentFilter
-            title={title}
-            setTitle={setTitle}
-            date={date}
-            setDate={setDate}
-            showCalendar={showCalendar}
-            handleCalendarClick={handleCalendarClick}
-            handleStartDateChange={handleStartDateChange}
-            handleEndDateChange={handleEndDateChange}
-            onClickSearch={onClickSearch}
-          />
-          {/* 일정 카드*/}
-
-          <ScheduleContent
-            scheduleType={"all" as scheduleType}
-            cardList={cardList}
-            setCardList={setCardList}
+    <div>
+      <div className="flex justify-center">
+        {/* 일정 탭 */}
+        <div className="flex flex-col w-3/5 pt-10">
+          <ScheduleTab
+            tabTitle="모든 일정"
+            tabItems={allTabItems}
+            currentTab={tab}
+            onClickTab={onClickTab}
           />
         </div>
       </div>
-    </TabContext.Provider>
+
+      <div className="flex flex-col items-center min-h-[660px] bg-slate-100 border-t">
+        {/* 일정 필터*/}
+        <ContentFilter
+          title={title}
+          setTitle={setTitle}
+          date={date}
+          setDate={setDate}
+          showCalendar={showCalendar}
+          handleCalendarClick={handleCalendarClick}
+          handleStartDateChange={handleStartDateChange}
+          handleEndDateChange={handleEndDateChange}
+          onClickSearch={onClickSearch}
+        />
+        {/* 일정 카드*/}
+
+        <ScheduleContent
+          scheduleType={"all" as scheduleType}
+          cardList={cardList}
+          setCardList={setCardList}
+        />
+      </div>
+    </div>
   );
 };
 
