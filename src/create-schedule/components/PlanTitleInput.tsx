@@ -19,6 +19,7 @@ const PlanTitleInput = () => {
         type="text"
         placeholder="일정 제목을 입력해주세요."
         maxLength={40}
+        value={title}
         onChange={({ target: { value } }) => handleTitle(value)}
       />
       <RemainChar title={title} />
