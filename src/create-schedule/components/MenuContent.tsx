@@ -1,10 +1,8 @@
 import { useSetRecoilState } from "recoil";
-import { currentPageName, currentProgress } from "@shared/recoil";
-import { CurrentPageType } from "@shared/types";
+import { currentScheduleProgress } from "@shared/recoil";
 
 interface MenuContentProps {
   title: string;
-  boxTitle: CurrentPageType;
   targetProgress: number;
   currentTab: string;
   handleTab: (value: string) => void;
@@ -12,13 +10,11 @@ interface MenuContentProps {
 
 const MenuContent = ({
   title,
-  boxTitle,
   targetProgress,
   currentTab,
   handleTab,
 }: MenuContentProps) => {
-  const setCurrentPage = useSetRecoilState(currentPageName);
-  const setCurrentProgress = useSetRecoilState(currentProgress);
+  const setCurrentProgress = useSetRecoilState(currentScheduleProgress);
 
   return (
     <div
@@ -27,7 +23,6 @@ const MenuContent = ({
       } h-1/2 leading-[23px] py-[6px] cursor-pointer`}
       onClick={() => {
         handleTab(title);
-        setCurrentPage(boxTitle);
         setCurrentProgress(targetProgress);
       }}
     >

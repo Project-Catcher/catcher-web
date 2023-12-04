@@ -37,7 +37,6 @@ const BasicInfo = ({ current, currentTab, handleTab }: BasicInfoProps) => {
             <MenuContent
               key={title}
               title={title}
-              boxTitle="기본정보"
               targetProgress={2}
               currentTab={currentTab}
               handleTab={handleTab}

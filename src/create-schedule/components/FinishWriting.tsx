@@ -41,7 +41,6 @@ const FinishWriting = ({
             <MenuContent
               key={title}
               title={title}
-              boxTitle="작성 마무리"
               targetProgress={5}
               currentTab={currentTab}
               handleTab={handleTab}

@@ -41,7 +41,6 @@ const TagNTemplate = ({
             <MenuContent
               key={title}
               title={title}
-              boxTitle="태그 및 일정 템플릿"
               targetProgress={3}
               currentTab={currentTab}
               handleTab={handleTab}
