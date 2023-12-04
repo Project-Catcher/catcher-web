@@ -5,13 +5,13 @@ import MenuContentContainer from "./MenuContentContainer";
 import SideBarMenuBox from "./SideBarMenuBox";
 
 interface FinishWritingProps {
-  current: number;
+  currentProgress: number;
   currentTab: string;
   handleTab: (value: string) => void;
 }
 
 const FinishWriting = ({
-  current,
+  currentProgress,
   currentTab,
   handleTab,
 }: FinishWritingProps) => {
@@ -22,10 +22,10 @@ const FinishWriting = ({
   };
 
   useEffect(() => {
-    if (current === 5) {
+    if (currentProgress === 5) {
       setIsOpen(true);
     }
-  }, [current]);
+  }, [currentProgress]);
 
   return (
     <>

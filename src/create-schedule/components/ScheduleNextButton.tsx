@@ -1,6 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useModal } from "@shared/hook";
-import { currentProgress, scheduleAnswers } from "@shared/recoil";
+import { currentScheduleProgress, scheduleAnswers } from "@shared/recoil";
 
 interface ScheduleNextButtonProps {
   value: string;
@@ -10,7 +10,7 @@ interface ScheduleNextButtonProps {
 const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
   const { openAlert } = useModal();
   const answer = useRecoilValue(scheduleAnswers);
-  const setCurrentProgress = useSetRecoilState(currentProgress);
+  const setCurrentProgress = useSetRecoilState(currentScheduleProgress);
 
   const handleInputCheck = () => {
     const startDate = parseInt(answer.startedAt.replace(/\./g, ""));

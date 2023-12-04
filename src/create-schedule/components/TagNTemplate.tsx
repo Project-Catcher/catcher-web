@@ -5,13 +5,13 @@ import MenuContentContainer from "./MenuContentContainer";
 import SideBarMenuBox from "./SideBarMenuBox";
 
 interface TagNTemplateProps {
-  current: number;
+  currentProgress: number;
   currentTab: string;
   handleTab: (value: string) => void;
 }
 
 const TagNTemplate = ({
-  current,
+  currentProgress,
   currentTab,
   handleTab,
 }: TagNTemplateProps) => {
@@ -22,10 +22,10 @@ const TagNTemplate = ({
   };
 
   useEffect(() => {
-    if (current === 3) {
+    if (currentProgress === 3) {
       setIsOpen(true);
     }
-  }, [current]);
+  }, [currentProgress]);
 
   return (
     <>

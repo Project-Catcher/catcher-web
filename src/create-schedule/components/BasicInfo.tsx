@@ -5,12 +5,16 @@ import MenuContentContainer from "./MenuContentContainer";
 import SideBarMenuBox from "./SideBarMenuBox";
 
 interface BasicInfoProps {
-  current: number;
+  currentProgress: number;
   currentTab: string;
   handleTab: (value: string) => void;
 }
 
-const BasicInfo = ({ current, currentTab, handleTab }: BasicInfoProps) => {
+const BasicInfo = ({
+  currentProgress,
+  currentTab,
+  handleTab,
+}: BasicInfoProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -18,10 +22,10 @@ const BasicInfo = ({ current, currentTab, handleTab }: BasicInfoProps) => {
   };
 
   useEffect(() => {
-    if (current === 2) {
+    if (currentProgress === 2) {
       setIsOpen(true);
     }
-  }, [current]);
+  }, [currentProgress]);
 
   return (
     <>
