@@ -23,7 +23,7 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
   };
 
   return (
-    <div className="gap-12 flex-center">
+    <div className="gap-12 flex-center scd_nav">
       {isLoggedIn ? (
         // 유저가 로그인한 경우
         <>
@@ -33,13 +33,13 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
               <div
                 className={`text-lg font-medium ${
                   headerColor === "white" ? "text-gray-500" : "text-white"
-                } cursor-pointer hover:underline`}
+                } cursor-pointer hover:underline underline-offset-6`}
               >
                 {tab.title}
               </div>
             </Link>
           ))}
-          <div className="relative flex items-center">
+          <div className="relative flex items-center scd_nav">
             <Image
               className="cursor-pointer"
               src={
@@ -84,7 +84,7 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
               <div
                 className={`text-lg font-medium ${
                   headerColor === "white" ? "text-gray-500" : "text-white"
-                } cursor-pointer hover:underline`}
+                } cursor-pointer hover:underline underline-offset-6`}
               >
                 {tab.title}
               </div>
