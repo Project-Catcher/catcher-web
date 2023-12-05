@@ -15,7 +15,7 @@ export interface Schedule {
 interface ScheduleCardProps {
   content: Schedule[];
   callType: "remain" | "template";
-  isClicked: {
+  isClicked?: {
     template: boolean;
     custom: boolean;
   };
@@ -76,7 +76,7 @@ const ScheduleCard = ({
         ))}
       </div>
       <div>
-        {callType === "template" && handleClickCard ? (
+        {callType === "template" && handleClickCard && isClicked ? (
           <TemplateButton
             {...isClicked}
             clickedContent={clickedContent}
