@@ -6,7 +6,7 @@ const Home: NextPage = () => {
     <>
       <div
         className="w-screen h-screen bg-gradient-to-b  from-[#F85E9F] via-[#FFDED3] via-85% to-[#FFFFFF]
-    "
+"
       >
         <div className="flex flex-col items-center justify-center text-white pt-52">
           <h1 className="p-10 font-sans font-thin title">

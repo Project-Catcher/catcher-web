@@ -270,7 +270,7 @@ font-size:14px;}
 
 
 /* 메인 추가 css 정리 */
-
+.x_hidden{overflow-x:hidden;}
 .mask{
   clip-path: ellipse(493px 440px at center);
   top: 90%;
