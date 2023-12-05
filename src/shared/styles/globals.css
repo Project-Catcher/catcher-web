@@ -273,10 +273,15 @@ font-size:14px;}
 
 .mask{
   clip-path: ellipse(493px 440px at center);
+  top: 90%;
+  left: 25%;
+  position: absolute;
+  margin-top: -18%;
 }
 .video{
-  margin-left: -51%;
-  margin-top: -72%;
+  margin-left: -24%;
+  top: 25%;
+  position: fixed;
 }
 
 .title{letter-spacing:-0.08rem; font-size: 5.4rem; line-height: 1;}

@@ -51,7 +51,7 @@ const Home: NextPage = () => {
             loop={true}
             muted={true}
             className="object-cover w-full h-full video"
-          ></video> 
+          ></video>
         </div>
       </div>
     </>
