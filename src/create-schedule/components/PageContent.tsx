@@ -49,12 +49,12 @@ const PageContent = () => {
           <div className="flex flex-wrap">
             <TimeTableContainer />
             <DragnDropContainer />
-            <div className="ml-[80px] mt-[80px]">
-              <ScheduleNextButton
-                value="다음으로 넘어갈까요?"
-                callType="template"
-              />
-            </div>
+          </div>
+          <div className="w-[628px] mt-[40px] text-center">
+            <ScheduleNextButton
+              value="다음으로 넘어갈까요?"
+              callType="template"
+            />
           </div>
         </>
       )}
