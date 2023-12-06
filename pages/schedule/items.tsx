@@ -1,14 +1,13 @@
-// 내 일정 페이지
-import Main from "@schedule/components/Main";
+import Items from "@schedule/components/Items";
 import ScheduleWrapper from "@schedule/components/ScheduleWrapper";
 import React from "react";
 
-const index = () => {
+const items = () => {
   return (
     <ScheduleWrapper>
-      <Main />;
+      <Items />;
     </ScheduleWrapper>
   );
 };
 
-export default index;
+export default items;

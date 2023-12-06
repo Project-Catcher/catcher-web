@@ -88,4 +88,5 @@ export const useModalState = () => useRecoilState(modalState);
 export type ModalContentId =
   | "thumbnailSelector"
   | "calendarSelector_start"
-  | "calendarSelector_end";
+  | "calendarSelector_end"
+  | "RecruitManage";

@@ -1,17 +1,17 @@
-// 모든 일정
-import { useEffect, useState } from "react";
-import { getAllSchedule } from "@pages/api/mySchedule";
+// 참여 신청 일정
+import React, { useEffect, useState } from "react";
+import {
+  getParticipateSchedule,
+  getScrapSchedule,
+} from "@pages/api/mySchedule";
+import { DateProps } from "./All";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
 import ScheduleTab from "./ScheduleTab";
 
-type TabType = "전체" | "진행 예정" | "진행중/완료 일정";
-export interface DateProps {
-  start: Date | undefined;
-  end: Date | undefined;
-}
+type TabType = "전체";
 
-const All = () => {
+const Scrap = () => {
   const [tab, setTab] = useState("전체");
   const [cardList, setCardList] = useState<CardItemType[]>([]);
   const [title, setTitle] = useState("");
@@ -57,7 +57,7 @@ const All = () => {
     setDate({ start: undefined, end: undefined });
 
     try {
-      getAllSchedule(tab).then((res) => {
+      getScrapSchedule().then((res) => {
         setCardList(res.data);
       });
     } catch (error) {
@@ -66,14 +66,14 @@ const All = () => {
   };
 
   const onClickSearch = () => {
-    getAllSchedule(tab, title, date.start, date.end).then((res) =>
+    getScrapSchedule(title, date.start, date.end).then((res) =>
       setCardList(res.data),
     );
   };
 
   useEffect(() => {
     try {
-      getAllSchedule(tab).then((res) => {
+      getScrapSchedule().then((res) => {
         setCardList(res.data);
       });
     } catch (error) {
@@ -87,16 +87,15 @@ const All = () => {
         {/* 일정 탭 */}
         <div className="flex flex-col w-3/5 pt-10">
           <ScheduleTab
-            tabTitle="모든 일정"
-            tabItems={allTabItems}
+            tabTitle="스크랩"
+            tabItems={scrapTabItems}
             currentTab={tab}
             onClickTab={onClickTab}
           />
         </div>
       </div>
 
-      <div className="flex flex-col items-center min-h-[660px] bg-slate-100 border-t">
-        {/* 일정 필터*/}
+      <div className="flex flex-col items-center min-h-[640px] bg-slate-100 border-t">
         <ContentFilter
           title={title}
           setTitle={setTitle}
@@ -109,9 +108,8 @@ const All = () => {
           onClickSearch={onClickSearch}
         />
         {/* 일정 카드*/}
-
         <ScheduleContent
-          scheduleType={"all" as scheduleType}
+          scheduleType={"scrap" as scheduleType}
           cardList={cardList}
           setCardList={setCardList}
         />
@@ -120,10 +118,6 @@ const All = () => {
   );
 };
 
-export default All;
+export default Scrap;
 
-const allTabItems: Record<"title", TabType>[] = [
-  { title: "전체" },
-  { title: "진행 예정" },
-  { title: "진행중/완료 일정" },
-];
+const scrapTabItems: Record<"title", TabType>[] = [{ title: "전체" }];

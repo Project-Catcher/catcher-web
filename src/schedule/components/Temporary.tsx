@@ -1,17 +1,14 @@
-// 모든 일정
-import { useEffect, useState } from "react";
-import { getAllSchedule } from "@pages/api/mySchedule";
+// import { allSchedule } from "@schedule/const";
+import React, { useEffect, useState } from "react";
+import { getTemporarySchedule } from "@pages/api/mySchedule";
+import { DateProps } from "./All";
 import ContentFilter from "./ContentFilter";
 import ScheduleContent, { CardItemType, scheduleType } from "./ScheduleContent";
 import ScheduleTab from "./ScheduleTab";
 
-type TabType = "전체" | "진행 예정" | "진행중/완료 일정";
-export interface DateProps {
-  start: Date | undefined;
-  end: Date | undefined;
-}
+type TabType = "전체";
 
-const All = () => {
+const Temporary = () => {
   const [tab, setTab] = useState("전체");
   const [cardList, setCardList] = useState<CardItemType[]>([]);
   const [title, setTitle] = useState("");
@@ -57,7 +54,7 @@ const All = () => {
     setDate({ start: undefined, end: undefined });
 
     try {
-      getAllSchedule(tab).then((res) => {
+      getTemporarySchedule().then((res) => {
         setCardList(res.data);
       });
     } catch (error) {
@@ -66,14 +63,14 @@ const All = () => {
   };
 
   const onClickSearch = () => {
-    getAllSchedule(tab, title, date.start, date.end).then((res) =>
+    getTemporarySchedule(title, date.start, date.end).then((res) =>
       setCardList(res.data),
     );
   };
 
   useEffect(() => {
     try {
-      getAllSchedule(tab).then((res) => {
+      getTemporarySchedule().then((res) => {
         setCardList(res.data);
       });
     } catch (error) {
@@ -87,16 +84,15 @@ const All = () => {
         {/* 일정 탭 */}
         <div className="flex flex-col w-3/5 pt-10">
           <ScheduleTab
-            tabTitle="모든 일정"
-            tabItems={allTabItems}
+            tabTitle="임시저장"
+            tabItems={temporaryTabItems}
             currentTab={tab}
             onClickTab={onClickTab}
           />
         </div>
       </div>
 
-      <div className="flex flex-col items-center min-h-[660px] bg-slate-100 border-t">
-        {/* 일정 필터*/}
+      <div className="flex flex-col items-center min-h-[640px] bg-slate-100 border-t">
         <ContentFilter
           title={title}
           setTitle={setTitle}
@@ -109,9 +105,8 @@ const All = () => {
           onClickSearch={onClickSearch}
         />
         {/* 일정 카드*/}
-
         <ScheduleContent
-          scheduleType={"all" as scheduleType}
+          scheduleType={"temporary" as scheduleType}
           cardList={cardList}
           setCardList={setCardList}
         />
@@ -120,10 +115,6 @@ const All = () => {
   );
 };
 
-export default All;
+export default Temporary;
 
-const allTabItems: Record<"title", TabType>[] = [
-  { title: "전체" },
-  { title: "진행 예정" },
-  { title: "진행중/완료 일정" },
-];
+const temporaryTabItems: Record<"title", TabType>[] = [{ title: "전체" }];
