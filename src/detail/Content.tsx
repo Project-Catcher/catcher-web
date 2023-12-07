@@ -13,7 +13,9 @@ const Content = ({ detailData }: ContentProps) => {
       <div className="py-5 border-y min-h-[200px]">
         <div className="mb-3 text-lg font-bold text-zinc-800">일정설명</div>
         <div className="text-base font-normal text-stone-500">
-          <pre>{detailData.content}</pre>
+          <pre className="overflow-auto break-all whitespace-pre-wrap">
+            {detailData.content}
+          </pre>
         </div>
       </div>
       <div className="h-[300px]">일정표</div>
