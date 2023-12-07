@@ -43,21 +43,7 @@ const ScheduleContent = ({
       </div>
       <div className="flex flex-wrap mt-2 gap-x-3 gap-y-6">
         {cardList.map((card, i) => (
-          <Card
-            key={`card-${i}`}
-            img={card.img}
-            title={card.title}
-            content={card.content}
-            dateStart={card.dateStart}
-            dateEnd={card.dateEnd}
-            expense={card.expense}
-            tags={card.tags}
-            like={card.like}
-            comment={card.comment}
-            scrap={card.scrap}
-            participateNum={card.participateNum}
-            participateCapacity={card.participateCapacity}
-          />
+          <Card key={`card-${i}`} {...card} />
         ))}
 
         {/* 카드 구조를 위해 빈 카드 추가 */}
