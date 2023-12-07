@@ -1,4 +1,5 @@
 import fs from "fs";
+import { cardDetail } from "mock/data/cardDetail";
 import { card } from "mock/data/findCard";
 import { http } from "msw";
 
@@ -7,7 +8,7 @@ const baseUrl = "http://localhost:3000/api";
 export const scheduleHandlers = [
   http.get(`${baseUrl}/getFindCard`, ({ request }) => {
     const url = new URL(request.url);
-    const theme = url.searchParams.get("theme");
+    const theme = url.searchParams.get("theme") ?? "전체";
     const startDate = url.searchParams.get("dateStart");
     const endDate = url.searchParams.get("dateEnd");
     const expense = url.searchParams.get("expense");
@@ -19,7 +20,6 @@ export const scheduleHandlers = [
     const filteredCards = card.filter((item) => {
       const themeMatch = theme !== "전체" ? item.theme === theme : true;
 
-      // let dateMatch = true;
       const dateMatch = () => {
         if (startDate && endDate) {
           const start = new Date(startDate);
@@ -103,17 +103,13 @@ export const scheduleHandlers = [
 
     return new Response(JSON.stringify(filteredCards));
   }),
+
+  http.get(`${baseUrl}/getCardDetail`, ({ request }) => {
+    const url = new URL(request.url);
+    const id = url.searchParams.get("id");
+
+    const matchedItem = cardDetail.find((item) => item.id.toString() === id);
+
+    return new Response(JSON.stringify(matchedItem));
+  }),
 ];
-
-// 추가 예시
-// export const addSchedule = [
-//   http.get(`${baseUrl}/addSchedule`, ({ params, request, cookies }) => {
-//     if (cookies[accessToken] !== "asdfasdfzxcvzxcv") {
-//       return new Response(
-//         JSON.stringify({ message: "need login", code: 1231 }),
-//       ).status(401);
-//     }
-
-//     return;
-//   }),
-// ];
