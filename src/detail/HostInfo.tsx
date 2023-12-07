@@ -1,6 +1,28 @@
-import React, { useEffect, useRef } from "react";
+import Tag from "@findSchedule/components/Tag";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import InfoBottom from "./InfoBottom";
+import InfoMiddle from "./InfoMiddle";
+import InfoTop from "./InfoTop";
 
-const HostInfo = () => {
+export interface hostInfo {
+  id: number;
+  profileImg: string;
+  nickName: string;
+  introduce: string;
+  tags: string[];
+  like: number;
+  scheduleCount: number;
+}
+
+interface hostInfoProps {
+  scheduleId: number;
+  hostInfo: hostInfo;
+  like: number;
+  scrap: number;
+}
+
+const HostInfo = ({ scheduleId, hostInfo, like, scrap }: hostInfoProps) => {
   const hostMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,9 +43,11 @@ const HostInfo = () => {
   return (
     <div
       ref={hostMenuRef}
-      className="inline-block w-1/3 bg-neutral-50 mt-20 h-[150px] transition-all ease-out duration-500 relative"
+      className="inline-block w-1/3 mt-10 h-[150px] transition-all ease-out duration-500 relative"
     >
-      호스트 정보
+      <InfoTop />
+      <InfoMiddle {...hostInfo} />
+      <InfoBottom scheduleId={scheduleId} like={like} scrap={scrap} />
     </div>
   );
 };

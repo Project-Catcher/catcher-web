@@ -10,7 +10,12 @@ const Detail = ({ detailData }: DetailProps) => {
   return (
     <div className="w-4/5 min-h-[90vh] flex gap-5">
       <Content detailData={detailData} />
-      <HostInfo />
+      <HostInfo
+        scheduleId={detailData.id}
+        hostInfo={detailData.hostInfo}
+        like={detailData.like}
+        scrap={detailData.scrap}
+      />
     </div>
   );
 };

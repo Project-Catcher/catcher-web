@@ -1,5 +1,6 @@
 import { CommentWithReComments } from "@detail/CommentBox";
 import Detail from "@detail/Detail";
+import { hostInfo } from "@detail/HostInfo";
 import { participateInfoType } from "@detail/ParticipationStatus";
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -7,7 +8,7 @@ import React from "react";
 
 export interface DetailCard {
   id: number;
-  userId: number;
+  hostInfo: hostInfo;
   img: string;
   theme: string;
   title: string;
