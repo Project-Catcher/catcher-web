@@ -1,7 +1,23 @@
 export const cardDetail = [
   {
     id: 1,
-    userId: 1,
+    hostInfo: {
+      id: 1,
+      profileImg: "/assets/detail/profile_sample5.svg",
+      nickName: "낭만맨",
+      introduce:
+        "제 소개를 하자면, 이 일정을 만든 사람이옵니다. 혼자서 캠핑하는 것을 좋아하지만, 가끔은 집앞 별마당 도서관에서 책과 커피로 시간을 보내는 것을 좋아해요.",
+      tags: [
+        "여럿이 함께",
+        "접근이 쉬움",
+        "색다른",
+        "인기 있는 장소",
+        "친구랑",
+        "혼자 즐기는",
+      ],
+      like: 10,
+      scheduleCount: 5,
+    },
     img: "/assets/findSchedule/sample.png",
     theme: "축제",
     title: "단풍구경 관악산 등반 하실 분? 연주암 45분 코스 - 등산 초급자",
@@ -24,9 +40,9 @@ export const cardDetail = [
     dateEnd: "2023/12/13",
     expense: 25000,
     tags: ["여럿이 함께", "접근이 쉬움", "색다른"],
-    like: 18,
-    comment: 18,
-    scrap: 18,
+    like: 15,
+    comment: 16,
+    scrap: 17,
     recruitStart: "2023/12/01",
     recruitEnd: "2023/12/09",
     applicantNum: 10,
