@@ -1,3 +1,5 @@
+import { CommentWithReComments } from "@detail/CommentBox";
+
 export const calculateNightsAndDays = (start: string, end: string) => {
   const startDate = new Date(start);
   const endDate = new Date(end);
@@ -17,4 +19,20 @@ export const stringToDate = (inputDate: string) => {
   ).padStart(2, "0")}.${String(dateObject.getDate()).padStart(2, "0")}`;
 
   return formattedDate;
+};
+
+export const countCommentsAndReComments = (
+  comments: CommentWithReComments[],
+): number => {
+  // 댓글의 개수
+  const totalComments = comments?.length;
+
+  // 모든 댓글의 대댓글 개수를 합산
+  const totalReComments = comments?.reduce(
+    (sum, comment) => sum + comment?.reComments.length,
+    0,
+  );
+
+  // 댓글과 대댓글의 총 개수 반환
+  return totalComments + totalReComments;
 };

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import { countCommentsAndReComments } from "@shared/utils";
 import { CommentType } from "./Comment";
 import CommentwithReComment from "./CommentwithReComment";
 
@@ -98,17 +99,3 @@ const CommentBox = ({ postId, hostId, comments }: CommentBoxProps) => {
 };
 
 export default CommentBox;
-
-function countCommentsAndReComments(comments: CommentWithReComments[]): number {
-  // 댓글의 개수
-  const totalComments = comments?.length;
-
-  // 모든 댓글의 대댓글 개수를 합산
-  const totalReComments = comments?.reduce(
-    (sum, comment) => sum + comment?.reComments.length,
-    0,
-  );
-
-  // 댓글과 대댓글의 총 개수 반환
-  return totalComments + totalReComments;
-}
