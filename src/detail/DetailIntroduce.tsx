@@ -1,5 +1,6 @@
 import Tag from "@findSchedule/components/Tag";
 import React from "react";
+import { daysUntil } from "@shared/utils";
 import DateWithLocation from "./DateWithLocation";
 import ImageWithTitle from "./ImageWithTitle";
 import ParticipationStatus, {
@@ -83,12 +84,3 @@ const DetailIntroduce = ({
 };
 
 export default DetailIntroduce;
-
-function daysUntil(dateStr: string): number {
-  const futureDate = new Date(dateStr);
-  const currentDate = new Date();
-
-  const diff = futureDate.getTime() - currentDate.getTime();
-
-  return Math.ceil(diff / (1000 * 60 * 60 * 24));
-}
