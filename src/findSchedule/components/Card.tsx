@@ -1,9 +1,11 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { calculateNightsAndDays, stringToDate } from "@shared/utils";
 import Tag from "./Tag";
 
 export interface CardType {
+  id: number;
   img: string;
   title: string;
   content: string;
@@ -19,6 +21,7 @@ export interface CardType {
 }
 
 const Card = ({
+  id,
   img,
   title,
   content,
@@ -32,8 +35,15 @@ const Card = ({
   participateNum,
   participateCapacity,
 }: CardType) => {
+  const { push } = useRouter();
+
   return (
-    <div className="w-[260px] h-[428px] relative flex-col flex box-content transition-transform hover:-translate-y-1 m-auto shadow-md hover:shadow-lg">
+    <div
+      className="w-[260px] h-[428px] relative flex-col flex box-content transition-transform hover:-translate-y-1 m-auto shadow-md hover:shadow-lg"
+      onClick={() => {
+        push(`/detail/${id}`);
+      }}
+    >
       <div className={`w-full h-[170px] bg-stone-300 border-zinc-400 relatvie`}>
         {img?.length !== 0 ? (
           <Image src={img} alt="sample img" width={260} height={170} />
