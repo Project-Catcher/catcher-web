@@ -1,14 +1,13 @@
-// 내 일정 페이지
-import Main from "@schedule/components/Main";
+import Recruit from "@schedule/components/Recruit";
 import ScheduleWrapper from "@schedule/components/ScheduleWrapper";
 import React from "react";
 
-const index = () => {
+const recruit = () => {
   return (
     <ScheduleWrapper>
-      <Main />;
+      <Recruit />;
     </ScheduleWrapper>
   );
 };
 
-export default index;
+export default recruit;

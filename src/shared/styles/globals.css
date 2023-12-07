@@ -111,6 +111,26 @@ a {
   @apply overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
 }
 
+.truncate-text {
+  @apply whitespace-nowrap overflow-hidden overflow-ellipsis
+}
+
+.truncate-text-wrap {
+  @apply overflow-hidden overflow-ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.recruit-table-head {
+  @apply p-3 text-xs font-medium text-left text-gray-500
+}
+
+.recruit-table-data {
+  @apply p-3 text-sm text-gray-900
+}
+
 @font-face {
   font-family: 'Noto Sans KR';
   font-style: normal;

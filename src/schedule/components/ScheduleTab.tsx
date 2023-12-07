@@ -20,17 +20,17 @@ const ScheduleTab = ({
         {tabTitle}
       </div>
       <div className="flex mt-9 gap-x-10">
-        {tabItems.map((tab, i) => (
+        {tabItems.map(({ title }, i) => (
           <div
             key={`schedule Tab-${i}`}
             className={`pb-2 cursor-pointer ${
-              currentTab === tab.title
+              currentTab === title
                 ? "border-b-2 border-pink-400 text-zinc-800 font-bold"
                 : "text-zinc-400 font-medium hover:text-zinc-500"
             }`}
-            onClick={() => onClickTab(tab.title)}
+            onClick={() => onClickTab(title)}
           >
-            {tab.title}
+            {title}
           </div>
         ))}
       </div>
