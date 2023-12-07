@@ -1,10 +1,10 @@
 import { Continue, TemplateButton } from "@create-schedule/components";
 import { useState } from "react";
-import { ScheduleCardSection } from "@shared/types";
+import { TemplateSchedule, TemporarySchedule } from "@shared/types";
 
 interface ScheduleCardProps {
-  content: ScheduleCardSection[];
-  callType: "remain" | "template";
+  content: TemporarySchedule[] | TemplateSchedule[];
+  callType: "temporary" | "template";
 }
 
 const ScheduleCard = ({ content, callType }: ScheduleCardProps) => {
@@ -26,24 +26,26 @@ const ScheduleCard = ({ content, callType }: ScheduleCardProps) => {
             onClick={() => handleClick(index)}
           >
             <div className="w-[149px] h-[113px] bg-black rounded-t-[5px]">
-              {_content.imageSrc}
+              {_content.thumbnailUrl}
             </div>
             <div className="relative h-[83px] px-[8px] py-[8px]">
               <div className="text-[12px] text-[#333333] font-semibold -tracking-[0.02em]">
                 {_content.title}
               </div>
               <div className="text-[10px] text-[#959CA1] font-medium -tracking-[0.02em]">
-                {_content.position}
+                {_content.location}
               </div>
               <div
                 className={`${
-                  callType === "remain" ? "text-[#757575] " : "text-[#F864A1] "
+                  callType === "temporary"
+                    ? "text-[#757575] "
+                    : "text-[#F864A1] "
                 }absolute bottom-[8px] text-[10px] font-semibold -tracking-[0.02em] float-bottom`}
               >
                 {`${
-                  callType === "remain"
-                    ? `${_content.createdAt} 작성`
-                    : `${_content.requiredTime}`
+                  callType === "temporary"
+                    ? `${(_content as TemporarySchedule).createdAt} 작성` // TODO: Date format handling
+                    : `${(_content as TemplateSchedule).days}`
                 }`}
               </div>
             </div>

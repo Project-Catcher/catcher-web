@@ -1,10 +1,10 @@
 import { SCHEDULE_TITLE } from "@create-schedule/constants";
-import { ScheduleCardSection } from "@shared/types";
+import { TemplateSchedule } from "@shared/types";
 import ScheduleTitle from "./ScheduleTitle";
 import Template from "./Template";
 
 interface TemplateRecommendProps {
-  templates: ScheduleCardSection[];
+  templates: TemplateSchedule[];
 }
 
 const TemplateRecommend = ({ templates }: TemplateRecommendProps) => {

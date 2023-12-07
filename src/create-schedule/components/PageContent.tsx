@@ -1,5 +1,5 @@
 import { SUBTITLE, TITLE } from "@create-schedule/constants";
-import { ScheduleCardSection } from "@shared/types";
+import { TemplateSchedule, TemporarySchedule } from "@shared/types";
 import PlanDefaultInfo from "./PlanDefaultInfo";
 import Remains from "./Remains";
 import ScheduleTagTemplate from "./ScheduleTagTemplate";
@@ -7,13 +7,13 @@ import Title from "./Title";
 
 interface PageContentProps {
   currentProgress: number;
-  remains: ScheduleCardSection[];
-  templates: ScheduleCardSection[];
+  temporary: TemporarySchedule[];
+  templates: TemplateSchedule[];
 }
 
 const PageContent = ({
   currentProgress,
-  remains,
+  temporary,
   templates,
 }: PageContentProps) => {
   return (
@@ -21,10 +21,10 @@ const PageContent = ({
       {currentProgress === 1 && (
         <>
           <Title
-            title={TITLE.remains}
+            title={TITLE.temporary}
             subTitle={SUBTITLE.fighting("명란마요")}
           />
-          <Remains remains={remains} />
+          <Remains temporary={temporary} />
         </>
       )}
       {currentProgress === 2 && (

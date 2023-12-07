@@ -1,5 +1,5 @@
 import { SCHEDULE_TITLE } from "@create-schedule/constants";
-import { ScheduleCardSection } from "@shared/types";
+import { TemplateSchedule } from "@shared/types";
 import ScheduleNextButton from "./ScheduleNextButton";
 import ScheduleTagInput from "./ScheduleTagInput";
 import ScheduleTitle from "./ScheduleTitle";
@@ -7,7 +7,7 @@ import TagRecommend from "./TagRecommend";
 import TemplateRecommend from "./TemplateRecommend";
 
 interface ScheduleTagTemplateProps {
-  templates: ScheduleCardSection[];
+  templates: TemplateSchedule[];
 }
 
 const ScheduleTagTemplate = ({ templates }: ScheduleTagTemplateProps) => {

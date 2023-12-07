@@ -1,7 +1,7 @@
 import { PlanSubTitle, PlanTitle } from "@shared/types";
 
 export const TITLE: PlanTitle = {
-  remains: "잠깐, 작성중이던 일정이 있어요",
+  temporary: "잠깐, 작성중이던 일정이 있어요",
   nthPlan: (nickname: string, number: number) =>
     `${nickname} 님의 ${number}번째 일정`,
   tag: "태그 및 일정 템플릿",

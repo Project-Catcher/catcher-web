@@ -1,8 +1,8 @@
 import { ScheduleCard } from "@shared/components";
-import { ScheduleCardSection } from "@shared/types";
+import { TemplateSchedule } from "@shared/types";
 
 interface TemplateProps {
-  templates: ScheduleCardSection[];
+  templates: TemplateSchedule[];
 }
 
 const Template = ({ templates }: TemplateProps) => {

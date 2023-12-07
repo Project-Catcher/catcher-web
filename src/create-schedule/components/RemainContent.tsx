@@ -1,13 +1,13 @@
 import React from "react";
 import { ScheduleCard } from "@shared/components";
-import { ScheduleCardSection } from "@shared/types";
+import { TemporarySchedule } from "@shared/types";
 
 interface RemainContentProps {
-  remains: ScheduleCardSection[];
+  temporary: TemporarySchedule[];
 }
 
-const RemainContent = ({ remains }: RemainContentProps) => {
-  return <ScheduleCard content={remains} callType="remain" />;
+const RemainContent = ({ temporary }: RemainContentProps) => {
+  return <ScheduleCard content={temporary} callType="temporary" />;
 };
 
 export default RemainContent;
