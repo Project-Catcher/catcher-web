@@ -8,3 +8,11 @@ export const KAKAO_LOGOUT_URL = "https://kapi.kakao.com/v1/user/logout";
 export const NAVER_LOGOUT_URL = "https://nid.naver.com/nidlogin.logout";
 
 export const DEFAULT_URL = "http://localhost:3000";
+
+export const CREATE_SCHEDULE_PATH = {
+  base: "schedules",
+  temporary: "schedules/temporary",
+  tag: "schedules/tag",
+  templates: "schedules/templates",
+  items: "schedules/items",
+};
