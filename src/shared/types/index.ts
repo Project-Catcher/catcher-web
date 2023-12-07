@@ -38,7 +38,7 @@ export type CurrentPageType =
   | "작성 마무리";
 
 export interface PlanTitle {
-  remains: string;
+  temporary: string;
   nthPlan: (nickname: string, number: number) => string;
   tag: string;
   fill: string;
@@ -63,12 +63,34 @@ export interface ScheduleAnswerType {
 export type CalendarSelectorType = "startedAt" | "endedAt";
 export type LoginType = "kakao" | "naver" | "catcher";
 
-// TODO: 일정 타입 지정
 export interface ScheduleCardSection {
   id: number;
-  imageSrc: string;
+  thumbnailUrl: string;
   title: string;
-  position: string;
-  createdAt?: string;
-  requiredTime?: string;
+  location: string;
+}
+
+export interface ScheduleBasicInfo extends ScheduleCardSection {
+  startAt: Date;
+  endAt: Date;
+}
+
+export interface TemporarySchedule extends ScheduleCardSection {
+  createdAt: Date;
+}
+
+export interface TemplateSchedule extends ScheduleCardSection {
+  days: string;
+  schedules: TemplateDetail[];
+}
+
+export interface TemplateDetail {
+  id: number;
+  title: string;
+  category: string;
+  location: string;
+  description: string;
+  color: string;
+  startAt: Date;
+  endAt: Date;
 }
