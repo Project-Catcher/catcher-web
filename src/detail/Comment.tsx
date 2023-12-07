@@ -26,8 +26,8 @@ const Comment = ({
   callType = "comment",
   postId, // 게시글 id
   hostId, // host_id
-  id, // comment_id
   commentId, // 대댓글인 경우 본 댓글의 id
+  id, // comment_id
   userId, // comment 작성한 user_id
   isHidden,
   nickName,
