@@ -2,15 +2,31 @@ import Image from "next/image";
 import React, { useState } from "react";
 import CommentInput from "./CommentInput";
 
-const ReCommentInput = () => {
-  const [comment, setComment] = useState("");
+interface ReCommentInputProps {
+  postId: number;
+}
+
+const ReCommentInput = ({ postId }: ReCommentInputProps) => {
+  const [comment, setComment] = useState({
+    content: "",
+    isHidden: false,
+  });
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
+    setComment((prevComment) => ({
+      ...prevComment,
+      content: e.target.value,
+    }));
+  };
+
+  const onChangeHidden = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment({ ...comment, isHidden: e.target.checked });
   };
 
   const onClickSubmit = () => {
-    // TODO: 답글
+    // TODO: 서버에 요청 추가
+    const data = { postId, ...comment };
+    console.log("submit data", data);
   };
 
   return (
@@ -30,6 +46,7 @@ const ReCommentInput = () => {
           type={"re"}
           comment={comment}
           onChangeComment={onChangeComment}
+          onChangeHidden={onChangeHidden}
           onClickSubmit={onClickSubmit}
         />
       </div>

@@ -16,15 +16,19 @@ export interface CommentType {
 
 interface CommentProps extends CommentType {
   callType?: "comment" | "reComment";
+  postId: number;
   hostId: number;
+  commentId?: number;
   onClickRecomment: VoidFunction;
 }
 
 const Comment = ({
   callType = "comment",
-  hostId,
-  id,
-  userId,
+  postId, // 게시글 id
+  hostId, // host_id
+  id, // comment_id
+  commentId, // 대댓글인 경우 본 댓글의 id
+  userId, // comment 작성한 user_id
   isHidden,
   nickName,
   img,
@@ -36,12 +40,15 @@ const Comment = ({
   ...props
 }: CommentProps) => {
   // TODO: 임의의 사용자 정보
-  const logginedInfo = { userId: 1 };
+  const logginedInfo = { userId: 2 };
 
   const [onCommentToggle, setOnCommentToggle] = useState(false);
   const [updateComment, setUpdateComment] = useState(false);
-
-  const [comment, setComment] = useState(content);
+  const [comment, setComment] = useState({
+    id,
+    content,
+    isHidden,
+  });
 
   const handleUpdate = () => {
     setUpdateComment((prev) => !prev);
@@ -52,10 +59,28 @@ const Comment = ({
   };
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
+    setComment((prevComment) => ({
+      ...prevComment,
+      content: e.target.value,
+    }));
   };
 
-  const onClickSubmit = () => {};
+  const onChangeHidden = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment({ ...comment, isHidden: e.target.checked });
+  };
+
+  const onClickSubmit = () => {
+    // TODO: 서버에 요청 추가
+
+    if (commentId) {
+      // 대댓글 수정하는 경우
+      const updateData = { postId, commentId, ...comment };
+      console.log("submit data", updateData);
+    } else {
+      const updateData = { postId, ...comment };
+      console.log("submit data", updateData);
+    }
+  };
 
   const commentToggleItems =
     userId === logginedInfo.userId
@@ -132,6 +157,7 @@ const Comment = ({
           <CommentInput
             comment={comment}
             onChangeComment={onChangeComment}
+            onChangeHidden={onChangeHidden}
             onClickSubmit={onClickSubmit}
           />
         </div>

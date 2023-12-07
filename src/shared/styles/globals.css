@@ -128,3 +128,21 @@ a {
   border: 3.5px solid white; 
   box-shadow: 0 0 0 1.6px #ccc; 
 }
+
+.check {
+  -webkit-appearance: none;
+  -moz-appearance: none; 
+  appearance: none; 
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #ccc; 
+  outline: none; 
+  cursor: pointer;
+}
+
+.check:checked {
+  background-image:url("/assets//detail/checked.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border: 1.5px solid #f472b6; 
+}

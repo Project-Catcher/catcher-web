@@ -7,7 +7,13 @@ export interface CommentWithReComments extends CommentType {
   reComments: CommentType[];
 }
 
-const CommentBox = ({ hostId, comments }: any) => {
+interface CommentBoxProps {
+  postId: number;
+  hostId: number;
+  comments: CommentWithReComments[];
+}
+
+const CommentBox = ({ postId, hostId, comments }: CommentBoxProps) => {
   const [onCommentToggle, setOnCommentToggle] = useState(true);
 
   return (
@@ -79,8 +85,9 @@ const CommentBox = ({ hostId, comments }: any) => {
             {comments?.map((comment: any, i: number) => (
               <CommentwithReComment
                 key={`comment-${i}`}
-                comment={comment}
+                postId={postId}
                 hostId={hostId}
+                comment={comment}
               />
             ))}
           </div>

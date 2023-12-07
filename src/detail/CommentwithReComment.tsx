@@ -4,11 +4,13 @@ import { CommentWithReComments } from "./CommentBox";
 import ReCommentInput from "./ReCommentInput";
 
 interface CommentwithReCommentProps {
+  postId: number;
   hostId: number;
   comment: CommentWithReComments;
 }
 
 const CommentwithReComment = ({
+  postId,
   hostId,
   comment,
 }: CommentwithReCommentProps) => {
@@ -22,6 +24,7 @@ const CommentwithReComment = ({
     <>
       <Comment
         onClickRecomment={onClickRecomment}
+        postId={postId}
         hostId={hostId}
         {...comment}
       />
@@ -30,11 +33,13 @@ const CommentwithReComment = ({
           key={`reComment-${i}`}
           callType="reComment"
           onClickRecomment={onClickRecomment}
+          postId={postId}
           hostId={hostId}
+          commentId={comment.id}
           {...reComment}
         />
       ))}
-      {openRecomment && <ReCommentInput />}
+      {openRecomment && <ReCommentInput postId={postId} />}
     </>
   );
 };

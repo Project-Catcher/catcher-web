@@ -17,7 +17,11 @@ const Content = ({ detailData }: ContentProps) => {
         </div>
       </div>
       <div className="h-[300px]">일정표</div>
-      <CommentBox comments={detailData.comments} hostId={detailData.userId} />
+      <CommentBox
+        postId={detailData.id}
+        hostId={detailData.userId}
+        comments={detailData.comments}
+      />
       <div className="h-[100px]" />
     </div>
   );
