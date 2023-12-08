@@ -20,17 +20,15 @@ export interface ShowCalendarType {
 
 const Page = ({ defaultCardList }: FindScheduleProps) => {
   const { openAlert } = useModal();
-  const [theme, setTheme] = useState("전체");
-  const [date, setDate] = useState<DateProps>({
-    start: undefined,
-    end: undefined,
-  });
-  const [showCalendar, setShowCalendar] = useState({
-    start: false,
-    end: false,
-  });
-  const [expense, setExpense] = useState("");
-  const [personnel, setPersonnel] = useState("");
+  const initialFilter = {
+    theme: "전체",
+    date: { start: undefined, end: undefined },
+    showCalendar: { start: false, end: false },
+    expense: "",
+    personnel: "",
+  };
+  const [filter, setFilter] = useState(initialFilter);
+
   const [keywordFilter, setKeywordFilter] = useState({
     option: "전체",
     keyword: "",
@@ -42,44 +40,50 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
     axios
       .get(`${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`, {
         params: {
-          theme,
-          dateStart: date.start,
-          dateEnd: date.end,
-          expense,
-          personnel,
+          theme: filter.theme,
+          dateStart: filter.date.start,
+          dateEnd: filter.date.end,
+          expense: filter.expense,
+          personnel: filter.personnel,
         },
       })
       .then((res) => {
         console.log("cardList", res.data);
         setCardList(res.data);
       });
-  }, [theme, date, expense, personnel]);
+  }, [filter]);
 
   const handleReset = () => {
-    setTheme("전체");
-    setDate({
-      start: undefined,
-      end: undefined,
-    });
-    setShowCalendar({
-      start: false,
-      end: false,
-    });
-    setExpense("");
-    setPersonnel("");
+    setFilter(initialFilter);
   };
 
-  const handleCalendarClick = (type: "start" | "end") => {
-    setShowCalendar((prev) => ({
-      start: type === "start" ? !prev.start : false,
-      end: type === "end" ? !prev.end : false,
+  const handleTab = (theme: string) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      theme: theme,
     }));
   };
 
-  const handleStartDateChange = (newDate: Date) => {
-    const endDate = date.end;
+  const handleCalendarClick = (type: "start" | "end") => {
+    setFilter((prev) => ({
+      ...prev,
+      showCalendar: {
+        ...prev.showCalendar,
+        start:
+          type === "start" ? !prev.showCalendar.start : prev.showCalendar.start,
+        end: type === "end" ? !prev.showCalendar.end : prev.showCalendar.end,
+      },
+    }));
+  };
 
-    if (endDate && newDate > endDate) {
+  const handleDateChange = (type: "start" | "end", newDate: Date) => {
+    const { start, end } = filter.date;
+
+    if (
+      type === "start" &&
+      end &&
+      newDate.getTime() > new Date(end).getTime()
+    ) {
       openAlert({
         text: "시작 날짜는 종료 날짜보다 늦을 수 없습니다.",
         isHeaderCloseBtn: true,
@@ -87,18 +91,11 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
       return;
     }
 
-    setDate((prevDate) => ({
-      ...prevDate,
-      start: newDate,
-    }));
-
-    handleCalendarClick("start");
-  };
-
-  const handleEndDateChange = (newDate: Date) => {
-    const startDate = date.start;
-
-    if (startDate && newDate < startDate) {
+    if (
+      type === "end" &&
+      start &&
+      newDate.getTime() < new Date(start).getTime()
+    ) {
       openAlert({
         text: "종료 날짜는 시작 날짜보다 이전일 수 없습니다.",
         isHeaderCloseBtn: true,
@@ -106,20 +103,24 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
       return;
     }
 
-    setDate((prevDate) => ({
-      ...prevDate,
-      end: newDate,
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      date: {
+        ...prevFilter.date,
+        [type]: newDate,
+      },
     }));
 
-    handleCalendarClick("end");
+    handleCalendarClick(type);
   };
 
-  const handleExpenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setExpense(e.target.value);
-  };
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
 
-  const handlePersonnelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPersonnel(e.target.value);
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      [name]: value,
+    }));
   };
 
   const handleKeywordChange = (
@@ -136,11 +137,11 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
     axios
       .get(`${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`, {
         params: {
-          theme,
-          dateStart: date.start,
-          dateEnd: date.end,
-          expense,
-          personnel,
+          theme: filter.theme,
+          dateStart: filter.date.start,
+          dateEnd: filter.date.end,
+          expense: filter.expense,
+          personnel: filter.personnel,
           keywordOption: keywordFilter.option,
           keyword: keywordFilter.keyword,
         },
@@ -163,23 +164,17 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
   return (
     <div className="w-4/5 min-h-[90vh] flex">
       <ScheduleFilter
-        handleReset={handleReset}
-        theme={theme}
-        setTheme={setTheme}
-        date={date}
-        showCalendar={showCalendar}
+        handleTab={handleTab}
         handleCalendarClick={handleCalendarClick}
-        handleStartDateChange={handleStartDateChange}
-        handleEndDateChange={handleEndDateChange}
-        expense={expense}
-        handleExpenseChange={handleExpenseChange}
-        personnel={personnel}
-        handlePersonnelChange={handlePersonnelChange}
+        handleDateChange={handleDateChange}
+        handleRadioChange={handleRadioChange}
+        handleReset={handleReset}
+        {...filter}
       />
       <ScheduleContent
+        cardList={cardList}
         keywordFilter={keywordFilter}
         handleKeywordChange={handleKeywordChange}
-        cardList={cardList}
         sortFilter={sortFilter}
         handleSortChange={handleSortChange}
         onClickSearch={onClickSearch}

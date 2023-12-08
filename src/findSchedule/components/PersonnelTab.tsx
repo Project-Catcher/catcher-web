@@ -24,7 +24,7 @@ const PersonnelTab = ({
               <input
                 type="radio"
                 className="w-5 h-5 radio"
-                name="personnelRange"
+                name="personnel"
                 value={range.value}
                 checked={personnel === range.value}
                 onChange={handlePersonnelChange}
