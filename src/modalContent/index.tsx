@@ -15,9 +15,9 @@ const ModalContent = <T,>(modalProps: ModalContentProps) => {
     case "RecruitManage":
       return <RecruitManage {...(modalProps as RecruitManageProps)} />;
     case "calendarSelector_start":
-      return <CalendarSelector type="startedAt" />;
+      return <CalendarSelector type="startAt" />;
     case "calendarSelector_end":
-      return <CalendarSelector type="endedAt" />;
+      return <CalendarSelector type="endAt" />;
     default:
       return <></>;
   }

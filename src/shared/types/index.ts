@@ -53,14 +53,15 @@ export interface PlanSubTitle {
 
 export interface ScheduleAnswerType {
   title: string;
-  imageSrc: string;
-  startedAt: string;
-  endedAt: string;
-  city: string;
+  thumbnail: string;
+  startAt: string;
+  endAt: string;
+  location: string;
   tag: string[];
 }
 
-export type CalendarSelectorType = "startedAt" | "endedAt";
+export type CalendarSelectorType = "startAt" | "endAt";
+
 export type LoginType = "kakao" | "naver" | "catcher";
 
 export interface ScheduleCardSection {

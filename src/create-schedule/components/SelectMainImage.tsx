@@ -6,7 +6,7 @@ import { useModal } from "@shared/hook";
 import { scheduleAnswers } from "@shared/recoil";
 
 const SelectMainImage = () => {
-  const [{ imageSrc }, setImageSrc] = useRecoilState(scheduleAnswers);
+  const [{ thumbnail }, setThumbnail] = useRecoilState(scheduleAnswers);
   const { openModal } = useModal();
 
   const getImage = async (id: string) => {
@@ -17,7 +17,7 @@ const SelectMainImage = () => {
           Authorization: process.env.NEXT_PUBLIC_IMAGE_API_KEY,
         },
       });
-      setImageSrc((prev) => ({ ...prev, imageSrc: image.data.src.large }));
+      setThumbnail((prev) => ({ ...prev, thumbnail: image.data.src.large }));
     } catch (error) {
       // TODO: Error handling
       console.log(error);
@@ -40,15 +40,15 @@ const SelectMainImage = () => {
       className="w-[222px] h-[126px] border border-[#E0E0E0] rounded-[5px] mr-[8px] cursor-pointer"
       onClick={handleModal}
     >
-      <div className={`${imageSrc ? "" : "py-[32.5px] text-center"}`}>
+      <div className={`${thumbnail ? "" : "py-[32.5px] text-center"}`}>
         <Image
           className="rounded-[4px]"
-          src={`${imageSrc ? imageSrc : "/images/samples/camera.svg"}`}
+          src={`${thumbnail ? thumbnail : "/images/samples/camera.svg"}`}
           alt="thumbnail"
-          width={imageSrc ? 221 : 30}
-          height={imageSrc ? 125 : 30}
+          width={thumbnail ? 221 : 30}
+          height={thumbnail ? 125 : 30}
         />
-        {!imageSrc && (
+        {!thumbnail && (
           <div className="text-[10px] text-[#757575] -tracking-[0.01em]">
             이미지 선택하기
           </div>

@@ -7,8 +7,8 @@ const SelectCity = () => {
     <div id="장소 선택" className="mb-[60px]">
       <ScheduleTitle
         hasSubTitle
-        title={SCHEDULE_TITLE.city}
-        subTitle={SCHEDULE_SUBTITLE.city}
+        title={SCHEDULE_TITLE.location}
+        subTitle={SCHEDULE_SUBTITLE.location}
       />
       <DateCityInput callType="city" placeholder="대한민국" />
       <span className="inline-block relative invisible w-[13px] h-[2px] border border-[#333333] bottom-[4px] mx-[5px]" />

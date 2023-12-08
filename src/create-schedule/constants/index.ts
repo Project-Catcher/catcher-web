@@ -19,7 +19,7 @@ export const SCHEDULE_TITLE = {
   planTitle: "일정 제목",
   mainImage: "대표 이미지",
   date: "일정 시작일 ~ 종료일",
-  city: "장소 선택",
+  location: "장소 선택",
   tag: "카테고리 태그(#)",
   tagRecommend: "이런 태그는 어떤가요?",
   templateRecommend: (nickname: string) =>
@@ -30,7 +30,7 @@ export const SCHEDULE_SUBTITLE = {
   mainImage:
     "Chather 캐쳐 메인, 검색 결과, SNS 광고 등 여러 곳에서 노출할 대표 이미지를 등록해 주세요.",
   date: "준비기간 및 모집기간 등 전체 일정을 고려해 설정해 주세요.",
-  city: "일정을 수행할 위치를 선택해주세요.",
+  location: "일정을 수행할 위치를 선택해주세요.",
 };
 
 export const BASIC_INFO_TAG = [

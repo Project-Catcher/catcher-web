@@ -4,7 +4,7 @@ import DateCityHandler from "./DateCityHandler";
 
 interface DateCityInputProps {
   callType: "date_start" | "date_end" | "city";
-  answerType?: "startedAt" | "endedAt";
+  answerType?: "startAt" | "endAt";
   placeholder: string;
 }
 
@@ -26,7 +26,7 @@ const DateCityInput = ({
         value={
           answerType && callType.includes("date")
             ? answer[answerType]
-            : answer.city
+            : answer.location
         }
       />
     </div>

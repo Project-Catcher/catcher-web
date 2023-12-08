@@ -5,7 +5,7 @@ import { useModal } from "@shared/hook";
 import { scheduleAnswers } from "@shared/recoil";
 
 interface CalendarSelectorProps {
-  type: "startedAt" | "endedAt";
+  type: "startAt" | "endAt";
 }
 
 const CalendarSelector = ({ type }: CalendarSelectorProps) => {

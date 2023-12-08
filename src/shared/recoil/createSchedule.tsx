@@ -10,10 +10,10 @@ export const scheduleAnswers = atom<ScheduleAnswerType>({
   key: "scheduleAnswers",
   default: {
     title: "",
-    imageSrc: "",
-    startedAt: "",
-    endedAt: "",
-    city: "",
+    thumbnail: "",
+    startAt: "",
+    endAt: "",
+    location: "",
     tag: [],
   },
 });
