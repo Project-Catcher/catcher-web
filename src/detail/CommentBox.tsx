@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { countCommentsAndReComments } from "@shared/utils";
 import { CommentType } from "./Comment";
+import CommentInputBox from "./CommentInputBox";
 import CommentwithReComment from "./CommentwithReComment";
 
 export interface CommentWithReComments extends CommentType {
@@ -82,6 +83,9 @@ const CommentBox = ({ postId, hostId, comments }: CommentBoxProps) => {
               {countCommentsAndReComments(comments)}
             </span>
           </div>
+
+          <CommentInputBox type="com" postId={postId} />
+
           <div className="flex flex-col border-t">
             {comments?.map((comment: any, i: number) => (
               <CommentwithReComment

@@ -2,11 +2,13 @@ import Image from "next/image";
 import React, { useState } from "react";
 import CommentInput from "./CommentInput";
 
-interface ReCommentInputProps {
+interface CommentInputBoxProps {
+  type: "re" | "com";
   postId: number;
+  commentId?: number;
 }
 
-const ReCommentInput = ({ postId }: ReCommentInputProps) => {
+const CommentInputBox = ({ type, postId, commentId }: CommentInputBoxProps) => {
   const [comment, setComment] = useState({
     content: "",
     isHidden: false,
@@ -25,13 +27,26 @@ const ReCommentInput = ({ postId }: ReCommentInputProps) => {
 
   const onClickSubmit = () => {
     // TODO: 서버에 요청 추가
-    const data = { postId, ...comment };
-    console.log("submit data", data);
+    if (type === "com") {
+      // 댓글
+      const data = { postId, ...comment };
+      console.log("submit data", data);
+    } else {
+      // 대댓글
+      const data = { postId, commentId, ...comment };
+      console.log("submit data", data);
+    }
   };
 
   return (
-    <div className="relative py-6 pl-12 pr-4 border-b bg-neutral-50">
-      <div className="border-b-2 border-l-2 w-[10px] h-[10px] absolute left-6 top-8" />
+    <div
+      className={`relative ${
+        type === "re" ? "pl-12 bg-neutral-50 border-b" : "pl-4 border-t"
+      } py-6 pr-4`}
+    >
+      {type === "re" && (
+        <div className="border-b-2 border-l-2 w-[10px] h-[10px] absolute left-6 top-8" />
+      )}
       <div className="flex">
         <div className="border rounded-full bg-zinc-300 border-neutral-300 w-[34px] h-[34px] flex-center">
           <Image
@@ -43,7 +58,7 @@ const ReCommentInput = ({ postId }: ReCommentInputProps) => {
         </div>
 
         <CommentInput
-          type={"re"}
+          type={type}
           comment={comment}
           onChangeComment={onChangeComment}
           onChangeHidden={onChangeHidden}
@@ -54,4 +69,4 @@ const ReCommentInput = ({ postId }: ReCommentInputProps) => {
   );
 };
 
-export default ReCommentInput;
+export default CommentInputBox;

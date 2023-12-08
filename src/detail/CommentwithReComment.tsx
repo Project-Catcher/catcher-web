@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Comment from "./Comment";
 import { CommentWithReComments } from "./CommentBox";
-import ReCommentInput from "./ReCommentInput";
+import CommentInputBox from "./CommentInputBox";
 
 interface CommentwithReCommentProps {
   postId: number;
@@ -39,7 +39,9 @@ const CommentwithReComment = ({
           {...reComment}
         />
       ))}
-      {openRecomment && <ReCommentInput postId={postId} />}
+      {openRecomment && (
+        <CommentInputBox type="re" postId={postId} commentId={comment.id} />
+      )}
     </>
   );
 };
