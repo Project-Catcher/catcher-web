@@ -1,0 +1,118 @@
+import React, { useState } from "react";
+import { useModal } from "@shared/hook";
+import ScheduleContent from "./ScheduleContent";
+import ScheduleFilter from "./ScheduleFilter";
+
+export interface DateProps {
+  start: Date | undefined;
+  end: Date | undefined;
+}
+
+export interface ShowCalendarType {
+  start: boolean;
+  end: boolean;
+}
+
+const Page = () => {
+  const { openAlert } = useModal();
+  const [theme, setTheme] = useState("전체");
+  const [date, setDate] = useState<DateProps>({
+    start: undefined,
+    end: undefined,
+  });
+  const [showCalendar, setShowCalendar] = useState({
+    start: false,
+    end: false,
+  });
+  const [expense, setExpense] = useState<string>("");
+  const [personnel, setPersonnel] = useState<string>("");
+
+  const handleReset = () => {
+    setTheme("전체");
+    setDate({
+      start: undefined,
+      end: undefined,
+    });
+    setShowCalendar({
+      start: false,
+      end: false,
+    });
+    setExpense("");
+    setPersonnel("");
+  };
+
+  const handleCalendarClick = (type: "start" | "end") => {
+    setShowCalendar((prev) => ({
+      start: type === "start" ? !prev.start : false,
+      end: type === "end" ? !prev.end : false,
+    }));
+  };
+
+  const handleStartDateChange = (newDate: Date) => {
+    const endDate = date.end;
+
+    if (endDate && newDate > endDate) {
+      openAlert({
+        text: "시작 날짜는 종료 날짜보다 늦을 수 없습니다.",
+        isHeaderCloseBtn: true,
+      });
+      return;
+    }
+
+    setDate((prevDate) => ({
+      ...prevDate,
+      start: newDate,
+    }));
+
+    handleCalendarClick("start");
+  };
+
+  const handleEndDateChange = (newDate: Date) => {
+    const startDate = date.start;
+
+    if (startDate && newDate < startDate) {
+      openAlert({
+        text: "종료 날짜는 시작 날짜보다 이전일 수 없습니다.",
+        isHeaderCloseBtn: true,
+      });
+      return;
+    }
+
+    setDate((prevDate) => ({
+      ...prevDate,
+      end: newDate,
+    }));
+
+    handleCalendarClick("end");
+  };
+
+  const handleExpenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setExpense(e.target.value);
+  };
+
+  const handlePersonnelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPersonnel(e.target.value);
+  };
+
+  return (
+    <div className="w-4/5 min-h-[90vh]">
+      <ScheduleFilter
+        handleReset={handleReset}
+        theme={theme}
+        setTheme={setTheme}
+        date={date}
+        showCalendar={showCalendar}
+        handleCalendarClick={handleCalendarClick}
+        handleStartDateChange={handleStartDateChange}
+        handleEndDateChange={handleEndDateChange}
+        expense={expense}
+        handleExpenseChange={handleExpenseChange}
+        personnel={personnel}
+        handlePersonnelChange={handlePersonnelChange}
+      />
+      <ScheduleContent />
+    </div>
+  );
+};
+
+export default Page;

@@ -111,6 +111,25 @@ a {
   @apply overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#FFA4A475] scrollbar-track-[#E2E2E2];
 }
 
+
+.radio {
+  -webkit-appearance: none;
+  -moz-appearance: none; 
+  appearance: none; 
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc; 
+  border-radius: 50%;
+  outline: none; 
+  cursor: pointer;
+}
+
+.radio:checked {
+  background-color: #f472b6; 
+  border: 3.5px solid white; 
+  box-shadow: 0 0 0 1.6px #ccc; 
+}
+
 .truncate-text {
   @apply whitespace-nowrap overflow-hidden overflow-ellipsis
 }
@@ -151,3 +170,4 @@ a {
   font-weight: 700;
   src: url('/fonts/NotoSansKR-Bold.ttf');
 }
+
