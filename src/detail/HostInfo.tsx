@@ -60,6 +60,7 @@ const HostInfo = ({
       <InfoMiddle {...hostInfo} />
       <InfoBottom
         scheduleId={scheduleId}
+        hostId={hostInfo.id}
         like={like}
         likeStatus={likeStatus}
         scrap={scrap}

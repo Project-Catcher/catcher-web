@@ -4,6 +4,7 @@ import { useModal } from "@shared/hook";
 
 interface InfoBottomProps {
   scheduleId: number;
+  hostId: number;
   like: number;
   likeStatus: boolean;
   scrap: number;
@@ -13,12 +14,16 @@ interface InfoBottomProps {
 
 const InfoBottom = ({
   scheduleId,
+  hostId,
   like,
   likeStatus,
   scrap,
   scrapStatus,
   isParticipate,
 }: InfoBottomProps) => {
+  // TODO: 임의의 사용자 정보
+  const logginedInfo = { userId: 1 };
+
   const { openConfirm, openAlert } = useModal();
   const [likeHovered, setLikeHovered] = useState(false);
   const [scrapHovered, setScrapHovered] = useState(false);
@@ -126,9 +131,34 @@ const InfoBottom = ({
           {scrap}
         </span>
       </button>
-      <button className="w-full h-full" onClick={handleParticipate}>
-        <div
-          className={`p-auto text-white rounded-[10px] text-lg font-semibold py-2.5 text-center
+
+      {hostId === logginedInfo.userId ? (
+        <div className="flex w-full gap-2">
+          <button
+            className="w-full h-full"
+            onClick={() => {
+              // TODO: 수정 라우팅 ?
+            }}
+          >
+            <div className="p-auto text-white rounded-[10px] text-lg font-semibold py-2.5 text-center bg-amber-300 hover:bg-amber-400">
+              수정
+            </div>
+          </button>
+          <button
+            className="w-full h-full"
+            onClick={() => {
+              // TODO: 삭제
+            }}
+          >
+            <div className="p-auto text-white rounded-[10px] text-lg font-semibold py-2.5 text-center bg-red-500 hover:bg-red-600">
+              삭제
+            </div>
+          </button>
+        </div>
+      ) : (
+        <button className="w-full h-full" onClick={handleParticipate}>
+          <div
+            className={`p-auto text-white rounded-[10px] text-lg font-semibold py-2.5 text-center
           ${
             isParticipate === 0
               ? "bg-emerald-400 hover:bg-emerald-500 "
@@ -136,14 +166,15 @@ const InfoBottom = ({
               ? "bg-pink-400 hover:bg-pink-500"
               : "bg-neutral-800 hover:bg-stone-300"
           }`}
-        >
-          {isParticipate === 0
-            ? "일정 참여하기"
-            : isParticipate === 1
-            ? "신청 완료"
-            : "참여 취소"}
-        </div>
-      </button>
+          >
+            {isParticipate === 0
+              ? "일정 참여하기"
+              : isParticipate === 1
+              ? "신청 완료"
+              : "참여 취소"}
+          </div>
+        </button>
+      )}
     </div>
   );
 };
