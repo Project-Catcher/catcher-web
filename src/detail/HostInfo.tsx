@@ -19,10 +19,21 @@ interface hostInfoProps {
   scheduleId: number;
   hostInfo: hostInfo;
   like: number;
+  likeStatus: boolean;
   scrap: number;
+  scrapStatus: boolean;
+  isParticipate: number;
 }
 
-const HostInfo = ({ scheduleId, hostInfo, like, scrap }: hostInfoProps) => {
+const HostInfo = ({
+  scheduleId,
+  hostInfo,
+  like,
+  likeStatus,
+  scrap,
+  scrapStatus,
+  isParticipate,
+}: hostInfoProps) => {
   const hostMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,7 +58,14 @@ const HostInfo = ({ scheduleId, hostInfo, like, scrap }: hostInfoProps) => {
     >
       <InfoTop />
       <InfoMiddle {...hostInfo} />
-      <InfoBottom scheduleId={scheduleId} like={like} scrap={scrap} />
+      <InfoBottom
+        scheduleId={scheduleId}
+        like={like}
+        likeStatus={likeStatus}
+        scrap={scrap}
+        scrapStatus={scrapStatus}
+        isParticipate={isParticipate}
+      />
     </div>
   );
 };

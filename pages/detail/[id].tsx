@@ -19,8 +19,11 @@ export interface DetailCard {
   expense: number;
   tags: string[];
   like: number;
+  likeStatus: boolean;
   comment: number;
   scrap: number;
+  isParticipate: number; // 0: 미신청, 1: 신청완료 (대기중), 2: 참여
+  scrapStatus: boolean;
   recruitStart: string;
   recruitEnd: string;
   applicantNum: number;

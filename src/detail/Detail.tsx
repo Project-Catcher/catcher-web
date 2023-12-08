@@ -14,7 +14,10 @@ const Detail = ({ detailData }: DetailProps) => {
         scheduleId={detailData.id}
         hostInfo={detailData.hostInfo}
         like={detailData.like}
+        likeStatus={detailData.likeStatus}
         scrap={detailData.scrap}
+        scrapStatus={detailData.scrapStatus}
+        isParticipate={detailData.isParticipate}
       />
     </div>
   );
