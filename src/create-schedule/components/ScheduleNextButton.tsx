@@ -1,3 +1,4 @@
+import { postBasicInfo } from "@create-schedule/util";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useModal } from "@shared/hook";
 import { currentScheduleProgress, scheduleAnswers } from "@shared/recoil";
@@ -13,8 +14,8 @@ const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
   const setCurrentProgress = useSetRecoilState(currentScheduleProgress);
 
   const handleInputCheck = () => {
-    const startDate = parseInt(answer.startedAt.replace(/\./g, ""));
-    const endDate = parseInt(answer.endedAt.replace(/\./g, ""));
+    const startDate = parseInt(answer.startAt.replace(/\./g, ""));
+    const endDate = parseInt(answer.endAt.replace(/\./g, ""));
 
     if (endDate - startDate < 0) {
       openAlert({
@@ -28,9 +29,19 @@ const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
     return true;
   };
 
-  const handleCurrentProgress = () => {
+  const handleCurrentProgress = async () => {
     if (callType === "basicInfo" && handleInputCheck()) {
-      setCurrentProgress((prev) => prev + 1);
+      try {
+        const res = await postBasicInfo(answer);
+
+        if (res.data.id) {
+          sessionStorage.setItem("postId", res.data.id);
+          setCurrentProgress((prev) => prev + 1);
+        }
+      } catch (error) {
+        console.log(error);
+        return;
+      }
     } else if (callType === "template") {
       setCurrentProgress((prev) => prev + 1);
     }
