@@ -10,17 +10,6 @@ export const calculateNightsAndDays = (start: string, end: string) => {
   return `(${nights}박 ${days}일)`;
 };
 
-// TODO: 이전 브랜치에서 사용한 함수 가져옴, 추후 삭제할 것
-export const stringToDate = (inputDate: string) => {
-  const dateObject = new Date(inputDate);
-
-  const formattedDate = `${String(dateObject.getFullYear()).slice(-2)}.${String(
-    dateObject.getMonth() + 1,
-  ).padStart(2, "0")}.${String(dateObject.getDate()).padStart(2, "0")}`;
-
-  return formattedDate;
-};
-
 export const countCommentsAndReComments = (
   comments: CommentWithReComments[],
 ): number => {
