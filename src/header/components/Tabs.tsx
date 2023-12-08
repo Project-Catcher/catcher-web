@@ -120,7 +120,7 @@ export default Tabs;
 const loginedtabs = [
   {
     title: "일정 찾기",
-    path: "/schedule",
+    path: "/find-schedule",
   },
   {
     title: "일정 만들기",
@@ -128,7 +128,7 @@ const loginedtabs = [
   },
   {
     title: "내 일정",
-    path: "/my-schedule",
+    path: "/schedule",
   },
 ];
 

@@ -1,4 +1,4 @@
-import { PersonnelRanges } from "@findSchedule/const";
+import { personnelRanges } from "@findSchedule/const";
 import React from "react";
 import CategoryTitle from "./CategoryTitle";
 
@@ -16,7 +16,7 @@ const PersonnelTab = ({
       <CategoryTitle title="인원" />
       <div className="mt-3">
         <div className="inline-flex flex-col">
-          {PersonnelRanges.map((range, i) => (
+          {personnelRanges.map((range, i) => (
             <label
               key={`range-${i}`}
               className="flex items-center mt-3 text-sm font-light text-zinc-800"
@@ -24,7 +24,7 @@ const PersonnelTab = ({
               <input
                 type="radio"
                 className="w-5 h-5 radio"
-                name="personnelRange"
+                name="personnel"
                 value={range.value}
                 checked={personnel === range.value}
                 onChange={handlePersonnelChange}

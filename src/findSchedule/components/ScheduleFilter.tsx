@@ -9,50 +9,45 @@ import PersonnelTab from "./PersonnelTab";
 import ThemeTab from "./ThemeTab";
 
 interface ScheduleFilterProps {
-  handleReset: VoidFunction;
   theme: string;
-  setTheme: Dispatch<SetStateAction<string>>;
   date: DateProps;
   showCalendar: ShowCalendarType;
-  handleCalendarClick: (type: "start" | "end") => void;
-  handleStartDateChange: (newDate: Date) => void;
-  handleEndDateChange: (newDate: Date) => void;
   expense: string;
-  handleExpenseChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   personnel: string;
-  handlePersonnelChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleTab: (theme: string) => void;
+  handleCalendarClick: (type: "start" | "end") => void;
+  handleDateChange: (type: "start" | "end", newDate: Date) => void;
+  handleRadioChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleReset: VoidFunction;
 }
 
 const ScheduleFilter = ({
   handleReset,
   theme,
-  setTheme,
   date,
   showCalendar,
-  handleCalendarClick,
-  handleStartDateChange,
-  handleEndDateChange,
   expense,
-  handleExpenseChange,
   personnel,
-  handlePersonnelChange,
+  handleTab,
+  handleCalendarClick,
+  handleDateChange,
+  handleRadioChange,
 }: ScheduleFilterProps) => {
   return (
-    <div className="inline-block w-[281px] bg-neutral-50 h-full">
+    <div className="inline-block min-w-[280px] max-w-[280px] bg-neutral-50 h-full">
       <FilterTab handleReset={handleReset} />
-      <ThemeTab theme={theme} setTheme={setTheme} />
+      <ThemeTab theme={theme} handleTab={handleTab} />
       <DurationTab
         date={date}
         showCalendar={showCalendar}
         handleCalendarClick={handleCalendarClick}
-        handleStartDateChange={handleStartDateChange}
-        handleEndDateChange={handleEndDateChange}
+        handleDateChange={handleDateChange}
       />
-      <ExpenseTab expense={expense} handleExpenseChange={handleExpenseChange} />
+      <ExpenseTab expense={expense} handleExpenseChange={handleRadioChange} />
       <LocationTab />
       <PersonnelTab
         personnel={personnel}
-        handlePersonnelChange={handlePersonnelChange}
+        handlePersonnelChange={handleRadioChange}
       />
     </div>
   );

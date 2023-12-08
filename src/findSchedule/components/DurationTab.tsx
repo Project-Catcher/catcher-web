@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import CategoryTitle from "./CategoryTitle";
 import InputCalender from "./InputCalendar";
 import { DateProps, ShowCalendarType } from "./Page";
@@ -8,16 +7,14 @@ interface DurationTabProps {
   date: DateProps;
   showCalendar: ShowCalendarType;
   handleCalendarClick: (type: "start" | "end") => void;
-  handleStartDateChange: (newDate: Date) => void;
-  handleEndDateChange: (newDate: Date) => void;
+  handleDateChange: (type: "start" | "end", newDate: Date) => void;
 }
 
 const DurationTab = ({
   date,
   showCalendar,
   handleCalendarClick,
-  handleStartDateChange,
-  handleEndDateChange,
+  handleDateChange,
 }: DurationTabProps) => {
   return (
     <div className="p-5 border-t">
@@ -28,14 +25,18 @@ const DurationTab = ({
           visible={showCalendar.start}
           placeholder={"시작일"}
           handleCalendarClick={() => handleCalendarClick("start")}
-          handleDateChange={handleStartDateChange}
+          handleDateChange={(e) => {
+            handleDateChange("start", e);
+          }}
         />
         <InputCalender
           date={date.end}
           visible={showCalendar.end}
           placeholder={"종료일"}
           handleCalendarClick={() => handleCalendarClick("end")}
-          handleDateChange={handleEndDateChange}
+          handleDateChange={(e) => {
+            handleDateChange("end", e);
+          }}
         />
       </div>
     </div>

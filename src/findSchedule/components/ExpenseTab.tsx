@@ -22,7 +22,7 @@ const ExpenseTab = ({ expense, handleExpenseChange }: ExpenseTabProps) => {
               <input
                 type="radio"
                 className="w-5 h-5 radio"
-                name="priceRange"
+                name="expense"
                 value={range.value}
                 checked={expense === range.value}
                 onChange={handleExpenseChange}

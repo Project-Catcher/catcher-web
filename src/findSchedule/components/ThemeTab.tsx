@@ -5,14 +5,10 @@ import CategoryTitle from "./CategoryTitle";
 
 interface ThemeTabProps {
   theme: string;
-  setTheme: Dispatch<SetStateAction<string>>;
+  handleTab: (theme: string) => void;
 }
 
-const ThemeTab = ({ theme, setTheme }: ThemeTabProps) => {
-  const handleTab = (value: string) => {
-    setTheme(value);
-  };
-
+const ThemeTab = ({ theme, handleTab }: ThemeTabProps) => {
   return (
     <div className="p-5 border-t">
       <CategoryTitle title="테마" />

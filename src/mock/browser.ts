@@ -1,5 +1,10 @@
 import { setupWorker } from "msw/browser";
 import { handlers } from "./handlers";
+import { scheduleHandlers } from "./handlers/findSchedule";
 import { myScheduleHandlers } from "./handlers/mySchedule";
 
-export const worker = setupWorker(...handlers, ...myScheduleHandlers);
+export const worker = setupWorker(
+  ...handlers,
+  ...myScheduleHandlers,
+  ...scheduleHandlers,
+);
