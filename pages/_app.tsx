@@ -18,9 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <Header />
       <Component {...pageProps} />
+      <Modal />
       <Alert />
       <Confirm />
-      <Modal />
     </RecoilRoot>
   );
 }

@@ -5,7 +5,7 @@ import { useModal } from "@shared/hook";
 interface SubMenu {
   value: string;
   isEnd?: boolean;
-  onClick: () => void | ((url: string) => void);
+  onClick: () => void;
 }
 
 const MypageSubMenu = () => {
@@ -24,10 +24,6 @@ const MypageSubMenu = () => {
     });
   };
 
-  const handleRoute = (url: string) => {
-    push(url);
-  };
-
   const MENU_SUB: SubMenu[] = [
     {
       value: "문의하기",
@@ -35,11 +31,11 @@ const MypageSubMenu = () => {
     },
     {
       value: "공지사항",
-      onClick: () => handleRoute("/notice"),
+      onClick: () => push("/notice"),
     },
     {
       value: "FAQ",
-      onClick: () => handleRoute("/faq"),
+      onClick: () => push("/faq"),
     },
     {
       value: "회원탈퇴",

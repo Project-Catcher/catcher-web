@@ -2,6 +2,7 @@ import { ValidateButton } from "@findid/components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {
+  AuthNumberInput,
   InputWithLabel,
   Instructions,
   TimerWithButton,
@@ -20,7 +21,6 @@ export interface MyInfoModify {
   email: string;
   birth: string;
   gender: string;
-  authNum: string;
 }
 
 interface UpdateProfileProps {
@@ -36,41 +36,19 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
     email: "",
     birth: "",
     gender: "",
-    authNum: "",
   });
 
   const validator = {
     isValidPhone: checkPhoneValidation(answer.phone),
     isValidEmail: checkEmailValidation(answer.email),
-    isValidAuthNum: checkAuthNumValidation(answer.authNum),
   };
 
   const handleAnswer = (answer: Partial<MyInfoModify>) => {
     setAnswer((prev) => ({ ...prev, ...answer }));
   };
 
-  const handleNickName = (nickname: string) => {
-    handleAnswer({ nickname: nickname });
-  };
-
-  const handlePhone = (phone: string) => {
-    handleAnswer({ phone: phone });
-  };
-
-  const handleEmail = (email: string) => {
-    handleAnswer({ email: email });
-  };
-
-  const handleBirth = (birth: string) => {
-    handleAnswer({ birth: birth });
-  };
-
-  const handleGender = (gender: string) => {
-    handleAnswer({ gender: gender });
-  };
-
-  const handleAuthNum = (authNum: string) => {
-    handleAnswer({ authNum: authNum });
+  const handleFormData = (key: keyof MyInfoModify, value: string) => {
+    handleAnswer({ [key]: value });
   };
 
   const handlePasswordChange = () => {
@@ -98,12 +76,14 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
         <div className="mb-[15px]">
           <InputWithLabel // TODO: add current nickname value
             label="닉네임"
-            id="id"
+            id="nickname"
             inputType="text"
             labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
             placeholder="띄어쓰기 없이 영문과 숫자 6~15"
-            onChange={({ target: { value } }) => handleNickName(value)}
+            onChange={({ target: { value } }) =>
+              handleFormData("nickname", value)
+            }
           />
         </div>
 
@@ -121,7 +101,9 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
                 isDonePhoneInput ? "bg-[#F5F5F5] " : ""
               }w-full grow h-[46px] px-[15px]`}
               placeholder="휴대전화번호 (숫자만 입력)"
-              onChange={({ target: { value } }) => handlePhone(value)}
+              onChange={({ target: { value } }) =>
+                handleFormData("phone", value)
+              }
             />
           </div>
           <div>
@@ -141,21 +123,12 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
         </div>
 
         <div className="mb-[5px] gap-[4px]">
-          <div className="inline-block w-[278px]">
-            <InputWithLabel
-              label="휴대폰으로 전송된 인증코드를 입력해주세요."
-              id="authNum"
-              inputType="tel"
-              labelStyle="text-[12px] text-[#333333] mb-[8px]"
-              inputStyle="w-full h-[46px] px-[15px]"
-              placeholder="인증번호 6자리 입력"
-              onChange={({ target: { value } }) => handleAuthNum(value)}
-            />
-          </div>
-          <TimerWithButton
+          <AuthNumberInput
+            inputContainerStyle="inline-block w-[278px]"
             isDonePhoneInput={isDonePhoneInput}
-            isAuthNumValidate={validator.isValidAuthNum}
             callType="signup"
+            inputStyle="h-[46px] px-[15px]"
+            labelStyle="text-[12px] text-[#333333] mb-[8px]"
             buttonStyle="w-[113px] ml-[4px]"
           />
         </div>
@@ -169,7 +142,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px] bg-[#F5F5F5]"
             placeholder="이메일을 입력해 주세요."
-            onChange={({ target: { value } }) => handleEmail(value)}
+            onChange={({ target: { value } }) => handleFormData("email", value)}
           />
         </div>
 
@@ -201,7 +174,7 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
             placeholder="생년월일을 입력해주세요 (YYYYMMDD)"
-            onChange={({ target: { value } }) => handleBirth(value)}
+            onChange={({ target: { value } }) => handleFormData("birth", value)}
           />
         </div>
 
@@ -213,7 +186,9 @@ const UpdateProfile = ({ handleConfirm }: UpdateProfileProps) => {
             labelStyle="text-xs text-[#333333] font-medium mb-[8px]"
             inputStyle="w-full h-[57px] rounded-[9px] px-[26px]"
             placeholder="성별을 입력해주세요"
-            onChange={({ target: { value } }) => handleGender(value)}
+            onChange={({ target: { value } }) =>
+              handleFormData("gender", value)
+            }
           />
         </div>
 
