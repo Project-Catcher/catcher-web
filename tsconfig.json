@@ -20,10 +20,12 @@
       "@shared/*": ["shared/*"],
       "@login/*": ["login/*"],
       "@findid/*": ["findid/*"],
+      "@schedule/*": ["schedule/*"],
       "@notice/*": ["notice/*"],
       "@faq/*": ["faq/*"],
       "@mypage/*": ["mypage/*"],
-      "@findSchedule/*": ["findSchedule/*"]
+      "@findSchedule/*": ["findSchedule/*"],
+      "@create-schedule/*": ["create-schedule/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
