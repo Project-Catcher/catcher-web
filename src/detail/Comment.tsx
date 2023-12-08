@@ -155,6 +155,7 @@ const Comment = ({
       {updateComment ? (
         <div className="flex mt-2">
           <CommentInput
+            type="update"
             comment={comment}
             onChangeComment={onChangeComment}
             onChangeHidden={onChangeHidden}
