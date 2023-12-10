@@ -1,7 +1,7 @@
 import { useModal } from "@shared/hook";
 
 interface DateCityHandlerProps {
-  callType: "date_start" | "date_end" | "city";
+  callType: "date_start" | "date_end" | "city_first" | "city_second";
 }
 
 const DateCityHandler = ({ callType }: DateCityHandlerProps) => {
@@ -17,7 +17,9 @@ const DateCityHandler = ({ callType }: DateCityHandlerProps) => {
           ? callType === "date_start"
             ? "calendarSelector_start"
             : "calendarSelector_end"
-          : "thumbnailSelector" // TODO: citySelector
+          : callType === "city_first"
+          ? "citySelector_first"
+          : "citySelector_second"
       }`,
     });
   };

@@ -3,7 +3,7 @@ import { scheduleAnswers } from "@shared/recoil";
 import DateCityHandler from "./DateCityHandler";
 
 interface DateCityInputProps {
-  callType: "date_start" | "date_end" | "city";
+  callType: "date_start" | "date_end" | "city_first" | "city_second";
   answerType?: "startAt" | "endAt";
   placeholder: string;
 }
@@ -26,7 +26,9 @@ const DateCityInput = ({
         value={
           answerType && callType.includes("date")
             ? answer[answerType]
-            : answer.location
+            : callType === "city_first"
+            ? answer.location.split(" ")[0]
+            : answer.location.split(" ")[1] ?? ""
         }
       />
     </div>

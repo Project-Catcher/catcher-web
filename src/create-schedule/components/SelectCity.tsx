@@ -10,9 +10,9 @@ const SelectCity = () => {
         title={SCHEDULE_TITLE.location}
         subTitle={SCHEDULE_SUBTITLE.location}
       />
-      <DateCityInput callType="city" placeholder="대한민국" />
+      <DateCityInput callType="city_first" placeholder="대한민국" />
       <span className="inline-block relative invisible w-[13px] h-[2px] border border-[#333333] bottom-[4px] mx-[5px]" />
-      <DateCityInput callType="city" placeholder="시군구" />
+      <DateCityInput callType="city_second" placeholder="시군구" />
     </div>
   );
 };
