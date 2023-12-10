@@ -1,4 +1,5 @@
-import { postBasicInfo } from "@create-schedule/util";
+import { postBasicInfo, setButtonDisabled } from "@create-schedule/util";
+import { useMemo } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useModal } from "@shared/hook";
 import { currentScheduleProgress, scheduleAnswers } from "@shared/recoil";
@@ -12,6 +13,7 @@ const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
   const { openAlert } = useModal();
   const answer = useRecoilValue(scheduleAnswers);
   const setCurrentProgress = useSetRecoilState(currentScheduleProgress);
+  const disabled = useMemo(() => setButtonDisabled(callType, answer), [answer]);
 
   const handleInputCheck = () => {
     const startDate = parseInt(answer.startAt.replace(/\./g, ""));
@@ -34,7 +36,7 @@ const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
       try {
         const res = await postBasicInfo(answer);
 
-        if (res.data.id) {
+        if (res) {
           sessionStorage.setItem("postId", res.data.id);
           setCurrentProgress((prev) => prev + 1);
         }
@@ -50,13 +52,20 @@ const ScheduleNextButton = ({ value, callType }: ScheduleNextButtonProps) => {
   return (
     <>
       <button
-        className="w-[423px] h-[48px] text-[14px] text-white font-bold -tracking-[0.03em] bg-[#F864A1] rounded-[5px] mb-[9px]"
+        disabled={disabled}
+        className={`${
+          disabled
+            ? "text-[#B1B1B1] bg-[#E9ECEF] cursor-not-allowed "
+            : "text-white bg-[#F864A1] "
+        }w-[423px] h-[48px] text-[14px] font-bold -tracking-[0.03em] rounded-[5px] mb-[9px]`}
         onClick={handleCurrentProgress}
       >
         {value}
       </button>
       <div className="w-fit text-[14px] text-[#F864A1] -tracking-[0.03em] mx-auto">
-        언제든 수정할 수 있습니다
+        {callType === "basicInfo" && disabled
+          ? "기본정보는 반드시 입력해주세요"
+          : "언제든 수정할 수 있습니다"}
       </div>
     </>
   );
