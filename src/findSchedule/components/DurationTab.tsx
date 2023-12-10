@@ -19,7 +19,7 @@ const DurationTab = ({
   return (
     <div className="p-5 border-t">
       <CategoryTitle title="기간" />
-      <div className="flex gap-x-[10px] flex-wrap mt-3">
+      <div className="flex gap-x-2.5 flex-wrap mt-3">
         <InputCalender
           date={date.start}
           visible={showCalendar.start}

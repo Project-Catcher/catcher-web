@@ -1,11 +1,10 @@
 import { priceRanges } from "@findSchedule/const";
-import Image from "next/image";
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import CategoryTitle from "./CategoryTitle";
 
 interface ExpenseTabProps {
   expense: string;
-  handleExpenseChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleExpenseChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 const ExpenseTab = ({ expense, handleExpenseChange }: ExpenseTabProps) => {

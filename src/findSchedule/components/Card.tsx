@@ -44,7 +44,7 @@ const Card = ({
         push(`/detail/${id}`);
       }}
     >
-      <div className={`w-full h-[170px] bg-stone-300 border-zinc-400 relatvie`}>
+      <div className={`w-full h-[170px] bg-stone-300 border-zinc-400 relative`}>
         {img?.length !== 0 ? (
           <Image src={img} alt="sample img" width={260} height={170} />
         ) : (

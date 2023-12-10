@@ -3,10 +3,10 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 interface InputCalenderProps {
-  date: Date | undefined;
+  date?: Date;
   visible: boolean;
   placeholder: string;
-  handleCalendarClick: () => void;
+  handleCalendarClick: VoidFunction;
   handleDateChange: (newDate: Date) => void;
 }
 

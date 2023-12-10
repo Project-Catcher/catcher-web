@@ -20,13 +20,13 @@ export default index;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const res = await axios.get(
+    const res = await axios.get<CardType[]>(
       `${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`,
     );
 
     return {
       props: {
-        defaultCardList: res.data as CardType[],
+        defaultCardList: res.data,
       },
     };
   } catch (error) {
