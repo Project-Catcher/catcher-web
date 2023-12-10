@@ -1,28 +1,51 @@
-import { useState } from "react";
+import { FINISH_WRITING_TAG } from "@create-schedule/constants";
+import { useEffect, useState } from "react";
 import MenuContent from "./MenuContent";
 import MenuContentContainer from "./MenuContentContainer";
 import SideBarMenuBox from "./SideBarMenuBox";
 
-const FinishWriting = () => {
-  const boxTitle = "작성 마무리";
+interface FinishWritingProps {
+  currentProgress: number;
+  currentTab: string;
+  handleTab: (value: string) => void;
+}
+
+const FinishWriting = ({
+  currentProgress,
+  currentTab,
+  handleTab,
+}: FinishWritingProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (currentProgress === 5) {
+      setIsOpen(true);
+    }
+  }, [currentProgress]);
+
   return (
     <>
       <SideBarMenuBox
-        title={boxTitle}
+        title="작성 마무리"
         isOpen={isOpen}
         isAccordion
         handleToggle={handleToggle}
       />
       {isOpen && (
         <MenuContentContainer>
-          <MenuContent title="공개범위 설정" boxTitle={boxTitle} />
-          <MenuContent title="일정 소개" boxTitle={boxTitle} />
+          {FINISH_WRITING_TAG.map((title) => (
+            <MenuContent
+              key={title}
+              title={title}
+              targetProgress={5}
+              currentTab={currentTab}
+              handleTab={handleTab}
+            />
+          ))}
         </MenuContentContainer>
       )}
     </>

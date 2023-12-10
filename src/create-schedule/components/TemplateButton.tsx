@@ -1,5 +1,5 @@
 import { useSetRecoilState } from "recoil";
-import { currentProgress } from "@shared/recoil";
+import { currentScheduleProgress } from "@shared/recoil";
 import MakeScheduleButton from "./MakeScheduleButton";
 
 interface TemplateButtonProps {
@@ -7,7 +7,7 @@ interface TemplateButtonProps {
 }
 
 const TemplateButton = ({ clickedContent }: TemplateButtonProps) => {
-  const setCurrentProgress = useSetRecoilState(currentProgress);
+  const setCurrentProgress = useSetRecoilState(currentScheduleProgress);
 
   const handleCurrentProgress = () => {
     setCurrentProgress((prev) => prev + 1);

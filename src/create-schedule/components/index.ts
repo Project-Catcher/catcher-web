@@ -7,6 +7,7 @@ export { default as DateCityHandler } from "./DateCityHandler";
 export { default as DateCityInput } from "./DateCityInput";
 export { default as FillPlan } from "./FillPlan";
 export { default as FinishWriting } from "./FinishWriting";
+export { default as LocationModal } from "./LocationModal";
 export { default as MakeScheduleButton } from "./MakeScheduleButton";
 export { default as MenuContent } from "./MenuContent";
 export { default as MenuContentContainer } from "./MenuContentContainer";

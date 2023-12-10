@@ -1,24 +1,32 @@
 import { useSetRecoilState } from "recoil";
-import { currentPageName } from "@shared/recoil";
-import { CurrentPageType } from "@shared/types";
+import { currentScheduleProgress } from "@shared/recoil";
 
 interface MenuContentProps {
   title: string;
-  boxTitle: CurrentPageType;
-  isClicked?: boolean;
+  targetProgress: number;
+  currentTab: string;
+  handleTab: (value: string) => void;
 }
 
-const MenuContent = ({ title, boxTitle, isClicked }: MenuContentProps) => {
-  const setCurrentPage = useSetRecoilState(currentPageName);
+const MenuContent = ({
+  title,
+  targetProgress,
+  currentTab,
+  handleTab,
+}: MenuContentProps) => {
+  const setCurrentProgress = useSetRecoilState(currentScheduleProgress);
 
   return (
     <div
       className={`${
-        isClicked ? "text-[#F864A1]" : "text-[#333333]"
+        currentTab === title ? "text-[#F864A1]" : "text-[#333333]"
       } h-1/2 leading-[23px] py-[6px] cursor-pointer`}
-      onClick={() => setCurrentPage(boxTitle)}
+      onClick={() => {
+        handleTab(title);
+        setCurrentProgress(targetProgress);
+      }}
     >
-      {title}
+      <a href={`#${title}`}>{title}</a>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import ScheduleTitle from "./ScheduleTitle";
 
 const SelectDate = () => {
   return (
-    <div className="mb-[38px]">
+    <div id="시작일 종료일 설정" className="mb-[38px]">
       <ScheduleTitle
         hasSubTitle
         title={SCHEDULE_TITLE.date}
@@ -12,13 +12,13 @@ const SelectDate = () => {
       />
       <DateCityInput
         callType="date_start"
-        answerType="startedAt"
+        answerType="startAt"
         placeholder="일정 시작일(오늘 날짜 기준)"
       />
       <span className="inline-block relative w-[13px] h-[2px] border border-[#333333] bottom-[4px] mx-[5px]" />
       <DateCityInput
         callType="date_end"
-        answerType="endedAt"
+        answerType="endAt"
         placeholder="일정 종료일"
       />
     </div>

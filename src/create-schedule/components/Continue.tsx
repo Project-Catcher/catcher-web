@@ -1,16 +1,10 @@
 import { useSetRecoilState } from "recoil";
-import { currentPageName, currentProgress } from "@shared/recoil";
+import { currentScheduleProgress } from "@shared/recoil";
 import BlockShowing from "./BlockShowing";
 import MakeScheduleButton from "./MakeScheduleButton";
 
 const Continue = () => {
-  const setCurrentPage = useSetRecoilState(currentPageName);
-  const setCurrentProgress = useSetRecoilState(currentProgress);
-
-  const handleCurrentPageElements = () => {
-    setCurrentPage("기본정보");
-    setCurrentProgress(2);
-  };
+  const setCurrentProgress = useSetRecoilState(currentScheduleProgress);
 
   return (
     <div className="w-fit px-[100px] py-[15px]">
@@ -21,7 +15,7 @@ const Continue = () => {
       <MakeScheduleButton
         value="새로 만들기"
         buttonStyle="text-[#666666] border-[#E0E0E0]"
-        onClick={handleCurrentPageElements}
+        onClick={() => setCurrentProgress(2)}
       />
       <div className="w-fit py-[22px] mx-auto">
         <BlockShowing />

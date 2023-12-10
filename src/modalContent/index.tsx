@@ -1,5 +1,6 @@
 import { ModalContentId } from "@shared/recoil/modal";
 import CalendarSelector from "./CalendarSelector";
+import CitySelector from "./CitySelector";
 import RecruitManage, { RecruitManageProps } from "./RecruitManage";
 import ThumbnailSelector, { ThumbnailSelectorProps } from "./ThumbnailSelector";
 
@@ -15,9 +16,13 @@ const ModalContent = <T,>(modalProps: ModalContentProps) => {
     case "RecruitManage":
       return <RecruitManage {...(modalProps as RecruitManageProps)} />;
     case "calendarSelector_start":
-      return <CalendarSelector type="startedAt" />;
+      return <CalendarSelector type="startAt" />;
     case "calendarSelector_end":
-      return <CalendarSelector type="endedAt" />;
+      return <CalendarSelector type="endAt" />;
+    case "citySelector_first":
+      return <CitySelector callType="first" />;
+    case "citySelector_second":
+      return <CitySelector callType="second" />;
     default:
       return <></>;
   }

@@ -89,4 +89,6 @@ export type ModalContentId =
   | "thumbnailSelector"
   | "calendarSelector_start"
   | "calendarSelector_end"
-  | "RecruitManage";
+  | "RecruitManage"
+  | "citySelector_first"
+  | "citySelector_second";

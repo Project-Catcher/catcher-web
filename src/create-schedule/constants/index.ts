@@ -1,7 +1,7 @@
 import { PlanSubTitle, PlanTitle } from "@shared/types";
 
 export const TITLE: PlanTitle = {
-  remains: "잠깐, 작성중이던 일정이 있어요",
+  temporary: "잠깐, 작성중이던 일정이 있어요",
   nthPlan: (nickname: string, number: number) =>
     `${nickname} 님의 ${number}번째 일정`,
   tag: "태그 및 일정 템플릿",
@@ -19,7 +19,7 @@ export const SCHEDULE_TITLE = {
   planTitle: "일정 제목",
   mainImage: "대표 이미지",
   date: "일정 시작일 ~ 종료일",
-  city: "장소 선택",
+  location: "장소 선택",
   tag: "카테고리 태그(#)",
   tagRecommend: "이런 태그는 어떤가요?",
   templateRecommend: (nickname: string) =>
@@ -30,36 +30,16 @@ export const SCHEDULE_SUBTITLE = {
   mainImage:
     "Chather 캐쳐 메인, 검색 결과, SNS 광고 등 여러 곳에서 노출할 대표 이미지를 등록해 주세요.",
   date: "준비기간 및 모집기간 등 전체 일정을 고려해 설정해 주세요.",
-  city: "일정을 수행할 위치를 선택해주세요.",
+  location: "일정을 수행할 위치를 선택해주세요.",
 };
 
-export const templateContent = [
-  {
-    id: 1,
-    imageSrc: "image",
-    title: "베이커리 빵지순례",
-    position: "서울시 연남동",
-    requiredTime: "1일 이내",
-  },
-  {
-    id: 2,
-    imageSrc: "image",
-    title: "카페에서 함께 공부해요",
-    position: "서울시 연남동",
-    requiredTime: "2~3일 일정",
-  },
-  {
-    id: 3,
-    imageSrc: "image",
-    title: "베이커리 빵지순례",
-    position: "가로수길",
-    requiredTime: "1일 이내",
-  },
-  {
-    id: 4,
-    imageSrc: "image",
-    title: "호캉스 일정",
-    position: "남해",
-    requiredTime: "2~3일 일정",
-  },
+export const BASIC_INFO_TAG = [
+  "일정 제목 입력",
+  "대표 이미지 설정",
+  "시작일 종료일 설정",
+  "장소 선택",
 ];
+
+export const TAG_N_TEMPLATE_TAG = ["태그", "일정 템플릿"];
+
+export const FINISH_WRITING_TAG = ["공개범위 설정", "일정 소개"];

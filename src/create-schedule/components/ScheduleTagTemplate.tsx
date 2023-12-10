@@ -1,12 +1,16 @@
 import { SCHEDULE_TITLE } from "@create-schedule/constants";
+import { TemplateSchedule } from "@shared/types";
 import ScheduleNextButton from "./ScheduleNextButton";
 import ScheduleTagInput from "./ScheduleTagInput";
 import ScheduleTitle from "./ScheduleTitle";
 import TagRecommend from "./TagRecommend";
-import TemplateButton from "./TemplateButton";
 import TemplateRecommend from "./TemplateRecommend";
 
-const ScheduleTagTemplate = () => {
+interface ScheduleTagTemplateProps {
+  templates: TemplateSchedule[];
+}
+
+const ScheduleTagTemplate = ({ templates }: ScheduleTagTemplateProps) => {
   return (
     <>
       <ScheduleTitle title={SCHEDULE_TITLE.tag} />
@@ -14,7 +18,7 @@ const ScheduleTagTemplate = () => {
       <div className="mb-[38px]">
         <TagRecommend />
       </div>
-      <TemplateRecommend />
+      <TemplateRecommend templates={templates} />
       <div className="w-full text-center mt-[60px]">
         <ScheduleNextButton value="다음으로 넘어갈까요?" callType="template" />
       </div>
