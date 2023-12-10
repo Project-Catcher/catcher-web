@@ -38,7 +38,7 @@ const ScheduleFilter = ({
   handlePersonnelChange,
 }: ScheduleFilterProps) => {
   return (
-    <div className="inline-block w-[281px] bg-neutral-50 h-full">
+    <div className="inline-block min-w-[280px] max-w-[280px] bg-neutral-50 h-full">
       <FilterTab handleReset={handleReset} />
       <ThemeTab theme={theme} setTheme={setTheme} />
       <DurationTab
