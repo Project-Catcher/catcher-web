@@ -5,4 +5,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:storybook/recommended",
   ],
+  rules: {
+    "react-hooks/exhaustive-deps": "off",
+  },
 };
