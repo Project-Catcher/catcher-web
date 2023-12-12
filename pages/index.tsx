@@ -85,6 +85,27 @@ const Home: NextPage = () => {
               2만개의 템플릿과 3만개의 리뷰, 캐쳐에서 함께 만들어가세요.
             </span>
           </div>
+          <div className="sec2_con_wrap">
+            <div className="tap_menu">
+              <span className="tab_li">캠핑</span>
+              <span className="tab_li">연극</span>
+              <span className="tab_li">축제</span>
+              <span className="tab_li">등산</span>
+            </div>
+            <div className="con_area">
+              <div className="con_li">
+              <Image
+                className="cursor-pointer"
+                src="/assets/signup/naver .png"
+                alt="kakao"
+                width={20}
+                height={20}
+              />
+              </div>
+              <div className="con_li"></div>
+              <div className="con_li"></div>
+            </div>
+          </div>
         </div>
       </div>
     </>
