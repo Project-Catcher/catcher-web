@@ -280,16 +280,35 @@ font-size:14px;}
 
 .x_hidden{overflow-x:hidden;}
 .mask{
-  clip-path: ellipse(493px 440px at center);
+  /* clip-path: ellipse(493px 440px at center);
   top: 90%;
   left: 22%;
   position: absolute;
-  margin-top: -18%;
+  margin-top: -18%; */
+  z-index: 1;
+  width: 100%;
+  height: 110vh;
+  justify-content: center;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: 0%;
+  right: 0%;
+  overflow: hidden;
 }
 .video{
-  margin-left: -23%;
-  top: 25%;
-  position: fixed;
+  /* margin-left: -23%;
+  top: 25%; */
+  z-index: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: #0c2d44;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: 0%;
+  right: 0%;
+  transform: translate(0);
 }
 
 .title{letter-spacing:-0.08rem; font-size: 5.4rem; line-height: 1;}
@@ -383,6 +402,93 @@ font-size:14px;}
   font-weight: 600;
   padding:12px 0;
   letter-spacing: 1px;
+}
+
+.txt_guide{    z-index: 1;
+  justify-content: space-between;
+  align-items: flex-end;
+  display: flex;
+  position: absolute;
+  top: 43vw;
+  bottom: auto;
+  left: 3.05556vw;
+  right: 3.05556vw;}
+
+.txt_guide .view_more, .txt_guide .share{
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  font-family: Suisseintl, sans-serif;
+  font-size: 0.83em;
+  font-weight: 600;
+  line-height: 164%;
+  text-decoration: none;
+  color:#FF4DA2;
+}
+.txt_guide .view_more:hover, .txt_guide .share:hover{
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+}
+
+/* 큰 스크롤 이미지 css */
+.scroll_bg_wrap{
+  z-index: 999;
+  height: 30vh;
+  max-height: 30vw;
+  min-height: 15.0694vw;
+  transform-origin: 50% 100%;
+  position: absolute;
+  top: auto;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  transform: translate3d(0vw, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;
+}
+
+.full_bg{
+  background:url('../../../public/media/arc_mask_test_3.png');
+  will-change: transform; transform: translate3d(0px, 0vh, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;
+  vertical-align: middle;
+  display: inline-block;
+  width: 101vw;
+  height: 283vw;/*190.764vw*/
+  max-width: none;
+  transform-origin: 50% 100%;
+  object-fit: cover;
+  position: absolute;
+  top: -157.2vw;
+  bottom: auto;
+  left: -0.5vw;
+  right: -0.5vw;
+}
+
+.hero-slide__fill-side-1 {
+  width: 100vw;
+  height: 190.764vw;
+  background-color: #5162ff;
+  position: absolute;
+  top: -154vw;
+  bottom: auto;
+  left: -100vw;
+  right: auto;
+}
+.hero-slide__fill-side-2 {
+  width: 100vw;
+  height: 190.764vw;
+  background-color: #5162ff;
+  position: absolute;
+  top: -154vw;
+  bottom: auto;
+  left: auto;
+  right: -100vw;
+}
+.menu-animation-dummy {
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: 0%;
+  right: auto;
 }
 
 /*// end 메인 section_1 */

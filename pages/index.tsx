@@ -52,7 +52,13 @@ const Home: NextPage = () => {
               </svg>
             </div>
           </div>
-          <div className="absolute overflow-hidden bg-white rounded-full m-auto bottom-[-29vw] right-[22.5vw] mask">
+          <div className="scroll_bg_wrap">
+            <div className="full_bg" width={2880} height={5494}></div>
+            <div className="hero-slide__fill-side-1"></div>
+            <div className="hero-slide__fill-side-2"></div>
+          </div>
+          <div className="menu-animation-dummy"></div>
+          <div className="absolute overflow-hidden m-auto mask">
             {/* h-[50vw] w-[50vw] */}
             <video
               src="media/bg_video_low.mov"
@@ -69,6 +75,10 @@ const Home: NextPage = () => {
               </svg>
             </span>
             <span className="btn_make">일정 만들기</span>
+          </div>
+          <div className="txt_guide">
+            <div className="view_more">View more</div>
+            <div className="share">Share</div>
           </div>
         </div>
         <div className="section_2">
@@ -94,13 +104,13 @@ const Home: NextPage = () => {
             </div>
             <div className="con_area">
               <div className="con_li">
-              <Image
+              {/* <Image
                 className="cursor-pointer"
                 src="/assets/signup/naver .png"
                 alt="kakao"
                 width={20}
                 height={20}
-              />
+              /> */}
               </div>
               <div className="con_li"></div>
               <div className="con_li"></div>
