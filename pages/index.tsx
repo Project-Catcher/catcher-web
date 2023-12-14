@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           </li>
         </div> */}
         <div className="section_1">
-          <div className="flex flex-col items-center justify-center text-white pt-52">
+          <div className="relative z-10 flex flex-col items-center justify-center text-white pt-52">
             <h1 className="p-10 font-sans font-thin title">
               일상의 행복을 <span className="font-bold">확대</span>하다
             </h1>
@@ -54,8 +54,6 @@ const Home: NextPage = () => {
           </div>
           <div className="scroll_bg_wrap">
             <div className="full_bg" width={2880} height={5494}></div>
-            <div className="hero-slide__fill-side-1"></div>
-            <div className="hero-slide__fill-side-2"></div>
           </div>
           <div className="menu-animation-dummy"></div>
           <div className="absolute overflow-hidden m-auto mask">
@@ -96,22 +94,14 @@ const Home: NextPage = () => {
             </span>
           </div>
           <div className="sec2_con_wrap">
-            <div className="tap_menu">
+            <div className="tab_menu">
               <span className="tab_li">캠핑</span>
               <span className="tab_li">연극</span>
               <span className="tab_li">축제</span>
               <span className="tab_li">등산</span>
             </div>
-            <div className="con_area">
-              <div className="con_li">
-              {/* <Image
-                className="cursor-pointer"
-                src="/assets/signup/naver .png"
-                alt="kakao"
-                width={20}
-                height={20}
-              /> */}
-              </div>
+            <div className="con_area worldmap">
+              <div className="con_li sec2_img_wrap"></div>
               <div className="con_li"></div>
               <div className="con_li"></div>
             </div>
