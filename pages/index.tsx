@@ -102,8 +102,7 @@ const Home: NextPage = () => {
             </div>
             <div className="con_area worldmap">
               <div className="con_li sec2_img_wrap"></div>
-              <div className="con_li"></div>
-              <div className="con_li"></div>
+              <div className="con_li sec2_deco_img"></div>
             </div>
           </div>
         </div>
