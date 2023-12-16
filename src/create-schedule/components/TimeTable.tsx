@@ -97,7 +97,7 @@ const TimeTable = ({ callType, initialData }: TimeTableProps) => {
           >
             <td
               style={{ height: cellHeight }}
-              className="relative list-item list-none text-[#ACBEFF] font-semibold leading-[22px] pl-[15px] pr-[30px] py-[6px]"
+              className="relative list-item list-none text-[#ACBEFF] font-semibold leading-[22px] pl-[15px] pr-[30px] py-1.5"
             >
               <div className="inline-block w-[56px]">{time}:00</div>
               <div className="flex flex-col gap-[1px] inline-block float-right w-[250px]">

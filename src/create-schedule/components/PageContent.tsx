@@ -50,7 +50,7 @@ const PageContent = () => {
             <TimeTableContainer />
             <DragnDropContainer />
           </div>
-          <div className="w-[628px] mt-[40px] text-center">
+          <div className="w-[628px] mt-10 text-center">
             <ScheduleNextButton
               value="다음으로 넘어갈까요?"
               callType="template"

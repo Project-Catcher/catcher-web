@@ -15,7 +15,7 @@ const Categories = ({
   return (
     <>
       <ScheduleTitle title="카테고리" />
-      <div className="flex flex-wrap w-[414px] gap-[6px]">
+      <div className="flex flex-wrap w-[414px] gap-1.5">
         {CATEGORY_TAGS.map(({ imageSrc, title }) => (
           <CategoryTagBox
             key={imageSrc + title}

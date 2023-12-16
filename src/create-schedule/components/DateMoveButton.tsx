@@ -6,7 +6,7 @@ interface DateMoveButtonProps {
 
 const DateMoveButton = ({ onClick }: DateMoveButtonProps) => {
   return (
-    <div className="flex gap-[8px] float-right">
+    <div className="flex float-right gap-2">
       <div
         className="flex justify-center w-[33px] h-[33px] border border-[#1918251A] rounded-[100px] cursor-pointer group hover:bg-[#404040]"
         onClick={() => onClick("prev")}
