@@ -22,7 +22,7 @@ const Content = ({ detailData }: ContentProps) => {
       <CommentBox
         postId={detailData.id}
         hostId={detailData.hostInfo.id}
-        comments={detailData.comments}
+        defaultComments={detailData.comments}
       />
       <div className="h-[100px]" />
     </div>

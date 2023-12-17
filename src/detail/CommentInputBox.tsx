@@ -1,18 +1,28 @@
+import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
+import { CommentWithReComments } from "./CommentBox";
 import CommentInput from "./CommentInput";
 
 interface CommentInputBoxProps {
   type: "re" | "com";
   postId: number;
   commentId?: number;
+  onFetchComments: (newComments: CommentWithReComments[]) => void;
 }
 
-const CommentInputBox = ({ type, postId, commentId }: CommentInputBoxProps) => {
-  const [comment, setComment] = useState({
+const CommentInputBox = ({
+  type,
+  postId,
+  commentId,
+  onFetchComments,
+}: CommentInputBoxProps) => {
+  const defaultCommentState = {
     content: "",
     isHidden: false,
-  });
+  };
+
+  const [comment, setComment] = useState(defaultCommentState);
 
   const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment((prevComment) => ({
@@ -25,16 +35,41 @@ const CommentInputBox = ({ type, postId, commentId }: CommentInputBoxProps) => {
     setComment({ ...comment, isHidden: e.target.checked });
   };
 
-  const onClickSubmit = () => {
+  const onClickSubmit = async () => {
     // TODO: 서버에 요청 추가
     if (type === "com") {
       // 댓글
-      const data = { postId, ...comment };
-      console.log("submit data", data);
+      try {
+        const data = { postId, ...comment };
+        console.log("submit data", data);
+
+        const response = await axios.post("/api/comments", { text: comment });
+
+        // 댓글 정보 다시 불러오기
+        onFetchComments(response.data);
+
+        // 입력 필드 초기화
+        setComment(defaultCommentState);
+      } catch (error) {
+        console.error("Error submitting comment", error);
+      }
     } else {
       // 대댓글
-      const data = { postId, commentId, ...comment };
-      console.log("submit data", data);
+      try {
+        const data = { postId, commentId, ...comment };
+        console.log("submit data", data);
+
+        // TODO: 대댓글일 시, commentId도 같이 요청
+        const response = await axios.post("/api/comments", { text: comment });
+
+        // 댓글 정보 다시 불러오기
+        onFetchComments(response.data);
+
+        // 입력 필드 초기화
+        setComment(defaultCommentState);
+      } catch (error) {
+        console.error("Error submitting comment", error);
+      }
     }
   };
 

@@ -1,3 +1,4 @@
+import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
 import { countCommentsAndReComments } from "@shared/utils";
@@ -12,11 +13,16 @@ export interface CommentWithReComments extends CommentType {
 interface CommentBoxProps {
   postId: number;
   hostId: number;
-  comments: CommentWithReComments[];
+  defaultComments: CommentWithReComments[];
 }
 
-const CommentBox = ({ postId, hostId, comments }: CommentBoxProps) => {
+const CommentBox = ({ postId, hostId, defaultComments }: CommentBoxProps) => {
+  const [comments, setComments] = useState(defaultComments);
   const [onCommentToggle, setOnCommentToggle] = useState(true);
+
+  const onFetchComments = (newComments: CommentWithReComments[]) => {
+    setComments(newComments);
+  };
 
   return (
     <>
@@ -84,7 +90,11 @@ const CommentBox = ({ postId, hostId, comments }: CommentBoxProps) => {
             </span>
           </div>
 
-          <CommentInputBox type="com" postId={postId} />
+          <CommentInputBox
+            type="com"
+            postId={postId}
+            onFetchComments={onFetchComments}
+          />
 
           <div className="flex flex-col border-t">
             {comments?.map((comment: any, i: number) => (
@@ -93,6 +103,7 @@ const CommentBox = ({ postId, hostId, comments }: CommentBoxProps) => {
                 postId={postId}
                 hostId={hostId}
                 comment={comment}
+                onFetchComments={onFetchComments}
               />
             ))}
           </div>

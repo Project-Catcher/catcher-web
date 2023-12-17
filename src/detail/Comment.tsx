@@ -1,5 +1,7 @@
+import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
+import { CommentWithReComments } from "./CommentBox";
 import CommentInput from "./CommentInput";
 
 export interface CommentType {
@@ -20,6 +22,7 @@ interface CommentProps extends CommentType {
   hostId: number;
   commentId?: number;
   onClickRecomment: VoidFunction;
+  onFetchComments: (newComments: CommentWithReComments[]) => void;
 }
 
 const Comment = ({
@@ -37,6 +40,7 @@ const Comment = ({
   like,
   likeList,
   onClickRecomment,
+  onFetchComments,
   ...props
 }: CommentProps) => {
   // TODO: 임의의 사용자 정보
@@ -69,17 +73,40 @@ const Comment = ({
     setComment({ ...comment, isHidden: e.target.checked });
   };
 
-  const onClickSubmit = () => {
-    // TODO: 서버에 요청 추가
-
+  const onClickSubmit = async () => {
     if (commentId) {
-      // 대댓글 수정하는 경우
-      const updateData = { postId, commentId, ...comment };
-      console.log("submit data", updateData);
+      // 대댓글 수정
+      try {
+        const updateData = { postId, commentId, ...comment };
+        console.log("submit data", updateData);
+
+        // TODO: 요청 경로 수정
+        const response = await axios.patch("/api/comments", { text: comment });
+
+        // 댓글 정보 다시 불러오기
+        onFetchComments(response.data);
+        handleUpdate();
+      } catch (error) {
+        console.error("Error submitting comment", error);
+      }
     } else {
-      const updateData = { postId, ...comment };
-      console.log("submit data", updateData);
+      try {
+        const updateData = { postId, ...comment };
+        console.log("submit data", updateData);
+
+        const response = await axios.patch("/api/comments", { text: comment });
+
+        // 댓글 정보 다시 불러오기
+        onFetchComments(response.data);
+        handleUpdate();
+      } catch (error) {
+        console.error("Error submitting comment", error);
+      }
     }
+  };
+
+  const handleToogleLike = () => {
+    console.log(postId, commentId, logginedInfo.userId);
   };
 
   const commentToggleItems =
@@ -184,9 +211,7 @@ const Comment = ({
         {likeList?.some((item: any) => item.id === logginedInfo.userId) ? (
           <button
             className="flex items-center gap-1 px-2 py-1 text-xs font-medium text-pink-400 border border-pink-400 hover:bg-neutral-200 hover:border-stone-300"
-            onClick={() => {
-              // TODO: 좋아요 취소
-            }}
+            onClick={handleToogleLike}
           >
             <Image
               src="/assets/detail/heart_pink.svg"
@@ -199,9 +224,7 @@ const Comment = ({
         ) : (
           <button
             className="flex items-center gap-1 px-2 py-1 text-xs font-medium border border-neutral-400 text-neutral-400 hover:bg-neutral-200 hover:border-stone-300"
-            onClick={() => {
-              // TODO: 좋아요 요청
-            }}
+            onClick={handleToogleLike}
           >
             <Image
               src="/assets/detail/heart.svg"
