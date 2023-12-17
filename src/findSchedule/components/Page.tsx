@@ -25,6 +25,7 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
     date: { start: undefined, end: undefined },
     showCalendar: { start: false, end: false },
     expense: "",
+    location: "",
     personnel: "",
   };
   const [filter, setFilter] = useState(initialFilter);
@@ -44,6 +45,7 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
           dateStart: filter.date.start,
           dateEnd: filter.date.end,
           expense: filter.expense,
+          location: filter.location,
           personnel: filter.personnel,
         },
       })
@@ -114,6 +116,18 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
     handleCalendarClick(type);
   };
 
+  // TODO: 모달 띄우고, 수정 필요
+  const handleLocationChange = (callType: string, value: string) => {
+    if (callType === "first") {
+      setFilter((prevFilter) => ({ ...prevFilter, location: value }));
+    } else {
+      setFilter((prevFilter) => ({
+        ...prevFilter,
+        location: `${prevFilter.location.split(" ")[0]} ${value}`,
+      }));
+    }
+  };
+
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -167,6 +181,7 @@ const Page = ({ defaultCardList }: FindScheduleProps) => {
         handleTab={handleTab}
         handleCalendarClick={handleCalendarClick}
         handleDateChange={handleDateChange}
+        handleLocationChange={handleLocationChange}
         handleRadioChange={handleRadioChange}
         handleReset={handleReset}
         {...filter}

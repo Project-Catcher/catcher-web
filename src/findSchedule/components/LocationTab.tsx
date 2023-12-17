@@ -1,7 +1,12 @@
 import React from "react";
 import CategoryTitle from "./CategoryTitle";
 
-const LocationTab = () => {
+interface LocationTabProps {
+  location: string;
+  handleLocationChange: (callType: string, value: string) => void;
+}
+
+const LocationTab = ({ location, handleLocationChange }: LocationTabProps) => {
   return (
     <div className="p-5 border-t">
       <CategoryTitle title="지역" />

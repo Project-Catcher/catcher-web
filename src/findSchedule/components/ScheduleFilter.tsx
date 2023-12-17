@@ -1,5 +1,5 @@
 // 일정 찾기 페이지 필터
-import React, { Dispatch, SetStateAction } from "react";
+import React, { ChangeEventHandler, Dispatch, SetStateAction } from "react";
 import DurationTab from "./DurationTab";
 import ExpenseTab from "./ExpenseTab";
 import FilterTab from "./FilterTab";
@@ -13,11 +13,13 @@ interface ScheduleFilterProps {
   date: DateProps;
   showCalendar: ShowCalendarType;
   expense: string;
+  location: string;
   personnel: string;
   handleTab: (theme: string) => void;
   handleCalendarClick: (type: "start" | "end") => void;
   handleDateChange: (type: "start" | "end", newDate: Date) => void;
-  handleRadioChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleLocationChange: (callType: string, value: string) => void;
+  handleRadioChange: ChangeEventHandler<HTMLInputElement>;
   handleReset: VoidFunction;
 }
 
@@ -27,10 +29,12 @@ const ScheduleFilter = ({
   date,
   showCalendar,
   expense,
+  location,
   personnel,
   handleTab,
   handleCalendarClick,
   handleDateChange,
+  handleLocationChange,
   handleRadioChange,
 }: ScheduleFilterProps) => {
   return (
@@ -44,7 +48,10 @@ const ScheduleFilter = ({
         handleDateChange={handleDateChange}
       />
       <ExpenseTab expense={expense} handleExpenseChange={handleRadioChange} />
-      <LocationTab />
+      <LocationTab
+        location={location}
+        handleLocationChange={handleLocationChange}
+      />
       <PersonnelTab
         personnel={personnel}
         handlePersonnelChange={handleRadioChange}

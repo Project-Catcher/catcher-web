@@ -1,5 +1,3 @@
-import Tag from "@findSchedule/components/Tag";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 import InfoBottom from "./InfoBottom";
 import InfoMiddle from "./InfoMiddle";

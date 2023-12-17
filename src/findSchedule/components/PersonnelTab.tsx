@@ -1,10 +1,10 @@
 import { personnelRanges } from "@findSchedule/const";
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import CategoryTitle from "./CategoryTitle";
 
 interface PersonnelTabProps {
   personnel: string;
-  handlePersonnelChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePersonnelChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 const PersonnelTab = ({
