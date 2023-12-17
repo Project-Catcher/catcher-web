@@ -3,7 +3,7 @@ import Detail from "@detail/Detail";
 import { hostInfo } from "@detail/HostInfo";
 import { participateInfoType } from "@detail/ParticipationStatus";
 import axios from "axios";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import React from "react";
 
 export interface DetailCard {
@@ -48,19 +48,7 @@ const detail = ({ detailData }: DetailProps) => {
 
 export default detail;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [
-    // 동적 경로 목록을 배열로 지정
-    { params: { id: "1" } },
-  ];
-
-  return {
-    paths,
-    fallback: false, // fallback을 true로 설정하면 다른 동적 경로도 허용됩니다.
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params || {};
 
   try {
