@@ -3,7 +3,7 @@ import React, { ChangeEventHandler } from "react";
 import CategoryTitle from "./CategoryTitle";
 
 interface PersonnelTabProps {
-  personnel: string;
+  personnel?: number;
   handlePersonnelChange: ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -26,7 +26,7 @@ const PersonnelTab = ({
                 className="w-5 h-5 radio"
                 name="personnel"
                 value={range.value}
-                checked={personnel === range.value}
+                checked={Number(personnel) === range.value}
                 onChange={handlePersonnelChange}
               />
               <span className="ml-2">{range.label}</span>

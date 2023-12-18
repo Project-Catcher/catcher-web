@@ -12,30 +12,30 @@ export const themeList = [
 
 export interface RadioRange {
   label: string;
-  value: string;
+  value: number;
 }
 
 export const priceRanges: RadioRange[] = [
-  { label: "0 ~ 10,000", value: "1" },
-  { label: "10,001 ~ 50,000", value: "2" },
-  { label: "50,001 ~ 100,000", value: "3" },
-  { label: "100,000 이상", value: "4" },
-  { label: "미정", value: "5" },
+  { label: "0 ~ 10,000", value: 1 },
+  { label: "10,001 ~ 50,000", value: 2 },
+  { label: "50,001 ~ 100,000", value: 3 },
+  { label: "100,000 이상", value: 4 },
+  { label: "미정", value: 5 },
 ];
 
 export const personnelRanges: RadioRange[] = [
-  { label: "나홀로", value: "1" },
-  { label: "2 ~ 4명", value: "2" },
-  { label: "5 ~ 10명", value: "3" },
-  { label: "최대 30명", value: "4" },
-  { label: "미정", value: "5" },
+  { label: "나홀로", value: 1 },
+  { label: "2 ~ 4명", value: 2 },
+  { label: "5 ~ 10명", value: 3 },
+  { label: "최대 30명", value: 4 },
+  { label: "미정", value: 5 },
 ];
 
 export const keywordRanges: RadioRange[] = [
-  { label: "전체", value: "1" },
-  { label: "제목", value: "2" },
-  { label: "작성자", value: "3" },
-  { label: "내용", value: "4" },
-  { label: "제목+내용", value: "5" },
-  { label: "태그", value: "6" },
+  { label: "전체", value: 1 },
+  { label: "제목", value: 2 },
+  { label: "작성자", value: 3 },
+  { label: "내용", value: 4 },
+  { label: "제목+내용", value: 5 },
+  { label: "태그", value: 6 },
 ];

@@ -3,7 +3,7 @@ import React, { ChangeEventHandler } from "react";
 import CategoryTitle from "./CategoryTitle";
 
 interface ExpenseTabProps {
-  expense: string;
+  expense?: number;
   handleExpenseChange: ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -23,7 +23,7 @@ const ExpenseTab = ({ expense, handleExpenseChange }: ExpenseTabProps) => {
                 className="w-5 h-5 radio"
                 name="expense"
                 value={range.value}
-                checked={expense === range.value}
+                checked={Number(expense) === range.value}
                 onChange={handleExpenseChange}
               />
               <span className="ml-2">{range.label}</span>

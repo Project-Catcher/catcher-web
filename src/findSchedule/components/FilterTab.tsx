@@ -2,10 +2,11 @@ import Image from "next/image";
 import React from "react";
 
 interface FilterTabProps {
+  onFilterApply: VoidFunction;
   handleReset: VoidFunction;
 }
 
-const FilterTab = ({ handleReset }: FilterTabProps) => {
+const FilterTab = ({ onFilterApply, handleReset }: FilterTabProps) => {
   return (
     <div className="flex items-center p-5">
       <Image
@@ -16,7 +17,13 @@ const FilterTab = ({ handleReset }: FilterTabProps) => {
       />
       <span className="ml-2 text-base font-bold text-zinc-800">필터</span>
       <button
-        className="ml-auto text-sm text-zinc-800 hover:text-zinc-900"
+        className="px-3 py-1 ml-auto text-sm font-bold text-white rounded-md bg-emerald-500 hover:bg-emerald-600"
+        onClick={onFilterApply}
+      >
+        적용
+      </button>
+      <button
+        className="px-2 py-1 ml-2 text-sm rounded-md text-zinc-800 hover:bg-gray-200"
         onClick={handleReset}
       >
         초기화

@@ -1,46 +1,13 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import Card, { CardType } from "./Card";
-import KeywordFilter, { keywordFilterType } from "./KeywordFilter";
-import SortFilter from "./SortFilter";
 
 interface ScheduleContentProps {
   cardList: CardType[];
-  keywordFilter: keywordFilterType;
-  handleKeywordChange: (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => void;
-  sortFilter: string;
-  handleSortChange: (e: ChangeEvent<HTMLSelectElement>) => void;
-  onClickSearch: VoidFunction;
 }
 
-const ScheduleContent = ({
-  cardList,
-  keywordFilter,
-  handleKeywordChange,
-  sortFilter,
-  handleSortChange,
-  onClickSearch,
-}: ScheduleContentProps) => {
+const ScheduleContent = ({ cardList }: ScheduleContentProps) => {
   return (
-    <div className="w-full ml-8">
-      <KeywordFilter
-        keywordFilter={keywordFilter}
-        handleKeywordChange={handleKeywordChange}
-        onClickSearch={onClickSearch}
-      />
-      <div className="flex items-center justify-between px-2 mt-2">
-        <div>
-          <span className="text-sm font-medium">전체 </span>
-          <span className="text-sm font-bold text-pink-400">
-            {cardList.length}
-          </span>
-        </div>
-        <SortFilter
-          sortFilter={sortFilter}
-          handleSortChange={handleSortChange}
-        />
-      </div>
+    <div className="inline-block w-full mt-[90px] ml-8">
       <div className="flex flex-wrap mt-2 gap-x-3 gap-y-6">
         {cardList.map((card, i) => (
           <Card key={`card-${i}`} {...card} />

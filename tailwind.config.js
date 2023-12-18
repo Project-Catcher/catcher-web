@@ -45,6 +45,7 @@ module.exports = {
         "3/5-10": "calc(60% - 10px)",
         "full-177": "calc(100% - 177px)",
         "full-30": "calc(100% - 30px)",
+        "full-280": "calc(100% - 280px)",
         planContent: "calc(100% - 250px)",
       },
       height: {

@@ -1,30 +1,70 @@
 import { keywordRanges } from "@findSchedule/const";
-import React, { ChangeEvent, KeyboardEvent } from "react";
-
-export interface keywordFilterType {
-  option: string;
-  keyword: string;
-}
+import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import { findSchedule } from "@pages/api/findSchedule";
+import { CardType } from "./Card";
+import { DateProps } from "./DurationTab";
 
 interface KeywordFilterProps {
-  keywordFilter: keywordFilterType;
-  handleKeywordChange: (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => void;
-  onClickSearch: VoidFunction;
+  theme: string;
+  date: DateProps;
+  expense?: number;
+  location: string;
+  personnel?: number;
+  updateCardList: (newCardList: CardType[]) => void;
+  handleCardCount: (count: number) => void;
 }
 
 const KeywordFilter = ({
-  keywordFilter,
-  handleKeywordChange,
-  onClickSearch,
+  theme,
+  date,
+  expense,
+  location,
+  personnel,
+  updateCardList,
+  handleCardCount,
 }: KeywordFilterProps) => {
-  const { option, keyword } = keywordFilter;
+  const [keywordFilter, setKeywordFilter] = useState({
+    option: 1,
+    keyword: "",
+  });
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       onClickSearch();
     }
+  };
+
+  const handleKeywordChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
+
+    setKeywordFilter((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const onClickSearch = () => {
+    const params = {
+      theme: theme,
+      dateStart: date.start?.toISOString() ?? "",
+      dateEnd: date.end?.toISOString() ?? "",
+      expense: expense,
+      location: location,
+      personnel: personnel,
+      keywordOption: keywordFilter.option,
+      keyword: keywordFilter.keyword,
+    };
+
+    findSchedule(params).then((res) => {
+      updateCardList(res);
+      handleCardCount(res.length);
+      setKeywordFilter((prev) => ({
+        ...prev,
+        keyword: "",
+      }));
+    });
   };
 
   return (
@@ -35,7 +75,7 @@ const KeywordFilter = ({
           <select
             className="block w-[90px] h-[38px] px-3 py-2 text-sm bg-white border rounded-md shadow appearance-none hover:border-gray-400 focus:outline-none focus:shadow-outline border-neutral-200"
             name="option"
-            value={option}
+            value={keywordFilter.option}
             onChange={handleKeywordChange}
           >
             {keywordRanges.map((keyword, i) => (
@@ -59,7 +99,7 @@ const KeywordFilter = ({
             className="w-full h-full px-2 py-1 text-sm font-normal rounded-md text-zinc-500 focus:outline-none"
             placeholder="키워드를 입력하세요."
             name="keyword"
-            value={keyword}
+            value={keywordFilter.keyword}
             onChange={handleKeywordChange}
             onKeyDown={handleKeyDown}
           />

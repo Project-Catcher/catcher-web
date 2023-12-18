@@ -1,7 +1,12 @@
 import React from "react";
 import CategoryTitle from "./CategoryTitle";
 import InputCalender from "./InputCalendar";
-import { DateProps, ShowCalendarType } from "./Page";
+import { ShowCalendarType } from "./Page";
+
+export interface DateProps {
+  start: Date | undefined;
+  end: Date | undefined;
+}
 
 interface DurationTabProps {
   date: DateProps;
