@@ -6,7 +6,7 @@ import { http } from "msw";
 const baseUrl = "http://localhost:3000/api";
 
 export const scheduleHandlers = [
-  http.get(`${baseUrl}/getFindCard`, ({ request }) => {
+  http.get(`${baseUrl}/schedule/list`, ({ request }) => {
     const url = new URL(request.url);
     const theme = url.searchParams.get("theme") ?? "전체";
     const startDate = url.searchParams.get("dateStart");
