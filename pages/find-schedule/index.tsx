@@ -1,8 +1,8 @@
 import { CardType } from "@findSchedule/components/Card";
-import axios from "axios";
 import Page from "findSchedule/components/Page";
 import { GetServerSideProps } from "next";
 import React from "react";
+import { findSchedule } from "@pages/api/findSchedule";
 
 interface FindPageProps {
   defaultCardList: CardType[];
@@ -20,13 +20,11 @@ export default index;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const res = await axios.get<CardType[]>(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/getFindCard`,
-    );
+    const res = await findSchedule();
 
     return {
       props: {
-        defaultCardList: res.data,
+        defaultCardList: res,
       },
     };
   } catch (error) {
