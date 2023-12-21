@@ -33,7 +33,7 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
               <div
                 className={`text-lg font-medium ${
                   headerColor === "white" ? "text-gray-500" : "text-white"
-                } cursor-pointer hover:underline underline-offset-6`}
+                } cursor-pointer hover:underline underline-offset-4`}
               >
                 {tab.title}
               </div>
@@ -84,7 +84,7 @@ const Tabs = ({ isLoggedIn, headerColor }: TabsProps) => {
               <div
                 className={`text-lg font-medium ${
                   headerColor === "white" ? "text-gray-500" : "text-white"
-                } cursor-pointer hover:underline underline-offset-6`}
+                } cursor-pointer hover:underline underline-offset-4`}
               >
                 {tab.title}
               </div>

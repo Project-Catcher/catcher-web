@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           </li>
         </div> */}
         <div className="section_1">
-          <div className="relative z-10 flex flex-col items-center justify-center text-white pt-52">
+          <div className="relative z-10 flex flex-col items-center justify-center text-white pt-40">
             <h1 className="p-10 font-sans font-thin title">
               일상의 행복을 <span className="font-bold">확대</span>하다
             </h1>
@@ -100,9 +100,35 @@ const Home: NextPage = () => {
               <span className="tab_li">축제</span>
               <span className="tab_li">등산</span>
             </div>
-            <div className="con_area worldmap">
+          </div>
+          <div className="sec2_con_area">
+              <div className="con_li sec2_worldmap"></div>
               <div className="con_li sec2_img_wrap"></div>
               <div className="con_li sec2_deco_img"></div>
+            </div>
+        </div>
+        <div className="section_3">
+          <div className="sec3_header">
+            <div className="top_area">
+              <div className="left_txt">
+                <div className="s_txt">
+                  WEEKLY TOP
+                </div>
+                <div className="b_txt">
+                  주간베스트 Catcher!
+                </div>
+              </div>
+              <div className="right_btn">
+                <span className="tab_li"><i></i></span>
+                <span className="tab_li"><i></i></span>
+              </div>
+            </div>
+            <div className="bottom_area">
+              <div className="tab_menu">
+                <span className="tab_li like"><i></i>좋아요</span>
+                <span className="tab_li comment"><i></i>댓글</span>
+                <span className="tab_li bookmark"><i></i>보관</span>
+              </div>
             </div>
           </div>
         </div>
