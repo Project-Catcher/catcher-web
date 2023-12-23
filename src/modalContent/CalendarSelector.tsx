@@ -13,10 +13,7 @@ const CalendarSelector = ({ type }: CalendarSelectorProps) => {
   const setAnswer = useSetRecoilState(scheduleAnswers);
 
   const handleDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = String(date.getDate()).padStart(2, "0");
-    setAnswer((prev) => ({ ...prev, [type]: `${year}.${month}.${day}` }));
+    setAnswer((prev) => ({ ...prev, [type]: date }));
     closeModal();
   };
 

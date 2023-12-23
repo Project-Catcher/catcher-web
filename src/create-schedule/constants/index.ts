@@ -1,4 +1,9 @@
-import { PlanSubTitle, PlanTitle } from "@shared/types";
+import {
+  CategoryItem,
+  CategoryTags,
+  PlanSubTitle,
+  PlanTitle,
+} from "@shared/types";
 
 export const TITLE: PlanTitle = {
   remains: "잠깐, 작성중이던 일정이 있어요",
@@ -24,6 +29,7 @@ export const SCHEDULE_TITLE = {
   tagRecommend: "이런 태그는 어떤가요?",
   templateRecommend: (nickname: string) =>
     `${nickname} 님을 위한 추천 일정 템플릿이 있어요!`,
+  categoryItems: "카테고리별 아이템",
 };
 
 export const SCHEDULE_SUBTITLE = {
@@ -32,6 +38,93 @@ export const SCHEDULE_SUBTITLE = {
   date: "준비기간 및 모집기간 등 전체 일정을 고려해 설정해 주세요.",
   city: "일정을 수행할 위치를 선택해주세요.",
 };
+
+export const PIXEL = {
+  itemHeight: 21,
+  cellHeight: 35,
+  padding: 6,
+  gap: 1,
+};
+
+export const TIME = {
+  hour: 60,
+};
+
+export const CATEGORY_TAGS: { imageSrc: string; title: CategoryTags }[] = [
+  { imageSrc: "/images/samples/category_all.svg", title: "전체" },
+  { imageSrc: "/images/samples/category_movie.svg", title: "영화" },
+  { imageSrc: "/images/samples/category_festival.svg", title: "축제" },
+  { imageSrc: "/images/samples/category_camping.svg", title: "캠핑" },
+  { imageSrc: "/images/samples/category_tour.svg", title: "관광" },
+  { imageSrc: "/images/samples/category_shopping.svg", title: "쇼핑" },
+  { imageSrc: "/images/samples/category_food.svg", title: "음식점" },
+  { imageSrc: "/images/samples/category_culture.svg", title: "문화생활" },
+  { imageSrc: "/images/samples/category_hiking.svg", title: "등산" },
+  { imageSrc: "/images/samples/category_etc.svg", title: "기타" },
+];
+
+export const category: CategoryItem[] = [
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#A3FAF2]",
+  },
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#FFE779]",
+  },
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#FFC395]",
+  },
+  {
+    category: "쇼핑",
+    title: "용산 아이파크몰",
+    city: "용산",
+    tagBackground: "bg-[#CFE1FF]",
+  },
+  {
+    category: "문화생활",
+    title: "마블 영화 감상",
+    city: "연남동",
+    tagBackground: "bg-[#A3FAF2]",
+  },
+  {
+    category: "문화생활",
+    title: "도서관 가서 신간 읽기",
+    city: "연남동",
+    tagBackground: "bg-[#FFE779]",
+  },
+  {
+    category: "문화생활",
+    title: "국립미술관 가서 전시 관람",
+    city: "연남동",
+    tagBackground: "bg-[#FFC395]",
+  },
+  {
+    category: "문화생활",
+    title: "독서모임 참가하기",
+    city: "연남동",
+    tagBackground: "bg-[#CFE1FF]",
+  },
+  {
+    category: "문화생활",
+    title: "예술의 전당에서 뮤지컬 관람",
+    city: "연남동",
+    tagBackground: "bg-[#DDD1FF]",
+  },
+  {
+    category: "문화생활",
+    title: "오일파스텔 그림그리기",
+    city: "연남동",
+    tagBackground: "bg-[#FFDCDC]",
+  },
+];
 
 export const templateContent = [
   {
@@ -63,3 +156,25 @@ export const templateContent = [
     requiredTime: "2~3일 일정",
   },
 ];
+
+export const itemColor = [
+  "bg-[#A3FAF2]",
+  "bg-[#FFE779]",
+  "bg-[#FFC395]",
+  "bg-[#CFE1FF]",
+  "bg-[#DDD1FF]",
+  "bg-[#FFDCDC]",
+  "bg-[#9BF2CE]",
+  "bg-[#FFB8B4]",
+  "bg-[#95CCFF]",
+  "bg-[#EEB785]",
+  "bg-[#FFD1EA]",
+  "bg-[#D8D8D8]",
+  "bg-[#D8B9F8]",
+  "bg-[#FF9292]",
+  "bg-[#A1A1A1]",
+];
+
+export const TITLE_MAX_LENGTH = 40;
+
+export const WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];

@@ -4,14 +4,18 @@ import MakeScheduleButton from "./MakeScheduleButton";
 
 interface TemplateButtonProps {
   clickedContent: number | null;
+  template: boolean;
+  custom: boolean;
+  onClick: (key: "template" | "custom") => void;
 }
 
-const TemplateButton = ({ clickedContent }: TemplateButtonProps) => {
+const TemplateButton = ({
+  template,
+  custom,
+  clickedContent,
+  onClick,
+}: TemplateButtonProps) => {
   const setCurrentProgress = useSetRecoilState(currentProgress);
-
-  const handleCurrentProgress = () => {
-    setCurrentProgress((prev) => prev + 1);
-  };
 
   const handleSelectTemplate = () => {
     if (clickedContent) {
@@ -22,14 +26,23 @@ const TemplateButton = ({ clickedContent }: TemplateButtonProps) => {
   return (
     <div className="w-full text-center mt-[16px]">
       <MakeScheduleButton
+        disabled={!template}
         value="선택한 템플릿 바로가기"
-        buttonStyle="text-[#00D179] border-[#00D179] mr-[9px]"
+        buttonStyle={`${
+          !template
+            ? "text-[#666666] border-[#E0E0E0] cursor-not-allowed"
+            : "text-[#00D179] border-[#00D179] cursor-pointer"
+        } mr-[9px]`}
         onClick={handleSelectTemplate}
       />
       <MakeScheduleButton
         value="직접 만들기"
-        buttonStyle="text-[#666666] border-[#E0E0E0] hover:bg-[#E7F9EE] hover:text-[#00D179]"
-        onClick={handleCurrentProgress}
+        buttonStyle={`${
+          !custom
+            ? "text-[#666666] border-[#E0E0E0]"
+            : "text-[#00D179] bg-[#E7F9EE]"
+        }`}
+        onClick={() => onClick("custom")}
       />
     </div>
   );

@@ -54,11 +54,64 @@ export interface PlanSubTitle {
 export interface ScheduleAnswerType {
   title: string;
   imageSrc: string;
-  startedAt: string;
-  endedAt: string;
+  startedAt: Date | null;
+  endedAt: Date | null;
   city: string;
   tag: string[];
+  items: [
+    {
+      tag: string;
+      title: string;
+      background: string;
+      city: string;
+    },
+  ];
 }
 
 export type CalendarSelectorType = "startedAt" | "endedAt";
+
+export interface CategoryItem {
+  category: CategoryTags;
+  title: string;
+  city: string;
+  tagBackground: string;
+}
+
+export interface SelectedCategoryItem extends CategoryItem {
+  selectedTime: number;
+}
+
+export interface AppliedItem extends CategoryItem {
+  startTime: {
+    hour: number;
+    minute: number;
+  };
+  endTime: {
+    hour: number;
+    minute: number;
+  };
+}
+
+export interface Start2EndTime {
+  start: {
+    hour: string;
+    minute: string;
+  };
+  end: {
+    hour: string;
+    minute: string;
+  };
+}
+
+export type CategoryTags =
+  | "전체"
+  | "영화"
+  | "축제"
+  | "캠핑"
+  | "관광"
+  | "쇼핑"
+  | "음식점"
+  | "문화생활"
+  | "등산"
+  | "기타";
 export type LoginType = "kakao" | "naver" | "catcher";

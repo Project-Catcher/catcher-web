@@ -1,6 +1,7 @@
-import { HTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 
-interface MakeScheduleButtonProps extends HTMLAttributes<HTMLButtonElement> {
+interface MakeScheduleButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
   buttonStyle: string;
 }
