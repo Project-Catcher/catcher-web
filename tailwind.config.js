@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Noto Sans KR", "sans-serif", ...defaultTheme.fontFamily.sans],
+    },
     extend: {
       colors: {
         "c-accept": "#00D179", // green. 확인용 색상

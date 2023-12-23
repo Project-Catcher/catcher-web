@@ -91,4 +91,5 @@ export type ModalContentId =
   | "calendarSelector_end"
   | "scheduleTimeSelector"
   | "customScheduleSelector"
-  | "templatePreview";
+  | "templatePreview"
+  | "RecruitManage";

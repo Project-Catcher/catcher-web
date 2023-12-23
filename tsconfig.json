@@ -24,6 +24,7 @@
       "@notice/*": ["notice/*"],
       "@faq/*": ["faq/*"],
       "@mypage/*": ["mypage/*"],
+      "@findSchedule/*": ["findSchedule/*"],
       "@create-schedule/*": ["create-schedule/*"]
     }
   },
