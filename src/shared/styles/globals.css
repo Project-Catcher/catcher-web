@@ -821,4 +821,12 @@ text-transform: uppercase;
 
 /*//end section 3*/
 
+/* section_4 */
+
+.section_4 .person_img{
+  background:url(../../../public/images/samples/sec_4_person.png)no-repeat;
+  width: 822px;
+  height: 934.342px;
+}
+
 /* p-10 font-sans font-thin title */
